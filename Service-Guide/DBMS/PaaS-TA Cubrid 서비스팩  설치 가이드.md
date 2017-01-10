@@ -141,166 +141,166 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 - Cubrid 서비스 릴리즈를 업로드한다.
 
->$ bosh upload release {서비스 릴리즈 파일 PATH}
->
->$ bosh upload release paasta-cubrid-2.0.tgz
->
->RSA 1024 bit CA certificates are loaded due to old openssl compatibility
->Acting as user 'admin' on 'bosh'
->
->Verifying manifest...
->Extract manifest                                             OK
->Manifest exists                                              OK
->Release name/version                                         OK
->
->File exists and readable                                     OK
->Read package 'cubrid' (1 of 4)                               OK
->Package 'cubrid' checksum                                    OK
->Read package 'java7' (2 of 4)                                OK
->Package 'java7' checksum                                     OK
->Read package 'cli' (3 of 4)                                  OK
->Package 'cli' checksum                                       OK
->Read package 'cubrid_broker' (4 of 4)                        OK
->Package 'cubrid_broker' checksum                             OK
->Package dependencies                                         OK
->Checking jobs format                                         OK
->Read job 'cubrid' (1 of 4), version 45427cb5f3b6c86df80bb2de38c12e98aec7b95f OK
->Job 'cubrid' checksum                                        OK
->Extract job 'cubrid'                                         OK
->Read job 'cubrid' manifest                                   OK
->Check template 'cubrid_ctl.erb' for 'cubrid'                 OK
->Check template 'cubrid.conf.erb' for 'cubrid'                OK
->Check template 'cubrid_broker.conf.erb' for 'cubrid'         OK
->Check template 'cubrid_broker_init.sql.erb' for 'cubrid'     OK
->Check template '.cubrid.sh.erb' for 'cubrid'                 OK
->Job 'cubrid' needs 'cubrid' package                          OK
->Monit file for 'cubrid'                                      OK
->Read job 'cubrid_broker_deregistrar' (2 of 4), version 49602e528fa68a557ece12688b6b278a1134ed27 OK
->Job 'cubrid_broker_deregistrar' checksum                     OK
->Extract job 'cubrid_broker_deregistrar'                      OK
->Read job 'cubrid_broker_deregistrar' manifest                OK
->Check template 'errand.sh.erb' for 'cubrid_broker_deregistrar' OK
->Job 'cubrid_broker_deregistrar' needs 'cli' package          OK
->Monit file for 'cubrid_broker_deregistrar'                   OK
->Read job 'cubrid_broker' (3 of 4), version c73852bd8115be216e32b69bc6ee5f0bb5444b06 OK
->Job 'cubrid_broker' checksum                                 OK
->Extract job 'cubrid_broker'                                  OK
->Read job 'cubrid_broker' manifest                            OK
->Check template 'bin/cubrid_broker_ctl' for 'cubrid_broker'   OK
->Check template 'bin/monit_debugger' for 'cubrid_broker'      OK
->Check template 'data/properties.sh.erb' for 'cubrid_broker'  OK
->Check template 'helpers/ctl_setup.sh' for 'cubrid_broker'    OK
->Check template 'helpers/ctl_utils.sh' for 'cubrid_broker'    OK
->Check template 'config/cubrid_broker.yml.erb' for 'cubrid_broker' OK
->Check template 'config/application-mvc.properties.erb' for 'cubrid_broker' OK
->Check template 'config/datasource.properties.erb' for 'cubrid_broker' OK
->Check template 'config/logback.xml.erb' for 'cubrid_broker'  OK
->Check template 'config/bosh.pem.erb' for 'cubrid_broker'     OK
->Job 'cubrid_broker' needs 'cubrid_broker' package            OK
->Job 'cubrid_broker' needs 'java7' package                    OK
->Monit file for 'cubrid_broker'                               OK
->Read job 'cubrid_broker_registrar' (4 of 4), version 8a89128e95a9707a30697bda7a9d7a678a2fd109 OK
->Job 'cubrid_broker_registrar' checksum                       OK
->Extract job 'cubrid_broker_registrar'                        OK
->Read job 'cubrid_broker_registrar' manifest                  OK
->Check template 'errand.sh.erb' for 'cubrid_broker_registrar' OK
->Job 'cubrid_broker_registrar' needs 'cli' package            OK
->Monit file for 'cubrid_broker_registrar'                     OK
->
->Release info
->------------
->Name:    paasta-cubrid
->Version: 2.0
->
->Packages
->  - cubrid (36065bb22d1e816657d176c902246231347361e2)
->  - java7 (cb28502f6e89870255182ea76e9029c7e9ec1862)
->  - cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0)
->  - cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc)
->
->Jobs
->  - cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f)
->  - cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27)
->  - cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06)
->  - cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109)
->
->License
->  - none
->
->Checking if can repack release for faster upload...
->cubrid (36065bb22d1e816657d176c902246231347361e2) UPLOAD
->java7 (cb28502f6e89870255182ea76e9029c7e9ec1862) SKIP
->cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0) SKIP
->cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc) UPLOAD
->cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f) UPLOAD
->cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27) UPLOAD
->cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06) UPLOAD
->cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109) UPLOAD
->Release repacked (new size is 181.8M)
->
->Uploading release
->release-repac:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.5MB  26.1MB/s ETA:  00:00:00
->Director task 1285
->  Started extracting release > Extracting release. Done (00:00:02)
->
->  Started verifying manifest > Verifying manifest. Done (00:00:00)
->
->  Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)
->
->  Started creating new packages
->  Started creating new packages > cubrid/36065bb22d1e816657d176c902246231347361e2. Done (00:00:03)
->  Started creating new packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:03)
->  Started creating new packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)
->  Started creating new packages > cubrid_broker/25717cfb95347c7ca5ed1e6cbdda701315789cfc. Done (00:00:01)
->     Done creating new packages (00:00:07)
->
->  Started creating new jobs
->  Started creating new jobs > cubrid/45427cb5f3b6c86df80bb2de38c12e98aec7b95f. Done (00:00:00)
->  Started creating new jobs > cubrid_broker_deregistrar/49602e528fa68a557ece12688b6b278a1134ed27. Done (00:00:00)
->  Started creating new jobs > cubrid_broker/c73852bd8115be216e32b69bc6ee5f0bb5444b06. Done (00:00:00)
->  Started creating new jobs > cubrid_broker_registrar/8a89128e95a9707a30697bda7a9d7a678a2fd109. Done (00:00:00)
->     Done creating new jobs (00:00:00)
->
->  Started release has been created > paasta-cubrid/2.0. Done (00:00:00)
->
->Task 1285 done
->
->Started		2017-01-06 06:52:33 UTC
->Finished	2017-01-06 06:52:42 UTC
->Duration	00:00:09
->release-repac:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.9MB  10.9MB/s Time: 00:00:16
->
->Release uploaded
+>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
+><br>
+>$ bosh upload release paasta-cubrid-2.0.tgz<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>Verifying manifest...<br>
+>Extract manifest                                             OK<br>
+>Manifest exists                                              OK<br>
+>Release name/version                                         OK<br>
+><br>
+>File exists and readable                                     OK<br>
+>Read package 'cubrid' (1 of 4)                               OK<br>
+>Package 'cubrid' checksum                                    OK<br>
+>Read package 'java7' (2 of 4)                                OK<br>
+>Package 'java7' checksum                                     OK<br>
+>Read package 'cli' (3 of 4)                                  OK<br>
+>Package 'cli' checksum                                       OK<br>
+>Read package 'cubrid_broker' (4 of 4)                        OK<br>
+>Package 'cubrid_broker' checksum                             OK<br>
+>Package dependencies                                         OK<br>
+>Checking jobs format                                         OK<br>
+>Read job 'cubrid' (1 of 4), version 45427cb5f3b6c86df80bb2de38c12e98aec7b95f OK<br>
+>Job 'cubrid' checksum                                        OK<br>
+>Extract job 'cubrid'                                         OK<br>
+>Read job 'cubrid' manifest                                   OK<br>
+>Check template 'cubrid_ctl.erb' for 'cubrid'                 OK<br>
+>Check template 'cubrid.conf.erb' for 'cubrid'                OK<br>
+>Check template 'cubrid_broker.conf.erb' for 'cubrid'         OK<br>
+>Check template 'cubrid_broker_init.sql.erb' for 'cubrid'     OK<br>
+>Check template '.cubrid.sh.erb' for 'cubrid'                 OK<br>
+>Job 'cubrid' needs 'cubrid' package                          OK<br>
+>Monit file for 'cubrid'                                      OK<br>
+>Read job 'cubrid_broker_deregistrar' (2 of 4), version 49602e528fa68a557ece12688b6b278a1134ed27 OK<br>
+>Job 'cubrid_broker_deregistrar' checksum                     OK<br>
+>Extract job 'cubrid_broker_deregistrar'                      OK<br>
+>Read job 'cubrid_broker_deregistrar' manifest                OK<br>
+>Check template 'errand.sh.erb' for 'cubrid_broker_deregistrar' OK<br>
+>Job 'cubrid_broker_deregistrar' needs 'cli' package          OK<br>
+>Monit file for 'cubrid_broker_deregistrar'                   OK<br>
+>Read job 'cubrid_broker' (3 of 4), version c73852bd8115be216e32b69bc6ee5f0bb5444b06 OK<br>
+>Job 'cubrid_broker' checksum                                 OK<br>
+>Extract job 'cubrid_broker'                                  OK<br>
+>Read job 'cubrid_broker' manifest                            OK<br>
+>Check template 'bin/cubrid_broker_ctl' for 'cubrid_broker'   OK<br>
+>Check template 'bin/monit_debugger' for 'cubrid_broker'      OK<br>
+>Check template 'data/properties.sh.erb' for 'cubrid_broker'  OK<br>
+>Check template 'helpers/ctl_setup.sh' for 'cubrid_broker'    OK<br>
+>Check template 'helpers/ctl_utils.sh' for 'cubrid_broker'    OK<br>
+>Check template 'config/cubrid_broker.yml.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/application-mvc.properties.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/datasource.properties.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/logback.xml.erb' for 'cubrid_broker'  OK<br>
+>Check template 'config/bosh.pem.erb' for 'cubrid_broker'     OK<br>
+>Job 'cubrid_broker' needs 'cubrid_broker' package            OK<br>
+>Job 'cubrid_broker' needs 'java7' package                    OK<br>
+>Monit file for 'cubrid_broker'                               OK<br>
+>Read job 'cubrid_broker_registrar' (4 of 4), version 8a89128e95a9707a30697bda7a9d7a678a2fd109 OK<br>
+>Job 'cubrid_broker_registrar' checksum                       OK<br>
+>Extract job 'cubrid_broker_registrar'                        OK<br>
+>Read job 'cubrid_broker_registrar' manifest                  OK<br>
+>Check template 'errand.sh.erb' for 'cubrid_broker_registrar' OK<br>
+>Job 'cubrid_broker_registrar' needs 'cli' package            OK<br>
+>Monit file for 'cubrid_broker_registrar'                     OK<br>
+><br>
+>Release info<br>
+>------------<br>
+>Name:    paasta-cubrid<br>
+>Version: 2.0<br>
+><br>
+>Packages<br>
+>  - cubrid (36065bb22d1e816657d176c902246231347361e2)<br>
+>  - java7 (cb28502f6e89870255182ea76e9029c7e9ec1862)<br>
+>  - cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0)<br>
+>  - cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc)<br>
+><br>
+>Jobs<br>
+>  - cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f)<br>
+>  - cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27)<br>
+>  - cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06)<br>
+>  - cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109)<br>
+><br>
+>License<br>
+>  - none<br>
+><br>
+>Checking if can repack release for faster upload...<br>
+>cubrid (36065bb22d1e816657d176c902246231347361e2) UPLOAD<br>
+>java7 (cb28502f6e89870255182ea76e9029c7e9ec1862) SKIP<br>
+>cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0) SKIP<br>
+>cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc) UPLOAD<br>
+>cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f) UPLOAD<br>
+>cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27) UPLOAD<br>
+>cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06) UPLOAD<br>
+>cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109) UPLOAD<br>
+>Release repacked (new size is 181.8M)<br>
+><br>
+>Uploading release<br>
+>release-repac:  96%<br> |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.5MB  26.1MB/s ETA:  00:00:00<br>
+>Director task 1285<br>
+>  Started extracting release > Extracting release. Done (00:00:02)<br>
+><br>
+>  Started verifying manifest > Verifying manifest. Done (00:00:00)<br>
+><br>
+>  Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)<br>
+><br>
+>  Started creating new packages<br>
+>  Started creating new packages > cubrid/36065bb22d1e816657d176c902246231347361e2. Done (00:00:03)<br>
+>  Started creating new packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:03)<br>
+>  Started creating new packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)<br>
+>  Started creating new packages > cubrid_broker/25717cfb95347c7ca5ed1e6cbdda701315789cfc. Done (00:00:01)<br>
+>     Done creating new packages (00:00:07)<br>
+><br>
+>  Started creating new jobs<br>
+>  Started creating new jobs > cubrid/45427cb5f3b6c86df80bb2de38c12e98aec7b95f. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker_deregistrar/49602e528fa68a557ece12688b6b278a1134ed27. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker/c73852bd8115be216e32b69bc6ee5f0bb5444b06. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker_registrar/8a89128e95a9707a30697bda7a9d7a678a2fd109. Done (00:00:00)<br>
+>     Done creating new jobs (00:00:00)<br>
+><br>
+>  Started release has been created > paasta-cubrid/2.0. Done (00:00:00)<br>
+><br>
+>Task 1285 done<br>
+><br>
+>Started		2017-01-06 06:52:33 UTC<br>
+>Finished	2017-01-06 06:52:42 UTC<br>
+>Duration	00:00:09<br>
+>release-repac:  96%<br> |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.9MB  10.9MB/s Time: 00:00:16<br>
+><br>
+>Release uploaded<br>
 
 - 업로드 된 Cubrid 릴리즈를 확인한다. 
 
->$ bosh releases
->
->RSA 1024 bit CA certificates are loaded due to old openssl compatibility
->Acting as user 'admin' on 'bosh'
->
->+--------------------------------------+-----------+-------------+
->| Name                                 | Versions  | Commit Hash |
->+--------------------------------------+-----------+-------------+
->| cf                                   | 247*      | af4efe9f+   |
->| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |
->| diego                                | 1.1.0*    | 2298c8d4    |
->| empty-release                        | 1+dev.1*  | 00000000    |
->| etcd                                 | 86*       | 2dfbef00+   |
->| garden-runc                          | 1.0.3*    | c6c4c73c    |
->| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |
->| openpaas-redis                       | 1.0*      | af975e0f    |
->| paasta-cubrid                        | 2.0       | 85e3f01e+   |
->| paasta-eclipse-che                   | 2.0*      | 00000000    |
->| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |
->| paasta-mysql                         | 2.0*      | 85e3f01e+   |
->| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |
->| paasta-redis                         | 2.0       | 2d766084+   |
->+--------------------------------------+-----------+-------------+
->(*) Currently deployed
->(+) Uncommitted changes
->
->Releases total: 14
+>$ bosh releases<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |<br>
+>| openpaas-redis                       | 1.0*      | af975e0f    |<br>
+>| paasta-cubrid                        | 2.0       | 85e3f01e+   |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 14<br>
 >Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
 
