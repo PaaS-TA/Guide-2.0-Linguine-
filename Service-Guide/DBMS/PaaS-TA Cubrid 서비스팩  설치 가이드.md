@@ -69,12 +69,13 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 - OpenPaaS 에서 제공하는 릴리즈 파일들을 다운받는다. (OpenPaaS-Services, OpenPaaS-Deployment, OpenPaaS-Sample-Apps)
 
-- 다운로드 위치
+- PaaSTA 에서 제공하는 Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다.
 
->OpenPaaS-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM>**  
->OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**  
->OpenPaaS-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW>**
+>$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
+![2-1-0-1]  
 
+>$ ls –all
+![2-1-0-2]  
 
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
@@ -566,6 +567,18 @@ Cubrid Manager 프로그램은 Cubrid에서 제공하는 무료로 사용할 수
 
 [1-3-0-0]:/images/openpaas-service/cubrid/1-3-0-0.png
 [2-1-0-0]:/images/openpaas-service/cubrid/2-1-0-0.png
+
+[2-1-0-1]:/images/openpaas-service/cubrid/2-1-0-1.png
+[2-1-0-2]:/images/openpaas-service/cubrid/2-1-0-2.png
+[2-1-0-3]:/images/openpaas-service/cubrid/2-1-0-3.png
+[2-1-0-4]:/images/openpaas-service/cubrid/2-1-0-4.png
+[2-1-0-5]:/images/openpaas-service/cubrid/2-1-0-5.png
+[2-1-0-6]:/images/openpaas-service/cubrid/2-1-0-6.png
+[2-1-0-7]:/images/openpaas-service/cubrid/2-1-0-7.png
+[2-1-0-8]:/images/openpaas-service/cubrid/2-1-0-8.png
+[2-1-0-9]:/images/openpaas-service/cubrid/2-1-0-9.png
+[2-1-0-10]:/images/openpaas-service/cubrid/2-1-0-10.png
+
 [2-1-1-0]:/images/openpaas-service/cubrid/2-1-1-0.png
 [2-2-0-0]:/images/openpaas-service/cubrid/2-2-0-0.png
 [2-2-1-0]:/images/openpaas-service/cubrid/2-2-1-0.png
