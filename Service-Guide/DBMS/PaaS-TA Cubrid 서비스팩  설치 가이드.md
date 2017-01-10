@@ -69,75 +69,285 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 - OpenPaaS 에서 제공하는 릴리즈 파일들을 다운받는다. (OpenPaaS-Services, OpenPaaS-Deployment, OpenPaaS-Sample-Apps)
 
-- 다운로드 위치
+- PaaSTA 에서 제공하는 Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다.
 
->OpenPaaS-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM>**  
->OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**  
->OpenPaaS-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW>**
-
+>$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
+![2-1-0-1]  
+>$ ls –all                                                              
+![2-1-0-2]  
+>openpaas-service-release 디렉토리가 생성된 것을 확인한다.
 
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
 
-- OpenPaaS-Services을 다운로드 받고 폴더안에 있는 cubrid 서비스 릴리즈 openpaas-cubrid-1.0.tgz 파일을 확인한다.
+- 다운받은 Release 디렉토리안의 openpaas-cubrid-release 디렉토리로 이동한다.
 
->$ cd OpenPaaS-Services  
->$ ls -all  
-![2-2-0-0-1]  
-
-- 업로드 되어 있는 릴리즈 목록을 확인한다.
-
->$ bosh releases  
-![2-2-4-0-1]  
->Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+>$ cd openpaas-service-release
+>$ ls –all                                                      
+![2-1-0-3]  
+>$ cd open-cubrid-release
+>$ ls -all
+![2-1-0-4]  
 
 - Cubrid 서비스 릴리즈를 업로드한다.
 
 >$ bosh upload release {서비스 릴리즈 파일 PATH}
 >
 >$ bosh upload release openpaas-cubrid-1.0.tgz  
-![2-2-6-0-1]
+![2-1-0-5]
+>src/cubrid 디렉토리가 생성된 것을 확인
+>
+>$ cd cubrid
+>$ wget http://ftp.cubrid.org/CUBRID_Engine/9.3.2/CUBRID-9.3.2.0016-linux.x86_64.tar.gz
+>$ ls -all                                                     
+![2-1-0-6]  
+>Cubrid 소스파일이 다운로드된 것을 확인
+
+- Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
+
+>$ cd ../../
+>$ bosh releases
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+>Acting as user 'admin' on 'bosh'
+>
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>                
+>+--------------------------------------+-----------+-------------+<br>         
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |<br>
+>| openpaas-redis                       | 1.0*      | af975e0f    |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 13<br>
+>Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
+- Cubrid 서비스 릴리즈를 생성한다. 
+
+>$ bosh create release --force --final --name pasta-cubrid --version 2.0                                                   
+![2-1-0-7]  
+![2-1-0-8]  
+
+- Cubrid 서비스 릴리즈를 업로드한다.
+
+>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
+><br>
+>$ bosh upload release paasta-cubrid-2.0.tgz<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>Verifying manifest...<br>
+>Extract manifest                                             OK<br>
+>Manifest exists                                              OK<br>
+>Release name/version                                         OK<br>
+><br>
+>File exists and readable                                     OK<br>
+>Read package 'cubrid' (1 of 4)                               OK<br>
+>Package 'cubrid' checksum                                    OK<br>
+>Read package 'java7' (2 of 4)                                OK<br>
+>Package 'java7' checksum                                     OK<br>
+>Read package 'cli' (3 of 4)                                  OK<br>
+>Package 'cli' checksum                                       OK<br>
+>Read package 'cubrid_broker' (4 of 4)                        OK<br>
+>Package 'cubrid_broker' checksum                             OK<br>
+>Package dependencies                                         OK<br>
+>Checking jobs format                                         OK<br>
+>Read job 'cubrid' (1 of 4), version 45427cb5f3b6c86df80bb2de38c12e98aec7b95f OK<br>
+>Job 'cubrid' checksum                                        OK<br>
+>Extract job 'cubrid'                                         OK<br>
+>Read job 'cubrid' manifest                                   OK<br>
+>Check template 'cubrid_ctl.erb' for 'cubrid'                 OK<br>
+>Check template 'cubrid.conf.erb' for 'cubrid'                OK<br>
+>Check template 'cubrid_broker.conf.erb' for 'cubrid'         OK<br>
+>Check template 'cubrid_broker_init.sql.erb' for 'cubrid'     OK<br>
+>Check template '.cubrid.sh.erb' for 'cubrid'                 OK<br>
+>Job 'cubrid' needs 'cubrid' package                          OK<br>
+>Monit file for 'cubrid'                                      OK<br>
+>Read job 'cubrid_broker_deregistrar' (2 of 4), version 49602e528fa68a557ece12688b6b278a1134ed27 OK<br>
+>Job 'cubrid_broker_deregistrar' checksum                     OK<br>
+>Extract job 'cubrid_broker_deregistrar'                      OK<br>
+>Read job 'cubrid_broker_deregistrar' manifest                OK<br>
+>Check template 'errand.sh.erb' for 'cubrid_broker_deregistrar' OK<br>
+>Job 'cubrid_broker_deregistrar' needs 'cli' package          OK<br>
+>Monit file for 'cubrid_broker_deregistrar'                   OK<br>
+>Read job 'cubrid_broker' (3 of 4), version c73852bd8115be216e32b69bc6ee5f0bb5444b06 OK<br>
+>Job 'cubrid_broker' checksum                                 OK<br>
+>Extract job 'cubrid_broker'                                  OK<br>
+>Read job 'cubrid_broker' manifest                            OK<br>
+>Check template 'bin/cubrid_broker_ctl' for 'cubrid_broker'   OK<br>
+>Check template 'bin/monit_debugger' for 'cubrid_broker'      OK<br>
+>Check template 'data/properties.sh.erb' for 'cubrid_broker'  OK<br>
+>Check template 'helpers/ctl_setup.sh' for 'cubrid_broker'    OK<br>
+>Check template 'helpers/ctl_utils.sh' for 'cubrid_broker'    OK<br>
+>Check template 'config/cubrid_broker.yml.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/application-mvc.properties.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/datasource.properties.erb' for 'cubrid_broker' OK<br>
+>Check template 'config/logback.xml.erb' for 'cubrid_broker'  OK<br>
+>Check template 'config/bosh.pem.erb' for 'cubrid_broker'     OK<br>
+>Job 'cubrid_broker' needs 'cubrid_broker' package            OK<br>
+>Job 'cubrid_broker' needs 'java7' package                    OK<br>
+>Monit file for 'cubrid_broker'                               OK<br>
+>Read job 'cubrid_broker_registrar' (4 of 4), version 8a89128e95a9707a30697bda7a9d7a678a2fd109 OK<br>
+>Job 'cubrid_broker_registrar' checksum                       OK<br>
+>Extract job 'cubrid_broker_registrar'                        OK<br>
+>Read job 'cubrid_broker_registrar' manifest                  OK<br>
+>Check template 'errand.sh.erb' for 'cubrid_broker_registrar' OK<br>
+>Job 'cubrid_broker_registrar' needs 'cli' package            OK<br>
+>Monit file for 'cubrid_broker_registrar'                     OK<br>
+><br>
+>Release info<br>
+>------------<br>
+>Name:    paasta-cubrid<br>
+>Version: 2.0<br>
+><br>
+>Packages<br>
+>  - cubrid (36065bb22d1e816657d176c902246231347361e2)<br>
+>  - java7 (cb28502f6e89870255182ea76e9029c7e9ec1862)<br>
+>  - cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0)<br>
+>  - cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc)<br>
+><br>
+>Jobs<br>
+>  - cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f)<br>
+>  - cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27)<br>
+>  - cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06)<br>
+>  - cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109)<br>
+><br>
+>License<br>
+>  - none<br>
+><br>
+>Checking if can repack release for faster upload...<br>
+>cubrid (36065bb22d1e816657d176c902246231347361e2) UPLOAD<br>
+>java7 (cb28502f6e89870255182ea76e9029c7e9ec1862) SKIP<br>
+>cli (24305e50a638ece2cace4ef4803746c0c9fe4bb0) SKIP<br>
+>cubrid_broker (25717cfb95347c7ca5ed1e6cbdda701315789cfc) UPLOAD<br>
+>cubrid (45427cb5f3b6c86df80bb2de38c12e98aec7b95f) UPLOAD<br>
+>cubrid_broker_deregistrar (49602e528fa68a557ece12688b6b278a1134ed27) UPLOAD<br>
+>cubrid_broker (c73852bd8115be216e32b69bc6ee5f0bb5444b06) UPLOAD<br>
+>cubrid_broker_registrar (8a89128e95a9707a30697bda7a9d7a678a2fd109) UPLOAD<br>
+>Release repacked (new size is 181.8M)<br>
+><br>
+>Uploading release<br>
+>release-repac:  96%<br> |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.5MB  26.1MB/s ETA:  00:00:00<br>
+>Director task 1285<br>
+>  Started extracting release > Extracting release. Done (00:00:02)<br>
+><br>
+>  Started verifying manifest > Verifying manifest. Done (00:00:00)<br>
+><br>
+>  Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)<br>
+><br>
+>  Started creating new packages<br>
+>  Started creating new packages > cubrid/36065bb22d1e816657d176c902246231347361e2. Done (00:00:03)<br>
+>  Started creating new packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:03)<br>
+>  Started creating new packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)<br>
+>  Started creating new packages > cubrid_broker/25717cfb95347c7ca5ed1e6cbdda701315789cfc. Done (00:00:01)<br>
+>     Done creating new packages (00:00:07)<br>
+><br>
+>  Started creating new jobs<br>
+>  Started creating new jobs > cubrid/45427cb5f3b6c86df80bb2de38c12e98aec7b95f. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker_deregistrar/49602e528fa68a557ece12688b6b278a1134ed27. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker/c73852bd8115be216e32b69bc6ee5f0bb5444b06. Done (00:00:00)<br>
+>  Started creating new jobs > cubrid_broker_registrar/8a89128e95a9707a30697bda7a9d7a678a2fd109. Done (00:00:00)<br>
+>     Done creating new jobs (00:00:00)<br>
+><br>
+>  Started release has been created > paasta-cubrid/2.0. Done (00:00:00)<br>
+><br>
+>Task 1285 done<br>
+><br>
+>Started		2017-01-06 06:52:33 UTC<br>
+>Finished	2017-01-06 06:52:42 UTC<br>
+>Duration	00:00:09<br>
+>release-repac:  96%<br> |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo         | 174.9MB  10.9MB/s Time: 00:00:16<br>
+><br>
+>Release uploaded<br>
+<br>
 
 - 업로드 된 Cubrid 릴리즈를 확인한다. 
 
->$ bosh releases  
-![2-2-7-0-1]  
->Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인
+>$ bosh releases<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |<br>
+>| openpaas-redis                       | 1.0*      | af975e0f    |<br>
+>| paasta-cubrid                        | 2.0       | 85e3f01e+   |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 14<br>
+>Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인<br>
+<br>
 
 <div id='9'></div>
 ### 2.3.  Cubrid 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- OpenPaaS-Deployment을 다운로드 받고 폴더안에 있는 vSphere용 Cubrid Deployment 화일인 openpaas-cubrid-vsphere-1.0.yml를 복사한다.
-- 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-cubrid-vsphere-1.0.yml)
+- PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Cubrid Deployment 파일을 복사한다.
+  예) vsphere 일 경우 paasta_cubrid_vsphere_2.0.yml를 복사
+  다운로드 받은 Deployment Yml 파일을 확인한다. (pasta_cubrid_vsphere_2.0.yml)
 
-><div>$ ls –all</div>
->![2-3-0-0]
+
+>$ ls –all<br>
+><br>
+>total 851588<br>
+>drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .<br>
+>drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..<br>
+><br>
+>-rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml<br>
+>-rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml<br>
+<br>
 
 - Director UUID를 확인한다.
 - BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
 
 ><div>$ bosh status</div>
->![2-3-1-0]
+>![2-1-0-9]
 
 - Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
  
 ><div>$ bosh stemcells</div>
->![2-3-2-0]
+>![2-1-0-10]
 ><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.</div>
 
-- openpaas-cubrid-vsphere-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+- Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
->$ vi openpaas-cubrid-vsphere-1.0.yml 
+>$ vi paasta-cubrid-vsphere-1.0.yml 
 ```yaml
-# openpaas-cubrid-vsphere 설정 파일 내용
+# paasta-cubrid-vsphere 설정 파일 내용
 ---
-name: openpaas-cubrid-service  # 서비스 배포이름(필수)
+name: paasta-cubrid-service  # 서비스 배포이름(필수)
 director_uuid: 0bc8d3c2-e032-4c7e-a99c-e23eea7091fc #bosh status 에서 확인한 Director UUID을 입력(필수)
 >
 release:
-  name: openpaas-cubrid  #서비스 릴리즈 이름(필수)
+  name: paasta-cubrid  #서비스 릴리즈 이름(필수)
   version: 1.0   #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 >
 compilation:          # 컴파일시 필요한 가상머신의 속성(필수)
@@ -220,7 +430,7 @@ jobs:
         admin_password: admin   # CF 사용자의 패스워드
         admin_username: admin   # CF 사용자 이름
         api_url: https://api.115.68.46.30.xip.io   # CF 설치시 설정한 api uri 정보(필수)
-    release: openpaas-cubrid
+    release: paasta-cubrid
   - name : cubrid_broker_deregistrar  # 작업 이름: 서비스 브로커 삭제
     template : cubrid_broker_deregistrar
     instances: 1
@@ -271,21 +481,226 @@ properties:
 
 - Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
->$ bosh deployment {Deployment manifest 파일 PATH}  
->$ bosh deployment openpaas-cubrid-vsphere-1.0.yml  
-![2-3-3-0]
+>$ bosh deployment {Deployment manifest 파일 PATH}<br>
+><br>
+>$ bosh deployment paasta_cubrid_vsphere_2.0.yml<br>
+><br>
+>inception@inception:~/bosh-space/deployment$ bosh deployment paasta_cubrid_vsphere_2.0.yml <br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Deployment set to '/mnt/bosh-space/deployment/paasta_cubrid_vsphere_2.0.yml'<br>
+
 
 - Cubrid 서비스팩을 배포한다.
 
->$ bosh deploy  
-![2-3-4-0]  
-![2-3-4-1]
+>$ bosh deploy<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on deployment 'paasta-cubrid-service' on 'bosh'<br>
+>Getting deployment properties from director...<br>
+>Unable to get properties list from director, trying without it...<br>
+><br>
+>Detecting deployment changes<br>
+>----------------------------<br>
+>resource_pools:<br>
+>- name: cubrid_resource_pools<br>
+>  network: default<br>
+>  stemcell:<br>
+>   name: bosh-vsphere-esxi-ubuntu-trusty-go_agent<br>
+>    version: '3263.8'<br>
+>  cloud_properties:<br>
+>    cpu: 1<br>
+>    disk: 8192<br>
+>    ram: 2048<br>
+><br>
+>compilation:<br>
+>  workers: 4<br>
+>  network: default<br>
+>  cloud_properties:<br>
+>    ram: 2048<br>
+>    disk: 8096<br>
+>    cpu: 2<br>
+><br>
+>networks:<br>
+>- name: default<br>
+>  subnets:<br>
+>  - cloud_properties:<br>
+>      name: Internal<br>
+>    dns:<br>
+>    - 8.8.8.8<br>
+>    gateway: 10.30.20.23<br>
+>    name: default_unused<br>
+>    range: 10.30.0.0/16<br>
+>    reserved:<br>
+>    - 10.30.0.1 - 10.30.20.22<br>
+>    - 10.30.20.24 - 10.30.40.255<br>
+>    static:<br>
+>    - 10.30.60.11 - 10.30.60.70<br>
+><br>
+>releases:<br>
+>- name: paasta-cubrid<br>
+>  version: '2.0'<br>
+><br>
+>update:<br>
+>  canaries: 1<br>
+>  canary_watch_time: 120000<br>
+>  update_watch_time: 120000<br>
+>  max_in_flight: 4<br>
+><br>
+>jobs:<br>
+>- name: cubrid<br>
+>  template: cubrid<br>
+>  instances: 1<br>
+>  resource_pool: cubrid_resource_pools<br>
+>  networks:<br>
+>  - name: default<br>
+>    static_ips:<br>
+>    - 10.30.60.23<br>
+>- name: cubrid_broker<br>
+>  template: cubrid_broker<br>
+>  instances: 1<br>
+>  resource_pool: cubrid_resource_pools<br>
+>  networks:<br>
+>  - name: default<br>
+>    static_ips:<br>
+>    - 10.30.60.22<br>
+>- name: cubrid_broker_registrar<br>
+>  template: cubrid_broker_registrar<br>
+>  instances: 1<br>
+>  lifecycle: errand<br>
+>  resource_pool: cubrid_resource_pools<br>
+>  networks:<br>
+>  - name: default<br>
+>  properties:<br>
+>    broker:<br>
+>      host: "<redacted>"<br>
+>      name: "<redacted>"<br>
+>      password: "<redacted>"<br>
+>      username: "<redacted>"<br>
+>      protocol: "<redacted>"<br>
+>      port: "<redacted>"<br>
+>    cf:<br>
+>      admin_password: "<redacted>"<br>
+>      admin_username: "<redacted>"<br>
+>      api_url: "<redacted>"<br>
+>  release: paasta-cubrid<br>
+>- name: cubrid_broker_deregistrar<br>
+>  template: cubrid_broker_deregistrar<br>
+>  instances: 1<br>
+>  lifecycle: errand<br>
+>  resource_pool: cubrid_resource_pools<br>
+>  networks:<br>
+>  - name: default<br>
+>  properties:<br>
+>    broker:<br>
+>      host: "<redacted>"<br>
+>      name: "<redacted>"<br>
+>      password: "<redacted>"<br>
+>      username: "<redacted>"<br>
+>      protocol: "<redacted>"<br>
+>      port: "<redacted>"<br>
+>   cf:<br>
+>      admin_password: "<redacted>"<br>
+>      admin_username: "<redacted>"<br>
+>      api_url: "<redacted>"<br>
+>  release: paasta-cubrid<br>
+><br>
+>name: paasta-cubrid-service<br>
+><br>
+>director_uuid: d363905f-eaa0-4539-a461-8c1318498a32<br>
+><br>
+>meta:<br>
+>  apps_domain: 115.68.46.30.xip.io<br>
+>  environment: <br>
+>  external_domain: 115.68.46.30.xip.io<br>
+>  nats:<br>
+>    machines:<br>
+>    - 10.30.110.31<br>
+>    password: nats<br>
+>    port: 4222<br>
+>    user: nats<br>
+>  syslog_aggregator: <br>
+><br>
+>properties:<br>
+>  cubrid:<br>
+>    max_clients: "<redacted>"<br>
+>  cubrid_broker:<br>
+>    cubrid_ip: "<redacted>"<br>
+>    cubrid_db_port: "<redacted>"<br>
+>    cubrid_db_name: "<redacted>"<br>
+>    cubrid_db_user: "<redacted>"<br>
+>    cubrid_db_passwd: "<redacted>"<br>
+>    cubrid_ssh_port: "<redacted>"<br>
+>    cubrid_ssh_user: "<redacted>"<br>
+>    cubrid_ssh_passwd: "<redacted>"<br>
+>    cubrid_ssh_sudo_passwd: "<redacted>"<br>
+>Please review all changes carefully<br>
+><br>
+>Deploying<br>
+>---------<br>
+>Are you sure you want to deploy? (type 'yes' to continue): yes<br>
+><br>
+>Director task 1303<br>
+>Deprecation: Ignoring cloud config. Manifest contains 'networks' section.<br>
+><br>
+><br>
+>  Started preparing deployment > Preparing deployment. Done (00:00:00)<br>
+><br>
+>  Started preparing package compilation > Finding packages to compile. Done (00:00:00)<br>
+><br>
+>  Started compiling packages<br>
+>  Started compiling packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0<br>
+>  Started compiling packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862<br>
+>  Started compiling packages > cubrid/36065bb22d1e816657d176c902246231347361e2<br>
+>     Done compiling packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0 (00:01:18)<br>
+>     Done compiling packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862 (00:01:28)<br>
+>  Started compiling packages > cubrid_broker/25717cfb95347c7ca5ed1e6cbdda701315789cfc<br>
+>     Done compiling packages > cubrid/36065bb22d1e816657d176c902246231347361e2 (00:02:20)<br>
+>     Done compiling packages > cubrid_broker/25717cfb95347c7ca5ed1e6cbdda701315789cfc (00:01:16)<br>
+>     Done compiling packages (00:02:44)<br>
+><br>
+>  Started creating missing vms<br>
+>  Started creating missing vms > cubrid/a6bf1096-1c12-4d7e-bbc8-03ba517ff5f6 (0)<br>
+>  Started creating missing vms > cubrid_broker/be5bcafa-3b09-4300-a85d-c7935c3e05a7 (0)<br>
+>     Done creating missing vms > cubrid/a6bf1096-1c12-4d7e-bbc8-03ba517ff5f6 (0) (00:00:53)<br>
+>     Done creating missing vms > cubrid_broker/be5bcafa-3b09-4300-a85d-c7935c3e05a7 (0) (00:00:53)<br>
+>     Done creating missing vms (00:00:53)<br>
+><br>
+>  Started updating instance cubrid > cubrid/a6bf1096-1c12-4d7e-bbc8-03ba517ff5f6 (0) (canary). Done (00:02:33)<br>
+>  Started updating instance cubrid_broker > cubrid_broker/be5bcafa-3b09-4300-a85d-c7935c3e05a7 (0) (canary). Done (00:02:22)<br>
+><br>
+>Task 1303 done<br>
+><br>
+>Started		2017-01-06 07:15:20 UTC<br>
+>Finished	2017-01-06 07:23:52 UTC<br>
+>Duration	00:08:32<br>
+><br>
+>Deployed 'paasta-cubrid-service' to 'bosh'<br>
+
+
 
 - 배포된 Cubrid 서비스팩을 확인한다.
 
->$ bosh vms  
-![2-3-5-0]  
-![2-3-5-1]  
+>$ bosh vms paasta-cubrid-service<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on deployment 'paasta-cubrid-service' on 'bosh'<br>
+><br><br>
+>Director task 1312<br>
+><br>
+>Task 1312 done<br>
+><br>
+>+--------------------------------------------------------+---------+-----+-----------------------+-------------+<br>
+>| VM                                                     | State   | AZ  | VM Type               | IPs         |<br>
+>+--------------------------------------------------------+---------+-----+-----------------------+-------------+<br>
+>| cubrid/0 (a6bf1096-1c12-4d7e-bbc8-03ba517ff5f6)        | running | n/a | cubrid_resource_pools | 10.30.60.23 |<br>
+>| cubrid_broker/0 (be5bcafa-3b09-4300-a85d-c7935c3e05a7) | running | n/a | cubrid_resource_pools | 10.30.60.22 |<br>
+>+--------------------------------------------------------+---------+-----+-----------------------+-------------+<br>
+><br>
+>VMs total: 2<br>
+
+
+
+
 
 <div id='10'></div>
 ### 2.4. Cubrid 서비스 브로커 등록
@@ -566,6 +981,18 @@ Cubrid Manager 프로그램은 Cubrid에서 제공하는 무료로 사용할 수
 
 [1-3-0-0]:/images/openpaas-service/cubrid/1-3-0-0.png
 [2-1-0-0]:/images/openpaas-service/cubrid/2-1-0-0.png
+
+[2-1-0-1]:/images/openpaas-service/cubrid/2-1-0-1.png
+[2-1-0-2]:/images/openpaas-service/cubrid/2-1-0-2.png
+[2-1-0-3]:/images/openpaas-service/cubrid/2-1-0-3.png
+[2-1-0-4]:/images/openpaas-service/cubrid/2-1-0-4.png
+[2-1-0-5]:/images/openpaas-service/cubrid/2-1-0-5.png
+[2-1-0-6]:/images/openpaas-service/cubrid/2-1-0-6.png
+[2-1-0-7]:/images/openpaas-service/cubrid/2-1-0-7.png
+[2-1-0-8]:/images/openpaas-service/cubrid/2-1-0-8.png
+[2-1-0-9]:/images/openpaas-service/cubrid/2-1-0-9.png
+[2-1-0-10]:/images/openpaas-service/cubrid/2-1-0-10.png
+
 [2-1-1-0]:/images/openpaas-service/cubrid/2-1-1-0.png
 [2-2-0-0]:/images/openpaas-service/cubrid/2-2-0-0.png
 [2-2-1-0]:/images/openpaas-service/cubrid/2-2-1-0.png
