@@ -84,10 +84,10 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 >$ cd openpaas-service-release
 >$ ls –all                                                      
->![2-2-0-3]  
+![2-2-0-3]  
 >$ cd open-cubrid-release
 >$ ls -all
->![2-2-0-4]  
+![2-2-0-4]  
 
 - Cubrid 서비스 릴리즈를 업로드한다.
 
@@ -100,7 +100,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >$ cd cubrid
 >$ wget http://ftp.cubrid.org/CUBRID_Engine/9.3.2/CUBRID-9.3.2.0016-linux.x86_64.tar.gz
 >$ ls -all                                                     
->![2-2-7-0-1]  
+![2-2-7-0-1]  
 >Cubrid 소스파일이 다운로드된 것을 확인
 
 - Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
