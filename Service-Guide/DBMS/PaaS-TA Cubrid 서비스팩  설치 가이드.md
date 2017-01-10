@@ -110,27 +110,27 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 >Acting as user 'admin' on 'bosh'
 >
->+--------------------------------------+-----------+-------------+
->| Name                                 | Versions  | Commit Hash |
->+--------------------------------------+-----------+-------------+
->| cf                                   | 247*      | af4efe9f+   |
->| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |
->| diego                                | 1.1.0*    | 2298c8d4    |
->| empty-release                        | 1+dev.1*  | 00000000    |
->| etcd                                 | 86*       | 2dfbef00+   |
->| garden-runc                          | 1.0.3*    | c6c4c73c    |
->| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |
->| openpaas-redis                       | 1.0*      | af975e0f    |
->| paasta-eclipse-che                   | 2.0*      | 00000000    |
->| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |
->| paasta-mysql                         | 2.0*      | 85e3f01e+   |
->| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |
->| paasta-redis                         | 2.0       | 2d766084+   |
->+--------------------------------------+-----------+-------------+
->(*) Currently deployed
->(+) Uncommitted changes
->
->Releases total: 13
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>                
+>+--------------------------------------+-----------+-------------+<br>         
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |<br>
+>| openpaas-redis                       | 1.0*      | af975e0f    |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 13<br>
 >Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 
