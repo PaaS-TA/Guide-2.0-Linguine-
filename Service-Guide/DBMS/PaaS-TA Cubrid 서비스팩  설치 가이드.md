@@ -73,8 +73,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 >$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
 ![2-1-0-1]  
->
->$ ls –all
+>$ ls –all 
 ![2-1-0-2]  
 
 <div id='8'></div>
