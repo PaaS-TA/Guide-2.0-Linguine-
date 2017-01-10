@@ -75,34 +75,64 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 ![2-1-0-1]  
 >$ ls –all                                                              
 ![2-1-0-2]  
+>openpaas-service-release 디렉토리가 생성된 것을 확인한다.
 
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
 
-- OpenPaaS-Services을 다운로드 받고 폴더안에 있는 cubrid 서비스 릴리즈 openpaas-cubrid-1.0.tgz 파일을 확인한다.
+- 다운받은 Release 디렉토리안의 openpaas-cubrid-release 디렉토리로 이동한다.
 
->$ cd OpenPaaS-Services  
->$ ls -all  
-![2-2-0-0-1]  
-
-- 업로드 되어 있는 릴리즈 목록을 확인한다.
-
->$ bosh releases  
-![2-2-4-0-1]  
->Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+>$ cd openpaas-service-release
+>$ ls –all                                                      
+>![2-2-0-3]  
+>$ cd open-cubrid-release
+>$ ls -all
+>![2-2-0-4]  
 
 - Cubrid 서비스 릴리즈를 업로드한다.
 
 >$ bosh upload release {서비스 릴리즈 파일 PATH}
 >
 >$ bosh upload release openpaas-cubrid-1.0.tgz  
-![2-2-6-0-1]
+![2-2-0-5]
+>src/cubrid 디렉토리가 생성된 것을 확인
+>
+>$ cd cubrid
+>$ wget http://ftp.cubrid.org/CUBRID_Engine/9.3.2/CUBRID-9.3.2.0016-linux.x86_64.tar.gz
+>$ ls -all                                                     
+>![2-2-7-0-1]  
+>Cubrid 소스파일이 다운로드된 것을 확인
 
-- 업로드 된 Cubrid 릴리즈를 확인한다. 
+- Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
 
->$ bosh releases  
-![2-2-7-0-1]  
->Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인
+>$ cd ../../
+>$ bosh releases
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+>Acting as user 'admin' on 'bosh'
+>
+>+--------------------------------------+-----------+-------------+
+>| Name                                 | Versions  | Commit Hash |
+>+--------------------------------------+-----------+-------------+
+>| cf                                   | 247*      | af4efe9f+   |
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |
+>| diego                                | 1.1.0*    | 2298c8d4    |
+>| empty-release                        | 1+dev.1*  | 00000000    |
+>| etcd                                 | 86*       | 2dfbef00+   |
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |
+>| openpaas-paasta-pinpoint             | 2.0*      | 34e02d07+   |
+>| openpaas-redis                       | 1.0*      | af975e0f    |
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |
+>| paasta-redis                         | 2.0       | 2d766084+   |
+>+--------------------------------------+-----------+-------------+
+>(*) Currently deployed
+>(+) Uncommitted changes
+>
+>Releases total: 13
+>Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
 
 <div id='9'></div>
 ### 2.3.  Cubrid 서비스 Deployment 파일 수정 및 배포
