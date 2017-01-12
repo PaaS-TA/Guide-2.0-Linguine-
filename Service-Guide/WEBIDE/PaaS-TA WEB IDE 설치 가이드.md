@@ -181,92 +181,91 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -   업로드 된 WEB IDE 릴리즈를 확인한다.
 
-  \$ bosh releases
-  
-  RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-  
-  Acting as user 'lij' on 'micro\_bosh\_3147'
-  
-  +----------------------------------+------------+-------------+
-  
-  | Name | Versions | Commit Hash |
-  
-  +----------------------------------+------------+-------------+
-  
-  | cf | 236\* | fb04a6df+ |
-  
-  | cflinuxfs2-rootfs | 1.5.0\* | 2a41dd58+ |
-  
-  | diego | 0.1471.0\* | da517b0f |
-  
-  | eclipse-che-release | 2.0 | 00000000 |
-  
-  | empty-release | 0+dev.1 | 00000000 |
-  
-  | | 0+dev.2 | 9ddfad9d+ |
-  
-  | | 1.0\* | 00000000 |
-  
-  | etcd | 18 | 52f3a004+ |
-  
-  | | 45 | 96dab618+ |
-  
-  | | 49\* | 07fc2283 |
-  
-  | garden-linux | 0.328.0 | ce51a708 |
-  
-  | | 0.337.0\* | a7d9ddac |
-  
-  | glusterfs-release | 0+dev.3\* | 00000000 |
-  
-  | jenkins-release | 0+dev.1\* | c65cb924+ |
-  
-  | | 7 | 00000000 |
-  
-  | jenkins-release-test | 0+dev.1 | 00000000 |
-  
-  | monitoring-api-server | 0+dev.1 | 00000000 |
-  
-  | | 0+dev.2 | 00000000 |
-  
-  | | 0+dev.3\* | 00000000 |
-  
-  | openpaas-apiplatform | 1.0 | 93c27ef2+ |
-  
-  | openpaas-container | 1.0 | 375c6064 |
-  
-  | openpaas-controller | 1.0 | 5de34b6a+ |
-  
-  | openpaas-cubrid | 1.0\* | 00000000 |
-  
-  | openpaas-glusterfs | 1.0\* | 7b2c6fee |
-  
-  | openpaas-mongodb-shard | 1.0\* | 7396e233 |
-  
-  | openpaas-mysql | 1.0\* | 93c27ef2 |
-  
-  | openpaas-paasta-pinpoint-release | 1.0\* | 027853ac+ |
-  
-  | openpaas-rabbitmq | 1.0\* | f50dd5ae |
-  
-  | openpaas-redis | 1.0\* | af975e0f |
-  
-  | scm-manager | 0+dev.3\* | 00000000 |
-  
-  | sonarqube-release | 1.0 | 00000000 |
-  
-  | | 1.0+dev.1\* | 00000000 |
-  
-  | taiga-release | 0+dev.3\* | 00000000 |
-  
-  +----------------------------------+------------+-------------+
-  
-  (\*) Currently deployed
-  
-  (+) Uncommitted changes
-  
-  Releases total: 24
-  --------------------------------------------------------------------------
+>$ bosh releases
+>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+>
+>Acting as user 'lij' on 'micro\_bosh\_3147'
+>
+>+----------------------------------+------------+-------------+
+>
+>| Name | Versions | Commit Hash |
+>
+>+----------------------------------+------------+-------------+
+>
+>| cf | 236\* | fb04a6df+ |
+>
+>| cflinuxfs2-rootfs | 1.5.0\* | 2a41dd58+ |
+>
+>| diego | 0.1471.0\* | da517b0f |
+>
+>| eclipse-che-release | 2.0 | 00000000 |
+>
+>| empty-release | 0+dev.1 | 00000000 |
+>
+>| | 0+dev.2 | 9ddfad9d+ |
+>
+>| | 1.0\* | 00000000 |
+>
+>| etcd | 18 | 52f3a004+ |
+>
+>| | 45 | 96dab618+ |
+>
+>| | 49\* | 07fc2283 |
+>
+>| garden-linux | 0.328.0 | ce51a708 |
+>
+>| | 0.337.0\* | a7d9ddac |
+>
+>| glusterfs-release | 0+dev.3\* | 00000000 |
+>
+>| jenkins-release | 0+dev.1\* | c65cb924+ |
+>
+>| | 7 | 00000000 |
+>
+>| jenkins-release-test | 0+dev.1 | 00000000 |
+>
+>| monitoring-api-server | 0+dev.1 | 00000000 |
+>
+>| | 0+dev.2 | 00000000 |
+>
+>| | 0+dev.3\* | 00000000 |
+>
+>| openpaas-apiplatform | 1.0 | 93c27ef2+ |
+>
+>| openpaas-container | 1.0 | 375c6064 |
+>
+>| openpaas-controller | 1.0 | 5de34b6a+ |
+>
+>| openpaas-cubrid | 1.0\* | 00000000 |
+>
+>| openpaas-glusterfs | 1.0\* | 7b2c6fee |
+>
+>| openpaas-mongodb-shard | 1.0\* | 7396e233 |
+>
+>| openpaas-mysql | 1.0\* | 93c27ef2 |
+>
+>| openpaas-paasta-pinpoint-release | 1.0\* | 027853ac+ |
+>
+>| openpaas-rabbitmq | 1.0\* | f50dd5ae |
+>
+>| openpaas-redis | 1.0\* | af975e0f |
+>
+>| scm-manager | 0+dev.3\* | 00000000 |
+>
+>| sonarqube-release | 1.0 | 00000000 |
+>
+>| | 1.0+dev.1\* | 00000000 |
+>
+>| taiga-release | 0+dev.3\* | 00000000 |
+>
+>+----------------------------------+------------+-------------+
+>
+>(\*) Currently deployed
+>
+>(+) Uncommitted changes
+>
+>Releases total: 24
 
 
 ###2.2. WEB-IDE Deployment 파일 수정 및 배포
@@ -292,71 +291,68 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 > Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH
 > Director 에 target 되어 있는 UUID를 확인할수 있다.
 
-  -----------------------------------------------------------------------------------------
-  \$bosh status
-  
-  Config
-  
-  /home/inception/.bosh\_config
-  
-  Director
-  
-  RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-  
-  Name micro\_bosh\_3147
-  
-  URL https://10.30.40.5:25555
-  
-  Version 1.3147.0 (00000000)
-  
-  User lij
-  
-  UUID 0bc8d3c2-e032-4c7e-a99c-e23eea7091fc
-  
-  CPI vsphere
-  
-  dns enabled (domain\_name: microbosh)
-  
-  compiled\_package\_cache disabled
-  
-  snapshots disabled
-  
-  Deployment
-  
-  Manifest /mnt/bosh-space/release/eclipse-che-release/deployment/eclipse-che-vsphere.yml
-  -----------------------------------------------------------------------------------------
+>$bosh status
+>
+>Config
+>
+>/home/inception/.bosh\_config
+>
+>Director
+>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+>
+>Name micro\_bosh\_3147
+>
+>URL https://10.30.40.5:25555
+>
+>Version 1.3147.0 (00000000)
+>
+>User lij
+>
+>UUID 0bc8d3c2-e032-4c7e-a99c-e23eea7091fc
+>
+>CPI vsphere
+>
+>dns enabled (domain\_name: microbosh)
+>
+>compiled\_package\_cache disabled
+>
+>snapshots disabled
+>
+>Deployment
+>
+>Manifest /mnt/bosh-space/release/eclipse-che-release/deployment/eclipse-che-vsphere.yml
 
 -   Deploy시 사용할 Stemcell을 확인한다.
 
-  --------------------------------------------------------------------------------------------------------------------
-  \$ bosh stemcells
-  
-  +------------------------------------------+---------------+---------+-------------------------------------+
-  
-  | Name | OS | Version | CID |
-  
-  +------------------------------------------+---------------+---------+-------------------------------------+
-  
-  | bosh-vsphere-esxi-centos-7-go\_agent | centos-7 | 3147 | sc-6fdc2a99-8301-4f89-9ef4-b68a63bce2a5 |
-  
-  | bosh-vsphere-esxi-ubuntu-trusty-go\_agent | ubuntu-trusty | 3147\* | sc-3f22560e-032d-4edf-ba83-44cebaaa18af |
-  
-  | bosh-vsphere-esxi-ubuntu-trusty-go\_agent | ubuntu-trusty | 3215.4\* | sc-e365bc01-d15f-472c-9df5-3342864451d4 |
-  
-  +------------------------------------------+---------------+---------+------------------------------------+
-  
-  (\*) Currently in-use
-  
-  Stemcells total: 3
-  
-  Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
-  --------------------------------------------------------------------------------------------------------------------
+>$ bosh stemcells
+>
+>+------------------------------------------+---------------+---------+-------------------------------------+
+>
+>| Name | OS | Version | CID |
+>
+>+------------------------------------------+---------------+---------+-------------------------------------+
+>
+>| bosh-vsphere-esxi-centos-7-go\_agent | centos-7 | 3147 | sc-6fdc2a99-8301-4f89-9ef4-b68a63bce2a5 |
+>
+>| bosh-vsphere-esxi-ubuntu-trusty-go\_agent | ubuntu-trusty | 3147\* | sc-3f22560e-032d-4edf-ba83-44cebaaa18af |
+>
+>| bosh-vsphere-esxi-ubuntu-trusty-go\_agent | ubuntu-trusty | 3215.4\* | sc-e365bc01-d15f-472c-9df5-3342864451d4 |
+>
+>+------------------------------------------+---------------+---------+------------------------------------+
+>
+>(\*) Currently in-use
+>
+>Stemcells total: 3
+>
+>  Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
+
 
 -   Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명,
     다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  \# paasta-web-ide-vsphere 설정 파일 내용
+```yml
+# paasta-web-ide-vsphere 설정 파일 내용
   
   ---
   
@@ -533,103 +529,100 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
   ip: 115.68.46.184
   
   port: 8080
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+```
+
 
 -   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
-  ------------------------------------------------------------------------------------------------------------
-  \$bosh deployment {Deployment manifest 파일 PATH}
-  
-  \$bosh deployment paasta\_web\_ide\_vsphere\_2.0.yml
-  
-  Deployment set to '/mnt/bosh-space/release/eclipse-che-release/deployment/ paasta\_web\_ide\_vsphere\_2.0'
-  
-  inception@inception:\~/bosh-space/release/eclipse-che-release/deployment\$
-  ------------------------------------------------------------------------------------------------------------
+>$bosh deployment {Deployment manifest 파일 PATH}
+>
+>$bosh deployment paasta\_web\_ide\_vsphere\_2.0.yml
+>
+>Deployment set to '/mnt/bosh-space/release/eclipse-che-release/deployment/ paasta\_web\_ide\_vsphere\_2.0'
+>
+>inception@inception:\~/bosh-space/release/eclipse-che-release/deployment\$
 
 -   WEB IDE을 배포한다.
 
-  -----------------------------------------------------------------------------------------
-  \$ bosh deploy
-  
-  -   서버 사양에 따라 5분 \~ 20분 정도 소요된다.
-  
-  Deploying
-  
-  ---------
-  
-  Director task 14528
-  
-  Started unknown
-  
-  Started unknown &gt; Binding deployment. Done (00:00:00)
-  
-  Started preparing deployment
-  
-  Started preparing deployment &gt; Binding releases. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding existing deployment. Done (00:00:01)
-  
-  Started preparing deployment &gt; Binding resource pools. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding stemcells. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding templates. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding properties. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding unallocated VMs. Done (00:00:00)
-  
-  Started preparing deployment &gt; Binding instance networks. Done (00:00:00)
-  
-  Started preparing package compilation &gt; Finding packages to compile. Done (00:00:00)
-  
-  Started preparing dns &gt; Binding DNS. Done (00:00:00)
-  
-  Started preparing configuration &gt; Binding configuration. Done (00:00:00)
-  
-  Started updating job paasta-web-ide1 &gt; paasta-web-ide1/0 (canary). Done (00:03:37)
-  
-  Started updating job paasta-web-ide2 &gt; paasta-web-ide2/0 (canary). Done (00:03:38)
-  
-  Task 14528 done
-  
-  Started 2016-11-24 05:07:25 UTC
-  
-  Finished 2016-11-24 05:14:43 UTC
-  
-  Duration 00:07:18
-  
-  Deployed 'paasta-web-ide' to 'micro\_bosh\_3147'
-  -----------------------------------------------------------------------------------------
+
+>$ bosh deploy
+>
+>-   서버 사양에 따라 5분 \~ 20분 정도 소요된다.
+>
+>Deploying
+>
+>---------
+>
+>Director task 14528
+>
+>Started unknown
+>
+>Started unknown &gt; Binding deployment. Done (00:00:00)
+>
+>Started preparing deployment
+>
+>Started preparing deployment &gt; Binding releases. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding existing deployment. Done (00:00:01)
+>
+>Started preparing deployment &gt; Binding resource pools. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding stemcells. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding templates. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding properties. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding unallocated VMs. Done (00:00:00)
+>
+>Started preparing deployment &gt; Binding instance networks. Done (00:00:00)
+>
+>Started preparing package compilation &gt; Finding packages to compile. Done (00:00:00)
+>
+>Started preparing dns &gt; Binding DNS. Done (00:00:00)
+>
+>Started preparing configuration &gt; Binding configuration. Done (00:00:00)
+>
+>Started updating job paasta-web-ide1 &gt; paasta-web-ide1/0 (canary). Done (00:03:37)
+>
+>Started updating job paasta-web-ide2 &gt; paasta-web-ide2/0 (canary). Done (00:03:38)
+>
+>Task 14528 done
+>
+>Started 2016-11-24 05:07:25 UTC
+>
+>Finished 2016-11-24 05:14:43 UTC
+>
+>Duration 00:07:18
+>
+>Deployed 'paasta-web-ide' to 'micro\_bosh\_3147'
 
 -   배포된 2개의 WEB-IDE를 확인한다.
 
-  ---------------------------------------------------------------------
-  \$ bosh vms paasta-web-ide
-  
-  Director task 14529
-  
-  Task 14529 done
-  
-  +--------------------+---------+----------------+-----------------+
-  
-  | VM | State | VM Type | IPs |
-  
-  +--------------------+---------+----------------+-----------------+
-  
-  | paasta-web-ide1/0 | running | resource\_pools | 10.30.70.31 |
-  
-  | | | | 115.68.46.183 |
-  
-  | paasta-web-ide2/0 | running | resource\_pools | 10.30.70.32 |
-  
-  | | | | 115.68.46.184 |
-  
-  +--------------------+---------+----------------+-----------------+
-  
-  VMs total: 2
-  ---------------------------------------------------------------------
+>$ bosh vms paasta-web-ide
+>
+>Director task 14529
+>
+>Task 14529 done
+>
+>+--------------------+---------+----------------+-----------------+
+>
+>| VM | State | VM Type | IPs |
+>
+>+--------------------+---------+----------------+-----------------+
+>
+>| paasta-web-ide1/0 | running | resource\_pools | 10.30.70.31 |
+>
+>| | | | 115.68.46.183 |
+>
+>| paasta-web-ide2/0 | running | resource\_pools | 10.30.70.32 |
+>
+>| | | | 115.68.46.184 |
+>
+>+--------------------+---------+----------------+-----------------+
+>
+>VMs total: 2
 
 #3. WEB-IDE의 PaaS-TA 포털사이트 연동
 
@@ -638,8 +631,7 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 -   PaaS-TA 사용자 포털 조직 화면에서 WEB IDE 신청 버튼을 눌러 WEB-IDE
     사용을 신청한다.
 
-![](/images/openpaas-service/webide/web-ide-02.png){width="6.503094925634295in"
-height="3.461538713910761in"}
+![](/images/openpaas-service/webide/web-ide-02.png)
 
 ###3.2. WEB-IDE 신청 취소
 
@@ -647,15 +639,13 @@ height="3.461538713910761in"}
 
 -   신청 취소가 완료되면 다시 신청 아이콘이 나타난다.
 
-![](/images/openpaas-service/webide/web-ide-03.png){width="6.504166666666666in"
-height="3.4097222222222223in"}
+![](/images/openpaas-service/webide/web-ide-03.png)
 
 ###3.3. WEB-IDE 신청 리스트 조회
 
 -   관리자는 파스타 포털 관리자 화면에서 WEB IDE 신청 리스트를 조회한다.
 
-![](/images/openpaas-service/webide/web-ide-04.png){width="6.488188976377953in"
-height="3.2179483814523184in"}
+![](/images/openpaas-service/webide/web-ide-04.png)
 
 ###3.4. WEB-IDE 신청 사용 승인
 
@@ -663,8 +653,7 @@ height="3.2179483814523184in"}
 
 -   사용유무를 Y로 선택 후 저장하면 사용승인이 완료 된다.
 
-![](/images/openpaas-service/webide/web-ide-05.png){width="6.504807524059492in"
-height="3.358974190726159in"}
+![](/images/openpaas-service/webide/web-ide-05.png)
 
 ###3.5. WEB-IDE 신청 완료
 
@@ -673,16 +662,14 @@ height="3.358974190726159in"}
 
 -   WEB IDE URL은 조직단위로 하나의 URL이 할당된다.
 
-![](/images/openpaas-service/webide/web-ide-06.png){width="6.504807524059492in"
-height="3.5in"}
+![](/images/openpaas-service/webide/web-ide-06.png)
 
 ###3.6. WEB-IDE 대시보드 화면
 
 -   WEB IDE 아이콘을 클릭하면 관리자에 의해 할당된 WEB IDE 대시보드
     화면이 새탭으로 열리게 된다.
 
-![](/images/openpaas-service/webide/web-ide-07.png){width="6.498408792650919in"
-height="3.2948720472440947in"}
+![](/images/openpaas-service/webide/web-ide-07.png)
 
 #4. WEB-IDE 에서 CF CLI 사용법
 ###4.1. WEB-IDE New Project 화면
@@ -690,53 +677,35 @@ height="3.2948720472440947in"}
 -   사용할 언어를 선택하고 Create workspace and project 로 새로운
     프로젝트를 시작한다.
 
-![2016-11-24 (1).png](/images/openpaas-service/webide/web-ide-08.png){width="6.69375in"
-height="3.776515748031496in"}
+![](/images/openpaas-service/webide/web-ide-08.png)
 
 -   Workspace를 구성하기 위해 Docker 관련 자료를 다운로드한다.
 
-![2016-11-24 (2).png](/images/openpaas-service/webide/web-ide-09.png){width="6.69375in"
-height="3.4006944444444445in"}
+![](/images/openpaas-service/webide/web-ide-09.png)
 
 ###4.2. WEB-IDE Workspace 화면
 
 -   Open Project를 누르면 Workspace 화면이 열린다.
 
-![2016-11-24 (3).png](/images/openpaas-service/webide/web-ide-10.png){width="6.69375in"
-height="3.2569444444444446in"}
+![](/images/openpaas-service/webide/web-ide-10.png)
 
 -   실제로 소스를 개발해서 빌드하거나 GIT이나 SVN에서 IMPORT 한다.
 
-![2016-11-24 (4).png](/images/openpaas-service/webide/web-ide-11.png){width="6.69375in"
-height="3.245833333333333in"}
+![](/images/openpaas-service/webide/web-ide-11.png)
 
 ###4.3. WEB-IDE Teminal에서의 CF CLI 실행
 
 > -cf api 명령을 이용해 endpoint를 지정한다.
 
-![2016-11-24
-(5).png](/images/openpaas-service/webide/web-ide-12.png){width="6.697115048118985in"
-height="2.115384951881015in"}
+![](/images/openpaas-service/webide/web-ide-12.png)
 
 -   cf login 명령어로 로그인하고 조직과 공간을 선택한다.
 
 -   
 
-![2016-11-24 (8).png](/images/openpaas-service/webide/web-ide-13.png){width="6.69375in"
-height="2.873611111111111in"}
+![](/images/openpaas-service/webide/web-ide-13.png)
 
 -   cf push 를 이용해 cf에 앱을 업로드한다.
 
-![2016-11-24 (7).png](/images/openpaas-service/webide/web-ide-14.png){width="6.69375in"
-height="2.3868055555555556in"}
+![](/images/openpaas-service/webide/web-ide-14.png)
 
-[^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
-    변경 내용을 기술한다.)
-
-[^2]: YAML Ain’t Markup Language, http://www.yaml.org,
-    http://ko.wikipedia.org/wiki/YAML
-
-[^3]: BOSH가 Stemcell로부터 복사된 VM을 제어할 수 있도록 BOSH Agent가
-    내장되어 있는데 이를 “Stemcell”이라 부른다.
-
-[^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
