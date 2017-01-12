@@ -1,78 +1,43 @@
-목차 {#목차 .Title1bis0}
-====
+## Table of Contents
+1. [문서 개요](#1-문서-개요)
+  - 1.1. [목적](#11-목적)
+  - 1.2. [범위](#12-범위)
+  - 1.3. [시스템 구성도](#13-시스템-구성도)
+  - 1.4. [참고자료](#14-참고자료)
+2. [WEB IDE 설치](#2-mysql-서비스팩-설치)
+  - 2.1. [설치전 준비사항](#21-설치전-준비사항)
+  - 2.2. [WEB-IDE 릴리즈 업로드](#22-WEB-IDE-릴리즈-업로드)
+  - 2.3. [WEB-IDE Deployment 파일 수정 및 배포](#23-WEB-IDE-deployment-파일-수정-및-배포)
+  - 2.4. [MySQL 서비스 브로커 등록](#24-WEB-IDE-브로커-등록)
+3. [WEB-IDE의 PaaS-TA 포털사이트 연동](#3-web-ide의-paas-ta-포털사이트-연동)
+  - 3.1. [WEB-IDE 신청](#31-WEB-IDE-신청)
+  - 3.2. [WEB-IDE 신청 취소](#32-WEB-IDE-신청-취소)
+  - 3.3. [WEB-IDE 신청 리스트 조회](#33-WEB-IDE-신청-리스트-조회)
+  - 3.4. [WEB-IDE 신청 사용 승인](#33-WEB-IDE-신청-사용-승인)
+  - 3.5. [WEB-IDE 신청 완료](#33-WEB-IDE-신청-완료)
+  - 3.6. [WEB-IDE 대시보드 화면](#33-WEB-IDE-대시보드-화면)
+4. [WEB-IDE 에서 CF CLI 사용법](#4-WEB-IDE-에서-CF-CLI-사용법)
+  - 4.1. [WEB-IDE New Project 화면](#41-WEB-IDE-New-Project-화면)
+  - 4.2. [WEB-IDE Workspace 화면](#41-WEB-IDE-Workspace-화면)
+  - 4.3. [WEB-IDE Teminal에서의 CF CLI 실행](#41-WEB-IDE-Teminal에서의-CF-CLI-실행)
 
-[***1.*** ***문서 개요*** 4](#문서-개요)
 
-[****1.1.**** ****목적**** 4](#목적)
-
-[****1.2.**** ****범위**** 4](#범위)
-
-[****1.3.**** ****시스템 구성도**** 4](#시스템-구성도)
-
-[****1.4.**** ****참고자료**** 5](#참고자료)
-
-[***2.*** ***WEB IDE 설치*** 6](#web-ide-설치)
-
-[****2.1.**** ****설치전 준비사항**** 6](#설치전-준비사항)
-
-[****2.2.**** ****WEB-IDE 릴리즈 업로드**** 6](#web-ide-릴리즈-업로드)
-
-[****2.3.**** ****WEB-IDE Deployment 파일 수정 및 배포****
-10](#web-ide-deployment-파일-수정-및-배포)
-
-[***3.*** ***WEB-IDE의 PaaS-TA 포털사이트 연동***
-16](#web-ide의-paas-ta-포털사이트-연동)
-
-[****3.1.**** ****WEB-IDE 신청**** 16](#web-ide-신청)
-
-[****3.2.**** ****WEB-IDE 신청 취소**** 16](#web-ide-신청-취소)
-
-[****3.3.**** ****WEB-IDE 신청 리스트 조회****
-17](#web-ide-신청-리스트-조회)
-
-[****3.4.**** ****WEB-IDE 신청 사용 승인.****
-18](#web-ide-신청-사용-승인.)
-
-[****3.5.**** ****WEB-IDE 신청 완료.**** 18](#web-ide-신청-완료.)
-
-[****3.6.**** ****WEB-IDE 대시보드 화면.****
-19](#web-ide-대시보드-화면.)
-
-[***4.*** ****WEB-IDE 에서 CF CLI 사용법****
-20](#web-ide-에서-cf-cli-사용법)
-
-[****4.1.**** ****WEB-IDE New Project 화면****
-20](#web-ide-new-project-화면)
-
-[****4.2.**** ****WEB-IDE Workspace 화면****
-21](#web-ide-workspace-화면)
-
-[****4.3.**** ****WEB-IDE Teminal에서의 CF CLI 실행****
-22](#web-ide-teminal에서의-cf-cli-실행)
-
-[[]{#_Toc22051113 .anchor}]{#_Toc22051107 .anchor}
-
-1.  문서 개요
-    =========
-
-    1.  ***목적***
-        ----------
+# 1. 문서 개요
+### 1.1. 목적
 
 본 문서(WEB-IDE 설치 가이드)는 paasta에서 사용할 수 있는 WEB-IDE의
 설치를 Bosh를 이용하여 설치 하는 방법과 paasta 포털에서 WEB-IDE 서비스를
 사용하는 방법을 기술하였다.
 
-***범위***
-----------
-
+### 1.2. 범위
 설치 범위는 WEB-IDE 사용을 검증하기 위한 기본 설치를 기준으로
 작성하였다.
 
-***시스템 구성도***
--------------------
-
+### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Browser(paasta Portal), WEB IDE
 Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
+
+![](/images/openpaas-service/webide/web-ide-01.jpeg)
 
   ----------------------------------------------------------------------------------------
   구분              Resource Pool                            스펙
@@ -84,14 +49,15 @@ Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
                     ---------------                          
   ----------------------------------------------------------------------------------------
 
-***참고자료***
---------------
+### 1.4. 참고자료
 
 > [***http://bosh.io/docs***](http://bosh.io/docs)
 >
 > [***http://docs.cloudfoundry.org/***](http://docs.cloudfoundry.org/)
+>
+>[***https://www.eclipse.org/che/technology/***](https://www.eclipse.org/che/technology/)
 
-[***https://www.eclipse.org/che/technology/***](https://www.eclipse.org/che/technology/)
+
 
 1.  \
     WEB IDE 설치
