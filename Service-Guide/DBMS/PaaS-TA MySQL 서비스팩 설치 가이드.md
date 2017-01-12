@@ -47,13 +47,15 @@
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
 
-- OpenPaaS 에서 제공하는 릴리즈 파일들을 다운받는다. (OpenPaaS-Services, OpenPaaS-Deployment, OpenPaaS-Sample-Apps)
+-	PaaS-TA에서 제공하는 Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다
 
-- 다운로드 위치
+>$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
+>
+>![update_mysql_vsphere_35]
+>
+>$ls -all
+>![update_mysql_vsphere_36]
 
->OpenPaaS-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM>**  
->OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**  
->OpenPaaS-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW>**
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
@@ -816,3 +818,22 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [update_mysql_vsphere_32]:/images/openpaas-service/mysql/update_mysql_vsphere_32.png
 [update_mysql_vsphere_33]:/images/openpaas-service/mysql/update_mysql_vsphere_33.png
 [update_mysql_vsphere_34]:/images/openpaas-service/mysql/update_mysql_vsphere_34.png
+
+[update_mysql_vsphere_35]:/images/openpaas-service/mysql/update_mysql_vsphere_35.png
+[update_mysql_vsphere_36]:/images/openpaas-service/mysql/update_mysql_vsphere_36.png
+[update_mysql_vsphere_37]:/images/openpaas-service/mysql/update_mysql_vsphere_37.png
+[update_mysql_vsphere_38]:/images/openpaas-service/mysql/update_mysql_vsphere_38.png
+[update_mysql_vsphere_39]:/images/openpaas-service/mysql/update_mysql_vsphere_39.png
+[update_mysql_vsphere_40]:/images/openpaas-service/mysql/update_mysql_vsphere_40.png
+[update_mysql_vsphere_41]:/images/openpaas-service/mysql/update_mysql_vsphere_41.png
+[update_mysql_vsphere_42]:/images/openpaas-service/mysql/update_mysql_vsphere_42.png
+[update_mysql_vsphere_43]:/images/openpaas-service/mysql/update_mysql_vsphere_43.png
+[update_mysql_vsphere_44]:/images/openpaas-service/mysql/update_mysql_vsphere_44.png
+[update_mysql_vsphere_45]:/images/openpaas-service/mysql/update_mysql_vsphere_45.png
+[update_mysql_vsphere_46]:/images/openpaas-service/mysql/update_mysql_vsphere_46.png
+[update_mysql_vsphere_47]:/images/openpaas-service/mysql/update_mysql_vsphere_47.png
+[update_mysql_vsphere_48]:/images/openpaas-service/mysql/update_mysql_vsphere_48.png
+[update_mysql_vsphere_49]:/images/openpaas-service/mysql/update_mysql_vsphere_49.png
+[update_mysql_vsphere_50]:/images/openpaas-service/mysql/update_mysql_vsphere_50.png
+
+
