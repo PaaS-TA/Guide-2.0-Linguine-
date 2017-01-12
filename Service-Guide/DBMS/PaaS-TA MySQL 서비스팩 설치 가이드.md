@@ -194,8 +194,6 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 -	Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
->`$ vi openpaas-mysql-vsphere-1.0.yml`
-
 ```yml
 # paasta-mysql-vsphere 설정 파일 내용
 name: paasta-mysql-service                              # 서비스 배포이름(필수)
