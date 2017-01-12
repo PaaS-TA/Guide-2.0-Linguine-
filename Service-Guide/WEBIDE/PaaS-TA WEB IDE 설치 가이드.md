@@ -39,15 +39,10 @@ Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 
 ![](/images/openpaas-service/webide/web-ide-01.png)
 
-  ----------------------------------------------------------------------------------------
-  구분              Resource Pool                            스펙
-  ----------------- ---------------------------------------- -----------------------------
-  paasta-web-ide1   resource\_pools {#resource_pools .-}     1vCPU / 2GB RAM / 10GB Disk
-                    ---------------                          
-
-  paasta-web-ide1   resource\_pools {#resource_pools-1 .-}   1vCPU / 2GB RAM / 10GB Disk
-                    ---------------                          
-  ----------------------------------------------------------------------------------------
+| 구분 | Resource Pool | 스펙 |
+|--------|-------|-------|
+| paasta-web-ide1 | resource\_pools | 1vCPU / 2GB RAM / 10GB Disk |
+| paasta-web-ide1 | resource\_pools | 1vCPU / 2GB RAM / 10GB Disk |
 
 ### 1.4. 참고자료
 
@@ -640,11 +635,9 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
   VMs total: 2
   ---------------------------------------------------------------------
 
-1.  WEB-IDE의 PaaS-TA 포털사이트 연동
-    =================================
+#3. WEB-IDE의 PaaS-TA 포털사이트 연동
 
-    1.  ***WEB-IDE 신청***
-        ------------------
+###3.1. WEB-IDE 신청
 
 -   PaaS-TA 사용자 포털 조직 화면에서 WEB IDE 신청 버튼을 눌러 WEB-IDE
     사용을 신청한다.
@@ -652,8 +645,7 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 ![](/images/openpaas-service/webide/web-ide-02.png){width="6.503094925634295in"
 height="3.461538713910761in"}
 
-***WEB-IDE 신청 취소***
------------------------
+###3.2. WEB-IDE 신청 취소
 
 -   WEB IDE 신청 후 사용을 원하지 않을 경우 신청 취소를 할 수 도 있다.
 
@@ -662,16 +654,14 @@ height="3.461538713910761in"}
 ![](/images/openpaas-service/webide/web-ide-03.png){width="6.504166666666666in"
 height="3.4097222222222223in"}
 
-***WEB-IDE 신청 리스트 조회***
-------------------------------
+###3.3. WEB-IDE 신청 리스트 조회
 
 -   관리자는 파스타 포털 관리자 화면에서 WEB IDE 신청 리스트를 조회한다.
 
 ![](/images/openpaas-service/webide/web-ide-04.png){width="6.488188976377953in"
 height="3.2179483814523184in"}
 
-***WEB-IDE 신청 사용 승인.***
------------------------------
+###3.4. WEB-IDE 신청 사용 승인
 
 -   관리자는 사용자 신청사항에 이미 설치된 WEB IDE URL를 선택한다.
 
@@ -680,8 +670,7 @@ height="3.2179483814523184in"}
 ![](/images/openpaas-service/webide/web-ide-05.png){width="6.504807524059492in"
 height="3.358974190726159in"}
 
-***WEB-IDE 신청 완료.***
-------------------------
+###3.5. WEB-IDE 신청 완료
 
 -   WEB IDE 사용승인이 완료되면 사용자 화면에서 WEB IDE 아이콘이
     표시된다.
@@ -691,8 +680,7 @@ height="3.358974190726159in"}
 ![](/images/openpaas-service/webide/web-ide-06.png){width="6.504807524059492in"
 height="3.5in"}
 
-***WEB-IDE 대시보드 화면.***
-----------------------------
+###3.6. WEB-IDE 대시보드 화면
 
 -   WEB IDE 아이콘을 클릭하면 관리자에 의해 할당된 WEB IDE 대시보드
     화면이 새탭으로 열리게 된다.
@@ -700,11 +688,8 @@ height="3.5in"}
 ![](/images/openpaas-service/webide/web-ide-07.png){width="6.498408792650919in"
 height="3.2948720472440947in"}
 
-1.  *WEB-IDE* 에서 CF CLI 사용법
-    ============================
-
-    1.  ***WEB-IDE New Project 화면***
-        ------------------------------
+#4. WEB-IDE 에서 CF CLI 사용법
+###4.1. WEB-IDE New Project 화면
 
 -   사용할 언어를 선택하고 Create workspace and project 로 새로운
     프로젝트를 시작한다.
@@ -717,8 +702,7 @@ height="3.776515748031496in"}
 ![2016-11-24 (2).png](/images/openpaas-service/webide/web-ide-09.png){width="6.69375in"
 height="3.4006944444444445in"}
 
-***WEB-IDE Workspace 화면***
-----------------------------
+###4.2. WEB-IDE Workspace 화면
 
 -   Open Project를 누르면 Workspace 화면이 열린다.
 
@@ -730,8 +714,7 @@ height="3.2569444444444446in"}
 ![2016-11-24 (4).png](/images/openpaas-service/webide/web-ide-11.png){width="6.69375in"
 height="3.245833333333333in"}
 
-***WEB-IDE Teminal에서의 CF CLI 실행***
----------------------------------------
+###4.3. WEB-IDE Teminal에서의 CF CLI 실행
 
 > -cf api 명령을 이용해 endpoint를 지정한다.
 
