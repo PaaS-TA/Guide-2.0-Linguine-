@@ -51,67 +51,124 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 >$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
 >
->![update_mysql_vsphere_35]
+![update_mysql_vsphere_35]
 >
 >$ls -all
->![update_mysql_vsphere_36]
+![update_mysql_vsphere_36]
 
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
-##### OpenPaaS-Services을 다운로드 받고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-1.0.tgz 파일을 확인한다.
+-	Github에서 다운로드 받은 openpaas-service-release/open-mysql-release 폴더로 이동하여 Mysql 릴리즈 파일을 확인한다.
 
 >`$ cd openpaas-service-release`   
 >`$ ls –all`
+![update_mysql_vsphere_37]
+>
+>`$ ls –all`
+![update_mysql_vsphere_38]
+<br>
 
->![update_mysql_vsphere_01]
+- 릴리즈를 생성한다.
+
+>$ bosh create release --force --final –name pasta-mysql --version 2.0
+>※	Permission denied 에러가 발생할 수 있다. 이 경우 명령어 앞에 sudo를 입력하고 비밀번홀를 입력하여 릴리즈 생성을 진행한다.
+
+![update_mysql_vsphere_39]
 
 <br>
 
-##### MySQL 서비스 릴리즈 파일을 업로드한다.
+-	업로드 되어 있는 릴리즈 목록을 확인한다.
 
->`$ bosh upload release {서비스 릴리즈 파일 PATH}`   
->`$ bosh upload release openpaas-mysql-1.0.tgz`
-
->※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
-
->![update_mysql_vsphere_02]
-
->![update_mysql_vsphere_03]
-
->![update_mysql_vsphere_04]
-
->![update_mysql_vsphere_05]
-
->![update_mysql_vsphere_06]
-
->![update_mysql_vsphere_07]
-
+>$bosh releases<br>
+><br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| paasta-cubrid                        | 2.0*      | 85e3f01e+   |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 12<br>
+>Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인<br>
 <br>
+-	MySQL 서비스 릴리즈 파일을 업로드한다.
+>$ bosh upload release <br>
+>※	본 샘플은 직접 릴리즈 파일을 생성하도록 안내하고 있으므로 'bosh upload release'만 입력한다. 릴리즈 파일을 직접 생성하지 않고 다운로드 받거나 릴리즈 파일 다운로드 URL이 존재하는 경우는 파일 경로 또는 다운로드 URL을 아래와 같이 입력한다.<br>
+>$ bosh upload release {서비스 릴리즈 파일 PATH 또는 URL}<br>
 
-##### 업로드 된 MySQL 릴리즈를 확인한다.
+![update_mysql_vsphere_41]
+![update_mysql_vsphere_42]
+![update_mysql_vsphere_43]
+![update_mysql_vsphere_44]
+![update_mysql_vsphere_45]
 
->`$ bosh releases`
+-	업로드 된 MySQL 릴리즈를 확인한다.
 
->![update_mysql_vsphere_08]
+>$bosh releases<br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
+>+--------------------------------------+-----------+-------------+<br>
+>| Name                                 | Versions  | Commit Hash |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>| cf                                   | 247*      | af4efe9f+   |<br>
+>| cflinuxfs2-rootfs                    | 1.40.0*   | 19fe09f4+   |<br>
+>| diego                                | 1.1.0*    | 2298c8d4    |<br>
+>| empty-release                        | 1+dev.1*  | 00000000    |<br>
+>| etcd                                 | 86*       | 2dfbef00+   |<br>
+>| garden-runc                          | 1.0.3*    | c6c4c73c    |<br>
+>| paasta-cubrid                        | 2.0*      | 85e3f01e+   |<br>
+>| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
+>| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
+>| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-redis                         | 2.0       | 2d766084+   |<br>
+>| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
+>+--------------------------------------+-----------+-------------+<br>
+>(*) Currently deployed<br>
+>(+) Uncommitted changes<br>
+><br>
+>Releases total: 13<br>
+><br>
+>Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인<br>
 
->Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
-<br>
 
 ### 2.3. MySQL 서비스 Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-##### OpenPaaS-Deployment을 다운로드 받고 폴더안에 있는 vSphere용 MySQL Deployment 화일인 openpaas-mysql-vsphere.yml을 복사한다.
+-	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 MySQL Deployment 파일을 복사한다.
+    예) vsphere 일 경우 paasta_mysql_vsphere_2.0.yml를 복사
+    다운로드 받은 Deployment Yml 파일을 확인한다.
 
-##### 다운로드 받은 Deployment Yml 파일을 확인한다. ((openpaas-mysql-vsphere.yml)
 
->`$ cd Deployment`  
->`$ ls –all`
+>$ls –all
+>
+> total 851588
+> drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .
+> drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..
+>
+> -rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml
+> -rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml
 
->![update_mysql_vsphere_09]
 
 <br>
 
@@ -121,164 +178,125 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ bosh status`
 
->![update_mysql_vsphere_10]
+![update_mysql_vsphere_46]
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+##### Deploy시 사용할 Stemcell을 확인한다.
 
 >`$ bosh stemcells`
 
->![update_mysql_vsphere_11]
+![update_mysql_vsphere_47]
 
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다.
 
 <br>
 
-##### openpaas-mysql-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+-	Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 >`$ vi openpaas-mysql-vsphere-1.0.yml`
 
 ```yml
-# openpaas-mysql-vsphere 설정 파일 내용
-name: openpaas-mysql-service              	# 서비스 배포이름(필수)
-director_uuid: xxxxx                 		# bosh status 에서 확인한 Director UUID을 입력(필수)
+# paasta-mysql-vsphere 설정 파일 내용
+name: paasta-mysql-service                              # 서비스 배포이름(필수)
+director_uuid: d363905f-eaa0-4539-a461-8c1318498a32     # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: openpaas-mysql            			# 서비스 릴리즈 이름(필수)
-  version: beta-1.0           				# 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: paasta-mysql                                    # 서비스 릴리즈 이름(필수)
+  version: 2.0                                          # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
-  canaries: 1                 				# canary 인스턴스 수(필수)
-  canary_watch_time: 30000-600000           # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 1                 			# non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-600000  			# non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  canaries: 1                            # canary 인스턴스 수(필수)
+  canary_watch_time: 30000-600000        # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1                       # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  update_watch_time: 30000-600000        # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:                        		# 컴파일시 필요한 가상머신의 속성(필수)
-  cloud_properties:            				# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
+compilation:                             # 컴파일시 필요한 가상머신의 속성(필수)
+  cloud_properties:                      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     cpu: 4
     disk: 20480
     ram: 4096
-  network: openpaas_network          		# Networks block에서 선언한 network 이름(필수)
-  reuse_compilation_vms: true     			# 컴파일지 VM 재사용 여부(옵션)
-  workers: 3                     			# 컴파일 하는 가상머신의 최대수(필수)
+  network: default                       # Networks block에서 선언한 network 이름(필수)
+  reuse_compilation_vms: true            # 컴파일지 VM 재사용 여부(옵션)
+  workers: 4                             # 컴파일 하는 가상머신의 최대수(필수)
 
 jobs:
-- instances: 1                    			# job 인스턴스 수(필수)
-  name: mysql_z1                   			# 작업 이름(필수): MySQL 서버
-  networks:                      			# 네트워크 구성정보
-  - name: openpaas_network                  # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.30.40.191                # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-  persistent_disk: 10000                   	# 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:                             	# job에 대한 속성을 지정(필수)
-    admin_password: admin            		# MySQL 어드민 패스워드
-    cluster_ips:                            # 클러스터 구성시 IPs(필수)
+- instances: 1                           # job 인스턴스 수(필수)
+  name: mysql_z1
+  networks:                              # 네트워크 구성정보
+  - name: default
+    static_ips:                          # 사용할 IP addresses 정의(필수): MySQL 서버 IP
     - 10.30.40.191
-    - 10.30.40.192
-    - 10.30.40.193                     		# MySQL 서버 IP
-    network_name: openpaas_network        	# Networks block에서 선언한 network 이름
+    #- 10.30.40.192
+    #- 10.30.40.193
+  persistent_disk: 8192                  # 영구적 디스크 사이즈 정의(옵션): 10G
+  properties:
+    admin_password: admin                # MySQL 어드민 패스워드
+    cluster_ips:                         # 클러스터 구성시 IPs(필수)
+    - 10.30.40.191
+    #- 10.30.40.192
+    #- 10.30.40.193
+    network_name: default
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci       # Mysql CharSet
-    character_set_server: utf8              # Mysql CharSet
-  release: openpaas-mysql                  	# 서비스 릴리즈 이름(필수)
-  resource_pool: services-small       		# Resource Pools block에 정의한 resource pool 이름(필수)
-template: mysql                   			# job template 이름(필수)
-
-- instances: 1                    			# job 인스턴스 수(필수)
-  name: mysql_z2                   			# 작업 이름(필수): MySQL 서버
-  networks:                      			# 네트워크 구성정보
-  - name: openpaas_network                  # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.30.40.192                # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-  persistent_disk: 10000                   	# 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:                             	# job에 대한 속성을 지정(필수)
-    admin_password: admin            		# MySQL 어드민 패스워드
-    cluster_ips:                            # 클러스터 구성시 IPs(필수)
-    - 10.30.40.191
-    - 10.30.40.192
-    - 10.30.40.193  # MySQL 서버 IP
-    network_name: openpaas_network        	# Networks block에서 선언한 network 이름
-    seeded_databases: null
-    syslog_aggregator: null
-    collation_server: utf8_unicode_ci       # Mysql CharSet
-    character_set_server: utf8              # Mysql CharSet
-  release: openpaas-mysql                   # 서비스 릴리즈 이름(필수)
-  resource_pool: services-small       		# Resource Pools block에 정의한 resource pool 이름(필수)
-  template: mysql                   		# job template 이름(필수)
-
-- instances: 1                    			# job 인스턴스 수(필수)
-  name: mysql_z3                   			# 작업 이름(필수): MySQL 서버
-  networks:                      			# 네트워크 구성정보
-  - name: openpaas_network                  # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.30.40.193                # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-  persistent_disk: 10000                   	# 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:                             	# job에 대한 속성을 지정(필수)
-    admin_password: admin            		# MySQL 어드민 패스워드
-    cluster_ips:                            # 클러스터 구성시 IPs(필수)
-    - 10.30.40.191
-    - 10.30.40.192
-    - 10.30.40.193  						# MySQL 서버 IP
-    network_name: openpaas_network        	# Networks block에서 선언한 network 이름
-    seeded_databases: null
-    syslog_aggregator: null
-    collation_server: utf8_unicode_ci       # Mysql CharSet
-    character_set_server: utf8              # Mysql CharSet
-  release: openpaas-mysql                  	# 서비스 릴리즈 이름(필수)
-  resource_pool: services-small       		# Resource Pools block에 정의한 resource pool 이름(필수)
-  template: mysql                   		# job template 이름(필수)
+    collation_server: utf8_unicode_ci    # Mysql CharSet
+    character_set_server: utf8
+  release: paasta-mysql
+  resource_pool: services-small
+  template: mysql
 
 - instances: 1
-  name: proxy                          		# 작업 이름(필수): proxy
+  name: proxy                                # 작업 이름(필수): proxy
   networks:
-  - name: openpaas_network
-    static_ips: 10.30.40.194          		# 사용할 IP addresses 정의(필수): Proxy IP
+  - name: default
+    static_ips: 10.30.40.194
   properties:
     cluster_ips:
     - 10.30.40.191
-    - 10.30.40.192
-    - 10.30.40.193                        	# MySQL 서버 IP
-    external_host: 115.68.46.30.xip.io    	# CF 설치시 설정한 외부 호스트 정보(필수)
-    nats:                           		# CF 설치시 설치한 nats 정보 (필수)
+    #- 10.30.40.192
+    #- 10.30.40.193
+    external_host: 115.68.46.30.xip.io       # PaaS-TA 설치시 설정한 외부 호스트 정보(필수)
+    nats:                                    # PaaS-TA 설치시 설치한 nats 정보 (필수)
       machines:
-      - 10.30.40.11           				# nats 서버 IP
-      password: admin       	 			# nats 유저 비밀번호
-      port: 4222              				# nats 서버 포트번호
-      user: nats               				# nats 서버 유저아이디
-    network_name: openpaas_network
-    proxy:                          		# proxy 정보 (필수)
-      api_password: admin        			# proxy api 유저 비밀번호(필수)
-      api_username: api                  	# proxy api 유저아이디
-      api_force_https: false             	# proxy api ssl여부
+      - 10.30.110.31
+      password: nats
+      port: 4222
+      user: nats
+    network_name: default
+    proxy:                                   # proxy 정보 (필수)
+      api_password: admin
+      api_username: api
+      api_force_https: false
     syslog_aggregator: null
-  release: openpaas-mysql
+  release: paasta-mysql
   resource_pool: services-small
-  template: proxy                      		# job template 이름(필수)
+  template: proxy
 
 - instances: 1
-  name: openpaas-mysql-java-broker   		# 작업 이름(필수): 서비스 브로커
+  name: paasta-mysql-java-broker                     # 작업 이름(필수): 서비스 브로커
   networks:
-  - name: openpaas_network
-    static_ips: 10.30.40.195          		# 사용할 IP addresses 정의(필수): 서비스 브로커 IP
-  properties:
-    jdbc_ip: 10.30.40.194                  	# Mysql Url
-    jdbc_pwd: admin                     	# Mysql password
-    jdbc_port: 3306                       	# Mysql port
-    log_dir: openpaas-mysql-java-broker     # Broker log path
-    log_file: openpaas-mysql-java-broker    # Broker log file name
-    log_level: INFO                         # Broker log level
-release: openpaas-mysql 
-  resource_pool: services-small         	# Resource Pools block에 정의한 resource pool 이름(필수)
-  template: op-mysql-java-broker          	# job template 이름(필수)
+  - name: default
+    static_ips: 10.30.40.195
+  properties:                                        # Mysql 정보
+    jdbc_ip: 10.30.40.194
+    jdbc_pwd: admin
+    jdbc_port: 3306
+    log_dir: paasta-mysql-java-broker
+    log_file: paasta-mysql-java-broker
+    log_level: INFO
+  release: paasta-mysql
+  resource_pool: services-small
+  template: op-mysql-java-broker
 
 - instances: 1
-  lifecycle: errand               			# bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
-  name: broker-registrar            		# 작업 이름: 서비스 브로커 등록 
+  lifecycle: errand                                 # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
+  name: broker-registrar                            # 작업 이름: 서비스 브로커 등록
   networks:
-  - name: openpaas_network
+  - name: default
   properties:
-    broker:                         		# 서비스 브로커 설정 정보
-      host: 10.30.40.195               		# 서비스 브로커 IP 
-      name: mysql-service
+    broker:
+      host: 10.30.40.195
+      name: mysql-service-broker
       password: cloudfoundry
       username: admin
       protocol: http
@@ -288,94 +306,100 @@ release: openpaas-mysql
       admin_username: admin
       api_url: https://api.115.68.46.30.xip.io
       skip_ssl_validation: true
-  release: openpaas-mysql
+  release: paasta-mysql
   resource_pool: services-small
   template: broker-registrar
 
 - instances: 1
   lifecycle: errand
-  name: broker-deregistrar             		# 작업 이름: 서비스 브로커 삭제
+  name: broker-deregistrar
   networks:
-  - name: openpaas_network
+  - name: default
   properties:
     broker:
-      name: mysql-service
+      name: mysql-service-broker
     cf:
       admin_password: admin
       admin_username: admin
       api_url: https://api.115.68.46.30.xip.io
       skip_ssl_validation: true
-  release: openpaas-mysql
+  release: paasta-mysql
   resource_pool: services-small
   template: broker-deregistrar
 
 meta:
-  apps_domain: 115.68.46.30.xip.io         	# CF 설치시 설정한 apps 도메인 정보
-  environment: null 
-  external_domain: 115.68.46.30.xip.io      # CF 설치시 설정한 외부 도메인 정보
-  nats:										# CF 설치시 설정한 nats 정보
+  apps_domain: 115.68.46.30.xip.io
+  environment: null
+  external_domain: 115.68.46.30.xip.io
+  nats:
     machines:
-    - 10.30.40.11
-    password: admin
+    - 10.30.110.31
+    password: nats
     port: 4222
     user: nats
   syslog_aggregator: null
-networks:                  # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
-- name: openpaas_network
+
+networks:
+- name: default
   subnets:
   - cloud_properties:
-      name: Internal          # vsphere 에서 사용하는 network 이름(필수)
-    dns:                      # DNS 정보
-    - 10.30.20.24
+      name: Internal                          # vsphere 에서 사용하는 network 이름(필수)
+    dns:
     - 8.8.8.8
     gateway: 10.30.20.23
     name: default_unused
     range: 10.30.0.0/16
-    reserved:                    		# 설치시 제외할 IP 설정
-    - 10.30.0.1 - 10.30.0.10
+    reserved:
+    - 10.30.0.1 - 10.30.0.10                  # 설치시 제외할 IP 설정
     static:
-    - 10.30.40.110 - 10.30.40.200       # 사용 가능한 IP 설정
+    - 10.30.40.190 - 10.30.40.200             # 사용 가능한 IP 설정
   type: manual
 properties: {}
-resource_pools:       		# 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
-- cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
-    cpu: 2
-    disk: 10480
-    ram: 4096
-  name: services-small             # 고유한 resource pool 이름
-#size: 4        # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
-  network: openpaas_network
+resource_pools:                               # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+- cloud_properties:                           # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: services-small                        # 고유한 resource pool 이름
+  network: default
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent          # stemcell 이름(필수)
-    version: "3147"                                         # stemcell 버전(필수)
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent     # stemcell 이름(필수)
+    version: "3263.8"                                  # stemcell 버전(필수)
 ```
 <br>
 
-##### Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+-	MySQL 서비스팩을 배포한다.
 
->`$ bosh deployment {Deployment manifest 파일 PATH}`  
->`$ bosh deployment openpaas-mysql-vsphere-1.0.yml`
-
->![update_mysql_vsphere_12]
-
-<br>
-
-##### MySQL 서비스팩을 배포한다.
-
->`$ bosh deploy`  
->※  40분 ~ 1시간 정도 소요된다.
-
->![update_mysql_vsphere_13]
-
->![update_mysql_vsphere_14]
+>$ bosh deploy<br>
+>※	40분 ~ 1시간 정도 소요된다.
+![update_mysql_vsphere_49]
+![update_mysql_vsphere_50]
 
 <br>
 
-##### 배포된 MySQL 서비스팩을 확인한다.
+-	배포된 MySQL 서비스팩을 확인한다.
 
->`$bosh vms openpaas-mysql-service`
+>$bosh vms paasta-mysql-service<br>
+> <br>
+> RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+> Acting as user 'admin' on deployment 'paasta-mysql-service' on 'bosh'<br>
+> <br>
+> Director task 1396<br>
+> <br>
+> Task 1396 done<br>
+> <br>
+> +-------------------------------------------------------------------+---------+-----+----------------+--------------+<br>
+> | VM                                                                | State   | AZ  | VM Type        | IPs          |<br>
+> +-------------------------------------------------------------------+---------+-----+----------------+--------------+<br>
+> | mysql_z1/0 (00293380-ab04-4b45-8670-6a3891c30c05)                 | running | n/a | services-small | 10.30.40.191 |<br>
+> | paasta-mysql-java-broker/0 (fb9723c6-1a56-4a39-b4ef-cdf9296696f0) | running | n/a | services-small | 10.30.40.195 |<br>
+> | proxy/0 (481685c7-1c23-4fe6-8f84-b3049878f1b7)                    | running | n/a | services-small | 10.30.40.194 |<br>
+> +-------------------------------------------------------------------+---------+-----+----------------+--------------+<br>
+> <br>
+> VMs total: 3<br>
 
->![update_mysql_vsphere_15]
+<br>
+
 
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
