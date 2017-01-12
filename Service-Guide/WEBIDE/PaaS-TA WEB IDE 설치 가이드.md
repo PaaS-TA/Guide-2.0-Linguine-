@@ -37,7 +37,7 @@
 본 문서의 설치된 시스템 구성도입니다. Browser(paasta Portal), WEB IDE
 Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 
-![](/images/openpaas-service/webide/web-ide-01.jpeg)
+![](/images/openpaas-service/webide/web-ide-01.png)
 
   ----------------------------------------------------------------------------------------
   구분              Resource Pool                            스펙
@@ -725,12 +725,12 @@ height="3.2948720472440947in"}
 -   사용할 언어를 선택하고 Create workspace and project 로 새로운
     프로젝트를 시작한다.
 
-![2016-11-24 (1).jpeg](/images/openpaas-service/webide/web-ide-08.jpeg){width="6.69375in"
+![2016-11-24 (1).png](/images/openpaas-service/webide/web-ide-08.png){width="6.69375in"
 height="3.776515748031496in"}
 
 -   Workspace를 구성하기 위해 Docker 관련 자료를 다운로드한다.
 
-![2016-11-24 (2).jpeg](/images/openpaas-service/webide/web-ide-09.jpeg){width="6.69375in"
+![2016-11-24 (2).png](/images/openpaas-service/webide/web-ide-09.png){width="6.69375in"
 height="3.4006944444444445in"}
 
 ***WEB-IDE Workspace 화면***
@@ -738,12 +738,12 @@ height="3.4006944444444445in"}
 
 -   Open Project를 누르면 Workspace 화면이 열린다.
 
-![2016-11-24 (3).jpeg](/images/openpaas-service/webide/web-ide-10.jpeg){width="6.69375in"
+![2016-11-24 (3).png](/images/openpaas-service/webide/web-ide-10.png){width="6.69375in"
 height="3.2569444444444446in"}
 
 -   실제로 소스를 개발해서 빌드하거나 GIT이나 SVN에서 IMPORT 한다.
 
-![2016-11-24 (4).jpeg](/images/openpaas-service/webide/web-ide-11.jpeg){width="6.69375in"
+![2016-11-24 (4).png](/images/openpaas-service/webide/web-ide-11.png){width="6.69375in"
 height="3.245833333333333in"}
 
 ***WEB-IDE Teminal에서의 CF CLI 실행***
@@ -752,19 +752,19 @@ height="3.245833333333333in"}
 > -cf api 명령을 이용해 endpoint를 지정한다.
 
 ![2016-11-24
-(5).jpeg](/images/openpaas-service/webide/web-ide-12.jpeg){width="6.697115048118985in"
+(5).png](/images/openpaas-service/webide/web-ide-12.png){width="6.697115048118985in"
 height="2.115384951881015in"}
 
 -   cf login 명령어로 로그인하고 조직과 공간을 선택한다.
 
 -   
 
-![2016-11-24 (8).jpeg](/images/openpaas-service/webide/web-ide-13.jpeg){width="6.69375in"
+![2016-11-24 (8).png](/images/openpaas-service/webide/web-ide-13.png){width="6.69375in"
 height="2.873611111111111in"}
 
 -   cf push 를 이용해 cf에 앱을 업로드한다.
 
-![2016-11-24 (7).jpeg](/images/openpaas-service/webide/web-ide-14.jpeg){width="6.69375in"
+![2016-11-24 (7).png](/images/openpaas-service/webide/web-ide-14.png){width="6.69375in"
 height="2.3868055555555556in"}
 
 [^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
