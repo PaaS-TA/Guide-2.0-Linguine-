@@ -181,7 +181,6 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -   업로드 된 WEB IDE 릴리즈를 확인한다.
 
-  --------------------------------------------------------------------------
   \$ bosh releases
   
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -269,11 +268,8 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
   Releases total: 24
   --------------------------------------------------------------------------
 
-***\
-***
 
-***WEB-IDE Deployment 파일 수정 및 배포***
-------------------------------------------
+###2.2. WEB-IDE Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한
 YAML[^2] 파일이다.
