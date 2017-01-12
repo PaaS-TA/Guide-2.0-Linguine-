@@ -155,24 +155,24 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 MySQL Deployment 파일을 복사한다.
-    예) vsphere 일 경우 paasta_mysql_vsphere_2.0.yml를 복사
+-	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 MySQL Deployment 파일을 복사한다.<br>
+    예) vsphere 일 경우 paasta_mysql_vsphere_2.0.yml를 복사<br>
     다운로드 받은 Deployment Yml 파일을 확인한다.
 
 
->$ls –all
->
-> total 851588
-> drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .
-> drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..
->
-> -rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml
-> -rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml
+>$ls –all<br>
+><br>
+> total 851588<br>
+> drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .<br>
+> drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..<br>
+><br>
+> -rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml<br>
+> -rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml<br>
 
 
 <br>
 
-##### Director UUID를 확인한다.
+- Director UUID를 확인한다.
 
 >BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
 
@@ -182,7 +182,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다.
+- Deploy시 사용할 Stemcell을 확인한다.
 
 >`$ bosh stemcells`
 
@@ -193,8 +193,6 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 <br>
 
 -	Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
-
->`$ vi openpaas-mysql-vsphere-1.0.yml`
 
 ```yml
 # paasta-mysql-vsphere 설정 파일 내용
