@@ -172,7 +172,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### Director UUID를 확인한다.
+- Director UUID를 확인한다.
 
 >BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
 
@@ -182,7 +182,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다.
+- Deploy시 사용할 Stemcell을 확인한다.
 
 >`$ bosh stemcells`
 
