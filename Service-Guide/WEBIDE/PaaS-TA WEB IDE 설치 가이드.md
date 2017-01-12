@@ -81,59 +81,59 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -   WEB-IDE 릴리즈 파일을 업로드한다.
 
-  >$ bosh upload release {서비스 릴리즈 파일 PATH}
-  >
-  >$ bosh upload release paasta-eclipse-che-2.0.tgz
-  >
-  >inception@inception:\~/bosh-space/release/eclipse-che-release\$ bosh upload release paasta-eclipse-che-2.0.tgz
-  >
-  >RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-  >
-  >Acting as user 'lij' on 'micro\_bosh\_3147'
-  >
-  >Verifying manifest...
-  >
-  >Extract manifest OK
-  >
-  >Manifest exists OK
-  >
-  >Release name/version OK
-  >
-  >Checking jobs format OK
-  >
-  >Read job 'eclipse-che' (1 of 2), version 3573233f3bb345ccae2cb343128a45187aa37fe0 OK
-  >
-  >Job 'eclipse-che' checksum OK
-  >
-  >Extract job 'eclipse-che' OK
-  >
-  >Read job 'eclipse-che' manifest OK
-  >
-  >Check template 'che\_ctl.erb' for 'eclipse-che' OK
-  >
-  >Monit file for 'eclipse-che' OK
-  >
-  >Release info
-  >
-  >------------
-  >
-  >Name: paasta-eclipse-che
-  >
-  >Version: 2.0
-  >
- > Packages
- > 
- > - eclipse-che (eff6040fd5ed2a30190955140bb58f892ff830ec)
- > 
- > - bosh-helpers (2b45cec940a80e582427f61c460269c6ccb031c8)
- > 
- > - docker (8da016ec9d1b172b779d5ff0a9fbbfc4973ea734)
- > 
- > - java (a855eb9b6bb942127ead74e59e33b727fdada891)
- > 
- > Jobs
- > 
- > - eclipse-che (3573233f3bb345ccae2cb343128a45187aa37fe0)
+>$ bosh upload release {서비스 릴리즈 파일 PATH}
+>
+>$ bosh upload release paasta-eclipse-che-2.0.tgz
+>
+>inception@inception:\~/bosh-space/release/eclipse-che-release\$ bosh upload release paasta-eclipse-che-2.0.tgz
+>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+>
+>Acting as user 'lij' on 'micro\_bosh\_3147'
+>
+>Verifying manifest...
+>
+>Extract manifest OK
+>
+>Manifest exists OK
+>
+>Release name/version OK
+>
+>Checking jobs format OK
+>
+>Read job 'eclipse-che' (1 of 2), version 3573233f3bb345ccae2cb343128a45187aa37fe0 OK
+>
+>Job 'eclipse-che' checksum OK
+>
+>Extract job 'eclipse-che' OK
+>
+>Read job 'eclipse-che' manifest OK
+>
+>Check template 'che\_ctl.erb' for 'eclipse-che' OK
+>
+>Monit file for 'eclipse-che' OK
+>
+>Release info
+>
+>------------
+>
+>Name: paasta-eclipse-che
+>
+>Version: 2.0
+>
+> Packages
+> 
+> - eclipse-che (eff6040fd5ed2a30190955140bb58f892ff830ec)
+> 
+> - bosh-helpers (2b45cec940a80e582427f61c460269c6ccb031c8)
+> 
+> - docker (8da016ec9d1b172b779d5ff0a9fbbfc4973ea734)
+> 
+> - java (a855eb9b6bb942127ead74e59e33b727fdada891)
+> 
+> Jobs
+> 
+> - eclipse-che (3573233f3bb345ccae2cb343128a45187aa37fe0)
 >  
 >  License
 >  
