@@ -155,19 +155,19 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 MySQL Deployment 파일을 복사한다.
-    예) vsphere 일 경우 paasta_mysql_vsphere_2.0.yml를 복사
+-	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 MySQL Deployment 파일을 복사한다.<br>
+    예) vsphere 일 경우 paasta_mysql_vsphere_2.0.yml를 복사<br>
     다운로드 받은 Deployment Yml 파일을 확인한다.
 
 
->$ls –all
->
-> total 851588
-> drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .
-> drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..
->
-> -rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml
-> -rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml
+>$ls –all<br>
+><br>
+> total 851588<br>
+> drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .<br>
+> drwxrwxr-x 11 inception inception      4096 Dec 21 09:28 ..<br>
+><br>
+> -rw-r--r--  1 inception inception      6614 Jan  6 16:14 paasta_cubrid_vsphere_2.0.yml<br>
+> -rw-rw-r--  1 inception inception      6382 Jan  9 10:18 paasta_mysql_vsphere_2.0.yml<br>
 
 
 <br>
