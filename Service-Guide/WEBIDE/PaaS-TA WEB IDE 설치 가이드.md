@@ -701,8 +701,6 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 -   cf login 명령어로 로그인하고 조직과 공간을 선택한다.
 
--   
-
 ![](/images/openpaas-service/webide/web-ide-13.png)
 
 -   cf push 를 이용해 cf에 앱을 업로드한다.
