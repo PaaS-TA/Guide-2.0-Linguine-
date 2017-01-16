@@ -14,12 +14,12 @@
 <div id='2'></div>
 ### 1.1. 목적
       
-본 문서는 IaaS(Infrastructure as a Service) 중 하나인 AWS 환경에서 모니터링 시스템의 주요 정보인 시스템 metrics 를 저장히기 위한 InfluxDB와 View 화면을 제공하는 Grafana를 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
+본 문서는 IaaS(Infrastructure as a Service) 중 하나인 Openstack 환경에서 모니터링 시스템의 주요 정보인 시스템 metrics 를 저장히기 위한 InfluxDB와 View 화면을 제공하는 Grafana를 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
 <div id='3'></div>
 ### 1.2. 범위
       
-본 문서는 AWS 기반에 설치하기 위한 내용으로 한정되어 있다.
+본 문서는 Openstack 기반에 설치하기 위한 내용으로 한정되어 있다.
 
 <div id='4'></div>
 # 2.  InfluxDB & Grafana Release 배포
