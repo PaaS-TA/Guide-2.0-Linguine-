@@ -43,104 +43,104 @@ $ vi influxdb-grafana-release.yml
 
 ```
 ---
-name: influxdb-grafana																#deployment name
+name: influxdb-grafana											#deployment name
 
 compilation:
   cloud_properties:
     name: random
-    instance_type: monitoring													#openstack flavor
-    availability_zone: nova														#available zone
-  network: paasta-influxdb-grafana-net								#network name
+    instance_type: monitoring									#openstack flavor
+    availability_zone: nova										#available zone
+  network: paasta-influxdb-grafana-net							#network name
   reuse_compilation_vms: true
   workers: 2
  
 director_uuid: <%= `bosh status --uuid` %>						#bosh uuid
 
 releases:
-- name: paasta-influxdb-grafana												#release name
-  version: latest  																		#release version
+- name: paasta-influxdb-grafana									#release name
+  version: latest  												#release version
 
 disk_pools:
 - cloud_properties:
     type: gp2
-  disk_size: 10240 																		#influxdb disk pool size
+  disk_size: 10240 												#influxdb disk pool size
   name: influx_data
 
 jobs:
-- name: influxdb																			#influxdb service name
+- name: influxdb												#influxdb service name
   templates:
   - name: influxdb																		
     release: paasta-influxdb-grafana
   instances: 1
-  resource_pool: influx																#resource name
-  persistent_disk_pool: influx_data										#disk pool name
+  resource_pool: influx											#resource name
+  persistent_disk_pool: influx_data								#disk pool name
   networks:
   - default:
     - gateway
     - dns
-    name: paasta-influxdb-grafana-net									#network name
+    name: paasta-influxdb-grafana-net							#network name
     static_ips:
-    - 10.10.18.51																			#static IP
-  - name: elastic																			#external network(public) name
+    - 10.10.18.51												#static IP
+  - name: elastic												#external network(public) name
     static_ips:
-    - 115.68.151.208 																	#external IP (public)
+    - 115.68.151.208 											#external IP (public)
   properties:
     influxdb:
-      database: cf_metric_db													#default database
-      user: root																			#admin account
-      password: root																	#admin password
+      database: cf_metric_db									#default database
+      user: root												#admin account
+      password: root											#admin password
       replication: 1      														
-      ips: 10.10.18.51															  #local IP
+      ips: 10.10.18.51											#local IP
       
-- name: grafana																				#grafana service name
+- name: grafana													#grafana service name
   templates:
   - name: grafana
     release: paasta-influxdb-grafana
   instances: 1
-  resource_pool: grafana															#resoure name		
+  resource_pool: grafana										#resoure name		
   networks:
   - default:
     - gateway
     - dns
     name: paasta-influxdb-grafana-net													
     static_ips:																				
-    - 10.10.18.53																			#local IP			
-  - name: elastic																			#external network(public) name
+    - 10.10.18.53												#local IP			
+  - name: elastic												#external network(public) name
     static_ips:
     - 115.68.151.183
 
   properties:
     grafana:
-      listen_port: 3000																#grafana listen port
-      admin_username: admin														#grafana admin account
-      admin_password: cfmonitor												#grafana admin password
+      listen_port: 3000											#grafana listen port
+      admin_username: admin										#grafana admin account
+      admin_password: cfmonitor									#grafana admin password
       users: 
         allow_sign_up: true
         auto_assign_organization: true
         
       datasource:
-        url: http://10.10.18.51:8086/									#database url
+        url: http://10.10.18.51:8086/							#database url
         name: Grafanadb							
-        database_type: Influxdb												#database type	
-        user: root																		#database admin account
-        password: root																#database admin password
-        database_name: cf_metric_db										#default database
+        database_type: Influxdb									#database type	
+        user: root												#database admin account
+        password: root											#database admin password
+        database_name: cf_metric_db								#default database
         
 networks:
 - name: paasta-influxdb-grafana-net
   subnets:
   - cloud_properties:
       name: random
-      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317												#openstack network id
-      security_groups: [bosh]																							#security group
+      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317				#openstack network id
+      security_groups: [bosh]									#security group
     dns:
-    - 10.10.18.2																													#dns
-    gateway: 10.10.18.1																										#gateway
-    range: 10.10.18.0/24																									#static ip range
+    - 10.10.18.2												#dns
+    gateway: 10.10.18.1											#gateway
+    range: 10.10.18.0/24										#static ip range
     reserved:
-    - 10.10.18.2 - 10.10.18.49																						#reserved ip range
+    - 10.10.18.2 - 10.10.18.49									#reserved ip range
     static:
-    - 10.10.18.50 - 10.10.18.55																						#available ip range
+    - 10.10.18.50 - 10.10.18.55									#available ip range
   type: manual
   
 - name: elastic
@@ -151,34 +151,34 @@ networks:
 
 properties:
   openstack: &openstack																							
-      auth_url: http://115.68.151.175:5000/v3															#openstack auth url
-      username: admin																											#openstack admin id
-      api_key: cfmonit																										#openstack admin password
-      project: admin																											#related project name
-      domain: default																											#default domain
+      auth_url: http://115.68.151.175:5000/v3					#openstack auth url
+      username: admin											#openstack admin id
+      api_key: cfmonit											#openstack admin password
+      project: admin											#related project name
+      domain: default											#default domain
       region: RegionOne																										
-      default_key_name: monitoring																				#keypair name
-      default_security_groups: [bosh]																			#security group
+      default_key_name: monitoring								#keypair name
+      default_security_groups: [bosh]							#security group
  
 resource_pools:
 - cloud_properties:
     name: random
-    instance_type: m1.xlarge 																							#openstack flavor
-    availability_zone: nova																								#available zone
+    instance_type: m1.xlarge 									#openstack flavor
+    availability_zone: nova										#available zone
   name: influx																														#resource name
-  network: paasta-influxdb-grafana-net																		#network name
+  network: paasta-influxdb-grafana-net							#network name
   stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent													#stemcell name
-    version: latest																												#stemcell version
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent				#stemcell name
+    version: latest												#stemcell version
 - cloud_properties:
     name: random
-    instance_type: m1.xlarge 																							#openstack flavor
-    availability_zone: nova																								#available zone
+    instance_type: m1.xlarge 									#openstack flavor
+    availability_zone: nova										#available zone
   name: grafana																														#resource name
-  network: paasta-influxdb-grafana-net																		#network name
+  network: paasta-influxdb-grafana-net							#network name
   stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent													#stemcell name
-    version: 3232.17																											#stemcell version
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent				#stemcell name
+    version: 3232.17											#stemcell version
 
 update:
   canaries: 1
