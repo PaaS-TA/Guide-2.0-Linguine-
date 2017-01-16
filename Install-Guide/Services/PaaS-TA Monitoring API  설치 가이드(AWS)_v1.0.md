@@ -75,7 +75,7 @@ jobs:
     serial: false
 
 <<<<<<< HEAD
-name: paasta-monitoring-api-server																		#deployment name
+name: paasta-monitoring-api-server							#deployment name
 =======
 name: monitoring-api-server									#deployment name
 >>>>>>> e1cd1c59ac22d04444421caea9a96f7ccacc10be
@@ -115,16 +115,9 @@ properties:
       adminPass: admin										#admin account password
 
 releases:
-<<<<<<< HEAD
-- name: paasta-monitoring-api-server																	#release name
-  version: latest																											#release version
-
-=======
-- name: monitoring-api-server								#release name
+- name: paasta-monitoring-api-server						#release name
   version: latest											#release version
-- name: cf
-  version: latest
->>>>>>> e1cd1c59ac22d04444421caea9a96f7ccacc10be
+
 resource_pools:
 - cloud_properties:
     name: default
