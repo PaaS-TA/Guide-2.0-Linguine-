@@ -49,7 +49,7 @@ $ vi influxdb-grafana-release.yml
 
 ```
 ---
-name: influxdb-grafana											#deployment name
+name: paasta-influxdb-grafana									#deployment name
 
 compilation:
   cloud_properties:
@@ -171,7 +171,7 @@ resource_pools:
     name: random
     instance_type: m1.xlarge 									#openstack flavor
     availability_zone: nova										#available zone
-  name: influx																														#resource name
+  name: influx													#resource name
   network: paasta-influxdb-grafana-net							#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent				#stemcell name
@@ -180,7 +180,7 @@ resource_pools:
     name: random
     instance_type: m1.xlarge 									#openstack flavor
     availability_zone: nova										#available zone
-  name: grafana																														#resource name
+  name: grafana													#resource name
   network: paasta-influxdb-grafana-net							#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent				#stemcell name
