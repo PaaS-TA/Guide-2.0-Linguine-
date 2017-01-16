@@ -59,9 +59,9 @@ $ vi metrics-collector-release.yml
 compilation:
   cloud_properties:
     name: random
-    instance_type: monitoring											#openstack flavor
-    availability_zone: nova												#available zone
-  network: paasta-metrics-collector-net						#network name
+    instance_type: monitoring							#openstack flavor
+    availability_zone: nova								#available zone
+  network: paasta-metrics-collector-net					#network name
   reuse_compilation_vms: true
   workers: 1
 
@@ -69,14 +69,14 @@ director_uuid: <%= `bosh status --uuid` %>				#bosh uuid
 
 jobs:
 - instances: 2
-  name: metrics_collector_z1											#service name
+  name: metrics_collector_z1							#service name
   networks:
-  - name: paasta-metrics-collector-net						#network name
+  - name: paasta-metrics-collector-net					#network name
     static_ips: 
-    - 10.244.0.161																#local static ip
-    - 10.244.0.162																#instance 개수와 ip 개수 일치
+    - 10.244.0.161										#local static ip
+    - 10.244.0.162										#instance 개수와 ip 개수 일치
   properties: {}
-  resource_pool: metrics-collector								#resource name
+  resource_pool: metrics-collector						#resource name
   templates:
   - name: metrics_collector	
     release: paasta-metrics-collector
@@ -84,67 +84,67 @@ jobs:
     max_in_flight: 1
     serial: true
 
-name: paasta-metrics-collector										#deployment name
+name: paasta-metrics-collector							#deployment name
 
 networks:
 
-- name: paasta-metrics-collector-net									#network name
+- name: paasta-metrics-collector-net					#network name
   type: manual
   subnets:
   - cloud_properties:
       name: random
       net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317		#network id
-      security_groups: [bosh]													#security group
-    range: 10.244.0.0/24															#static ip range
-    gateway: 10.244.0.1																#gateway
+      security_groups: [bosh]							#security group
+    range: 10.244.0.0/24								#static ip range
+    gateway: 10.244.0.1									#gateway
     reserved:
-    - 10.244.0.2 - 10.244.0.159												#reserved ip range
+    - 10.244.0.2 - 10.244.0.159							#reserved ip range
     - 10.244.0.180 - 10.244.0.254
     dns:
-    - 10.244.1.6																			#dns
+    - 10.244.1.6										#dns
     static:
-    - 10.244.0.160 - 10.244.0.170											#available ip range
+    - 10.244.0.160 - 10.244.0.170						#available ip range
 
 properties:
   openstack: &openstack
-      auth_url: http://115.68.151.175:5000/v3					#openstack auth url
-      username: admin																	#openstack admin id
-      api_key: cfmonit																#openstack admin password
-      project: admin																	#related project name
-      domain: default																	#default domain
+      auth_url: http://115.68.151.175:5000/v3			#openstack auth url
+      username: admin									#openstack admin id
+      api_key: cfmonit									#openstack admin password
+      project: admin									#related project name
+      domain: default									#default domain
       region: RegionOne																										
-      default_key_name: monitoring										#keypair name
-      default_security_groups: [bosh]									#security group
+      default_key_name: monitoring						#keypair name
+      default_security_groups: [bosh]					#security group
   syslog_daemon_config:
     address: null
     port: null
   metrics_collector:
-    uaaUrl: https://uaa.v2.monitxpert.com							#uaa target url
-    clientId: cf																			#uaa client id
-    clientPass: null																	#uaa client password
+    uaaUrl: https://uaa.v2.monitxpert.com				#uaa target url
+    clientId: cf										#uaa client id
+    clientPass: null									#uaa client password
     influx:
-      url: 10.10.18.51:8089														#target influxdb url
-      database: cf_metric_db													#target influxdb database
-      cf_measurement: cf_metrics											#target influxdb measurement
-      cf_process_measurement : cf_process_metrics			#target influxdb process measurement
+      url: 10.10.18.51:8089								#target influxdb url
+      database: cf_metric_db							#target influxdb database
+      cf_measurement: cf_metrics						#target influxdb measurement
+      cf_process_measurement : cf_process_metrics		#target influxdb process measurement
     dopplerUrl:
-    - wss://doppler.v2.monitxpert.com:4443						#doppler websocket url
+    - wss://doppler.v2.monitxpert.com:4443				#doppler websocket url
     log_level: info
 
 releases:
-- name: paasta-metrics-collector											#release name
-  version: latest																			#release version				
+- name: paasta-metrics-collector						#release name
+  version: latest										#release version				
 
 resource_pools:
 - cloud_properties:
     name: random
-    instance_type: monitoring													#openstack flavor
-    availability_zone: nova														#available zone
+    instance_type: monitoring							#openstack flavor
+    availability_zone: nova								#available zone
   name: metrics-collector
-  network: paasta-metrics-collector-net 							#network name
+  network: paasta-metrics-collector-net 				#network name
   stemcell:
     name: bosh-openstack-kvm-ubuntu-trusty-go_agent		#stemcell name
-    version: latest																		#stemcell version
+    version: latest										#stemcell version
 
 update:
   canaries: 1
