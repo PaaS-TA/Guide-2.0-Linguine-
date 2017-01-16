@@ -35,6 +35,12 @@ Monitoring API 서버를 설치하기 위해서는 사전에 PaaS-TA 서비스�
 <div id='6'></div>
 ### 2.1.  upload "Monitoring API" release
 
+하단 링크로 접속하여 Monitoring API 릴리즈 파일인 paasta-monitoring-api-server-2.0.tgz를 다운로드 한다. 
+
+>PaaS-TA Monitoring API : **<http://extdisk.hancom.com:8080/>**
+
+다음의 명령어를 이용하여 릴리즈 파일을 bosh에 업로드한다.
+
 $ bosh upload release paasta-monitoring-api-server-2.0.tgz
 
 <kbd>![2-1-1]</kbd>
