@@ -82,6 +82,8 @@ jobs:
     max_in_flight: 1
     serial: false
 
+name: paasta-monitoring-api-server							#deployment name
+
 networks:
 - name: monitoring-api-server-net							#network name
   subnets:
