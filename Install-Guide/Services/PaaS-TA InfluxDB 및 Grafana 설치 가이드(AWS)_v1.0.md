@@ -46,128 +46,128 @@ $ vi influxdb-grafana-release.yml
 name: influxdb-grafana
 compilation:
   cloud_properties:
-    availability_zone: us-east-1d											#available zone
-    instance_type: c4.large 													#aws flavor
+    availability_zone: us-east-1d								#available zone
+    instance_type: c4.large 									#aws flavor
   network: monitoring_z1
   reuse_compilation_vms: true
   workers: 2
 director_uuid: <%= `bosh status --uuid` %>						#bosh uuid
 
 releases:
-- name: paasta-influxdb-grafana												#release name
-  version: latest  																		#release version
+- name: paasta-influxdb-grafana									#release name
+  version: latest  												#release version
 
 disk_pools:
 - cloud_properties:
     type: gp2
-  disk_size: 10240 																		#influxdb disk pool size
+  disk_size: 10240 												#influxdb disk pool size
   name: influx_data
 
 jobs:
-- name: influxdb																			#influxdb service name
+- name: influxdb												#influxdb service name
   templates:
   - name: influxdb																		
     release: paasta-influxdb-grafana
   instances: 1
-  resource_pool: influx																#resource name
-  persistent_disk_pool: influx_data										#disk pool name
+  resource_pool: influx											#resource name
+  persistent_disk_pool: influx_data								#disk pool name
   networks:
   - default:
     - gateway
     - dns
-    name: monitoring_z1																#network name
+    name: monitoring_z1											#network name
     static_ips:
-    - 10.10.18.51																			#static IP
-  - name: elastic																			#external network(public) name
+    - 10.10.18.51												#static IP
+  - name: elastic												#external network(public) name
     static_ips:
-    - 52.207.82.208 																	#external IP (public)
+    - 52.207.82.208 											#external IP (public)
   properties:
     influxdb:
-      database: cf_metric_db													#default database
-      user: root																			#admin account
-      password: root																	#admin password
+      database: cf_metric_db									#default database
+      user: root												#admin account
+      password: root											#admin password
       replication: 1      														
-      ips: 10.10.18.51															  #local IP
+      ips: 10.10.18.51											#local IP
       
-- name: grafana																				#grafana service name
+- name: grafana													#grafana service name
   templates:
   - name: grafana
     release: cf-monitoring
   instances: 1
-  resource_pool: grafana															#resoure name		
+  resource_pool: grafana										#resoure name		
   networks:
   - default:
     - gateway
     - dns
     name: monitoring_z1													
     static_ips:																				
-    - 10.10.18.53																			#local IP			
- - name: elastic																			#external network(public) name
+    - 10.10.18.53												#local IP			
+ - name: elastic												#external network(public) name
    static_ips:	
-   - 52.206.215.49																		#external IP (public) 
+   - 52.206.215.49												#external IP (public) 
 
   properties:
     grafana:
-      listen_port: 3000																#grafana listen port
-      admin_username: admin														#grafana admin account
-      admin_password: cfmonitor												#grafana admin password
+      listen_port: 3000											#grafana listen port
+      admin_username: admin										#grafana admin account
+      admin_password: cfmonitor									#grafana admin password
       users: 
         allow_sign_up: true
         auto_assign_organization: true
         
       datasource:
-        url: http://10.10.18.51:8086/									#database url
+        url: http://10.10.18.51:8086/							#database url
         name: Grafanadb							
-        database_type: Influxdb												#database type	
-        user: root																		#database admin account
-        password: root																#database admin password
-        database_name: cf_metric_db										#default database
+        database_type: Influxdb									#database type	
+        user: root												#database admin account
+        password: root											#database admin password
+        database_name: cf_metric_db								#default database
         
 networks:
 - name: monitoring_z1
   subnets:
   - cloud_properties:
-      aws_access_key_id: AKIAISNP3PVAIXMA6ASQ															#aws access key
-      aws_secret_access_key: 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			#aws secret key
-      region: us-east-1d																									#available zone
+      aws_access_key_id: AKIAISNP3PVAIXMA6ASQ							#aws access key
+      aws_secret_access_key: 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	#aws secret key
+      region: us-east-1d												#available zone
       security_groups:	
-      - cf-diego-stack3-BOSHSecurityGroup-1M3CG3J07BRQ9										#security group
-      subnet: subnet-bef96f93																							#subnet id
+      - cf-diego-stack3-BOSHSecurityGroup-1M3CG3J07BRQ9					#security group
+      subnet: subnet-bef96f93											#subnet id
     dns:
-    - 10.10.18.2																													#dns
-    gateway: 10.10.18.1																										#gateway
-    range: 10.10.18.0/24																									#static ip range
+    - 10.10.18.2														#dns
+    gateway: 10.10.18.1													#gateway
+    range: 10.10.18.0/24												#static ip range
     reserved:
-    - 10.10.18.2 - 10.10.18.49																						#reserved ip range
+    - 10.10.18.2 - 10.10.18.49											#reserved ip range
     static:
-    - 10.10.18.50 - 10.10.18.55																						#available ip range
+    - 10.10.18.50 - 10.10.18.55											#available ip range
   type: manual
 - name: elastic
   type: vip 
   
 resource_pools:
 - cloud_properties:
-    availability_zone: us-east-1d																					#available zone
-    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ																#aws access key
-    aws_secret_access_key: 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				#aws secret key
+    availability_zone: us-east-1d										#available zone
+    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
+    aws_secret_access_key: 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		#aws secret key
     ephemeral_disk:
       size: 2048 
       type: gp2
-    instance_type: m3.xlarge																							#aws flavor
+    instance_type: m3.xlarge											#aws flavor
   name: influx																														#resource name
-  network: monitoring_z1																									#network name
+  network: monitoring_z1												#network name
   stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent													#stemcell name
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
     version: latest																												#stemcell version
 - cloud_properties:
-    availability_zone: us-east-1d																					#available zone
-    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ																#aws access key
-    aws_secret_access_key: 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				#aws secret key
-    instance_type: t2.small																								#aws flavor
+    availability_zone: us-east-1d										#available zone
+    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
+    aws_secret_access_key: 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		#aws secret key
+    instance_type: t2.small												#aws flavor
   name: grafana																														#resource name
-  network: monitoring_z1 																									#network name
+  network: monitoring_z1 												#network name
   stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent													#stemcell name
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
     version: 3232.17																											#stemcell version
 
 update:
