@@ -80,11 +80,7 @@ jobs:
     max_in_flight: 1
     serial: false
 
-<<<<<<< HEAD
 name: paasta-monitoring-api-server							#deployment name
-=======
-name: monitoring-api-server									#deployment name
->>>>>>> e1cd1c59ac22d04444421caea9a96f7ccacc10be
 
 networks:
 - name: monitoring-api-server-net							#network name
