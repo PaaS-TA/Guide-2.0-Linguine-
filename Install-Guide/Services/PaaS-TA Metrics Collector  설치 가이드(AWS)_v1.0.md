@@ -57,23 +57,23 @@ $ vi metrics-collector-release.yml
 ---
 compilation:
   cloud_properties:
-    availability_zone: us-east-1d								#available zone
-    instance_type: m3.medium										#aws flavor
-  network: metrics-collector-net								#network name
+    availability_zone: us-east-1d						#available zone
+    instance_type: m3.medium							#aws flavor
+  network: metrics-collector-net						#network name
   reuse_compilation_vms: true
   workers: 1
-director_uuid: <%= `bosh status --uuid` %>			#bosh uuid
+director_uuid: <%= `bosh status --uuid` %>			    #bosh uuid
 
 jobs:
 - instances: 2
-  name: metrics_collector_z1										#service name
+  name: metrics_collector_z1							#service name
   networks:
-  - name: metrics-collector-net									#network name
+  - name: metrics-collector-net							#network name
     static_ips: 
-    - 10.10.5.101																#local static ip
-    - 10.10.5.102																#instance 개수와 ip 개수 일치
+    - 10.10.5.101										#local static ip
+    - 10.10.5.102										#instance 개수와 ip 개수 일치
   properties: {}
-  resource_pool: metrics-collector							#resource name
+  resource_pool: metrics-collector						#resource name
   templates:
   - name: metrics_collector	
     release: paasta-metrics-collector
@@ -84,20 +84,20 @@ jobs:
 name: paasta-metrics-collector									#deployment name
 
 networks:
-- name: metrics-collector-net										#network name
+- name: metrics-collector-net									#network name
   subnets:
   - cloud_properties:
       security_groups:
-      - cf-diego-stack2-InternalSecurityGroup-11HQXLKO7IEWL			#security group
-      subnet: subnet-f4b255d9																		#subnet id
+      - cf-diego-stack2-InternalSecurityGroup-11HQXLKO7IEWL		#security group
+      subnet: subnet-f4b255d9									#subnet id
     dns:
-    - 52.71.253.54																							#dns
-    gateway: 10.10.5.1																					#gateway
-    range: 10.10.5.0/24																					#static ip range
+    - 52.71.253.54												#dns
+    gateway: 10.10.5.1											#gateway
+    range: 10.10.5.0/24											#static ip range
     reserved:	
-    - 10.10.5.2 - 10.10.5.70																		#reserved ip range
+    - 10.10.5.2 - 10.10.5.70									#reserved ip range
     static:
-    - 10.10.5.101 - 10.10.5.110																	#available ip range
+    - 10.10.5.101 - 10.10.5.110									#available ip range
   type: manual
 
 properties:
@@ -105,16 +105,16 @@ properties:
     address: null
     port: null
   metrics_collector:
-    uaaUrl: https://uaa.v2.monitxpert.com												#uaa target url
-    clientId: cf																								#uaa client id
-    clientPass: null																						#uaa client password
+    uaaUrl: https://uaa.v2.monitxpert.com						#uaa target url
+    clientId: cf												#uaa client id
+    clientPass: null											#uaa client password
     influx:
-      url: 10.10.18.51:8089																			#target influxdb url
-      database: cf_metric_db																		#target influxdb database
-      cf_measurement: cf_metrics																#target influxdb measurement
-      cf_process_measurement : cf_process_metrics								#target influxdb process measurement
+      url: 10.10.18.51:8089										#target influxdb url
+      database: cf_metric_db									#target influxdb database
+      cf_measurement: cf_metrics								#target influxdb measurement
+      cf_process_measurement : cf_process_metrics				#target influxdb process measurement
     dopplerUrl:
-    - wss://doppler.v2.monitxpert.com:4443											#doppler websocket url
+    - wss://doppler.v2.monitxpert.com:4443						#doppler websocket url
     log_level: debug
     
 releases:
@@ -123,13 +123,13 @@ releases:
   
 resource_pools:
 - cloud_properties:
-    availability_zone: us-east-1d																#available zone
-    instance_type: m3.medium																		#aws flavor
+    availability_zone: us-east-1d								#available zone
+    instance_type: m3.medium									#aws flavor
   name: metrics-collector
   network: metrics-collector-net 
   stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent								#stemcell name
-    version: latest																							#stemcell version
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent				#stemcell name
+    version: latest												#stemcell version
 update:
   canaries: 1
   canary_watch_time: 30000-100000
