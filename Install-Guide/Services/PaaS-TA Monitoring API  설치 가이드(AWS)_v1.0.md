@@ -69,12 +69,12 @@ jobs:
   resource_pool: monitoring-api-server																#resource name (resource_pools)
   templates:
   - name: api_server
-    release: monitoring-api-server
+    release: paasta-monitoring-api-server
   update:
     max_in_flight: 1
     serial: false
 
-name: monitoring-api-server																						#deployment name
+name: paasta-monitoring-api-server																		#deployment name
 
 networks:
 - name: monitoring-api-server-net																			#network name
@@ -111,10 +111,9 @@ properties:
       adminPass: admin																								#admin account password
 
 releases:
-- name: monitoring-api-server																					#release name
+- name: paasta-monitoring-api-server																	#release name
   version: latest																											#release version
-- name: cf
-  version: latest
+
 resource_pools:
 - cloud_properties:
     name: default

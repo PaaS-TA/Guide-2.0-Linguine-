@@ -71,12 +71,12 @@ jobs:
   resource_pool: monitoring-api-server																#resource name (resource_pools)
   templates:
   - name: api_server
-    release: monitoring-api-server
+    release: paasta-monitoring-api-server
   update:
     max_in_flight: 1
     serial: false
 
-name: monitoring-api-server																						#deployment name
+name: paasta-monitoring-api-server																		#deployment name
 
 networks:
 - name: monitoring-api-server-net																			#network name
@@ -97,6 +97,15 @@ networks:
   type: manual
 
 properties:
+  openstack: &openstack																							
+      auth_url: http://115.68.151.175:5000/v3													#openstack auth url
+      username: admin																									#openstack admin id
+      api_key: cfmonit																								#openstack admin password
+      project: admin																									#related project name
+      domain: default																									#default domain
+      region: RegionOne																										
+      default_key_name: monitoring																		#keypair name
+      default_security_groups: [bosh]																	#security group
   syslog_daemon_config:
     address: null
     port: null
@@ -110,10 +119,9 @@ properties:
       adminPass: admin																								#admin account password
 
 releases:
-- name: monitoring-api-server																					#release name
+- name: paasta-monitoring-api-server																	#release name
   version: latest																											#release version
-- name: cf
-  version: latest
+
 resource_pools:
 - cloud_properties:
     name: random
