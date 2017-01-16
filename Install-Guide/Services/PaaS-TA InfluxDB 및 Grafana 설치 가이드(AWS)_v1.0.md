@@ -49,7 +49,7 @@ $ vi influxdb-grafana-release.yml
 
 ```
 ---
-name: influxdb-grafana
+name: paasta-influxdb-grafana
 compilation:
   cloud_properties:
     availability_zone: us-east-1d								#available zone
@@ -160,21 +160,21 @@ resource_pools:
       size: 2048 
       type: gp2
     instance_type: m3.xlarge											#aws flavor
-  name: influx																														#resource name
+  name: influx															#resource name
   network: paasta-influxdb-grafana-net									#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
-    version: latest																												#stemcell version
+    version: latest														#stemcell version
 - cloud_properties:
     availability_zone: us-east-1d										#available zone
     aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
     aws_secret_access_key: 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		#aws secret key
     instance_type: t2.small												#aws flavor
-  name: grafana																														#resource name
+  name: grafana															#resource name
   network: paasta-influxdb-grafana-net									#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
-    version: 3232.17																											#stemcell version
+    version: 3232.17													#stemcell version
 
 update:
   canaries: 1
