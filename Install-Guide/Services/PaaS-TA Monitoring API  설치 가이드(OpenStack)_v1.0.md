@@ -51,24 +51,24 @@ $ vi monitoring-api-release.yml
 compilation:
   cloud_properties:
     name: random
-    instance_type: monitoring																					#openstack flavor
-    availability_zone: nova																						#available zone
+    instance_type: monitoring								#openstack flavor
+    availability_zone: nova									#available zone
   network: cf1
   reuse_compilation_vms: true
   workers: 1
   
-director_uuid: <%= `bosh status --uuid` %>														#bosh status --uuid 
+director_uuid: <%= `bosh status --uuid` %>					#bosh status --uuid 
 jobs:
 - cloud_properties:
     name: default
-  instances: 1																												#instance count
+  instances: 1												#instance count
   memory_mb: 2048
-  name: api_server_z1																									#bosh vm name
+  name: api_server_z1										#bosh vm name
   networks:
-  - name: monitoring-api-server-net																		#network name
-    static_ips: 10.244.30.20																					#static IP
+  - name: monitoring-api-server-net							#network name
+    static_ips: 10.244.30.20								#static IP
   properties: {}
-  resource_pool: monitoring-api-server																#resource name (resource_pools)
+  resource_pool: monitoring-api-server						#resource name (resource_pools)
   templates:
   - name: api_server
     release: monitoring-api-server
@@ -76,24 +76,24 @@ jobs:
     max_in_flight: 1
     serial: false
 
-name: monitoring-api-server																						#deployment name
+name: monitoring-api-server									#deployment name
 
 networks:
-- name: monitoring-api-server-net																			#network name
+- name: monitoring-api-server-net							#network name
   subnets:
   - cloud_properties:
       name: random
-      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317										#network id
-      security_groups: [bosh]																					#security group
+      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317			#network id
+      security_groups: [bosh]								#security group
     dns:
-    - 52.71.253.54																										#dns ip
+    - 52.71.253.54											#dns ip
     - 10.10.0.2
-    gateway: 10.10.5.1																								#gateway 
-    range: 10.10.5.0/24																								#static ip range
+    gateway: 10.10.5.1										#gateway 
+    range: 10.10.5.0/24										#static ip range
     reserved:		
-    - 10.10.5.2 - 10.10.5.110																					#reserved ip range
+    - 10.10.5.2 - 10.10.5.110								#reserved ip range
     static:
-    - 10.10.5.111 - 10.10.5.120																				#available ip range
+    - 10.10.5.111 - 10.10.5.120								#available ip range
   type: manual
 
 properties:
@@ -101,29 +101,29 @@ properties:
     address: null
     port: null
   api_server:
-    listen_addr: 0.0.0.0:9999																					#api server listen address
-    log_level: debug																									#log level
-    dopplerUrl: wss://doppler.bosh-lite.com:4443											#doppler websocket url
+    listen_addr: 0.0.0.0:9999								#api server listen address
+    log_level: debug										#log level
+    dopplerUrl: wss://doppler.bosh-lite.com:4443			#doppler websocket url
     uaa:
-      url: http://uaa.bosh-lite.com																		#uaa url
-      adminId: admin																									#admin account id
-      adminPass: admin																								#admin account password
+      url: http://uaa.bosh-lite.com							#uaa url
+      adminId: admin										#admin account id
+      adminPass: admin										#admin account password
 
 releases:
-- name: monitoring-api-server																					#release name
-  version: latest																											#release version
+- name: monitoring-api-server								#release name
+  version: latest											#release version
 - name: cf
   version: latest
 resource_pools:
 - cloud_properties:
     name: random
-    instance_type: monitoring																					#openstack flavor
-    availability_zone: nova																						#available zone
-  name: monitoring-api-server																					#resource name
-  network: monitoring-api-server-net																	#network name
+    instance_type: monitoring								#openstack flavor
+    availability_zone: nova									#available zone
+  name: monitoring-api-server								#resource name
+  network: monitoring-api-server-net						#network name
   stemcell:
-    name: bosh-openstack-kvm-ubuntu-trusty-go_agent										#stemcell name
-    version: latest																										#stemcell version
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent			#stemcell name
+    version: latest											#stemcell version
     
 update:
   canaries: 1
