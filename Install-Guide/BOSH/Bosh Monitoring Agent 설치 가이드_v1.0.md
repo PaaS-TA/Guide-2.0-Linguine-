@@ -93,7 +93,7 @@ $ ps -ef |grep monitoring_agent
 
 <kbd>![2-4-1]</kbd>
 
-[2-1-1]:images/monitoring-api/2-1-1.png
-[2-2-1]:images/monitoring-api/2-2-1.png
-[2-3-1]:images/monitoring-api/2-3-1.png
-[2-4-1]:images/monitoring-api/2-4-1.png
+[2-1-1]:images/monitoring-agent/2-1-1.png
+[2-2-1]:images/monitoring-agent/2-2-1.png
+[2-3-1]:images/monitoring-agent/2-3-1.png
+[2-4-1]:images/monitoring-agent/2-4-1.png
