@@ -48,7 +48,7 @@ compilation:
   cloud_properties:
     availability_zone: us-east-1d								#available zone
     instance_type: c4.large 									#aws flavor
-  network: monitoring_z1
+  network: paasta-influxdb-grafana-net                          #network name
   reuse_compilation_vms: true
   workers: 2
 director_uuid: <%= `bosh status --uuid` %>						#bosh uuid
@@ -75,7 +75,7 @@ jobs:
   - default:
     - gateway
     - dns
-    name: monitoring_z1											#network name
+    name: paasta-influxdb-grafana-net							#network name
     static_ips:
     - 10.10.18.51												#static IP
   - name: elastic												#external network(public) name
@@ -92,14 +92,14 @@ jobs:
 - name: grafana													#grafana service name
   templates:
   - name: grafana
-    release: cf-monitoring
+    release: paasta-influxdb-grafana
   instances: 1
   resource_pool: grafana										#resoure name		
   networks:
   - default:
     - gateway
     - dns
-    name: monitoring_z1													
+    name: paasta-influxdb-grafana-net													
     static_ips:																				
     - 10.10.18.53												#local IP			
  - name: elastic												#external network(public) name
@@ -124,7 +124,7 @@ jobs:
         database_name: cf_metric_db								#default database
         
 networks:
-- name: monitoring_z1
+- name: paasta-influxdb-grafana-net
   subnets:
   - cloud_properties:
       aws_access_key_id: AKIAISNP3PVAIXMA6ASQ							#aws access key
@@ -155,7 +155,7 @@ resource_pools:
       type: gp2
     instance_type: m3.xlarge											#aws flavor
   name: influx																														#resource name
-  network: monitoring_z1												#network name
+  network: paasta-influxdb-grafana-net									#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
     version: latest																												#stemcell version
@@ -165,7 +165,7 @@ resource_pools:
     aws_secret_access_key: kPo/puNtk3ujgojbbBlLmPe2xOI5TQPsFzM9kYKj		#aws secret key
     instance_type: t2.small												#aws flavor
   name: grafana																														#resource name
-  network: monitoring_z1 												#network name
+  network: paasta-influxdb-grafana-net									#network name
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent						#stemcell name
     version: 3232.17																											#stemcell version
