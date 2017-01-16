@@ -49,14 +49,14 @@ $ vi logsearch-release.yml
 
 ```
 ---
-name: paasta-logsearch														#deployment name
+name: paasta-logsearch									#deployment name
 
 compilation:
   cloud_properties:
     name: random
-    instance_type: monitoring											#openstack flavor
-    availability_zone: nova 											#available zone
-  network: paasta-logsearch-net										#network name
+    instance_type: monitoring							#openstack flavor
+    availability_zone: nova 							#available zone
+  network: paasta-logsearch-net							#network name
   reuse_compilation_vms: true
   workers: 6
 
@@ -65,14 +65,14 @@ director_uuid: <%= `bosh status --uuid` %>				#bosh uuid
 disk_pools:
 
 - cloud_properties:
-    type: SSD2																		#disk type
-  disk_size: 1024 																#disk size
-  name: elasticsearch_master											#disk pool name
+    type: SSD2											#disk type
+  disk_size: 1024 										#disk size
+  name: elasticsearch_master							#disk pool name
 
 - cloud_properties:
-    type: SSD2																		#disk type
-  disk_size: 20480																#disk size
-  name: elasticsearch_data												#disk pool name
+    type: SSD2											#disk type
+  disk_size: 20480										#disk size
+  name: elasticsearch_data								#disk pool name
 
 - cloud_properties:
     type: SSD2
@@ -86,18 +86,18 @@ disk_pools:
 
 jobs:
 - instances: 1
-  name: elasticsearch_master											#service name
+  name: elasticsearch_master							#service name
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:
-    - 10.244.3.120																#local static ip
+    - 10.244.3.120										#local static ip
   persistent_disk_pool: elasticsearch_master			#disk pool name
   properties:
     elasticsearch:
       node:
         allow_data: false
         allow_master: true
-  resource_pool: elasticsearch_master							#resource name
+  resource_pool: elasticsearch_master					#resource name
   templates:
   - name: elasticsearch
     release: paasta-logsearch
@@ -105,12 +105,12 @@ jobs:
     max_in_flight: 1
     
 - instances: 1
-  name: cluster_monitor														#service name
+  name: cluster_monitor									#service name
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:	
-    - 10.244.3.122																#local static ip
-  persistent_disk_pool: cluster_monitor						#disk pool name
+    - 10.244.3.122										#local static ip
+  persistent_disk_pool: cluster_monitor					#disk pool name
   properties:
     curator:
       elasticsearch_host: 10.244.3.120
@@ -161,7 +161,7 @@ jobs:
     redis:
       host: 127.0.0.1
       maxmemory: 10
-  resource_pool: cluster_monitor								  #resource name
+  resource_pool: cluster_monitor						 #resource name
   templates:
   - name: queue
     release: paasta-logsearch
@@ -181,22 +181,22 @@ jobs:
     release: paasta-logsearch
     
 - instances: 1
-  name: queue																			#service name
+  name: queue											#service name
   networks:	
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:
-    - 10.244.3.123																#local static ip
-  persistent_disk_pool: queue											#disk pool name
-  resource_pool: queue														#resource name
+    - 10.244.3.123										#local static ip
+  persistent_disk_pool: queue							#disk pool name
+  resource_pool: queue									#resource name
   templates:
   - name: queue
     release: paasta-logsearch
     
 - instances: 1
-  name: maintenance																#service name
+  name: maintenance										#service name
   networks:
-  - name: paasta-logsearch-net										#network name
-  resource_pool: maintenance											#resource name
+  - name: paasta-logsearch-net							#network name
+  resource_pool: maintenance							#resource name
   templates:
   - name: elasticsearch_config
     release: paasta-logsearch
@@ -206,12 +206,12 @@ jobs:
     serial: true
     
 - instances: 3 
-  name: elasticsearch_data												#service name
+  name: elasticsearch_data								#service name
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:
-    - 10.244.3.136																#local static ip
-    - 10.244.3.137																#instance 개수와 ip 개수 일치
+    - 10.244.3.136										#local static ip
+    - 10.244.3.137										#instance 개수와 ip 개수 일치
     - 10.244.3.138
   persistent_disk_pool: elasticsearch_data				#disk pool name
   properties:
@@ -219,19 +219,19 @@ jobs:
       node:
         allow_data: true
         allow_master: false
-  resource_pool: elasticsearch_data								#resource name
+  resource_pool: elasticsearch_data						#resource name
   templates:
   - name: elasticsearch
     release: paasta-logsearch
   update:
     max_in_flight: 1
     
-- instances: 1																		#service name
+- instances: 1											#service name
   name: kibana
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:
-    - 10.244.3.126																#local static ip
+    - 10.244.3.126										#local static ip
   resource_pool: kibana
   templates:
   - name: kibana
@@ -239,11 +239,11 @@ jobs:
   properties: null
         
 - instances: 1
-  name: ingestor																	#service name
+  name: ingestor										#service name
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
     static_ips:
-    - 10.244.3.121																#local static ip
+    - 10.244.3.121										#local static ip
   properties:
     logstash_ingestor:
       debug: false
@@ -259,9 +259,9 @@ jobs:
     release: paasta-logsearch
     
 - instances: 1
-  name: parser																		#service name
+  name: parser											#service name
   networks:
-  - name: paasta-logsearch-net										#network name
+  - name: paasta-logsearch-net							#network name
   resource_pool: parser
   templates:
   - name: parser
@@ -283,10 +283,10 @@ jobs:
     - 10.244.3.125
   - name: provider
     static_ips:
-    - 115.68.151.183															#external ip (public)
+    - 115.68.151.183									#external ip (public)
   properties:
-    haproxy:																			#port forwarding
-      cluster_monitor:														#각 서비스들의 default port 정보는 jobs/haproxy/spec 파일에 정의 
+    haproxy:											#port forwarding
+      cluster_monitor:									#각 서비스들의 default port 정보는 jobs/haproxy/spec 파일에 정의 
         backend_servers:
         - 10.244.3.122
       ingestor:
@@ -318,27 +318,27 @@ networks:
 
 #Floating ip name in openstack
 
-- name: provider 																		#external network name
+- name: provider 										#external network name
   type: vip	
   cloud_properties:
     net_id: bb29696d-c0af-4a98-9108-edd23b27c493		#network id
-    security_groups: [bosh]													#security group
+    security_groups: [bosh]								#security group
 
-- name: paasta-logsearch-net												#network name
+- name: paasta-logsearch-net							#network name
   subnets:
   - cloud_properties:
       name: random
-      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317	#network id
-      security_groups: [bosh]												#security group
-    range: 10.244.3.0/24														#static ip range
-    gateway: 10.244.3.1															#gateway
+      net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317	    #network id
+      security_groups: [bosh]							#security group
+    range: 10.244.3.0/24								#static ip range
+    gateway: 10.244.3.1									#gateway
     reserved:
-    - 10.244.3.2 - 10.244.3.80											#reserved ip range
+    - 10.244.3.2 - 10.244.3.80							#reserved ip range
     - 10.244.3.200 - 10.244.3.254
     dns:
-    - 10.244.3.4																		#dns
+    - 10.244.3.4										#dns
     static:
-    - 10.244.3.110 - 10.244.3.150										#available ip range
+    - 10.244.3.110 - 10.244.3.150						#available ip range
   type: manual
 
 properties:
@@ -373,16 +373,16 @@ releases:
 resource_pools:
 - cloud_properties:
     name: random
-    availability_zone: nova																		#available zone
+    availability_zone: nova								#available zone
     ephemeral_disk:
       size: 2048 	
       type: SSD2
-    instance_type: monitoring																	#openstack flavor
+    instance_type: monitoring							#openstack flavor
   name: elasticsearch_master
-  network: paasta-logsearch-net																#network name
+  network: paasta-logsearch-net							#network name
   stemcell:
-    name: bosh-openstack-kvm-ubuntu-trusty-go_agent						#stemcell name
-    version: 3232.22																					#stemcell version
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent		#stemcell name
+    version: 3232.22									#stemcell version
 - cloud_properties:
     name: random
     availability_zone: nova
