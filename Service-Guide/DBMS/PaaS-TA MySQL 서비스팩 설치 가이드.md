@@ -51,25 +51,6 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
--	Github에서 다운로드 받은 openpaas-service-release/open-mysql-release 폴더로 이동하여 Mysql 릴리즈 파일을 확인한다.
-
->`$ cd openpaas-service-release`   
->`$ ls –all`
-![update_mysql_vsphere_37]
->
->`$ ls –all`
-![update_mysql_vsphere_38]
-<br>
-
-- 릴리즈를 생성한다.
-
->$ bosh create release --force --final –name pasta-mysql --version 2.0
->※	Permission denied 에러가 발생할 수 있다. 이 경우 명령어 앞에 sudo를 입력하고 비밀번홀를 입력하여 릴리즈 생성을 진행한다.
-
-![update_mysql_vsphere_39]
-
-<br>
-
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
 >$bosh releases<br>
