@@ -62,124 +62,14 @@ Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고
 하여BOSH CLI를 설치 해야 한다.
-
--	PaaS-TA에서 제공하는 Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다
-
->$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
-
+PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
 
 ###2.2. WEB-IDE 릴리즈 업로드
 
--   paasta-Services을 다운로드 받고 폴더 안에 있는 WEB-IDE 릴리즈
-    paasta-eclipse-che-2.0.tgz 파일을 확인한다.
+- PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 WEB-IDE 서비스 릴리즈 paasta-web-ide-2.0.tgz 파일을 복사한다.
 
--   WEB-IDE 릴리즈 파일을 업로드한다.
-
->$ bosh upload release {서비스 릴리즈 파일 PATH}
->
->$ bosh upload release paasta-eclipse-che-2.0.tgz
->
->inception@inception:\~/bosh-space/release/eclipse-che-release\$ bosh upload release paasta-eclipse-che-2.0.tgz
->
->RSA 1024 bit CA certificates are loaded due to old openssl compatibility
->
->Acting as user 'lij' on 'micro\_bosh\_3147'
->
->Verifying manifest...
->
->Extract manifest OK
->
->Manifest exists OK
->
->Release name/version OK
->
->Checking jobs format OK
->
->Read job 'eclipse-che' (1 of 2), version 3573233f3bb345ccae2cb343128a45187aa37fe0 OK
->
->Job 'eclipse-che' checksum OK
->
->Extract job 'eclipse-che' OK
->
->Read job 'eclipse-che' manifest OK
->
->Check template 'che\_ctl.erb' for 'eclipse-che' OK
->
->Monit file for 'eclipse-che' OK
->
->Release info
->
->------------
->
->Name: paasta-eclipse-che
->
->Version: 2.0
->
-> Packages
-> 
-> - eclipse-che (eff6040fd5ed2a30190955140bb58f892ff830ec)
-> 
-> - bosh-helpers (2b45cec940a80e582427f61c460269c6ccb031c8)
-> 
-> - docker (8da016ec9d1b172b779d5ff0a9fbbfc4973ea734)
-> 
-> - java (a855eb9b6bb942127ead74e59e33b727fdada891)
-> 
-> Jobs
-> 
-> - eclipse-che (3573233f3bb345ccae2cb343128a45187aa37fe0)
->  
->  License
->  
->  - none
->  
->  Checking if can repack release for faster upload...
->  
->  eclipse-che (eff6040fd5ed2a30190955140bb58f892ff830ec) SKIP
->  
->  bosh-helpers (2b45cec940a80e582427f61c460269c6ccb031c8) SKIP
->  
->  docker (8da016ec9d1b172b779d5ff0a9fbbfc4973ea734) SKIP
->  
->  java (a855eb9b6bb942127ead74e59e33b727fdada891) SKIP
->  
->  eclipse-che (3573233f3bb345ccae2cb343128a45187aa37fe0) UPLOAD
->  
->  Release repacked (new size is 2.7K)
->  
->  Uploading release
->  
->  release-repac: 96% >|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo >| 2.6KB 124.4KB/s ETA: 00:00:00
->  
->  Director task 14522
->  
->  Started extracting release &gt; Extracting release. Done (00:00:00)
->  
->  Started verifying manifest &gt; Verifying manifest. Done (00:00:00)
->  
->  Started resolving package dependencies &gt; Resolving package dependencies. Done (00:00:00)
->  
->  Started processing 4 existing packages &gt; Processing 4 existing packages. Done (00:00:00)
->  
->  Started processing 1 existing jobs &gt; Processing 1 existing jobs. Done (00:00:00)
->  
->  Started release has been created &gt; paasta-eclipse-che/2.0. Done (00:00:00)
->  
->  Task 14522 done
->  
->  Started 2016-11-24 04:23:13 UTC
-> 
->  Finished 2016-11-24 04:23:13 UTC
->  
->  Duration 00:00:00
->  
->  release-repac: 96% >|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo >| 2.6KB 321B/s Time: 00:00:08
->  
->  Release uploaded
-  
-
--   업로드 된 WEB IDE 릴리즈를 확인한다.
+- 업로드 된 WEB IDE 릴리즈를 확인한다.
 
 >$ bosh releases
 >
