@@ -2,11 +2,12 @@
 1. [문서 개요](#1)
      * [1.1. 목적](#2)
      * [1.2. 범위](#3)
-2. [InfluxDB & Grafana Release 배포](#4)
-     * [2.1.  upload release](#5)
-     * [2.2.  manifest 파일 설정](#6)
-     * [2.3.  deploy](#7)
-     * [2.4.  확인](#8)
+     * [1.3. 참고](#4)
+2. [InfluxDB & Grafana Release 배포](#5)
+     * [2.1.  upload release](#6)
+     * [2.2.  manifest 파일 설정](#7)
+     * [2.3.  deploy](#8)
+     * [2.4.  확인](#9)
 
 <div id='1'></div>
 # 1. 문서 개요
@@ -22,11 +23,17 @@
 본 문서는 AWS 기반에 설치하기 위한 내용으로 한정되어 있다.
 
 <div id='4'></div>
+### 1.3. 참고
+
+> <a style="text-decoration:underline" href="https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20Architecture.md">모니터링 시스템 Architecutre</a>		  > <a style="text-decoration:underline" href="https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20Architecture.md">모니터링 시스템 Architecutre</a>
+
+
+<div id='5'></div>
 # 2.  Logsearch Release 배포
 
 본 장에서는 Logsearch 서비스를 배포하는 방법에 대해서 기술하였다.
 
-<div id='5'></div>
+<div id='6'></div>
 ### 2.1.  upload "Logsearch" release
 
 하단 링크로 접속하여 Logsearch 릴리즈 파일인 paasta-logsearch-2.0.tgz를 다운로드 한다. 
@@ -40,7 +47,7 @@ $ bosh upload release paasta-logsearch-2.0.tgz
 <kbd>![2-1-1]</kbd>
 <kbd>![2-1-2]</kbd>
 
-<div id='6'></div>
+<div id='7'></div>
 ### 2.2.  manifest 파일 설정
 
 1. "Logsearch" 서비스가 배포되는 환경에 맞게 manifest 파일의 설정 정보를 수정한다.
@@ -497,7 +504,7 @@ $ bosh deployment logsearch-release.yml
 
 <kbd>![2-2-1]</kbd>
 
-<div id='7'></div>
+<div id='8'></div>
 ### 2.3.  배포
 
 $ bosh -n deploy 
@@ -505,7 +512,7 @@ $ bosh -n deploy
 <kbd>![2-3-1]</kbd>
 <kbd>![2-3-2]</kbd>
 
-<div id='8'></div>
+<div id='9'></div>
 ### 2.4.  확인
 
 $ bosh deployments 
