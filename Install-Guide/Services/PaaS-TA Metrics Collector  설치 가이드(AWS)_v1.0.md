@@ -49,6 +49,8 @@ $ bosh upload release paasta-metrics-collector-2.0.tgz
 <div id='7'></div>
 ### 2.2.  manifest 파일 설정
 
+> <a style="text-decoration:underline" href="https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%20DB%20%EB%B0%8F%20Metrics%20%EA%B0%80%EC%9D%B4%EB%93%9C.md">InfluxDB 참조</a>
+
 1. "Metrics Collector" 서비스가 배포되는 환경에 맞게 manifest 파일의 설정 정보를 수정한다.
 
 $ vi metrics-collector-release.yml
