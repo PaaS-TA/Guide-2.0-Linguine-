@@ -65,7 +65,7 @@ compilation:
     cpu: 2
     disk: 8192
     ram: 2048
-  network: paasta-influxdb-grafana-net				#network name
+  network: paasta-influxdb-grafana-net				            #network name
   reuse_compilation_vms: true
   workers: 2
  
@@ -142,30 +142,30 @@ jobs:
         database_name: cf_metric_db								#default database
         
 networks:
-- name: paasta-influxdb-grafana-net				#internal network name
+- name: paasta-influxdb-grafana-net				                #internal network name
   subnets:
   - cloud_properties:
       name: Internal
     dns:
-    - 10.30.20.27													#dns
+    - 10.30.20.27												#dns
     - 8.8.8.8
-    gateway: 10.30.20.23									#gateway
-    range: 10.30.0.0/16										#static ip range
+    gateway: 10.30.20.23									    #gateway
+    range: 10.30.0.0/16										    #static ip range
     reserved:
-    - 10.30.0.1 - 10.30.152.49						#reserved ip range
+    - 10.30.0.1 - 10.30.152.49						            #reserved ip range
     static:
-    - 10.30.152.50 - 10.30.152.55					#available ip range
+    - 10.30.152.50 - 10.30.152.55					            #available ip range
   type: manual
 
-- name: elastic														#external network name
+- name: elastic													#external network name
   subnets:
   - cloud_properties:
       name: External
     dns:
-    - 10.30.20.27													#dns
+    - 10.30.20.27												#dns
     - 8.8.8.8
-    gateway: 115.68.46.17									#gateway
-    range: 115.68.46.16/24								#external ip range (public)
+    gateway: 115.68.46.17								    	#gateway
+    range: 115.68.46.16/24								        #external ip range (public)
     static:
     - 115.68.46.187												#available public ip
     - 115.68.46.188
@@ -180,11 +180,11 @@ resource_pools:
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: influx																					#resource name
-  network: paasta-influxdb-grafana-net									#network name
+  name: influx													#resource name
+  network: paasta-influxdb-grafana-net							#network name
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent			#stemcell name
-    version: latest																			#stemcell version
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent			    #stemcell name
+    version: latest												#stemcell version
 
 - cloud_properties:
     cpu: 1
@@ -193,11 +193,11 @@ resource_pools:
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: grafana																					#resource name
-  network: paasta-influxdb-grafana-net									#network name
+  name: grafana													#resource name
+  network: paasta-influxdb-grafana-net							#network name
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent			#stemcell name
-    version: latest																			#stemcell version
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent			    #stemcell name
+    version: latest												#stemcell version
 
 update:
   canaries: 1
