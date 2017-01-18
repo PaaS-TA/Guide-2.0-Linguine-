@@ -8,41 +8,6 @@
      * [2.2.  Bosh VM 로그인](#7)
      * [2.3.  Bosh Monitoring Agent 실행](#8)
      * [2.4.  확인](#9)
-
-<div id='1'></div>
-# 1. 문서 개요
-
-<div id='2'></div>
-### 1.1. 목적
-      
-본 문서는 IaaS(Infrastructure as a Service) 중 하나인 AWS 환경에서 Bosh VM 환경의 시스템 Metrics(CPU, Memory, Disk) 정보를 수집하기 위한 agent를  설치하는 방법을 제공하는데 그 목적이 있다.
-
-<div id='3'></div>
-### 1.2. 범위
-      
-본 문서는 AWS 기반에 설치하기 위한 내용으로 한정되어 있다.
-
-<div id='4'></div>
-### 1.3. 전제조건
-      
-Bosh Monitoring Agent를 설치하기 위해서는 사전에 Bosh 서비스가 배포되어 서비스되고 있어야 한다.
-
-<div id='5'></div>
-# 2.  Bosh Monitoring Agent 설치
-
-본 장에서는 Monitoring API Release를 배포하는 방법에 대해서 기술하였다.
-
-<div id='6'></div>
-## Table of Contents
-1. [문서 개요](#1)
-     * [1.1. 목적](#2)
-     * [1.2. 범위](#3)
-     * [1.3. 전제조건](#4)
-2. [Bosh Monitoring Agent 설치](#5)
-     * [2.1.  Bosh Monitoring Agent 파일 업로드](#6)
-     * [2.2.  Bosh VM 로그인](#7)
-     * [2.3.  Bosh Monitoring Agent 실행](#8)
-     * [2.4.  확인](#9)
 3. [Bosh Log Collect Agent 설치](#10)
      * [3.1.  전제조건](#11)
      * [3.2.  Bosh Log Collector Agent 다운르도](#12)
