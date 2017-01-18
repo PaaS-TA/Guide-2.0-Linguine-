@@ -37,7 +37,7 @@ Bosh Monitoring Agent를 설치하기 위해서는 사전에 Bosh 서비스가 �
 
 하단 링크로 접속하여 bosh monitoring agent 파일을 다운로드 한다. 
 
->Bosh Monitoring Agent : **<http://extdisk.hancom.com:8080/>**
+>Bosh Monitoring Agent : **<http://extdisk.hancom.com:8080/share.cgi?ssid=01wAQNx>**
 
 다음의 명령어를 이용하여 압축 파일을 해제한다.
 
