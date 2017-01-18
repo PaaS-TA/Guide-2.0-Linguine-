@@ -54,7 +54,93 @@ $ bosh upload release paasta-monitoring-api-server-2.0.tgz
 $ vi monitoring-api-release.yml
 
 ```
+---
+name: paasta-monitoring-api-server																#deployment name
 
+compilation:
+  cloud_properties:
+    cpu: 2
+    disk: 8192
+    ram: 2048
+  network: paasta-monitoring-api-server-network										#network name
+  reuse_compilation_vms: true
+  workers: 6
+  
+director_uuid: <%= `bosh status --uuid` %>												#bosh uuid
+
+releases:
+- {name: paasta-monitoring-api-server, version: 2.0}
+
+jobs:
+- name: api_server_z1																							#service name
+  templates:
+  - {name: api_server, release: paasta-monitoring-api-server}			#release info
+  instances: 1
+  resource_pool: api_server																				#resource name
+  networks:
+  - name: paasta-monitoring-api-server-network										#network name
+    static_ips:
+    - 10.30.152.181																								#local static ip
+  - default:
+    - dns
+    - gateway
+    name: external
+    static_ips:
+    - 115.68.46.189																								#public ip
+  properties: {}
+  update:
+    max_in_flight: 1
+    serial: false
+        
+networks:
+- name: paasta-monitoring-api-server-network											#internal network name
+  subnets:
+  - cloud_properties:
+      name: Internal
+    dns:
+    - 10.30.20.27																									#dns
+    - 8.8.8.8
+    gateway: 10.30.20.23																					#gateway
+    range: 10.30.0.0/16																						#static ip range
+    reserved:
+    - 10.30.0.1 - 10.30.152.179																		#reserved ip range
+    static:
+    - 10.30.152.180 - 10.30.152.185																#available ip range
+  type: manual
+
+- name: external																									#external network name
+  subnets:
+  - cloud_properties:
+      name: External
+    dns:
+    - 10.30.20.27																									#dns
+    - 8.8.8.8
+    gateway: 115.68.46.17																					#gateway
+    range: 115.68.46.16/24																				#static ip range
+    static:
+    - 115.68.46.189																								#available ip range
+  type: manual
+
+resource_pools:
+- cloud_properties:
+    cpu: 1
+    disk: 1024
+    ram: 1024
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: api_server																								#resource name
+  network: paasta-monitoring-api-server-network										#network name
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent								#stemcell name
+    version: latest																								#stemcell version
+
+update:
+  canaries: 1
+  canary_watch_time: 1000-180000
+  max_in_flight: 1
+  serial: true
+  update_watch_time: 1000-180000
 ```
 
 2. manifest 파일 지정
