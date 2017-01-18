@@ -103,14 +103,14 @@ networks:
   - cloud_properties:
       name: Internal
     dns:
-    - 10.30.20.27													#dns
+    - 10.30.20.27										#dns
     - 8.8.8.8
-    gateway: 10.30.20.23									#gateway
-    range: 10.30.0.0/16										#static ip range
+    gateway: 10.30.20.23								#gateway
+    range: 10.30.0.0/16									#static ip range
     reserved:	
-    - 10.30.0.1 - 10.30.152.159						#reserved ip range
+    - 10.30.0.1 - 10.30.152.159						    #reserved ip range
     static:
-    - 10.30.152.160 - 10.30.152.165				#available ip range
+    - 10.30.152.160 - 10.30.152.165				        #available ip range
   type: manual
 
 properties:
@@ -118,21 +118,21 @@ properties:
     address: null
     port: null
   metrics_collector:
-    uaaUrl: https://uaa.115.68.46.186.xip.io				#uaa target url
+    uaaUrl: https://uaa.115.68.46.186.xip.io			#uaa target url
     clientId: cf										#uaa client id
     clientPass: null									#uaa client password
     influx:
-      url: 10.30.152.51:8089								#target influxdb url
+      url: 10.30.152.51:8089							#target influxdb url
       database: cf_metric_db							#target influxdb database
       cf_measurement: cf_metrics						#target influxdb measurement
       cf_process_measurement : cf_process_metrics		#target influxdb process measurement
     dopplerUrl:
-    - wss://doppler.115.68.46.186.xip.io:443				#doppler websocket url
+    - wss://doppler.115.68.46.186.xip.io:443			#doppler websocket url
     log_level: info
 
 releases:
 - name: paasta-metrics-collector						#release name
-  version: 2.0										#release version				
+  version: 2.0										    #release version				
 
 resource_pools:
 - cloud_properties:
@@ -142,11 +142,11 @@ resource_pools:
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: metrics-collector													#resource name
+  name: metrics-collector								#resource name
   network: paasta-metrics-collector-network 			#network name
   stemcell:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent		#stemcell name
-    version: latest																	#stemcell version
+    version: latest										#stemcell version
 
 update:
   canaries: 1
