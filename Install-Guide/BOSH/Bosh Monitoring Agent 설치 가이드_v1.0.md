@@ -133,7 +133,7 @@ $ tar zvxf logstash-5.0.1.tar.gz
 
 Log Collector Agent 실행시 필요한 설정정보 파일을 생성한다.
 
-vi logstash-5.0.1/bin/logstash-bosh.conf
+$ vi logstash-5.0.1/bin/logstash-bosh.conf
 
 ```
 input  {
@@ -163,6 +163,7 @@ output {
 ### 3.4.  Bosh Log Collector Agent 실행
 
 Log Collector Agent 파일을 실행한다.
+
 $ ./logstash-5.0.1/bin/logstash -f ./logstash-5.0.1/bin/logstash-bosh.conf --log.level=error >> logstash-bosh.log &
 
 
@@ -170,6 +171,7 @@ $ ./logstash-5.0.1/bin/logstash -f ./logstash-5.0.1/bin/logstash-bosh.conf --log
 ### 3.5.  확인
 
 다음의 명령어를 실행하여 Agent가 실행되었는지 확인한다.
+
 $ ps -ef |grep logstash
 
 
