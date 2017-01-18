@@ -37,7 +37,7 @@
 
 하단 링크로 접속하여 Logsearch 릴리즈 파일인 paasta-logsearch-2.0.tgz를 다운로드 한다. 
 
->PaaS-TA Logsearch : **<http://extdisk.hancom.com:8080/>**
+>PaaS-TA Logsearch : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0DvschJ>**
 
 다음의 명령어를 이용하여 릴리즈 파일을 bosh에 업로드한다.
 
