@@ -71,12 +71,12 @@ director_uuid: <%= `bosh status --uuid` %>				#bosh uuid
 
 disk_pools:
 - cloud_properties: {}
-  disk_size: 1024 													#disk pool size
-  name: elasticsearch_master								#disk pool name
+  disk_size: 1024 										#disk pool size
+  name: elasticsearch_master							#disk pool name
 
 - cloud_properties: {}
-  disk_size: 20480													#disk pool size
-  name: elasticsearch_data									#disk pool name
+  disk_size: 20480										#disk pool size
+  name: elasticsearch_data								#disk pool name
 
 - cloud_properties: {}
   disk_size: 1024 
@@ -89,21 +89,21 @@ disk_pools:
 
 jobs:
 - instances: 1
-  name: elasticsearch_master										#job name
+  name: elasticsearch_master							#job name
   networks:
-  - name: paasta-logsearch-network							#network name
+  - name: paasta-logsearch-network						#network name
     static_ips:
-    - 10.30.152.120															#local static ip
-  persistent_disk_pool: elasticsearch_master		#disk pool name
+    - 10.30.152.120										#local static ip
+  persistent_disk_pool: elasticsearch_master		    #disk pool name
   properties:
     elasticsearch:
       node:
         allow_data: false
         allow_master: true
-  resource_pool: elasticsearch_master						#resource name
+  resource_pool: elasticsearch_master					#resource name
   templates:
-  - name: elasticsearch													#release job name
-    release: paasta-logsearch										#release name
+  - name: elasticsearch									#release job name
+    release: paasta-logsearch							#release name
   update:
     max_in_flight: 1
 
@@ -116,8 +116,8 @@ jobs:
   persistent_disk_pool: cluster_monitor
   properties:																			
     curator:
-      elasticsearch_host: 10.30.152.120				#elasticsearch master ip
-      elasticsearch_port: 9200								#elasticsearch master port
+      elasticsearch_host: 10.30.152.120				    #elasticsearch master ip
+      elasticsearch_port: 9200							#elasticsearch master port
       purge_logs:
         retention_period: 7
     elasticsearch:
@@ -153,7 +153,7 @@ jobs:
       debug: true 
       nats:
         machines:
-        - 10.30.150.31			# paasta-controller nats IP
+        - 10.30.150.31			                    # paasta-controller nats IP
         password: nats
         port: 4222
         subject: '>'
@@ -164,7 +164,7 @@ jobs:
     redis:
       host: 127.0.0.1
       maxmemory: 10
-  resource_pool: cluster_monitor									#resource name
+  resource_pool: cluster_monitor					#resource name
   templates:
   - name: queue
     release: paasta-logsearch
@@ -213,8 +213,8 @@ jobs:
   networks:
   - name: paasta-logsearch-network
     static_ips:
-    - 10.30.152.136																#local static ip
-    - 10.30.152.137																#instance 개수와 static ip 개수 일치
+    - 10.30.152.136									#local static ip
+    - 10.30.152.137									#instance 개수와 static ip 개수 일치
     - 10.30.152.138
   persistent_disk_pool: elasticsearch_data
   properties:
@@ -299,7 +299,7 @@ jobs:
     static_ips:
     - 115.68.46.185
   properties:
-    haproxy:																			# haproxy 모듈의 Port Forwarding 정보
+    haproxy:										# haproxy 모듈의 Port Forwarding 정보
       cluster_monitor:
         backend_servers:
         - 10.30.152.122
@@ -331,32 +331,32 @@ jobs:
     max_in_flight: 1
 
 networks:
-- name: paasta-logsearch-network									#internal network name
+- name: paasta-logsearch-network						#internal network name
   subnets:
   - cloud_properties:
       name: Internal
     dns:
-    - 10.30.20.27																	#dns
+    - 10.30.20.27										#dns
     - 8.8.8.8
-    gateway: 10.30.20.23													#gateway
-    range: 10.30.0.0/16														#static ip range
+    gateway: 10.30.20.23								#gateway
+    range: 10.30.0.0/16									#static ip range
     reserved:
-    - 10.30.0.1 - 10.30.152.109										#reserved ip range
+    - 10.30.0.1 - 10.30.152.109							#reserved ip range
     static:
-    - 10.30.152.110 - 10.30.152.150								#available ip range
+    - 10.30.152.110 - 10.30.152.150				    	#available ip range
   type: manual
 
-- name: external																	#external network name
+- name: external										#external network name
   subnets:
   - cloud_properties:
       name: External
     dns:
-    - 10.30.20.27																	#dns
+    - 10.30.20.27										#dns
     - 8.8.8.8
-    gateway: 115.68.46.17													#gateway
-    range: 115.68.46.16/24												#public ip range
+    gateway: 115.68.46.17								#gateway
+    range: 115.68.46.16/24								#public ip range
     static:
-    - 115.68.46.185																#available public ip
+    - 115.68.46.185										#available public ip
   type: manual
 
 properties:
@@ -384,9 +384,10 @@ properties:
     debug: false
   redis:
     host: 10.30.152.123
+    
 releases:
-- name: paasta-logsearch															#release name
-  version: 2.0																				#release version
+- name: paasta-logsearch							#release name
+  version: 2.0										#release version
 
 resource_pools:
 - cloud_properties:
@@ -396,11 +397,11 @@ resource_pools:
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: elasticsearch_master																#resource name
-  network: paasta-logsearch-network													#networkname
+  name: elasticsearch_master							#resource name
+  network: paasta-logsearch-network						#networkname
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent					#stemcell name
-    version: latest																					#stemcell version
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent		#stemcell name
+    version: latest										#stemcell version
 
 - cloud_properties:
     cpu: 1
