@@ -87,18 +87,18 @@ CF & Diego Document:
 | gopath.sh        |Logrotate 실행 파일   |
 
 
-#####2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
+###2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
 
 	  IEDA-WEB-INSTALLER.tar
 	  OPENPAAS-IEDA-WEB.tar
 
 
-#####3.  다운로드 받은 IEDA-WEB-INSTALLER.tar 파일을 Home 디렉토리에 압축을 푼다.
+###3.  다운로드 받은 IEDA-WEB-INSTALLER.tar 파일을 Home 디렉토리에 압축을 푼다.
 
   	$ tar xvf IEDA-WEB-INSTALLER.tar -C ~/
 
 
-#####4.  플랫폼 설치 자동화 설치 및 서비스 등록
+###4.  플랫폼 설치 자동화 설치 및 서비스 등록
 
 	$ cd IEDA-WEB-INSTALLER
 	$ ./deployer-install.sh <OPENPAAS_IEDA_WEB.tar 파일이 있는 경로>/OPENPAAS_IEDA_WEB.tar <mysql 비밀번호>
@@ -112,13 +112,13 @@ CF & Diego Document:
 
 ##<div id='9'/>3.1.  플랫폼 설치 자동화 실행
 
-#####1.  플랫폼 설치 자동화를 실행한다.
+###1.  플랫폼 설치 자동화를 실행한다.
 
 	# 플랫폼 설치 자동화 실행
 	$ pds start[stop/start/restart]
 
 
-#####2.  플랫폼 설치 자동화가 실행중인 계정에서 아래와 같이 설정 디렉토리가 생성되었는지 확인한다.
+###2.  플랫폼 설치 자동화가 실행중인 계정에서 아래와 같이 설정 디렉토리가 생성되었는지 확인한다.
 
 | 설정 디렉토리  |설명|
 |---------|---|
@@ -131,7 +131,7 @@ CF & Diego Document:
 |  {HOME}/.bosh_plugin/lock       |릴리즈, 스템셀 다운로드/업로드 및 Bootstrap 설치 실행 시 lock 관리 디렉토리    |  
 |   {HOME}/.bosh_plugin/temp      | 임시 디렉토리  |
 
-#####3.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료되며 로그인 화면으로 이동된다.
+###3.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료되며 로그인 화면으로 이동된다.
 
 ![PaaSTa_Platform_Image00]{: style="float:right"}
 
