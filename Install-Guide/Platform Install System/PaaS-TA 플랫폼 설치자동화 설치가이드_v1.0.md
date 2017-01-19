@@ -129,7 +129,7 @@ CF & Diego Document:
 
 ###3.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료되며 로그인 화면으로 이동된다.
 
-![PaaSTa_Platform_Image00]{: style="float:right"}
+![PaaSTa_Platform_Image00]
 
 [PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
 
