@@ -27,11 +27,6 @@
 -	mysql
 -	go
 
-#### 기타 패키지
--	Cf-release
--	Diego-release
--	DNS
-
 
 #<div id='1'/>1.  문서 개요 
 
