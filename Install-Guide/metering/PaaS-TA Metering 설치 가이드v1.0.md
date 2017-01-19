@@ -349,7 +349,7 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
 ###<div id='20'/>2.6.1. Git을 통해 cf-abacus를 다운 받는다.
 
   	$ cd <abacus를 설치할 경로>
-  	$ git clone [https://github.com/cloudfoundry-incubator/cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
+  	$ git clone https://github.com/cloudfoundry-incubator/cf-abacus
 
 -   Abacus를 빌드하기 위해서는 Node.js 및 Npm을 사전에 설치해야 한다.
 
@@ -401,7 +401,7 @@ applications:
     # CLIENT_SECRET:
     # JWTKEY:
     # JWTALGO:
-    AUTH_SERVER: [https://api.bosh-lite.com:443](https://api.bosh-lite.com:443) ## Auth 서비스 Endpoint
+    AUTH_SERVER: https://api.bosh-lite.com:443 ## Auth 서비스 Endpoint
     CLIENT_ID: abacus ## 사용량 정보 접근 권한 ID
     CLIENT_SECRET: secret ## 사용량 정보 접근 권한 Secret
     JWTKEY: |+ ### cf 배포 manifest의 properties.uaa.jwt.verification_key를 설정
@@ -438,7 +438,7 @@ applications:
   	$ bin/cfsetup
 
   	$ bin/cfsetup
-  	Enter your API URL [https://api.bosh-lite.com]: [https://api.bosh-lite.com](https://api.bosh-lite.com) ## CF API EndPoint
+  	Enter your API URL [https://api.bosh-lite.com]: https://api.bosh-lite.com ## CF API EndPoint
   	Enter your user name [admin]: admin ## <계정 ID>
   	Enter your organization [abacus]: abacus ## <조직>
   	Enter your space [dev]: dev ## <영역>
