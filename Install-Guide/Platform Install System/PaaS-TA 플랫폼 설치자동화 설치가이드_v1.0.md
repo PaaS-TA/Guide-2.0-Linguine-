@@ -136,5 +136,9 @@ CF & Diego Document:
 ![ PaaSTa_Platform_Image00 ]
 
 
-[ PaaSTa_Platform_Image00 ]:images/PaaSTa_Platform/login.png
 
+
+img[alt="PaaSTa_Platform_Image00"] { 
+  max-width:  20px; 
+  display: block;
+}
