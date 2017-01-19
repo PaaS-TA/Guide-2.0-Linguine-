@@ -137,5 +137,7 @@ CF & Diego Document:
 
 
 
-
+<style>
+  img{display:block; margin:0 auto}
+</style>
 [PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png

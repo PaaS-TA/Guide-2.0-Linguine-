@@ -1800,3 +1800,6 @@ Property를 생성하기 위해 플랫폼 설치 자동화 웹 화면에서 “�
 [PaaSTa_Platform_Use_Guide_Image108]:images/PaaSTa_Platform_Use_Guide/platformProcess/ServicePack/ServicePackInstallInfo.png
 [PaaSTa_Platform_Use_Guide_Image109]:images/PaaSTa_Platform_Use_Guide/platformProcess/Property/PropertyAdd.png
 [PaaSTa_Platform_Use_Guide_Image110]:images/PaaSTa_Platform_Use_Guide/platformProcess/Property/PropertyModify.png
+<style>
+  img{display:block; margin:0 auto;}
+</style>
