@@ -17,7 +17,7 @@
 
 본 문서는 다음과 같은 내용들을 포함한다.
 
-### 플랫폼 설치 자동화 실행 환경 구성
+#### 플랫폼 설치 자동화 실행 환경 구성
 -	ruby
 -	bosh-init
 -	bosh_cli
@@ -26,7 +26,8 @@
 -	maven
 -	mysql
 -	go
-### 기타 패키지
+
+#### 기타 패키지
 -	Cf-release
 -	Diego-release
 -	DNS
