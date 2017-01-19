@@ -135,11 +135,14 @@ CF & Diego Document:
 
 ![PaaSTa_Platform_Image00](images/PaaSTa_Platform/login.png){ : .center-image  }
 
-[PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
-
-
+<style>
 .center-image
 {
     margin: 0 auto;
     display: block;
 }
+</style>
+
+[PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
+
+
