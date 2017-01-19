@@ -232,7 +232,7 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
 
 -   Secured Abacus를 위한 권한 목록
 
-	<table>
+    <table>
       <tr>
     	<th>내용</th>
         <th>권한 SCOPE</th>
@@ -240,16 +240,16 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
       </tr>
       <tr>
       	<td rowspan="2">미터링 자원 사용량 정보에 대한 abacus 접근 권한</td>
-        <td>abacus.usage.`<Resource_id`>.write</td>
+        <td>abacus.usage.{Resource_id}.write</td>
         <td>abacus.usage.linux-container.write</td>
       </tr>
       <tr>
-        <td>abacus.usage.`<Resource_id`>.read</td>
+        <td>abacus.usage.{Resource_id}.read</td>
         <td>abacus.usage.linux-container.read</td>
       </tr>
       <tr>
       	<td  rowspan="2">사용량 정보에 대한 abacus접근 권한</td>
-        <td>abacus.usage.write<Resource_id>.write</td>
+        <td>abacus.usage.write</td>
         <td>-</td>
       </tr>
       <tr>
