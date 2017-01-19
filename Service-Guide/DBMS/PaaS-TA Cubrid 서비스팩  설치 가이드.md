@@ -64,18 +64,10 @@
 <div id='7'></div>
 ### 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
-서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
-BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
+서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.<br>  
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.<br>
+PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
-- OpenPaaS 에서 제공하는 릴리즈 파일들을 다운받는다. (OpenPaaS-Services, OpenPaaS-Deployment, OpenPaaS-Sample-Apps)
-
-- PaaSTA 에서 제공하는 Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다.
-
->$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git
-![2-1-0-1]  
->$ ls –all                                                              
-![2-1-0-2]  
->openpaas-service-release 디렉토리가 생성된 것을 확인한다.
 
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
