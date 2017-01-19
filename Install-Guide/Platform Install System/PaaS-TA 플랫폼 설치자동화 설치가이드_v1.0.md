@@ -135,6 +135,6 @@ CF & Diego Document:
 
 <p style="text-align: center"><img src="images/PaaSTa_Platform/login.png" /></p>
 <div style="text-align:center"><img src ="images/PaaSTa_Platform/login.png" /></div>
-
+<img style="float: right;" src="images/PaaSTa_Platform/login.png">
 [PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
 
