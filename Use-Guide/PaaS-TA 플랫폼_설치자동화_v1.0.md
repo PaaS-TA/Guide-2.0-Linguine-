@@ -1689,8 +1689,8 @@ Property를 생성하기 위해 플랫폼 설치 자동화 웹 화면에서 “�
 
 ![PaaSTa_Platform_Use_Guide_Image110]
 
-[PaaSTa_Platform_Use_Guide_Image01]:/images/PaaSTa_Platform_Use_Guide/manual/login.png
-[PaaSTa_Platform_Use_Guide_Image02]:/images/PaaSTa_Platform_Use_Guide/manual/passwordChange.png
+[PaaSTa_Platform_Use_Guide_Image01]:images/PaaSTa_Platform_Use_Guide/manual/login.png
+[PaaSTa_Platform_Use_Guide_Image02]:images/PaaSTa_Platform_Use_Guide/manual/passwordChange.png
 [PaaSTa_Platform_Use_Guide_Image03]:/images/PaaSTa_Platform_Use_Guide/manual/Dashboard.png
 [PaaSTa_Platform_Use_Guide_Image04]:/images/PaaSTa_Platform_Use_Guide/manual/DirectorConfig.png
 [PaaSTa_Platform_Use_Guide_Image05]:/images/PaaSTa_Platform_Use_Guide/manual/DirectorConfigAdd.png
