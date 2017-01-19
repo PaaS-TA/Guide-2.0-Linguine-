@@ -1719,7 +1719,7 @@ Property를 생성하기 위해 플랫폼 설치 자동화 웹 화면에서 “�
 [PaaSTa_Platform_Use_Guide_Image27]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/codeGroupModify.png
 [PaaSTa_Platform_Use_Guide_Image28]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/codeAdd.png
 [PaaSTa_Platform_Use_Guide_Image29]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/codeModify.png
-[PaaSTa_Platform_Use_Guide_Image30]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/authCodeAdd.png
+[PaaSTa_Platform_Use_Guide_Image30]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/authCodeADD.png
 [PaaSTa_Platform_Use_Guide_Image31]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/authGroupadd.png
 [PaaSTa_Platform_Use_Guide_Image32]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/authGroupModify.png
 [PaaSTa_Platform_Use_Guide_Image33]:images/PaaSTa_Platform_Use_Guide/platformProcess/Management/authDetailAdd.png
