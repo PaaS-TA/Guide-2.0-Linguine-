@@ -112,9 +112,9 @@ Bosh Log Collector Agent를 설치하기 위해서는 사전에 java compiler가
 
 ```
 [만약 java compiler가 설치되지 않았을 경우]
+$ sudo add-apt-repository ppa:openjdk-r/ppa
 $ sudo apt-get update
 $ sudo apt-get install openjdk-8-jdk
-$ sudo apt-get install openjdk-8-jre
 ```
 
 <div id='12'></div>
