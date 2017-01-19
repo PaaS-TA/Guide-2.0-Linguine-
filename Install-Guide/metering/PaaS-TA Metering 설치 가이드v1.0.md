@@ -529,7 +529,7 @@ applications:
     DEBUG: e-abacus-*
     COLLECTOR: abacus-usage-collector
     EUREKA: abacus-eureka-plugin
-API: https://api.<CF 도메인>                  ### CF api 도메인
+    API: https://api.<CF 도메인>                  ### CF api 도메인
     #DB: abacus-pouchserver                      ### Abacus의 Pouch서버를 DB로 사용할 경우
     DB: http://<user_id>:<password>@<coudb_ip>:<port>      ### 외부의 CouchDB를 DB로 사용할 경우 설정 예시
     #DB: mongodb://9a6e635e-41aa-4522-97b3-ade805ce5b89:4fa40ffd-7a78-445d-937c-82999844fb8e@192.168.40.153:27017/728b0614-5357-480e-b238-b618fcc8b957  ## Abacus를 CF MongoDB 서비스팩과 바인드하여 DB로 사용할 경우 설정 예시
