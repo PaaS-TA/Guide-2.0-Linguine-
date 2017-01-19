@@ -138,4 +138,4 @@ CF & Diego Document:
 
 
 
-[PaaSTa_Platform_Image00]:/images/PaaSTa_Platform/login.png
+[PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
