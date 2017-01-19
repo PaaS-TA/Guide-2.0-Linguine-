@@ -396,11 +396,6 @@ applications:
     EUREKA: abacus-eureka-plugin
     NODE_MODULES_CACHE: false
     SECURED: true ## Abacus를 Secured 모드로 운영할 경우: true
-    # AUTH_SERVER:
-    # CLIENT_ID:
-    # CLIENT_SECRET:
-    # JWTKEY:
-    # JWTALGO:
     AUTH_SERVER: https://api.bosh-lite.com:443 ## Auth 서비스 Endpoint
     CLIENT_ID: abacus ## 사용량 정보 접근 권한 ID
     CLIENT_SECRET: secret ## 사용량 정보 접근 권한 Secret
@@ -610,7 +605,7 @@ applications:
   instances: 1
   command: node app.js # 애플리케이션 실행 명령어
   path: ./ # 배포될 애플리케이션의 위치
-  env: # [[6.2.](#_Abacus와_연동할_DB)[abacus manifest.yml](#_Abacus와_연동할_DB)]참조
+  env:
     DEBUG: a*
     API: https://api.<CF 도메인 >
     CF_CLIENT_ID: abacus-cf-bridge
