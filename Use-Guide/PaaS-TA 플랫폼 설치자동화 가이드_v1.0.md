@@ -1054,7 +1054,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![PaaSTa_Platform_Use_Guide_Image38]
 
--   본 가이드에서는 v256을 다운로드 하였다.
+※ 본 가이드에서는 v256을 다운로드 하였다.
 
 
 ####2.  BOSH CPI 릴리즈
@@ -1073,7 +1073,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![PaaSTa_Platform_Use_Guide_Image39]
 
--   본 가이드에서는 v30을 다운로드 하였다.
+※ 본 가이드에서는 v30을 다운로드 하였다.
 
 
 ###<div id='37'/>3.6.3.  ***BOOTSTRAP 설치***
@@ -1800,6 +1800,3 @@ Property를 생성하기 위해 플랫폼 설치 자동화 웹 화면에서 “�
 [PaaSTa_Platform_Use_Guide_Image108]:images/PaaSTa_Platform_Use_Guide/platformProcess/ServicePack/ServicePackInstallInfo.png
 [PaaSTa_Platform_Use_Guide_Image109]:images/PaaSTa_Platform_Use_Guide/platformProcess/Property/PropertyAdd.png
 [PaaSTa_Platform_Use_Guide_Image110]:images/PaaSTa_Platform_Use_Guide/platformProcess/Property/PropertyModify.png
-<style>
-  img{display:block; margin:0 auto;}
-</style>
