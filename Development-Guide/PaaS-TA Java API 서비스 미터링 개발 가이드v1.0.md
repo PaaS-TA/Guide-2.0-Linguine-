@@ -861,12 +861,12 @@ API****미터링 개발 가이드의****Api****서비스 연동 애플리케이�
 
 아래의 과정을 수행하기 위해서 파스-타 플랫폼에 로그인
 	
-`$ cf api --skip-ssl-validation`*`https://api.`**`<파스-타 도메인> `**`#파스-타 플랫폼TARGET지정`**
+`$ cf api --skip-ssl-validation`*`https://api.`**`<파스-타 도메인> `**`#파스-타 플랫폼TARGET지정`*
 
 `$ cf login -u <user name> -o <org name> -s <space name>#로그인 요청`
 
 
-###<div id='26'/>2.6.2. API 서비스 브로커 생성 {.번호대제목-western}
+###<div id='26'/>2.6.2. API 서비스 브로커 생성
 
 애플리케이션에서 사용할 서비스를 파스-타 플랫폼을 통하여 생성한다.
 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과
@@ -881,7 +881,7 @@ API****미터링 개발 가이드의****Api****서비스 연동 애플리케이�
 
 
   		##서비스 브로커 생성
-  		$ cf create-service-broker <서비스 브로커 명> <인증ID> <인증Password> <서비스 브로커 주소\>
+  		$ cf create-service-broker <서비스 브로커 명> <인증ID> <인증Password> <서비스 브로커 주소>
 
   		예)
   		$ cf create-service-broker sample-api-broker admin cloudfoundry http://sample-api-java-broker.bosh-lite.com
