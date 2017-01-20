@@ -282,8 +282,9 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
   		예)
   		$ uaac client add abacus-system --name abacus-system --authorized_grant_types client_credentials --authorities abacus.system.read --scope abacus.system.read --secret secret
 
-※ 하나의 \<CLIENT_ID\>에 모든 권한을 부여할 수 있다.<br>
-※ Secured Abacus에 대해서는 다음 웹 사이트를 참조한다.<br>
+※ 하나의 \<CLIENT_ID\>에 모든 권한을 부여할 수 있다.
+
+※ Secured Abacus에 대해서는 다음 웹 사이트를 참조한다.
 [https://github.com/cloudfoundry-incubator/cf-abacus/blob/master/doc/security.md](https://github.com/cloudfoundry-incubator/cf-abacus/blob/master/doc/security.md)
 
 
