@@ -566,12 +566,10 @@ SampleMeteringOAuthServiceImpl는 https 커넥션을 생성하여 UAA 서버에
 
 SampleMeteringReportServiceImpl에서는 SampleMeteringOAuthServiceImpl에서
 취득한 uaa token 으로 https 커넥션을 생성하여, abacus-collector에 서비스
-사용량 정보를 POST 한다.
-
+사용량 정보를 POST 한다.<br>
 abacus-collector 에서는 미터링 정책에 따라 POST 받을 양식에 대한
 프로세스를 준비 하고 있기 때문에 abacus-collector가 알 수 있는 양식으로
-JSON을 생성 후 POST 한다.
-
+JSON을 생성 후 POST 한다.<br>
 SampleMeteringReportServiceImpl 은 크게 나누어 2가지 처리를 하고 있다.
 
 
@@ -995,7 +993,7 @@ PLAN_EXTRA_QUANTITY 등은 임의로 정한 수치 이다. 서비스에 맞게 �
 
   >$ cf api --skip-ssl-validation **https://api**.<***파스-타 도메인***> # **파스-타 플랫폼 TARGET 지정**
 
-  >$ cf login -u *<****user name****>* -o *<****org name****>* -s *<****space name****>***#**** 로그인 요청**
+  >$ cf login -u *<**user name**>* -o *<**org name**>* -s *<**space name**>* **#로그인 요청**
 
 
 ###<div id='34'/>2.6.2.  mongo-db 서비스 브로커 생성
