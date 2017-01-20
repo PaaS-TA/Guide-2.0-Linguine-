@@ -75,8 +75,9 @@
 
 ##<div id='4'/>1.3.  참고자료
 
-본 문서는 Cloud Foundry의 Document를 참고로 작성하였다.<br>
-BOSH Document: **[http://bosh.io](http://bosh.io)**<br>
+본 문서는 Cloud Foundry의 Document를 참고로 작성하였다.
+
+BOSH Document: **[http://bosh.io](http://bosh.io)**
 CF & Diego Document:
 [http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/)
 
