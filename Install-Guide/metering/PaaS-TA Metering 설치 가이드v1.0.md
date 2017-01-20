@@ -333,7 +333,7 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
 -   **Abacus****기능 개요**
 
 | 형상  |설명|
-|---------|---|
+|-----------------------|---|
 |  abacus-pouchserver       |Abacus가 사용하는 in-browser database. 앱을 재시작하면 데이터가 사라지므로 운영 환경에서는 별도의 CouchDB 또는 MongoDB를 구성해야 한다.   |
 |  abacus-usage-collector      | CF 앱 사용량 수집기  |
 |  abacus-usage-reporting       |Abacus가 수집/집계한 미터링 정보에 사용자의 요청에 맞게 보고한다.   |
