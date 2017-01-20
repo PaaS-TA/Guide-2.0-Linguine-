@@ -775,7 +775,7 @@ PLAN_EXTRA_QUANTITY 등은 임의로 정한 수치 이다. 서비스에 맞게 �
 	      name: 'previous_service_usage_param2',
 	      unit: ‘SAMPLE_UNIT’
 	    } ],
-	metrics: [
+	  "metrics": [
 	    {
 	      name: 'sample_metric',
 	      unit: ‘SAMPLE_UNIT’,
