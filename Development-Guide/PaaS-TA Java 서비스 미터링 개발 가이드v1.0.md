@@ -61,17 +61,10 @@ Foundry) 서비스를 미터링 하는 방법에 대해 기술 한다.
 브로커 애플리케이션 미터링 개발과 CF-Abacus 연동에 대한 내용으로
 한정되어 있다. 서비스브로커 API 개발에 대해서는 별도 제공 하는
 서비스브로커 API 개발 가이드를 참고 한다.
-
-
-
 본 문서는 Ubuntu 14.04 ver의 개발 환경을 전제로 기술 한다.
-
-
 본 문서는 mongo-db 서비스 팩이 설치 되어 있는 개발 환경을 전제로 기술
 한다.
-
 mongo-db 서비스 팩 설치는 별로 로 제공 되는 문서를 참고 하여 설치 한다.
-
 **[https://github.com/OpenPaaSRnD/Documents/blob/master/Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_BOSH-Lite_install_guide.md](https://github.com/OpenPaaSRnD/Documents/blob/master/Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_BOSH-Lite_install_guide.md)**
 
 
