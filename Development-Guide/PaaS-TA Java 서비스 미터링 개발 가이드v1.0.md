@@ -60,11 +60,11 @@ Foundry) 서비스를 미터링 하는 방법에 대해 기술 한다.
 본 문서의 범위는 파스-타 플랫폼 프로젝트의 Cloud Foundry JAVA 서비스
 브로커 애플리케이션 미터링 개발과 CF-Abacus 연동에 대한 내용으로
 한정되어 있다. 서비스브로커 API 개발에 대해서는 별도 제공 하는
-서비스브로커 API 개발 가이드를 참고 한다.
-본 문서는 Ubuntu 14.04 ver의 개발 환경을 전제로 기술 한다.
+서비스브로커 API 개발 가이드를 참고 한다.<br>
+본 문서는 Ubuntu 14.04 ver의 개발 환경을 전제로 기술 한다.<br>
 본 문서는 mongo-db 서비스 팩이 설치 되어 있는 개발 환경을 전제로 기술
-한다.
-mongo-db 서비스 팩 설치는 별로 로 제공 되는 문서를 참고 하여 설치 한다.
+한다.<br>
+mongo-db 서비스 팩 설치는 별로 로 제공 되는 문서를 참고 하여 설치 한다.<br>
 **[https://github.com/OpenPaaSRnD/Documents/blob/master/Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_BOSH-Lite_install_guide.md](https://github.com/OpenPaaSRnD/Documents/blob/master/Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_BOSH-Lite_install_guide.md)**
 
 
@@ -150,12 +150,9 @@ CF-ABACUS은 CF 설치 후, CF에 마이크로 서비스 형태로 설치한다.
 </table>                
 
 
-※ 본 개발 가이드는 <U>**애플리케이션과 서비스가 바인드 되는 시점을 서비스의 이용 시작으로 판단할 수 있는 서비스에 대해 미터링 하는 기능 개발</U>**에 대해서만 기술한다.
-
-※ <U>**서비스의 특정 API 호출 , 서비스의 특정 자원 이용 등에 대한 미터링 기능 개발에 대해서는 기술하지 않는다.**</U>
-
-※ API 호출에 대한 미터링은 API 서비스 미터링 개발 가이드를 참조한다.
-
+※ 본 개발 가이드는 <U>**애플리케이션과 서비스가 바인드 되는 시점을 서비스의 이용 시작으로 판단할 수 있는 서비스에 대해 미터링 하는 기능 개발</U>**에 대해서만 기술한다.<br>
+※ <U>**서비스의 특정 API 호출 , 서비스의 특정 자원 이용 등에 대한 미터링 기능 개발에 대해서는 기술하지 않는다.**</U><br>
+※ API 호출에 대한 미터링은 API 서비스 미터링 개발 가이드를 참조한다.<br>
 ※ 다른 컴포넌트의 개발 또는 설치에 대해서 링크한 사이트를 참조한다.
 
 
@@ -578,8 +575,7 @@ JSON을 생성 후 POST 한다.
 SampleMeteringReportServiceImpl 은 크게 나누어 2가지 처리를 하고 있다.
 
 
-####1.  **ServiceInstanceBinding 정보를 참조 하여 ,사용량 정보 JSON을 생성 한다.**
-
+####1.  **ServiceInstanceBinding 정보를 참조 하여 ,사용량 정보 JSON을 생성 한다.**<br>
 ####2.  **생성한 사용량 정보 JSON을 abacus-collector로 전송한다. (HTTPS, HTTP)**
 
 
@@ -999,7 +995,7 @@ PLAN_EXTRA_QUANTITY 등은 임의로 정한 수치 이다. 서비스에 맞게 �
 
   >$ cf api --skip-ssl-validation **https://api**.<***파스-타 도메인***> # **파스-타 플랫폼 TARGET 지정**
 
-  >$ cf login -u *<****user name****>* -o *<****org name****>* -s *<****space name****>***#**** **로그인 요청**
+  >$ cf login -u *<****user name****>* -o *<****org name****>* -s *<****space name****>***#**** 로그인 요청**
 
 
 ###<div id='34'/>2.6.2.  mongo-db 서비스 브로커 생성
@@ -1051,7 +1047,6 @@ mongo-db 서비스 팩이 배포하고자 파스-타 플랫폼 환경에 release
 과정을 통해 서비스에 접근할 수 있는 접속정보를 생성한다.
 
 -   애플리케이션과 서비스 연결
-
 -   이때 -c 옵션으로 미터링에 필요한 애플리케이션 환경정보를 세팅한다.
 
 		## API 서비스 연동 샘플 애플리케이션 배포
