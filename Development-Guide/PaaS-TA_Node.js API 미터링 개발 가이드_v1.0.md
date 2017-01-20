@@ -721,7 +721,7 @@ applications:
 	  "plan_id": "basic",
 	  "resource_instance_id": "d98b5916-3c77-44b9-ac12-04d61c7a4eae",
 	  "measured_usage": [
-	{
+	    {
 	      "measure": "api_calls",
 	      "quantity": 10
 	    }
