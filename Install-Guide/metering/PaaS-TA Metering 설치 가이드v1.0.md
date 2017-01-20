@@ -59,9 +59,11 @@ API 서비스를 미터링하는 방법에 대해 기술 하였다.
 
 -   이 가이드는 ubuntu14.04 및 로컬 설치를 기준으로 작성되어 있다. 
 -   CF가 설치 되어 있어야 한다.
+
     ※ 운영 환경의 CF에 abacus를 배포할 경우, abacus를 서비스 하기 위한 security-group을 설정해야 한다.
+
     -   **Abacus를 위한 security 설정 정보**
-<table style ="width : 700;">
+    <table style ="width : 700;">
       <tr>
     	<th>Component</th>
         <th>Protocol</th>
