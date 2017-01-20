@@ -838,7 +838,7 @@ API****미터링 개발 가이드의****Api****서비스 연동 애플리케이�
 
 -   과금 정책의 경우
 
-		POST /v1/pricing/plans/:pricing_plan\_id
+		POST /v1/pricing/plans/:pricing_plan_id
 	>
 
 		## 예제
