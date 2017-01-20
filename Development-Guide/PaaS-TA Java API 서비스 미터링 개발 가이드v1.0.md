@@ -537,7 +537,7 @@ Abacus-collector에 전송 할 API 서비스 사용량 JSON을 생성 한다.
 	  "plan_id": "basic",
 	  "resource_instance_id": "d98b5916-3c77-44b9-ac12-04d61c7a4eae",
 	  "measured_usage": [
-	{
+	    {
 	      "measure": "api_calls",
 	      "quantity": 10
 	    }
