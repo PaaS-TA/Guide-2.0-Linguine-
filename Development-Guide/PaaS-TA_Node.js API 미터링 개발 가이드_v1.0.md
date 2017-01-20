@@ -1403,13 +1403,13 @@ Api 서비스를 요청하는 웹 화면
     <td>API 미터링 정보 수집 대상 정의</td>
   </tr>
   <tr>
-    <td>Name</td>
+    <td>name</td>
     <td>String</td>
     <td>O</td>
     <td>미터링 정보 수집 대상 명</td>
   </tr>
   <tr>
-    <td>Unit</td>
+    <td>unit</td>
     <td>String</td>
     <td>O</td>
     <td>미터링 정보 수집 대상 단위</td>
@@ -1421,7 +1421,7 @@ Api 서비스를 요청하는 웹 화면
     <td>API 미터링 집계 방식 정의</td>
   </tr>
   <tr>
-    <td>Name</td>
+    <td>name</td>
     <td>String</td>
     <td>O</td>
     <td>미터링 정보 수집 대상 명</td>
@@ -1526,7 +1526,7 @@ Api 서비스를 요청하는 웹 화면
     <td>등급 정책 목록</td>
   </tr>
   <tr>
-    <td>Name</td>
+    <td>name</td>
     <td>String</td>
     <td>O</td>
     <td>등급 정의 대상 명</td>
@@ -1590,31 +1590,31 @@ Api 서비스를 요청하는 웹 화면
     <td>API 과금 Plan ID</td>
   </tr>
   <tr>
-    <td>Metrics</td>
+    <td>metrics</td>
     <td>Array</td>
     <td>최소 하나</td>
     <td>과금 정책 목록</td>
   </tr>
   <tr>
-    <td>Name</td>
+    <td>name</td>
     <td>String</td>
     <td>O</td>
     <td>과금 대상 명</td>
   </tr>
   <tr>
-    <td>Price</td>
+    <td>price</td>
     <td>Array</td>
     <td>최소 하나</td>
     <td>과금 정책 상세</td>
   </tr>
   <tr>
-    <td>Country</td>
+    <td>country</td>
     <td>String</td>
     <td>O</td>
     <td>서비스 사용 단가에 적용할 통화</td>
   </tr>
   <tr>
-    <td>Price</td>
+    <td>price</td>
     <td>Number</td>
     <td>O</td>
     <td>서비스 사용 단가</td>
