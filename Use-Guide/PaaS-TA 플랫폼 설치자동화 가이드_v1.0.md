@@ -756,7 +756,8 @@ Manifest 관리 서비스팩 설치에 필요한 Manifest를 플랫폼 설치 �
 
 ####2.  Manifest 업로드
 
--   로컬에 있는 Manifest 파일을 플랫폼 설치 자동화의 Manifest 관리 디렉토리(\~/.bosh\_plugin/deployment/manifest)로 업로드를 실행하는 기능.<br>
+-   로컬에 있는 Manifest 파일을 플랫폼 설치 자동화의 Manifest 관리 디렉토리(\~/.bosh\_plugin/deployment/manifest)로 업로드를 실행하는 기능.
+
 IaaS, 설명, 파일을 입력 후 업로드 버튼을 클릭 한다.
 
 ####3.  Manifest 다운로드
