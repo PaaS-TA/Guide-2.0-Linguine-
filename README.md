@@ -1,16 +1,5 @@
 # PaaS-TA 가이드 문서 
 
-## 포털 설치 가이드
-- [설치 파일 다운로드 받기](./Download_Page.md)
-- [Portal Registration]()
-- [Portal ObjectStorage]()
-- [Auto Scaler]()
-- [Portal API]()
-- [Portal API V2]()
-- [운영자 포털]()
-- [사용자 포털]()
-
-
 ## 플랫폼 설치 가이드
 - [설치 파일 다운로드 받기](./Download_Page.md)
 - 개인 환경 설치
@@ -59,6 +48,16 @@
 [AWS](./Service-Guide/ETC/ServiceBroker_APIPlatform_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
+
+## 포털 설치 가이드
+- [설치 파일 다운로드 받기](./Download_Page.md)
+- [Portal Registration]()
+- [Portal ObjectStorage]()
+- [Auto Scaler]()
+- [Portal API]()
+- [Portal API V2]()
+- [운영자 포털]()
+- [사용자 포털]()
 
 ## 활용 가이드
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
