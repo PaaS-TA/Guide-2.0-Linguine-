@@ -632,7 +632,6 @@ applications:
 	POST /v1/metering/collected/usage
 
 ####2.  API 서비스 미터링 전송 항목
-
 <table>
   <tr>
     <th>항목명</th>
