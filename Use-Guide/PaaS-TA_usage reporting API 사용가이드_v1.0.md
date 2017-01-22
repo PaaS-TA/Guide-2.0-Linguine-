@@ -54,7 +54,7 @@
 |sum	|합계|	number (소수1자리)	|6.5         |
 |app_usage_array |  사용량 배열 객체|	array	|N/A |
 |space_id|	스페이스 guid|	space_guid | ‘7b85dc3f-85f0-40bc-8532-0dabd0bc7bae’ |
-|app_id	|app guid (CF이벤트)	app guid  |  ‘4566f4e8-ec03-4aae-a006-3d6b12ce7a9c’ |
+|app_id	|app guid (CF이벤트)|	app guid  |  ‘4566f4e8-ec03-4aae-a006-3d6b12ce7a9c’ |
 |app_name|	CF push 시 정의된 앱 명칭|	String | ‘java_demo’ |
 |app_state|	앱의 현재 상태|	‘STARTED’,’STOPED’,’PENDDING’ |	‘STARTED’         |
 |app_instance|	할당된 인스턴스(CF이벤트  기준)|	number (정수값)|	 1         |
