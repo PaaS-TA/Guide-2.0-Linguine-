@@ -16,17 +16,17 @@
 	* [Response body](#15)
 
 #<div id='1'/>1.  문서 개요
-##<div id='2'/>1.1.  ***목적*** 
+##<div id='2'/>1.1.  목적
 
 본 문서는 PaaS-TA Usage Reporting의 API 호출에 대해 기술하였다.
 
-##<div id='3'/>1.2.  ***범위*** 
+##<div id='3'/>1.2.  범위 
 
 본 문서에서는 PaaS-TA Usage Reporting의 API의 인터페이스 정보 및 호출
 방법에 대해 작성되었다.
 
 
-#<div id='4'/>2.  2.	GET org_app_usage_summary
+#<div id='4'/>2. GET org_app_usage_summary
 
 해당 조회 월 1일부터 현재 시간까지의 org / space 에서 동작 중인 각 app의
 메모리 사용량을 조회한다. space_id parameter 가 ‘all’ 인 경우, org
