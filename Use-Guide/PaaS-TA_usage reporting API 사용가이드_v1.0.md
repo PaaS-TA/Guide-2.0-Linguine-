@@ -344,51 +344,6 @@ space_id parameter 가 ‘all’ 인 경우, org 전체의 값을 리턴한다.
     <td>yyyymm 형식 String</td>
     <td>‘201603’</td>
   </tr>
-</table>
-
-<table>
-  <tr>
-    <th>프로퍼티 이름</th>
-    <th>설명</th>
-    <th>유효값</th>
-    <th>예시값</th>
-  </tr>
-  <tr>
-    <td>org_id</td>
-    <td>조직 아이디</td>
-    <td>org_guid</td>
-    <td>‘7726b51e-b7b4-4b9f-a1cf-78eab2710e2d'</td>
-  </tr>
-  <tr>
-    <td>space_id</td>
-    <td>스페이스 아이디</td>
-    <td>space_guid</td>
-    <td>‘7b85dc3f-85f0-40bc-8532-0dabd0bc7bae’</td>
-  </tr>
-  <tr>
-    <td>app_id</td>
-    <td>앱 guid (CF이벤트)</td>
-    <td>app_guid</td>
-    <td>‘4566f4e8-ec03-4aae-a006-3d6b12ce7a9c’</td>
-  </tr>
-  <tr>
-    <td>app_name</td>
-    <td>앱 명칭</td>
-    <td>string</td>
-    <td>‘java_demo’</td>
-  </tr>
-  <tr>
-    <td>from_month</td>
-    <td>집계 시작 년월 yyyymm</td>
-    <td>yyyymm 형식 String</td>
-    <td>‘201601’</td>
-  </tr>
-  <tr>
-    <td>to_month</td>
-    <td>집계 종료 년월 yyyymm</td>
-    <td>yyyymm 형식 String</td>
-    <td>‘201603’</td>
-  </tr>
   <tr>
     <td>sum</td>
     <td>전체 사용량 합계</td>
