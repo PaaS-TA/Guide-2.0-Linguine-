@@ -41,8 +41,7 @@
 
 ##<div id='6'/>2.2.  cURL
 
-	curl -i -X GET https
-	[]://pasta-usage-reporting.your-domain.com/v1/org/:org_id/space/:space_id
+	curl -i -X GET http://paasta-usage-reporting.your-domain.com/v1/org/:org_id/space/:space_id
 
 ##<div id='7'/>2.3.  Response body
 
