@@ -49,7 +49,7 @@
 [OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
-## 포털 설치 가이드(./Portal_Page.md)
+## [포털 설치 가이드](./Portal_Page.md)
 
 ## 활용 가이드
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
