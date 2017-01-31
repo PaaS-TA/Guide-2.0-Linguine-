@@ -4,5 +4,3 @@
 - [Auto Scaler]()
 - [Portal API]()
 - [Portal API V2]()
-- [운영자 포털]()
-- [사용자 포털]()
