@@ -6,9 +6,9 @@
 |PaaSTA-Container|PaaS-TA 컨테이너 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=06gEAkv |
 |PaaSTA-Controller|PaaS-TA 컨트롤러 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=07Y6LL3 |
 |PaaSTA-Deployment|PaaS-TA 배포 Manifest|http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee |
-|PaaSTA-Env|PaaS-TA Env|http://extdisk.hancom.com:8080/share.cgi?ssid=056pFuu |
+|PaaSTA-Env|PaaS-TA 설치자동화|http://extdisk.hancom.com:8080/share.cgi?ssid=0zhZ14v |
 |PaaSTA-Metering|PaaS-TA 미터링|http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5 |
-|PaaSTA-Monitoring|PaaS-TA 모니터링 |http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW |
+|PaaSTA-Monitoring|PaaS-TA 모니터링 |http://extdisk.hancom.com:8080/share.cgi?ssid=00TLplw |
 |PaaSTA-Portal|PaaS-TA 포털|http://extdisk.hancom.com:8080/share.cgi?ssid=0Va2oNg |
 |PaaSTA-Sample-Apps|PaaS-TA 에서 실행되는 샘플 예제 |http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz |
 |PaaSTA-Services|PaaS-TA 서비스 팩|http://extdisk.hancom.com:8080/share.cgi?ssid=0nkrJ16 |
