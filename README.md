@@ -56,7 +56,8 @@
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 - [CF CLI(Command Line Interface) 사용](Use-Guide/OpenPaas%20CLi%20가이드.md)
 - [Eclipse plugin 개발도구 사용] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
-
+- [운영자 포털 가이드](./Use-Guide/PaaS-TA 사용자 포탈 가이드_v1.0.md)
+- [사용자 포털 가이드](./Use-Guide/PaaS-TA 운영자 포탈 가이드_v1.0.md)
 
 ## 개발 언어 별 어플리케이션 가이드
 - [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
