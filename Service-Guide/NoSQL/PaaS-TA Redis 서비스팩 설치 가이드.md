@@ -80,6 +80,7 @@ $ ls --all
 .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
 ```
 
+<br>
 -    업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 $ bosh releases
@@ -107,5 +108,7 @@ Acting as user 'admin' on 'bosh'
 Releases total: 9
 ```
 Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
+
 
 
