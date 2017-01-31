@@ -57,7 +57,7 @@
 
 
 <div id='6'></div>
-#   2. Redis서비스팩설치
+#   2. Redis 서비스팩 설치
 
 <div id='7'></div>
 ### 2.1. 설치전 준비사항
@@ -72,7 +72,6 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 ###   2.2. Redis 서비스 릴리즈 업로드
 
 -    PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 paasta-redis-2.0.tgz 파일을 확인한다.
-
 ```
 $ ls --all
 ```
@@ -81,8 +80,32 @@ $ ls --all
 .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
 ```
 
+-    업로드 되어 있는 릴리즈 목록을 확인한다.
+```
+$ bosh releases
+```
+```
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Acting as user 'admin' on 'bosh'
 
++--------------------------+----------+-------------+
+| Name                     | Versions | Commit Hash |
++--------------------------+----------+-------------+
+| cflinuxfs2-rootfs        | 1.40.0*  | 19fe09f4+   |
+| empty-release            | 1+dev.1* | 00000000    |
+| etcd                     | 86*      | 2dfbef00+   |
+| paasta-container         | 2.0*     | b857e171    |
+| paasta-controller        | 2.0*     | 0f315314    |
+| paasta-garden-runc       | 2.0*     | ea5f5d4d+   |
+| paasta-influxdb-grafana  | 2.0*     | 00000000    |
+| paasta-logsearch         | 2.0*     | 00000000    |
+| paasta-metrics-collector | 2.0*     | 00000000    |
++--------------------------+----------+-------------+
+(*) Currently deployed
+(+) Uncommitted changes
 
-
+Releases total: 9
+```
+Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 
