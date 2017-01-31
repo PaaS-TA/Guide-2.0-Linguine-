@@ -855,7 +855,8 @@ Sample App 구조는 다음과 같다.
   </tr>
 </table>
 
-- 링크 OpenPaaS-Sample-Apps에서 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 다운로드한다.
+<br>
+- PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을복사한다.
 
 ><div>$ ls -all</div>
 >![redis_vsphere_22]
@@ -866,11 +867,13 @@ Sample App 구조는 다음과 같다.
 Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
+<br>
 - 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$ cf marketplace</div>
 >![redis_vsphere_23]
 
+<br>
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
 ```
@@ -883,6 +886,7 @@ $ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
 ><div>$ cf create-service redis shared-vm redis-service-instance</div>
 >![redis_vsphere_24]
 
+<br>
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
 ><div>$ cf services</div>
@@ -894,20 +898,25 @@ $ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
 서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
 *참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
+<br>
 - Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
 
-><div>$ cd redis-example-app<br>
-$ vi manifest.yml<br><br></div>
+```
+$ cd redis-example-app
+```
+```
+$ vi manifest.yml
+```
 ```yaml
 ---
 applications:
-- name: redis-example-app #배포할 App 이름
-  memory: 256M #배포시 메모리 크기
-  instances: 1 #배포시인스턴스 수
-path: . #배포시 구동되는 Path
+- name: redis-example-app    # 배포할 App 이름
+  memory: 256M               # 배포시 메모리 크기
+  instances: 1               # 배포시인스턴스 수
+path: .                      # 배포시 구동되는 Path
 ```
- 
 
+<br>
 - --no-start 옵션으로 App을 배포한다. 
 --no-start: App 배포시 구동은 하지 않는다.
 
@@ -922,7 +931,7 @@ path: . #배포시 구동되는 Path
 >$ cf logs redis-example-app</div>
 >![redis_vsphere_28]
 
-- Sample App에서 생성한 서비스인스턴스바인드 신청을 한다. 
+- Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 
 ><div>$ cf bind-service redis-example-appredis-service-instance</div>
 >![redis_vsphere_29]
