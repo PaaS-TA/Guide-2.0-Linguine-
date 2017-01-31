@@ -6,7 +6,7 @@
 |PaaSTA-Container|PaaS-TA 컨테이너 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=06gEAkv |
 |PaaSTA-Controller|PaaS-TA 컨트롤러 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=07Y6LL3 |
 |PaaSTA-Deployment|PaaS-TA 배포 Manifest|http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee |
-|PaaSTA-Env|PaaS-TA 웹 IEDA|http://extdisk.hancom.com:8080/share.cgi?ssid=056pFuu |
+|PaaSTA-Env|PaaS-TA Env|http://extdisk.hancom.com:8080/share.cgi?ssid=056pFuu |
 |PaaSTA-Metering|PaaS-TA 미터링|http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5 |
 |PaaSTA-Monitoring|PaaS-TA 모니터링 |http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW |
 |PaaSTA-Portal|PaaS-TA 포털|http://extdisk.hancom.com:8080/share.cgi?ssid=0Va2oNg |
