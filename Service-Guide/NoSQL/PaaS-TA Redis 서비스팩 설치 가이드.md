@@ -37,7 +37,7 @@
 <div id='4'></div>
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
-![시스템 구성도][redis_01]
+![시스템 구성도][redis_image_01]
 
 <table>
   <tr>
@@ -360,7 +360,7 @@ BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
 -    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다. 
-예) vsphere 일 경우 paasta_redis_vsphere_2.0.yml를 복사
+예) vsphere 일 경우 paasta_redis_image_2.0.yml를 복사
 
 -    Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
@@ -635,7 +635,7 @@ resource_pools:                                      # 배포시 사용하는 re
 <br>
 -    Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
-$ bosh deployment paasta_redis_vsphere_2.0.yml
+$ bosh deployment paasta_redis_image_2.0.yml
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -856,10 +856,10 @@ Sample App 구조는 다음과 같다.
 </table>
 
 <br>
-- PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을복사한다.
+- PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 복사한다.
 
 ><div>$ ls -all</div>
->![redis_vsphere_22]
+>![redis_image_02]
 
 <br>
 <div id='13'></div>
@@ -871,7 +871,7 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$ cf marketplace</div>
->![redis_vsphere_23]
+>![redis_image_03]
 
 <br>
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
@@ -884,13 +884,13 @@ $ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
 ```
 
 ><div>$ cf create-service redis shared-vm redis-service-instance</div>
->![redis_vsphere_24]
+>![redis_image_04]
 
 <br>
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
 ><div>$ cf services</div>
->![redis_vsphere_25]
+>![redis_image_05]
 
 <br>
 <div id='14'></div>
@@ -921,25 +921,25 @@ path: .                      # 배포시 구동되는 Path
 --no-start: App 배포시 구동은 하지 않는다.
 
 ><div>$ cf push --no-start<br></div>
->![redis_vsphere_26]
+>![redis_image_06]
 
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
 ><div>$ cf apps<br></div>
->![redis_vsphere_27]
+>![redis_image_07]
 ><div>$ cf logs {배포된 App명}
 >$ cf logs redis-example-app</div>
->![redis_vsphere_28]
+>![redis_image_08]
 
 - Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 
 ><div>$ cf bind-service redis-example-appredis-service-instance</div>
->![redis_vsphere_29]
+>![redis_image_09]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
 ><div>$ cf restart redis-example-app</div>
->![redis_vsphere_30]
+>![redis_image_10]
 
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
@@ -948,15 +948,15 @@ path: .                      # 배포시 구동되는 Path
 $ export APP=redis-example-app.controller.open-paas.com<br>
 $ curl -X PUT $APP/foo -d 'data=bar'<br>
 ><div>
->![redis_vsphere_31]
+>![redis_image_11]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
 $ curl -X GET $APP/foo<br>
 ></div>
->![redis_vsphere_32]
+>![redis_image_12]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
 $ curl -X DELETE $APP/foo<br>
 ></div>
->![redis_vsphere_33]
+>![redis_image_13]
 
 <br>
 <div id='15'></div>
@@ -969,43 +969,70 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 [**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
-![redis_vsphere_34]
+![redis_image_14]
 
 - 다운로드한 설치파일을 실행한다.<br>
-![redis_vsphere_35]
+![redis_image_15]
 
 - Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
-![redis_vsphere_36]
+![redis_image_16]
 
 - 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
-![redis_vsphere_37]
+![redis_image_17]
 
 - Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
-![redis_vsphere_38]
+![redis_image_18]
 
 - 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
-![redis_vsphere_39]
+![redis_image_19]
 
 - Finish 버튼 클릭으로 설치를 완료한다.<br>
-![redis_vsphere_40]
+![redis_image_20]
 
 - Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
-![redis_vsphere_41]
+![redis_image_21]
 
 - Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
-![redis_vsphere_42]
+![redis_image_22]
 
 - 서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
 예) $ cfenvredis-example-app<br>
-![redis_vsphere_43]
+![redis_image_23]
 
 - SSH Tunnel탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
 (참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
-![redis_vsphere_44]
+![redis_image_24]
 
 - 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
-![redis_vsphere_45]
+![redis_image_25]
 
 - 신규 키 등록후 확인<br>
-![redis_vsphere_46]
+![redis_image_26]
+
+[redis_image_01]:/images/openpaas-service/redis/redis_image/redis_image_01.png
+[redis_image_02]:/images/openpaas-service/redis/redis_image/redis_image_02.png
+[redis_image_03]:/images/openpaas-service/redis/redis_image/redis_image_03.png
+[redis_image_04]:/images/openpaas-service/redis/redis_image/redis_image_04.png
+[redis_image_05]:/images/openpaas-service/redis/redis_image/redis_image_05.png
+[redis_image_06]:/images/openpaas-service/redis/redis_image/redis_image_06.png
+[redis_image_07]:/images/openpaas-service/redis/redis_image/redis_image_07.png
+[redis_image_08]:/images/openpaas-service/redis/redis_image/redis_image_08.png
+[redis_image_09]:/images/openpaas-service/redis/redis_image/redis_image_09.png
+[redis_image_10]:/images/openpaas-service/redis/redis_image/redis_image_10.png
+[redis_image_11]:/images/openpaas-service/redis/redis_image/redis_image_11.png
+[redis_image_12]:/images/openpaas-service/redis/redis_image/redis_image_12.png
+[redis_image_13]:/images/openpaas-service/redis/redis_image/redis_image_13.png
+[redis_image_14]:/images/openpaas-service/redis/redis_image/redis_image_14.png
+[redis_image_15]:/images/openpaas-service/redis/redis_image/redis_image_15.png
+[redis_image_16]:/images/openpaas-service/redis/redis_image/redis_image_16.png
+[redis_image_17]:/images/openpaas-service/redis/redis_image/redis_image_17.png
+[redis_image_18]:/images/openpaas-service/redis/redis_image/redis_image_18.png
+[redis_image_19]:/images/openpaas-service/redis/redis_image/redis_image_19.png
+[redis_image_20]:/images/openpaas-service/redis/redis_image/redis_image_20.png
+[redis_image_21]:/images/openpaas-service/redis/redis_image/redis_image_21.png
+[redis_image_22]:/images/openpaas-service/redis/redis_image/redis_image_22.png
+[redis_image_23]:/images/openpaas-service/redis/redis_image/redis_image_23.png
+[redis_image_24]:/images/openpaas-service/redis/redis_image/redis_image_24.png
+[redis_image_25]:/images/openpaas-service/redis/redis_image/redis_image_25.png
+[redis_image_26]:/images/openpaas-service/redis/redis_image/redis_image_26.png
