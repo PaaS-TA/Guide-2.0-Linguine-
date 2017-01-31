@@ -17,19 +17,23 @@
      * [4.1. Redis Desktop Manager 설치 및 연결](#16)
 
 
+<br>
 <div id='1'></div>
 # 1. 문서 개요
 
+<br>
 <div id='2'></div>
 ### 1.1. 목적
       
 본 문서(Redis 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 Redis 서비스팩을 Bosh를 이용하여 설치하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application에서 Redis 서비스를 사용하는 방법을 기술하였다.
 
+<br>
 <div id='3'></div>
 ### 1.2. 범위 
 
 설치 범위는 Redis서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
+<br>
 <div id='4'></div>
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
@@ -50,15 +54,17 @@
   </tr>
 </table>
 
+<br>
 <div id='5'></div>
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-
+<br>
 <div id='6'></div>
 #   2. Redis 서비스팩 설치
 
+<br>
 <div id='7'></div>
 ### 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
@@ -67,7 +73,7 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 
 -    PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
-
+<br>
 <div id='8'></div>
 ###   2.2. Redis 서비스 릴리즈 업로드
 
@@ -411,11 +417,11 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 # paasta-redis-vsphere 설정 파일 내용
 
 name: paasta-redis-service                             # 서비스 배포이름(필수)
-director_uuid: d363905f-eaa0-4539-a461-8c1318498a32    #bosh status 에서 확인한 Director UUID을 입력(필수)
+director_uuid: d363905f-eaa0-4539-a461-8c1318498a32    # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: paasta-redis                                   #서비스 릴리즈 이름(필수)
-  version: 2.0                                         #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+- name: paasta-redis                                   # 서비스 릴리즈 이름(필수)
+  version: 2.0                                         # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                          # canary 인스턴스 수(필수)
@@ -423,7 +429,7 @@ update:
   max_in_flight: 6                                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:                                           #컴파일시 필요한 가상머신의 속성(필수)
+compilation:                                           # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:            # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     cpu: 2
     disk: 4096
@@ -622,7 +628,7 @@ resource_pools:                                      # 배포시 사용하는 re
   name: services-small                               # 고유한 resource pool 이름
   network: default 
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent   # stemcell 이름(필수)
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent    # stemcell 이름(필수)
     version: "3263.8"                                 # stemcell 버전(필수)
 ```
 
@@ -747,41 +753,83 @@ paasta-pinpoint-broker  http://10.30.70.82:8080
 - Redis 서비스 브로커를 등록한다.
 
 ```
-cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자비밀번호} http://{서비스브로커 호스트}:{서비스브로커 포트}
+cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} http://{서비스브로커 호스트}:{서비스브로커 포트}
 
-- 서비스팩이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
-- 서비스팩 사용자ID / 비밀번호 :서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
-- 서비스팩URL :서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+- 서비스브로커 이름 : 서비스 브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+- 서비스브로커 사용자ID / 비밀번호 : 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+- 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 ```
-
 ```
 $ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80
 ```
->![redis_vsphere_18]
+```
+Creating service broker paasta-redis-brokeras admin...
+OK
+```
 
+<br>
 - 등록된 Redis 서비스 브로커를 확인한다.
 
-><div>$cf service-brokers</div>
->![redis_vsphere_19]
+```
+$cf service-brokers
+```
+```
+Getting service brokers as admin...
 
+name                     url
+paasta-pinpoint-broker  http://10.30.70.82:8080
+paasta-redis-broker     http://10.30.60.71:12350
+```
+
+<br>
 - 접근 가능한 서비스 목록을 확인한다.
 
-><div>$cf service-access</div>
->![redis_vsphere_20]
-><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
+```
+$ cf service-access
+```
+```
+Getting service access as admin...
+broker: paasta-redis-broker
+  service   plan           access   orgs
+  redis     shared-vm      none
+  redis     dedicated-vm   none
 
+broker: paasta-pinpoint-broker
+  service    plan                access   orgs
+  Pinpoint   Pinpoint_standard   none
+```
+서비스 브로커 등록시 최초에는 접근을 허용하지 않는다. 따라서 access는 none으로 설정된다.
+
+<br>
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
-><div>$cf enable-service-access redis-sb</div>
-><div>$ cf service-access</div>
->![redis_vsphere_21]
+```
+$ cf enable-service-access redis-sb
+```
+```
+cf service-access
+```
+```
+Getting service access as admin...
+broker: paasta-redis-broker
+  service   plan           access   orgs
+  redis     shared-vm      all
+  redis     dedicated-vm   all
 
+broker: paasta-pinpoint-broker
+  service    plan                access   orgs
+  Pinpoint   Pinpoint_standard   none
+```
+
+<br>
 <div id='11'></div>
 #   3. Redis연동 Sample App 설명
-본 Sample App은 개발형클라우드 플랫폼에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+본 Sample App은 PaaS-TA에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+
+<br>
 <div id='12'></div>
 ### 3.1. Sample App 구조
-Sample App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. 배포 완료 후 정상적으로 App 이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
+Sample App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
 
 Sample App 구조는 다음과 같다.
 <table>
@@ -809,42 +857,46 @@ Sample App 구조는 다음과 같다.
 
 - 링크 OpenPaaS-Sample-Apps에서 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 다운로드한다.
 
-><div>$ls -all</div>
+><div>$ ls -all</div>
 >![redis_vsphere_22]
 
+<br>
 <div id='13'></div>
-### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+### 3.2. PaaS-TA에서 서비스 신청
 Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
-*참고: 서비스 신청시개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-- 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+- 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
-><div>$cf marketplace</div>
+><div>$ cf marketplace</div>
 >![redis_vsphere_23]
 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
->$cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
-- 서비스명 :redis-sb로 Marketplace에서 보여지는 서비스 명칭이다.<br>
-- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vmplan을지원한다.<br>
-- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div><br>
+```
+$ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
+- 서비스명 : redis로 Marketplace에서 보여지는 서비스 명칭이다.
+- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vm 플랜을 지원한다.
+- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
+```
 
-><div>$ cf create-service redis-sbshared-vmredis-service-instance</div>
+><div>$ cf create-service redis shared-vm redis-service-instance</div>
 >![redis_vsphere_24]
 
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
-><div>$cf services</div>
+><div>$ cf services</div>
 >![redis_vsphere_25]
 
+<br>
 <div id='14'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
-*참고: 서비스 Bind 신청시개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 - Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
 
-><div>$cd redis-example-app<br>
+><div>$ cd redis-example-app<br>
 $ vi manifest.yml<br><br></div>
 ```yaml
 ---
@@ -859,12 +911,12 @@ path: . #배포시 구동되는 Path
 - --no-start 옵션으로 App을 배포한다. 
 --no-start: App 배포시 구동은 하지 않는다.
 
-><div>$cf push --no-start<br></div>
+><div>$ cf push --no-start<br></div>
 >![redis_vsphere_26]
 
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
-><div>$cf apps<br></div>
+><div>$ cf apps<br></div>
 >![redis_vsphere_27]
 ><div>$ cf logs {배포된 App명}
 >$ cf logs redis-example-app</div>
@@ -872,12 +924,12 @@ path: . #배포시 구동되는 Path
 
 - Sample App에서 생성한 서비스인스턴스바인드 신청을 한다. 
 
-><div>$cf bind-service redis-example-appredis-service-instance</div>
+><div>$ cf bind-service redis-example-appredis-service-instance</div>
 >![redis_vsphere_29]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
-><div>$cf restart redis-example-app</div>
+><div>$ cf restart redis-example-app</div>
 >![redis_vsphere_30]
 
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
@@ -897,6 +949,7 @@ $ curl -X DELETE $APP/foo<br>
 ></div>
 >![redis_vsphere_33]
 
+<br>
 <div id='15'></div>
 # 4. Redis Client 툴 접속
 Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
