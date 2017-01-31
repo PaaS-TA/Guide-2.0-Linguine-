@@ -723,3 +723,227 @@ Task 2415 done
 
 VMs total: 4
 ```
+
+<br>
+<div id='10'></div>
+### 2.4. Redis 서비스 브로커 등록
+Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
+서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인하여야 한다
+
+<br>
+- 서비스 브로커 목록을 확인한다.
+
+```
+$ cf service-brokers
+```
+```
+Getting service brokers as admin...
+
+name                     url
+paasta-pinpoint-broker  http://10.30.70.82:8080
+```
+
+<br>
+- Redis 서비스 브로커를 등록한다.
+
+```
+cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자비밀번호} http://{서비스브로커 호스트}:{서비스브로커 포트}
+
+- 서비스팩이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+- 서비스팩 사용자ID / 비밀번호 :서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+- 서비스팩URL :서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+```
+
+```
+$ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80
+```
+>![redis_vsphere_18]
+
+- 등록된 Redis 서비스 브로커를 확인한다.
+
+><div>$cf service-brokers</div>
+>![redis_vsphere_19]
+
+- 접근 가능한 서비스 목록을 확인한다.
+
+><div>$cf service-access</div>
+>![redis_vsphere_20]
+><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
+
+- 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+
+><div>$cf enable-service-access redis-sb</div>
+><div>$ cf service-access</div>
+>![redis_vsphere_21]
+
+<div id='11'></div>
+#   3. Redis연동 Sample App 설명
+본 Sample App은 개발형클라우드 플랫폼에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+<div id='12'></div>
+### 3.1. Sample App 구조
+Sample App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. 배포 완료 후 정상적으로 App 이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
+
+Sample App 구조는 다음과 같다.
+<table>
+  <tr>
+    <td>이름</td>
+    <td>설명</td>
+  </tr>
+  <tr>
+    <td>lib</td>
+    <td>Sample 소스디렉토리</td>
+  </tr>
+  <tr>
+    <td>manifest.yml</td>
+    <td>개방형클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
+  </tr>
+  <tr>
+    <td>Gemfile</td>
+    <td>Sample App 구동시 필요한 ruby gem 설정 파일</td>
+  </tr>
+  <tr>
+    <td>config.ru</td>
+    <td>Sample App 구동 파일</td>
+  </tr>
+</table>
+
+- 링크 OpenPaaS-Sample-Apps에서 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 다운로드한다.
+
+><div>$ls -all</div>
+>![redis_vsphere_22]
+
+<div id='13'></div>
+### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+*참고: 서비스 신청시개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+- 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+
+><div>$cf marketplace</div>
+>![redis_vsphere_23]
+
+- Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
+
+>$cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
+- 서비스명 :redis-sb로 Marketplace에서 보여지는 서비스 명칭이다.<br>
+- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vmplan을지원한다.<br>
+- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div><br>
+
+><div>$ cf create-service redis-sbshared-vmredis-service-instance</div>
+>![redis_vsphere_24]
+
+- 생성된 Redis 서비스 인스턴스를 확인한다.
+
+><div>$cf services</div>
+>![redis_vsphere_25]
+
+<div id='14'></div>
+### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
+*참고: 서비스 Bind 신청시개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+- Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
+
+><div>$cd redis-example-app<br>
+$ vi manifest.yml<br><br></div>
+```yaml
+---
+applications:
+- name: redis-example-app #배포할 App 이름
+  memory: 256M #배포시 메모리 크기
+  instances: 1 #배포시인스턴스 수
+path: . #배포시 구동되는 Path
+```
+ 
+
+- --no-start 옵션으로 App을 배포한다. 
+--no-start: App 배포시 구동은 하지 않는다.
+
+><div>$cf push --no-start<br></div>
+>![redis_vsphere_26]
+
+- 배포된 Sample App을 확인하고 로그를 수행한다.
+
+><div>$cf apps<br></div>
+>![redis_vsphere_27]
+><div>$ cf logs {배포된 App명}
+>$ cf logs redis-example-app</div>
+>![redis_vsphere_28]
+
+- Sample App에서 생성한 서비스인스턴스바인드 신청을 한다. 
+
+><div>$cf bind-service redis-example-appredis-service-instance</div>
+>![redis_vsphere_29]
+
+- 바인드가 적용되기 위해서 App을 재기동한다.
+
+><div>$cf restart redis-example-app</div>
+>![redis_vsphere_30]
+
+- App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
+
+><div>- curl 로 확인<br>
+- Redis Application 을 이용하여 Key 값으로 데이터 저장<br>
+$ export APP=redis-example-app.controller.open-paas.com<br>
+$ curl -X PUT $APP/foo -d 'data=bar'<br>
+><div>
+>![redis_vsphere_31]
+><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
+$ curl -X GET $APP/foo<br>
+></div>
+>![redis_vsphere_32]
+><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
+$ curl -X DELETE $APP/foo<br>
+></div>
+>![redis_vsphere_33]
+
+<div id='15'></div>
+# 4. Redis Client 툴 접속
+Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
+
+<div id='16'></div>
+### 4.1. Redis Desktop Manager 설치 및 연결
+Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
+
+- Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
+[**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
+![redis_vsphere_34]
+
+- 다운로드한 설치파일을 실행한다.<br>
+![redis_vsphere_35]
+
+- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
+![redis_vsphere_36]
+
+- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
+![redis_vsphere_37]
+
+- Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
+별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
+![redis_vsphere_38]
+
+- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
+![redis_vsphere_39]
+
+- Finish 버튼 클릭으로 설치를 완료한다.<br>
+![redis_vsphere_40]
+
+- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
+![redis_vsphere_41]
+
+- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
+![redis_vsphere_42]
+
+- 서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
+예) $ cfenvredis-example-app<br>
+![redis_vsphere_43]
+
+- SSH Tunnel탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
+(참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
+![redis_vsphere_44]
+
+- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
+![redis_vsphere_45]
+
+- 신규 키 등록후 확인<br>
+![redis_vsphere_46]
