@@ -27,7 +27,9 @@
   - [RabbitMQ](./Service-Guide/MessageQueue/PaaS-TA RabbitMQ 서비스팩 설치 가이드.md)
 - API Platform 설치
   - [API Platform](./Service-Guide/ETC/PaaS-TA APIPlatform 서비스팩 설치 가이드.md)
-
+- Web IDE 설치
+  - [Web IDE](./Service-Guide/WEBIDE/PaaS-TA WEB IDE 설치 가이드.md)
+  
 ## 포털 설치 가이드
 - [PaaS-TA 포털](./Portal_Page.md)
 
@@ -39,7 +41,7 @@
 - [사용자 포털 가이드](./Use-Guide/PaaS-TA 사용자 포탈 가이드_v1.0.md)
 
 ## 개발 언어 별 어플리케이션 가이드
-- [Node.js](./Documents-PaaSTA-1.0/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
+- [Node.js](../Documents-PaaSTA-1.0/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
 - [PHP](./Documents-PaaSTA-1.0/Sample-App-Guide/OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
 - [Python](./Documents-PaaSTA-1.0/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
 - [Ruby](./Documents-PaaSTA-1.0/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
