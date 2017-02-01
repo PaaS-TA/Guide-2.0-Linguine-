@@ -141,7 +141,8 @@ CF & Diego Document:
   - [플랫폼 설치 자동화 사용 가이드](../..//Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
   
 ###5. 이전 버전 참고
-- [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
+- 플랫폼 설치
+  - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
 - 개인 환경 설치 (PaaS-TA v1.0)
   - [BOSH-Lite](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
 - 운영 환경 설치 (PaaS-TA v1.0)
