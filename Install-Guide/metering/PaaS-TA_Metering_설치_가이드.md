@@ -568,6 +568,8 @@ PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사�
 
 ###<div id='29'/>3.3.1.다운로드 
 
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
+
   	##다운로드 대상 파일
   	PAASTA-USAGE-METERING.tar
 
