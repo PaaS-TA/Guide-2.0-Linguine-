@@ -85,6 +85,8 @@ CF & Diego Document:
 
 ###2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
 
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0zhZ14v#0zhZ14v)
+
 	  IEDA-WEB-INSTALLER.tar
 	  OPENPAAS-IEDA-WEB.tar
 
@@ -129,7 +131,24 @@ CF & Diego Document:
 
 ###3.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료되며 로그인 화면으로 이동된다.
 
-![PaaSTa_Platform_Image00]{: style="float:right"}
+![PaaSTa_Platform_Image00]
 
 [PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
 
+###4. 참고
+
+- 플랫폼 설치 자동화 활용
+  - [플랫폼 설치 자동화 사용 가이드](../..//Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
+  
+###5. 이전 버전 참고
+- 플랫폼 설치 (PaaS-TA v1.0)
+  - [플랫폼 설치 자동화](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
+- 개인 환경 설치 (PaaS-TA v1.0)
+  - [BOSH-Lite](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+- 운영 환경 설치 (PaaS-TA v1.0)
+  - BOSH 설치([AWS](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+  - Controller 설치([vSphere](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_vSphere_install_guide.md),
+[AWS](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_Openstack_install_guide.md))
+  - Container 설치([vSphere](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_vSphere_install_guide.md),
+[AWS](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_AWS_install_guide.md),
+[Openstack](../../../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_Openstack_install_guide.md))

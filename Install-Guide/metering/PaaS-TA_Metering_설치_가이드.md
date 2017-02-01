@@ -58,11 +58,14 @@ API 서비스를 미터링하는 방법에 대해 기술 하였다.
 ##<div id='7'/>2.1.  배포 전제 조건
 
 -   이 가이드는 ubuntu14.04 및 로컬 설치를 기준으로 작성되어 있다. 
--   bosh-lite가 로컬에 설치 되어 있어야 한다.
--   CF가 로컬에 설치 되어 있어야 한다.
--   운영 환경의 CF에 abacus를 배포할 경우, abacus를 서비스 하기 위한 security-group을 설정해야 한다.
+-   cf-CLI 가 로컬에 설치 되어 있어야 한다.
+-   zip 패키지가 로컬에 설치 되어 있어야 한다.
+-   CF가 설치 되어 있어야 한다.
+
+    ※ 운영 환경의 CF에 abacus를 배포할 경우, abacus를 서비스 하기 위한 security-group을 설정해야 한다.
+
     -   **Abacus를 위한 security 설정 정보**
-<table style ="width : 700;">
+    <table style ="width : 700;">
       <tr>
     	<th>Component</th>
         <th>Protocol</th>
@@ -119,9 +122,6 @@ API 서비스를 미터링하는 방법에 대해 기술 하였다.
       </tr>
 
     </table>
-
--   cf-CLI 가 로컬에 설치 되어 있어야 한다.
--   zip 패키지가 로컬에 설치 되어 있어야 한다.
 
 
 ##<div id='8'/>2.2.  Node.js 설치
@@ -282,8 +282,9 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
   		예)
   		$ uaac client add abacus-system --name abacus-system --authorized_grant_types client_credentials --authorities abacus.system.read --scope abacus.system.read --secret secret
 
-※ 하나의 \<CLIENT_ID\>에 모든 권한을 부여할 수 있다.<br>
-※ Secured Abacus에 대해서는 다음 웹 사이트를 참조한다.<br>
+※ 하나의 \<CLIENT_ID\>에 모든 권한을 부여할 수 있다.
+
+※ Secured Abacus에 대해서는 다음 웹 사이트를 참조한다.
 [https://github.com/cloudfoundry-incubator/cf-abacus/blob/master/doc/security.md](https://github.com/cloudfoundry-incubator/cf-abacus/blob/master/doc/security.md)
 
 
@@ -332,7 +333,7 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
 -   **Abacus****기능 개요**
 
 | 형상  |설명|
-|---------|---|
+|--------------------------------|--------------------------------------------------------------------------|
 |  abacus-pouchserver       |Abacus가 사용하는 in-browser database. 앱을 재시작하면 데이터가 사라지므로 운영 환경에서는 별도의 CouchDB 또는 MongoDB를 구성해야 한다.   |
 |  abacus-usage-collector      | CF 앱 사용량 수집기  |
 |  abacus-usage-reporting       |Abacus가 수집/집계한 미터링 정보에 사용자의 요청에 맞게 보고한다.   |
@@ -359,7 +360,7 @@ CF 설치한 abacus에서 CF의 앱 사용량 정보를 수집하기 위해서 C
 -	DB연동 및 Secure 정보를 설정하기 위해서는 다음 경로에 있는 manifest.yml 파일을 수정한다.
 
 | 앱  |경로|
-|---------|---|
+|-----------------------|------------------------------------------------------|
 |  abacus-pouchserver       | <abacus 경로>/cf-abacus/lib/utils/pouchserver  |
 |  abacus-usage-collector       | <abacus 경로>/cf-abacus/lib/metering/collector  |
 |  abacus-usage-reporting      | <abacus 경로>/cf-abacus/lib/aggregation/reporting  |
@@ -567,33 +568,32 @@ PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사�
 
 ###<div id='29'/>3.3.1.다운로드 
 
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
+
   	##다운로드 대상 파일
-  	PAASTA-USAGE-METERING.tar
+  	PaaS-TA-Usage-Reporting.tar
 
   	##대상 파일을<설치 경로>에 다운로드
   	$ cd <설치 경로>
 
   	##파일압축 해제
-  	$ tar xvf PAASTA-USAGE-METERING.zip
+  	$ tar xvf PaaS-TA-Usage-Reporting.tar
 
 
 ###<div id='30'/>3.3.2. paasta-usage-reporting 배포
 
-  	$ cd <설치 경로>/PAASTA-USAGE-METERING/usageReporting
+  	$ cd <설치 경로>/PaaS-TA-Usage-Reporting/usageReporting
 
   	## Abacus 연동을 위한 DB 및 Secure 정보 설정
   	$ vi manifest.yml
   	※ manifest.yml 내용 및 수정 사항에 대해서는 별도 기술
 
-  	##paasta-usage-reporting 배포
-  	$ cd <설치 경로>/PAASTA-USAGE-METERING
   	$ cf push
 
 ※ paasta-usage-reporting과 연동하기 위한 인터페이스는 다음 파일을
 참조한다.
 
-paasta_usage_reporting app_인터페이스
-
+[PaaS-TA_Usage_Reporting_API_가이드](../../Use-Guide/PaaS-TA_Usage_Reporting_API_%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 
 ※ paasta-usage-reporting manifest.yml
 

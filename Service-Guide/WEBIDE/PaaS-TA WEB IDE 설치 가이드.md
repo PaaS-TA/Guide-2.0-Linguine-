@@ -37,7 +37,7 @@
 본 문서의 설치된 시스템 구성도입니다. Browser(paasta Portal), WEB IDE
 Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 
-![](/images/openpaas-service/webide/web-ide-01.png)
+![](/images/paasta-service/webide/web-ide-01.png)
 
 | 구분 | Resource Pool | 스펙 |
 |--------|-------|-------|
@@ -521,7 +521,7 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 -   PaaS-TA 사용자 포털 조직 화면에서 WEB IDE 신청 버튼을 눌러 WEB-IDE
     사용을 신청한다.
 
-![](/images/openpaas-service/webide/web-ide-02.png)
+![](/images/paasta-service/webide/web-ide-02.png)
 
 ###3.2. WEB-IDE 신청 취소
 
@@ -529,13 +529,13 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 -   신청 취소가 완료되면 다시 신청 아이콘이 나타난다.
 
-![](/images/openpaas-service/webide/web-ide-03.png)
+![](/images/paasta-service/webide/web-ide-03.png)
 
 ###3.3. WEB-IDE 신청 리스트 조회
 
 -   관리자는 파스타 포털 관리자 화면에서 WEB IDE 신청 리스트를 조회한다.
 
-![](/images/openpaas-service/webide/web-ide-04.png)
+![](/images/paasta-service/webide/web-ide-04.png)
 
 ###3.4. WEB-IDE 신청 사용 승인
 
@@ -543,7 +543,7 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 -   사용유무를 Y로 선택 후 저장하면 사용승인이 완료 된다.
 
-![](/images/openpaas-service/webide/web-ide-05.png)
+![](/images/paasta-service/webide/web-ide-05.png)
 
 ###3.5. WEB-IDE 신청 완료
 
@@ -552,14 +552,14 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 -   WEB IDE URL은 조직단위로 하나의 URL이 할당된다.
 
-![](/images/openpaas-service/webide/web-ide-06.png)
+![](/images/paasta-service/webide/web-ide-06.png)
 
 ###3.6. WEB-IDE 대시보드 화면
 
 -   WEB IDE 아이콘을 클릭하면 관리자에 의해 할당된 WEB IDE 대시보드
     화면이 새탭으로 열리게 된다.
 
-![](/images/openpaas-service/webide/web-ide-07.png)
+![](/images/paasta-service/webide/web-ide-07.png)
 
 #4. WEB-IDE 에서 CF CLI 사용법
 ###4.1. WEB-IDE New Project 화면
@@ -567,33 +567,33 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 -   사용할 언어를 선택하고 Create workspace and project 로 새로운
     프로젝트를 시작한다.
 
-![](/images/openpaas-service/webide/web-ide-08.png)
+![](/images/paasta-service/webide/web-ide-08.png)
 
 -   Workspace를 구성하기 위해 Docker 관련 자료를 다운로드한다.
 
-![](/images/openpaas-service/webide/web-ide-09.png)
+![](/images/paasta-service/webide/web-ide-09.png)
 
 ###4.2. WEB-IDE Workspace 화면
 
 -   Open Project를 누르면 Workspace 화면이 열린다.
 
-![](/images/openpaas-service/webide/web-ide-10.png)
+![](/images/paasta-service/webide/web-ide-10.png)
 
 -   실제로 소스를 개발해서 빌드하거나 GIT이나 SVN에서 IMPORT 한다.
 
-![](/images/openpaas-service/webide/web-ide-11.png)
+![](/images/paasta-service/webide/web-ide-11.png)
 
 ###4.3. WEB-IDE Teminal에서의 CF CLI 실행
 
 > -cf api 명령을 이용해 endpoint를 지정한다.
 
-![](/images/openpaas-service/webide/web-ide-12.png)
+![](/images/paasta-service/webide/web-ide-12.png)
 
 -   cf login 명령어로 로그인하고 조직과 공간을 선택한다.
 
-![](/images/openpaas-service/webide/web-ide-13.png)
+![](/images/paasta-service/webide/web-ide-13.png)
 
 -   cf push 를 이용해 cf에 앱을 업로드한다.
 
-![](/images/openpaas-service/webide/web-ide-14.png)
+![](/images/paasta-service/webide/web-ide-14.png)
 
