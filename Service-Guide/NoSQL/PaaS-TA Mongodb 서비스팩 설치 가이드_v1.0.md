@@ -1,0 +1,1216 @@
+목차 {#목차 .Title1bis0}
+====
+
+1. [문서 개요](#1)
+     * [1.1. 목적](#1-1)
+     * [1.2. 범위](#1-2)
+     * [1.3. 시스템 구성도](#1-3)
+     * [1.4. 참고자료](#1-4)
+
+2. [Mongodb 서비스팩 설치](#2)
+     * [2.1. 설치전 준비사항](#2-1)
+     * [2.2. Mongodb 서비스 릴리즈 업로드](#2-2)
+     * [2.3. Mongodb 서비스 Deployment 파일 수정 및 배포](#2-3)
+     * [2.4. Mongodb 서비스 브로커 등록](#2-4)
+
+3. [Mongodb 연동 Sample App 설명](#3)
+     * [3.1. Sample App 구조](#3-1)
+     * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#3-2)
+     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#3-3)
+4. [Mongodb Client 툴 접속](#4)
+     * [4.1. MongoChef 설치 및 연결](#4-1)
+
+<div id='1'></div>
+# 1. 문서 개요
+
+<div id='1-1'></div>
+### 1.1. 목적
+
+본 문서(Mongodb 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 Mongodb 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 Mongodb 서비스를 사용하는 방법을 기술하였다.
+
+<div id='1-2'></div>
+### 1.2. 범위 
+
+설치 범위는 Mongodb 서비스팩을 검증하기 위한 기본 설치를 기준으로
+작성하였다.
+
+<div id='4'></div>
+### 1.3. 시스템 구성도
+
+본 문서의 설치된 시스템 구성도입니다. Mongodb Server, Mongodb 서비스
+브로커로 최소사항을 구성하였다.
+
+![시스템구성도](./images/paasta-service/mongodb/mongodb-2.png){width="6.69375in" height="3.988888888888889in"}
+
+<table>
+  <tr>
+    <td>구분</td>
+    <td>스펙</td>
+  </tr>
+  <tr>
+    <td>openpaas-mongodb-broker</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk</td>
+  </tr>
+  <tr>
+    <td>Mongos</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk</td>
+  </tr>
+  <tr>
+    <td>Mongo Config</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
+  </tr>
+  <tr>
+    <td>Mongod</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
+  </tr>
+</table>
+
+<div id='1-4'></div>
+### 1.4. 참고자료
+
+[***http://bosh.io/docs***](http://bosh.io/docs)
+[***http://docs.cloudfoundry.org/***](http://docs.cloudfoundry.org/)
+
+<div id='2'></div>
+#   2. Mongodb 서비스팩 설치
+
+<div id='2-1'></div>
+### 2.1. 설치전 준비사항
+
+본 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 타켓 설정이 되어 있어야 한다.
+
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
+
+-   PaaS-TA 에서 제공하는 압축된 릴리즈 파일들을 다운받는다.
+    (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
+
+-   설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수
+    있다.
+    [***https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0***](https://github.com/penPaaSRnD/Documents-PaaSTA-2.0)
+
+<div id='2-2'></div>
+###   2.2. Mongodb 서비스 릴리즈 업로드
+
+-   PaaS-TA-Services.zip 파일 압축을 풀고 폴더안에 있는 Mongodb 서비스 릴리즈 asta-mongodb-shard-2.0.tgz 파일을 확인한다.
+
+  ------------------------------------------------------------------------------------
+  \$ cd PaaS-TA-Services
+  \$ ls –all
+    --------------------------------------------------------------------------------
+    -rw-rw-r-- 1 ubuntu ubuntu 121273779 Jan 16 04:05 paasta-mongodb-shard-2.0.tgz
+    --------------------------------------------------------------------------------
+  
+  ------------------------------------------------------------------------------------
+
+-   업로드 되어 있는 릴리즈 목록을 확인한다.
+
+  ---------------------------------------------------------
+  \$ bosh releases
+  
+  Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+  ---------------------------------------------------------
+
+  -------------------------------------------------------
+  +--------------------+----------------+-------------+
+  
+  | Name | Versions | Commit Hash |
+  
+  +--------------------+----------------+-------------+
+  
+  | cf-monitoring | 0+dev.1\* | 00000000 |
+  
+  | cflinuxfs2-rootfs | 1.40.0\* | 19fe09f4+ |
+  
+  | etcd | 86\* | 2dfbef00+ |
+  
+  | logsearch | 203.0.0+dev.1\* | 00000000 |
+  
+  | metrics-collector | 0+dev.1\* | 00000000 |
+  
+  | paasta-container | 0+dev.1\* | b857e171 |
+  
+  | paasta-controller | 0+dev.1\* | 0f315314 |
+  
+  | paasta-garden-runc | 2.0\* | ea5f5d4d+ |
+  
+  +--------------------+----------------+-------------+
+  
+  (\*) Currently deployed
+  
+  (+) Uncommitted changes
+  -------------------------------------------------------
+
+-   Mongodb 서비스 릴리즈를 업로드한다.
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------
+  \$ bosh upload release {서비스 릴리즈 파일 PATH}
+  
+  \$ bosh upload release paasta-mongodb-shard-2.0.tgz
+  
+  Uploading release
+  
+  paasta-mongod: 96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | 111.0MB 22.9MB/s ETA: 00:00:00
+  
+  Director task 692
+  
+  Started extracting release &gt; Extracting release. Done (00:00:01)
+  
+  Started verifying manifest &gt; Verifying manifest. Done (00:00:00)
+  
+  Started resolving package dependencies &gt; Resolving package dependencies. Done (00:00:00)
+  
+  Started creating new packages
+  
+  Started creating new packages &gt; mongodb\_broker/d547d39098e73acb70d58ab2be2c18c2410dfa5b. Done (00:00:01)
+  
+  Started creating new packages &gt; java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:01)
+  
+  Started creating new packages &gt; cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)
+  
+  Started creating new packages &gt; mongodb/b355ac045b257e6a0cec85874c6fb6e7abe92b6d. Done (00:00:00)
+  
+  Done creating new packages (00:00:02)
+  
+  Started creating new jobs
+  
+  Started creating new jobs &gt; mongodb\_slave/cd18c5187f44f8e3d1d2c7937047cc748a851a43. Done (00:00:00)
+  
+  Started creating new jobs &gt; mongodb\_broker/10da2f3c0e374b01f818b28ff5ecb8044fd0cd1a. Done (00:00:00)
+  
+  Started creating new jobs &gt; mongodb\_config/dcb9c707d4e9757a150f540ee5af39efb8580f04. Done (00:00:01)
+  
+  Started creating new jobs &gt; mongodb\_master/adfc199c9d2f3aceaf31fe56e553e15faf605ee7. Done (00:00:00)
+  
+  Started creating new jobs &gt; mongodb\_broker\_deregistrar/d797f068e89265313436b7c6439d93288d0fafbe. Done (00:00:00)
+  
+  Started creating new jobs &gt; mongodb\_shard/a549bee23d326211549a2dce9def42d85b655e4d. Done (00:00:00)
+  
+  Started creating new jobs &gt; mongodb\_broker\_registrar/a4892a7dfec7acdc7ba0cd2618a79ee3b2f80d9b. Done (00:00:00)
+  
+  Done creating new jobs (00:00:01)
+  
+  Started release has been created &gt; paasta-mongodb-shard/2.0. Done (00:00:00)
+  
+  Task 692 done
+  
+  Started 2017-01-16 04:16:20 UTC
+  
+  Finished 2017-01-16 04:16:24 UTC
+  
+  Duration 00:00:04
+  
+  paasta-mongod: 96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | 111.3MB 11.0MB/s Time: 00:00:10
+  
+  Release uploaded
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-   업로드 된 Mongodb 릴리즈를 확인한다.
+
+  ---------------------------------------------------------
+  \$ bosh releases
+  
+  \$ bosh releases
+  
+  Acting as user 'admin' on 'my-bosh'
+  
+  +----------------------+----------------+-------------+
+  
+  | Name | Versions | Commit Hash |
+  
+  +----------------------+----------------+-------------+
+  
+  | cf-monitoring | 0+dev.1\* | 00000000 |
+  
+  | cflinuxfs2-rootfs | 1.40.0\* | 19fe09f4+ |
+  
+  | etcd | 86\* | 2dfbef00+ |
+  
+  | logsearch | 203.0.0+dev.1\* | 00000000 |
+  
+  | metrics-collector | 0+dev.1\* | 00000000 |
+  
+  | paasta-container | 0+dev.1\* | b857e171 |
+  
+  | paasta-controller | 0+dev.1\* | 0f315314 |
+  
+  | paasta-garden-runc | 2.0\* | ea5f5d4d+ |
+  
+  | paasta-mongodb-shard | 2.0\* | 85e3f01e+ |
+  
+  +----------------------+----------------+-------------+
+  
+  (\*) Currently deployed
+  
+  (+) Uncommitted changes
+  
+  Releases total: 9
+  
+  Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
+  ---------------------------------------------------------
+
+***\
+***
+
+<div id='2-3'></div>
+###   2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
+
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML[^2] 파일이다.
+
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^3](OS, BOSH agent) 을 사용할것이며 Release[^4](Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
+
+-   PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는OpenStack용 Mongodb Deployment 화일인 paasta-mongodb-shard-openstack-2.0.yml를 복사한다.
+
+> 다운로드 받은 Deployment Yml 파일을 확인한다.
+> (paasta-mongodb-shard-openstack-2.0.yml)
+
+  ------------------------------------------------------------------------------------
+  \$ ls –all
+  
+  ![](./images/paasta-service/mongodb/mongodb-3.png){width="5.652777777777778in" height="3.1222517497812774in"}
+  ------------------------------------------------------------------------------------
+
+-   Director UUID를 확인한다.
+
+> BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH
+> Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH
+> Director 에 target 되어 있는 UUID를 확인할수 있다.
+
+  ------------------------------------------------------------------------
+  \$ bosh status
+  
+  ![](./images/paasta-service/mongodb/mongodb-4.png){width="5.552083333333333in" height="2.6875in"}
+  ------------------------------------------------------------------------
+
+-   Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+
+  ----------------------------------------------------------------------------------------------------------------
+  \$bosh stemcells
+  
+  ![](./images/paasta-service/mongodb/mongodb-5.png){width="6.69375in" height="1.6604166666666667in"}
+  
+  Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
+  ----------------------------------------------------------------------------------------------------------------
+
+-   paasta-mongodb-shard-openstack-2.0.yml Deployment 파일을 서버 환경에
+    맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  \# paasta-mongodb-shard-vsphere 설정 파일 내용
+  
+  ---
+  
+  name: paasta-mongodb-shard-service \# 서비스 배포이름(필수)
+  
+  director\_uuid \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# \#bosh status 에서 확인한 Director UUID을 입력(필수)
+  
+  release:
+  
+  name: paasta-mongodb-shard \#서비스 릴리즈 이름(필수)
+  
+  version: 2.0 \#서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  
+  compilation: \# 컴파일시 필요한 가상머신의 속성(필수)
+  
+  cloud\_properties: \# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance\_type, availability\_zone)
+  
+  instance\_type: monitoring \# 인스턴스 타입: Flavors 타입 (필수)
+  
+  network: default \# Networks block에서 선언한 network 이름(필수)
+  
+  reuse\_compilation\_vms: true \# 컴파일지 VM 재사용 여부(옵션)
+  
+  workers: 4 \# 컴파일 하는 가상머신의 최대수(필수)
+  
+  \# this section describes how updates are handled
+  
+  update:
+  
+  canaries: 1 \# canary 인스턴스 수(필수)
+  
+  canary\_watch\_time: 30000 \# canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  
+  update\_watch\_time: 30000 \# non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  
+  max\_in\_flight: 4
+  
+  networks: \# 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+  
+  - name: default
+  
+  subnets:
+  
+  - cloud\_properties:
+  
+  net\_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317
+  
+  security\_groups: \[bosh\]
+  
+  dns: \# DNS 정보
+  
+  - 10.244.3.4
+  
+  - 8.8.8.8
+  
+  gateway: 10.244.3.1
+  
+  range: 10.244.3.0/24 \# 사용할 네트워크 범위
+  
+  reserved: \# 설치시 제외할 IP 설정
+  
+  - 10.244.3.2 - 10.244.3.140
+  
+  static:
+  
+  - 10.244.3.141 - 10.244.3.170 \#사용 가능한 IP 설정
+  
+  resource\_pools: \# 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique &gt;해야함(필수)
+  
+  - cloud\_properties:
+  
+  instance\_type: monitoring
+  
+  env:
+  
+  bosh: \#password: dhvms09!
+  
+  password: \$6\$mwZOg/kA\$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
+  
+  \#bosh:
+  
+  \# password: \$6\$4gDD3aV0rdqlrKC\$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  
+  name: small \# 고유한 resource pool 이름
+  
+  network: default
+  
+  stemcell:
+  
+  name: bosh-openstack-kvm-ubuntu-trusty-go\_agent \# stemcell 이름(필수)
+  
+  version: 3309 \# stemcell 버전(필수)
+  
+  jobs:
+  
+  - name: mongodb\_slave1 \#작업 이름(필수): mongodb replica set의 slave 서버
+  
+  template: mongodb\_slave \# job template 이름(필수)
+  
+  instances: 1 \# job 인스턴스 수(필수)
+  
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks: \# 네트워크 구성정보
+  
+  - name: default \# Networks block에서 선언한 network 이름(필수)
+  
+  static\_ips: \# 사용할 IP addresses 정의(필수)
+  
+  - 10.244.3.142
+  
+  properties:
+  
+  replSetName: op1 \# replicaSet1 의 이름
+  
+  - name: mongodb\_master1 \#작업 이름(필수): mongodb replica set의 master 서버
+  
+  template: mongodb\_master \# job template 이름(필수)
+  
+  instances: 1 \# job 인스턴스 수(필수)
+  
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks: \# 네트워크 구성정보
+  
+  - name: default \# Networks block에서 선언한 network 이름(필수)
+  
+  static\_ips:
+  
+  - 10.244.3.141 \# 사용할 IP addresses 정의(필수)
+  
+  properties:
+  
+  replSet\_hosts: \["10.244.3.141","10.244.3.142"\] \# 첫번째 Host는 replicaSet1의 master
+  
+  replSetName: op1 \# replicaSet1 의 이름
+  
+  - name: mongodb\_config
+  
+  template: mongodb\_config
+  
+  instances: 1
+  
+  resource\_pool: small
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks:
+  
+  - name: default
+  
+  static\_ips:
+  
+  - 10.244.3.150
+  
+  - name: mongodb\_shard
+  
+  template: mongodb\_shard
+  
+  instances: 1
+  
+  resource\_pool: small
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks:
+  
+  - name: default
+  
+  static\_ips:
+  
+  - 10.244.3.170
+  
+  properties:
+  
+  bindIp: 0.0.0.0
+  
+  configsvr\_hosts: \# mongodb\_config hosts
+  
+  - 10.244.3.150
+  
+  repl\_name\_host\_list: \# mongodb\_master properties
+  
+  - op1/10.244.3.141 \# replicaSet1 의 이름/host
+  
+  \# - op2/10.244.3.144 \# replicaSet2 의 이름/host
+  
+  \# - op3/10.244.3.147 \# replicaSet3 의 이름/host
+  
+  - name: mongodb\_broker \#작업 이름(필수): mongodb 서비스 브로커
+  
+  template: mongodb\_broker \# job template 이름(필수)
+  
+  instances: 1 \# job 인스턴스 수(필수)
+  
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  
+  networks: \# 네트워크 구성정보
+  
+  - name: default \# Networks block에서 선언한 network 이름(필수)
+  
+  static\_ips: \# 사용할 IP addresses 정의(필수)
+  
+  - 10.244.3.154
+  
+  - name : mongodb\_broker\_registrar \# 작업 이름: 서비스 브로커 등록
+  
+  template : mongodb\_broker\_registrar
+  
+  instances: 1
+  
+  lifecycle: errand \# bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
+  
+  resource\_pool: small
+  
+  networks:
+  
+  - name: default
+  
+  properties:
+  
+  broker: \# 서비스 브로커 설정 정보
+  
+  host: 10.244.3.154 \# 서비스 브로커 IP
+  
+  name: Mongo-DB \# CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
+  
+  password: cloudfoundry \# 브로커 접근 아이디 비밀번호(필수)
+  
+  username: admin \# 브로커 접근 아이디(필수)
+  
+  protocol: http
+  
+  port: 8080 \# 브로커 포트
+  
+  cf:
+  
+  admin\_password: admin \# CF 사용자의 패스워드
+  
+  admin\_username: admin \# CF 사용자 이름
+  
+  api\_url: https://api.api.115.68.151.188.xip.io \# CF 설치시 설정한 api uri 정보(필수)
+  
+  release: paasta-mongodb-shard
+  
+  - name : mongodb\_broker\_deregistrar \# 작업 이름: 서비스 브로커 삭제
+  
+  template : mongodb\_broker\_deregistrar
+  
+  instances: 1
+  
+  lifecycle: errand
+  
+  resource\_pool: small
+  
+  networks:
+  
+  - name: default
+  
+  properties:
+  
+  broker:
+  
+  host: 10.244.3.154
+  
+  name: Mongo-DB
+  
+  password: cloudfoundry
+  
+  username: admin
+  
+  protocol: http
+  
+  port: 8080
+  
+  cf:
+  
+  admin\_password: admin
+  
+  admin\_username: admin
+  
+  api\_url: https://api.115.68.151.188.xip.io
+  
+  release: paasta-mongodb-shard
+  
+  meta:
+  
+  apps\_domain: api.115.68.151.188.xip.io \# CF 설치시 설정한 apps 도메인 정보
+  
+  environment: null
+  
+  external\_domain: api.115.68.151.188.xip.io \# CF 설치시 설정한 외부 도메인 정보
+  
+  nats: \# CF 설치시 설정한 nats 정보
+  
+  machines:
+  
+  - 10.244.3.11
+  
+  password: admin
+  
+  port: 4222
+  
+  user: nats
+  
+  syslog\_aggregator: null
+  
+  properties:
+  
+  mongodb: \# mongodb shard release의 여러 job에서 공통적으로 하용하는 properties
+  
+  \# key는 shard를 구성할 때 mongos와 각 replicaSet의 인증을 하기위해 사용
+  
+  key: |
+  
+  +Qy+1icfeV8D2WXIfCojRjvYlryMVI2Ry+dAi8mYZ1H1Z9pDstRkOC0/oJYs0L/i
+  
+  +Dj/3PurWo8MJuqBYrWVGsRnsx31um0SVAgFZM2GQEKvHIByX5hq/MuHlulSLM0h
+  
+  GKkMT19zqDwFBFIN53jN0PLuuOnJ6FxZSb4cTLymfWM543WGpYx/31b8ehPYyeRp
+  
+  T7P2o2vUd9hecb8mQFxcjsBN7PTLwuPb5lK0BRL4Ze7rh6qeC8j7M3zimV8lX2X5
+  
+  9EtWlQP0ORYIlFpqijatZhS8Bf5AfI1EW6kZgfqwycl2ghxmSIbeleiqyQgYZNKQ
+  
+  yBXV9disuBXcKy4tsOjSFvKw7y61kjjQOn8KXElefokefdLbcrpeARP6LR9WwR1v
+  
+  ZTHcChfzWA4apHo6gJZkoqGVPjF4ArXTYxZfC+hHrsa5oe3XZjNapwV6XQfBNCuQ
+  
+  EihT3Td/B7iAUWJnGQvugFJwYKJ5EYOYubhk8QtO9QIvoZxQPDq9tgUsVgiQ6gty
+  
+  ZT83oxFAIgm3vky9l3uPwYi6jQ2FvsEJvDyiZl7gulOaC5UD/BdcM4Y5n/dxy/6Y
+  
+  qphWWuPsJwnYBXLJgwtTZ/NkYDYyX/tL9gyzXGPkpMMD7DofFjWEpJvHlVRKIxp1
+  
+  /zlxbVOMAmASgZDaqFperSQQyrfQqpuvAA8pRkWgorROyrsiRYYWlJZWWa4qHlI9
+  
+  OZ1dDp8o71l3v0SqsKbEtxINpdiUNx4OdafsMNN/KVxw9oGdrPXnDl5DomtmAoKZ
+  
+  uaCf3AQ3RsDeymgVX3j5EpLCHBhcPj+0B5tv4Yln652HAzDissOUKPyDf+PJaVRo
+  
+  OfDOkUvmuqnwl45DOoOtZ0BMw7hXGdgm6Xfv5jEmtSjJzQ1pfwHOOfiY+zZWhHAi
+  
+  ow/WNvLtUgNUhobi+OQb11bMMNNtmGWe+cZft6QzBsnd2xa/tAYTZDfAJ8OCvYQK
+  
+  e46UrHd54ZJFzdzicRZ8DeuU9G4K
+  
+  user: root \# admin 권한 사용자이름
+  
+  passwd: paasta \# admin 권한 사용자 비밀번호
+  
+  \# replSetName: op
+  
+  \# bindIp: 10.244.3.153 \# shard server ip
+  
+  port: 27017 \# mongodb port
+  
+  mongodb\_broker:
+  
+  db\_name: mongodb-broker \# mongodb broker 관리용 데이터베이스
+  
+  authsource: admin \# mongodb broker 관리용 데이터베이스에 접근할 때 인증정보가 있는 데이터베이스
+  
+  hosts: 10.244.3.153 \# mongodb Host
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+
+  ----------------------------------------------------------------------------------
+  \$ bosh deployment {Deployment manifest 파일 PATH}
+  
+  \$ bosh deployment paasta-mongodb-shard-2.0.yml
+  
+  Deployment set to '/home/ubuntu/workspace/bd\_test/paasta-mongodb-shard-2.0.yml'
+  ----------------------------------------------------------------------------------
+
+-   Mongodb 서비스팩을 배포한다.
+
+  --------------------------------------------------------------------------------------------------------------------------------
+  \$ bosh deploy
+  
+  Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
+  
+  Getting deployment properties from director...
+  
+  Unable to get properties list from director, trying without it...
+  
+  Detecting deployment changes
+  
+  ----------------------------
+  
+  resource\_pools:
+  
+  …
+  
+  중략
+  
+  …
+  
+  Please review all changes carefully
+  
+  Deploying
+  
+  ---------
+  
+  Are you sure you want to deploy? (type 'yes' to continue): yes
+  
+  Director task 756
+  
+  Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
+  
+  Started preparing deployment &gt; Preparing deployment. Done (00:00:01)
+  
+  Started preparing package compilation &gt; Finding packages to compile. Done (00:00:00)
+  
+  Started creating missing vms
+  
+  Started creating missing vms &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd)
+  
+  Started creating missing vms &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)
+  
+  Started creating missing vms &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff)
+  
+  Done creating missing vms &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (00:01:20)
+  
+  Started creating missing vms &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)
+  
+  Done creating missing vms &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (00:01:24)
+  
+  Started creating missing vms &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598)
+  
+  Done creating missing vms &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (00:01:24)
+  
+  Done creating missing vms &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (00:01:21)
+  
+  Done creating missing vms &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (00:01:21)
+  
+  Done creating missing vms (00:02:45)
+  
+  Started updating job mongodb\_slave1 &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (canary). Done (00:01:11)
+  
+  Started updating job mongodb\_master1 &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (canary). Done (00:01:07)
+  
+  Started updating job mongodb\_config &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (canary). Done (00:01:15)
+  
+  Started updating job mongodb\_shard &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (canary). Done (00:01:13)
+  
+  Started updating job mongodb\_broker &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (canary). Done (00:00:48)
+  
+  Task 756 done
+  
+  Started 2017-01-16 09:19:33 UTC
+  
+  Finished 2017-01-16 09:27:53 UTC
+  
+  Duration 00:08:20
+  
+  Deployed 'paasta-mongodb-shard-service' to 'my-bosh'
+  --------------------------------------------------------------------------------------------------------------------------------
+
+-   배포된 Mongodb 서비스팩을 확인한다.
+
+  -------------------------------------------------------------------------------------------------------
+  \$ bosh vms
+  
+  Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
+  
+  Director task 764
+  
+  Task 764 done
+  
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  
+  | VM | State | AZ | VM Type | IPs |
+  
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  
+  | mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) | running | n/a | small | 10.244.3.154 |
+  
+  | mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) | running | n/a | small | 10.244.3.150 |
+  
+  | mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) | running | n/a | small | 10.244.3.141 |
+  
+  | mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) | running | n/a | small | 10.244.3.170 |
+  
+  | mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) | running | n/a | small | 10.244.3.142 |
+  
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  
+  VMs total: 5
+  -------------------------------------------------------------------------------------------------------
+
+<div id='2-4'></div>
+### 2.4. Mongodb 서비스 브로커 등록
+
+Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Mongodb 서비스 브로커를 등록해 주어야 한다.
+
+서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
+
+-   서비스 브로커 목록을 확인한다.
+
+  -------------------------------------------------------------------------------------------
+  \$ cf service-brokers
+  
+  ![16.png](./images/paasta-service/mongodb/mongodb-6.png){width="5.4382589676290465in" height="1.0105577427821522in"}
+  -------------------------------------------------------------------------------------------
+
+-   Mongodb 서비스 브로커를 등록한다.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  \$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}
+  
+  -   서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+  
+  -   서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+  
+  -   서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+  
+  \$ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http://10.30.60.54:8080
+  
+  ![17.png](./images/paasta-service/mongodb/mongodb-7.png){width="6.69375in" height="0.6694444444444444in"}
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-   등록된 Mongodb 서비스 브로커를 확인한다.
+
+  ------------------------------------------------------------------------------------------
+  \$ cf service-brokers
+  
+  ![18.png](./images/paasta-service/mongodb/mongodb-8.png){width="5.354914698162729in" height="1.2085017497812773in"}
+  ------------------------------------------------------------------------------------------
+
+-   접근 가능한 서비스 목록을 확인한다.
+
+  ------------------------------------------------------------------------------------------
+  \$ cf service-access
+  
+  ![19.png](./images/paasta-service/mongodb/mongodb-9.png){width="5.209060586176728in" height="2.0315332458442694in"}
+  
+  서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
+  ------------------------------------------------------------------------------------------
+
+-   특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시
+    확인한다. (전체 조직)
+
+  ------------------------------------------------------------------------------------------
+  \$ cf enable-service-access Mongo-DB
+  
+  \$ cf service-access
+  
+  ![20.png](./images/paasta-service/mongodb/mongodb-10.png){width="6.323993875765529in" height="2.440839895013123in"}
+  ------------------------------------------------------------------------------------------
+
+<div id='3'></div>
+#   3. Mongodb연동 Sample App 설명
+================================
+
+본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 Mongodb의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+
+<div id='3-1'></div>
+### 3.1. Sample App 구조
+-------------------------
+
+Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Mongodb 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Mongodb 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+
+Sample Web App 구조는 다음과 같다.
+
+
+<table>
+  <tr>
+    <td>이름</td>
+    <td>설명</td>
+  </tr>
+  <tr>
+    <td>src</td>
+    <td>Sample 소스 디렉토리/td>
+  </tr>
+  <tr>
+    <td>manifest.yml</td>
+    <td>개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
+  </tr>
+  <tr>
+    <td>build.gradle</td>
+    <td>gradle project 설정 파일</td>
+  </tr>
+  <tr>
+    <td>build</td>
+    <td>gradle 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)</td>
+  </tr>
+</table>
+
+
+  **이름**       **설명**
+  -------------- -----------------------------------------------------------------
+  src            Sample 소스 디렉토리
+  manifest       개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일
+  build.gradle   gradle project 설정 파일
+  build          gradle 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
+
+-   PaaS-TA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는
+    Mongodb Sample Web App인 hello-spring-mongodb 를복사한다.
+
+  -------------------------------------------------------------------------------------------
+  \$ ls -all
+  
+  ![21.png](./images/paasta-service/mongodb/mongodb-11.png){width="6.146691819772529in" height="1.0313943569553805in"}
+  -------------------------------------------------------------------------------------------
+
+<div id='3-2'></div>
+### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+--------------------------------------------
+
+Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+
+\*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는
+사용자로 로그인이 되어 있어야 한다.
+
+-   먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+
+  ------------------------------------------------------------------------------------------
+  \$ cf marketplace
+  
+  ![22.png](./images/paasta-service/mongodb/mongodb-12.png){width="6.479166666666667in" height="1.358480971128609in"}
+  ------------------------------------------------------------------------------------------
+
+-   Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을
+    한다.
+
+  -----------------------------------------------------------------------------------------------
+  \$ cf create-service {서비스명} {서비스플랜} {내서비스명}
+  
+  -   서비스명 : Mongo-DB로 Marketplace에서 보여지는 서비스 명칭이다.
+  
+  -   서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다.
+  
+  -   내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
+  
+  \$ cf create-service Mongo-DB default-plan mongodb-service-instance
+  
+  ![23.png](./images/paasta-service/mongodb/mongodb-13.png){width="6.69375in" height="0.5569444444444445in"}
+  -----------------------------------------------------------------------------------------------
+
+-   생성된 Mongodb 서비스 인스턴스를 확인한다.
+
+  -------------------------------------------------------------------------------------------
+  \$ cf services
+  
+  ![24.png](./images/paasta-service/mongodb/mongodb-14.png){width="6.479166666666667in" height="1.1944685039370078in"}
+  -------------------------------------------------------------------------------------------
+
+<div id='3-3'></div>
+### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+-----------------------------------------------------
+
+서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스
+인스턴스를 Bind 하여 App에서 Mongodb 서비스를 이용한다.
+
+\*참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할
+수 있는 사용자로 로그인이 되어 있어야 한다.
+
+-   Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
+
+  -----------------------------------------------------------------------------------------------------------------
+  \$ cd hello-spring-mongodb
+  
+  \$ vi manifest.yml
+  
+  ---
+  
+  applications:
+  
+  - name: hello-spring-mongodb \#배포할 App 이름
+  
+  memory: 512M \# 배포시 메모리 사이즈
+  
+  instances: 1 \# 배포 인스턴스 수
+  
+  path: ./build/libs/hello-spring-mongodb.war \#배포하는 App 파일 PATH
+  
+  참고: ./build/libs/hello-spring-mongodb.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
+  -----------------------------------------------------------------------------------------------------------------
+
+-   --no-start 옵션으로 App을 배포한다.
+
+> --no-start: App 배포시 구동은 하지 않는다.
+
+  ---------------------------------------------------------------------------------
+  \$ cf push --no-start
+  
+  ![25.png](./images/paasta-service/mongodb/mongodb-15.png){width="6.69375in" height="2.3090277777777777in"}
+  ---------------------------------------------------------------------------------
+
+-   배포된 Sample App을 확인하고 로그를 수행한다.
+
+  -------------------------------------------------------------------------------------------
+  \$ cf apps
+  
+  ![26.png](./images/paasta-service/mongodb/mongodb-16.png){width="6.69375in" height="1.0798611111111112in"}
+  
+  \$ cf logs {배포된 App명}
+  
+  \$ cf logs hello-spring-mongodb
+  
+  ![27.png](./images/paasta-service/mongodb/mongodb-17.png){width="6.530890201224847in" height="0.5704965004374453in"}
+  -------------------------------------------------------------------------------------------
+
+-   Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
+
+  -------------------------------------------------------------------------------------------
+  \$ cf bind-service hello-spring-Mongodb Mongodb-service-instance
+  
+  ![27.png](./images/paasta-service/mongodb/mongodb-17.png){width="6.530890201224847in" height="0.5704965004374453in"}
+  -------------------------------------------------------------------------------------------
+
+-   바인드가 적용되기 위해서 App을 재기동한다.
+
+  ------------------------------------------------------------------------------------------
+  \$ cf restart hello-spring-mongodb
+  
+  ![29.png](./images/paasta-service/mongodb/mongodb-18.png){width="6.500347769028871in" height="5.008619860017498in"}
+  ------------------------------------------------------------------------------------------
+
+-   (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이
+    안될 경우 보안 그룹을 추가한다.
+
+  -------------------------------------------------------------------------------------------
+  -   rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
+  
+  \$ vi rule.json
+  
+  \[
+  
+  {
+  
+  "protocol": "tcp",
+  
+  "destination": "10.20.0.153",
+  
+  "ports": "27017"
+  
+  }
+  
+  > \]
+  
+  -   보안 그룹을 생성한다.
+  
+  \$ cf create-security-group Mongo-DB rule.json
+  
+  ![30.png](./images/paasta-service/mongodb/mongodb-19.png){width="6.479166666666667in" height="0.5222856517935258in"}
+  
+  -   모든 App에 Mongodb 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
+  
+  \$ cf bind-running-security-group Mongo-DB
+  
+  ![31.png](./images/paasta-service/mongodb/mongodb-20.png){width="6.522270341207349in" height="1.1178324584426946in"}
+  
+  -   App을 리부팅 한다.
+  
+  \$ cf restart hello-spring-Mongodb
+  
+  ![32.png](./images/paasta-service/mongodb/mongodb-21.png){width="6.462777777777778in" height="3.991379046369204in"}
+  -------------------------------------------------------------------------------------------
+
+-   App이 정상적으로 Mongodb 서비스를 사용하는지 확인한다.
+
+  -----------------------------------------------------------------------------------------
+  -   curl 로 확인
+  
+  \$ curl hello-spring-Mongodb.115.68.46.30.xip.io
+  
+  ![33.png](./images/paasta-service/mongodb/mongodb-22.png){width="6.53132874015748in" height="6.896551837270342in"}
+  
+  -   브라우져에서 확인
+  
+  ![34.png](./images/paasta-service/mongodb/mongodb-23.png){width="6.69375in" height="3.3819444444444446in"}
+  -----------------------------------------------------------------------------------------
+
+<div id='4'></div>
+# 4. Mongodb Client 툴 접속
+======================
+
+Application에 바인딩된 Mongodb 서비스 연결정보는 Private IP로 구성되어
+있기 때문에 Mongodb Client 툴에서 직접 연결할수 없다. 따라서 SSH 터널,
+Proxy 터널 등을 제공하는 Mongodb Client 툴을 사용해서 연결하여야 한다.
+본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Mongodb Client
+툴로써는 MongoChef 로 가이드한다. MongoChef 에서 접속하기 위해서 먼저
+SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로
+접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP
+와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이
+부분은 OpenStack관리자 및 PaaS-TA 운영자에게 문의하여 구성한다.
+
+<div id='4-1'></div>
+### 4.1.  MongoChef 설치 & 연결
+---------------------------
+
+MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
+
+-   MongoChef을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을
+    다운로드 한다.\
+    [***http://3t.io/mongochef/download/platform/***](http://3t.io/mongochef/download/platform/)\
+    ![mongodb client
+    tool-01.PNG](./images/paasta-service/mongodb/mongodb-24.png){width="6.3929593175853014in"
+    height="2.9288626421697286in"}
+
+-   다운로드한 설치파일을 실행한다.\
+    ![mongodb client
+    tool-02.PNG](./images/paasta-service/mongodb/mongodb-25.png){width="6.572095363079615in"
+    height="0.7811526684164479in"}
+
+-   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.\
+    ![mongodb client
+    tool-03.PNG](./images/paasta-service/mongodb/mongodb-26.png){width="5.197267060367454in"
+    height="4.020331364829397in"}
+
+-   프로그램 라이선스에 관련된 내용이다. 동의(I accept the terms in the
+    License Agreement)에 체크 후 Next 버튼을 클릭한다.\
+    ![mongodb client
+    tool-04.PNG](./images/paasta-service/mongodb/mongodb-27.png){width="5.176437007874016in"
+    height="4.009915791776028in"}
+
+-   MongoChef 을 설치할 경로를 설정 후 Next 버튼을 클릭한다.
+
+> 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files
+> 폴더에 설치가 된다.\
+> ![mongodb client
+> tool-05.PNG](./images/paasta-service/mongodb/mongodb-28.png){width="5.186851487314086in"
+> height="3.99950021872266in"}
+
+-   Install 버튼을 클릭하여 설치를 진행한다.\
+    ![mongodb client
+    tool-06.PNG](./images/paasta-service/mongodb/mongodb-29.png){width="5.186851487314086in"
+    height="4.009915791776028in"}
+
+-   Finish 버튼 클릭으로 설치를 완료한다.\
+    ![mongodb client
+    tool-07.PNG](./images/paasta-service/mongodb/mongodb-30.png){width="5.197267060367454in"
+    height="3.9890846456692914in"}
+
+-   MongoChef를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에
+    접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect버튼을
+    클릭한다.\
+    ![mongodb client
+    tool-08.PNG](./images/paasta-service/mongodb/mongodb-31.png){width="6.3929593175853014in"
+    height="4.866183289588801in"}
+
+-   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.\
+    ![mongodb client
+    tool-09.PNG](./images/paasta-service/mongodb/mongodb-32.png){width="6.390181539807524in"
+    height="3.6581616360454943in"}
+
+-   Server에 접속하기 위한 Connection 정보를 입력한다.\
+    ![mongodb client
+    tool-11.PNG](./images/paasta-service/mongodb/mongodb-33.png){width="6.012846675415573in"
+    height="4.6998162729658794in"}\
+    서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf
+    env &lt;app\_name&gt; 명령어로 이용하여 확인한다.\
+    예) \$ cf env hello-spring-mongodb\
+    ![mongodb client
+    tool-10.PNG](./images/paasta-service/mongodb/mongodb-34.png){width="6.3929593175853014in"
+    height="3.771839457567804in"}
+
+-   Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.\
+    ![mongodb client
+    tool-12.PNG](./images/paasta-service/mongodb/mongodb-35.png){width="6.012846675415573in"
+    height="4.6998162729658794in"}
+
+> SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링
+> 가능한 서버 정보를 입력한다. ![mongodb client
+> tool-13.PNG](./images/paasta-service/mongodb/mongodb-36.png){width="6.009665354330709in"
+> height="4.697329396325459in"}\
+> \
+> 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를
+> 한다.\
+> ![mongodb client
+> tool-14.PNG](./images/paasta-service/mongodb/mongodb-37.png){width="4.251718066491689in"
+> height="2.2821719160104985in"}\
+> \
+> 모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 눌러
+> 빠져나온다.
+
+-   Save 버튼을 눌러 작성한 접속정보를 저장한다.
+
+> ![mongodb client
+> tool-15.png](./images/paasta-service/mongodb/mongodb-38.png){width="6.012846675415573in"
+> height="4.6998162729658794in"}
+
+-   방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.\
+    ![mongodb client
+    tool-16.png](./images/paasta-service/mongodb/mongodb-39.png){width="6.3412357830271215in"
+    height="3.630142169728784in"}
+
+-   접속이 완료되면 좌측에 스키마 정보가 나타난다. 컬럼을 더블클릭
+    해보면 우측에 적재되어있는 데이터가 출력된다.\
+    ![mongodb client
+    tool-17.png](./images/paasta-service/mongodb/mongodb-40.png){width="6.384339457567804in"
+    height="4.859621609798775in"}
+
+-   우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을
+    클릭한다.
+
+> 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.\
+> ![mongodb client
+> tool-18.png](./images/paasta-service/mongodb/mongodb-41.png){width="6.384339457567804in"
+> height="4.82584208223972in"}
+
+[^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
+    변경 내용을 기술한다.)
+
+[^2]: YAML Ain’t Markup Language, http://www.yaml.org,
+    http://ko.wikipedia.org/wiki/YAML
+
+[^3]: BOSH가 Stemcell로부터 복사된 VM을 제어할 수 있도록 BOSH Agent가
+    내장되어 있는데 이를 “Stemcell”이라 부른다.
+
+[^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
