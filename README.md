@@ -2,15 +2,7 @@
 
 ## 플랫폼 설치 가이드
 - [설치 파일 다운로드 받기](./Download_Page.md)
-- 개인 환경 설치
-  - [BOSH-Lite](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
-- 운영 환경 설치
-  - BOSH 설치([AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
-  - Controller 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_vSphere_install_guide.md),
-[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_Openstack_install_guide.md))
-  - Container 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_vSphere_install_guide.md),
-[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_AWS_install_guide.md),
-[Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_Openstack_install_guide.md))
+
 - 플랫폼 설치
   - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
   - [플랫폼 설치 자동화 (PaaS-TA v2.0)](./Install-Guide/Platform Install System/PaaS-TA_플랫폼_설치_자동화_설치_가이드.md)
