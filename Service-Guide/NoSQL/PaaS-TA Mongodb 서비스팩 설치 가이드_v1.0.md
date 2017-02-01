@@ -228,7 +228,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^
   Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
   
 -   paasta-mongodb-shard-openstack-2.0.yml Deployment 파일을 서버 환경에
-    맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+    맞게 수정한다. 
 ```yaml
   \# paasta-mongodb-shard-vsphere 설정 파일 내용
 
