@@ -379,7 +379,7 @@ resource_pools:               # 배포시 사용하는 resource pools를 명시�
     network: default
     stemcell:
       name: bosh-vsphere-esxi-ubuntu-trusty-go_agent  # stemcell 이름(필수)
-      version: 3147 # stemcell 버전(필수)
+      version: 3309 # stemcell 버전(필수)
     cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
       cpu: 1
       disk: 8192
