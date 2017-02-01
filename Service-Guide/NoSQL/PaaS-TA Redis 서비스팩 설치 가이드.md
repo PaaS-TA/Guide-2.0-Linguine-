@@ -628,7 +628,7 @@ resource_pools:
   network: default 
   stemcell:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-    version: "3312.15"
+    version: "3309"
 
 ```
 
