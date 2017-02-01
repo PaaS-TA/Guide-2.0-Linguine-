@@ -3,11 +3,11 @@
 ## 플랫폼 설치 가이드
 - [설치 파일 다운로드 받기](./Download_Page.md)
 - 개인 환경 설치
-  - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+  - [BOSH-Lite](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
 - 운영 환경 설치
-  - BOSH 설치([AWS](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
-  - Controller 설치([vSphere](./Install-Guide/Controller/Controller_vSphere_install_guide.md),
-[AWS](./Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](./Install-Guide/Controller/Controller_Openstack_install_guide.md))
+  - BOSH 설치([AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+  - Controller 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_vSphere_install_guide.md),
+[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_Openstack_install_guide.md))
   - Container 설치([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
 [AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
