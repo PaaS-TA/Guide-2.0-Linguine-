@@ -1041,7 +1041,7 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 [^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
 
 
-[mongodb_image_01]:/images/paasta-service/mongodb/mongodb_image_01.png
+[mongodb_image_01]:./images/paasta-service/mongodb/mongodb_image_01.png
 [mongodb_image_02]:/images/paasta-service/mongodb/mongodb_image_02.png
 [mongodb_image_03]:/images/paasta-service/mongodb/mongodb_image_03.png
 [mongodb_image_04]:/images/paasta-service/mongodb/mongodb_image_04.png
