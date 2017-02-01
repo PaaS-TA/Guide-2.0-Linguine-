@@ -14,7 +14,9 @@
 - 플랫폼 설치
   - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
   - [플랫폼 설치 자동화 (PaaS-TA v2.0)](./Install-Guide/Platform Install System/PaaS-TA 플랫폼 설치자동화 설치가이드_v1.0.md)
- 
+- PaaS-TA 미터링 설치
+  - [PaaS-TA 미터링](./Install-Guide/metering/PaaS-TA Metering 설치 가이드v1.0.md)
+  
 ## 서비스 설치 가이드
 - DBMS 설치
   - [Cubrid](./Service-Guide/DBMS/PaaS-TA Cubrid 서비스팩 설치 가이드.md)
