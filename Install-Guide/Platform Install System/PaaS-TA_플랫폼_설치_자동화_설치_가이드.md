@@ -135,3 +135,16 @@ CF & Diego Document:
 
 [PaaSTa_Platform_Image00]:images/PaaSTa_Platform/login.png
 
+###4. 참고
+
+- 플랫폼 설치 자동화 활용
+  - [플랫폼 설치 자동화 사용 가이드](../..//Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
+- 개인 환경 설치 (PaaS-TA v1.0)
+  - [BOSH-Lite](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+- 운영 환경 설치 (PaaS-TA v1.0)
+  - BOSH 설치([AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+  - Controller 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_vSphere_install_guide.md),
+[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_Openstack_install_guide.md))
+  - Container 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_vSphere_install_guide.md),
+[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_AWS_install_guide.md),
+[Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_Openstack_install_guide.md))
