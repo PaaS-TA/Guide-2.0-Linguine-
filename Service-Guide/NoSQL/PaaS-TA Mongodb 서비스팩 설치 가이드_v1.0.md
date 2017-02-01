@@ -1,4 +1,5 @@
-목차 {#목차 .Title1bis0}
+
+## Table of Contents
 ====
 
 1. [문서 개요](#1)
@@ -40,7 +41,7 @@
 본 문서의 설치된 시스템 구성도입니다. Mongodb Server, Mongodb 서비스
 브로커로 최소사항을 구성하였다.
 
-![시스템구성도](./images/paasta-service/mongodb/mongodb-2.png){width="6.69375in" height="3.988888888888889in"}
+![시스템구성도](../../images/paasta-service/mongodb/mongodb-2.png){width="6.69375in" height="3.988888888888889in"}
 
 <table>
   <tr>
