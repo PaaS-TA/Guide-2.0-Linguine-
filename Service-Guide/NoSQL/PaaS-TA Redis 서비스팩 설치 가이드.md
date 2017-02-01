@@ -413,15 +413,16 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 
 <br>
 -    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+
 ```yaml
-# paasta-redis-vsphere 설정 파일 내용
+# paasta-redis-service 설정 파일 내용
 
 name: paasta-redis-service                             # 서비스 배포이름(필수)
-director_uuid: d363905f-eaa0-4539-a461-8c1318498a32    # bosh status 에서 확인한 Director UUID을 입력(필수)
+director_uuid: 873c784d-3e91-4c78-95a3-b492024c389f    #bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: paasta-redis                                   # 서비스 릴리즈 이름(필수)
-  version: 2.0                                         # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+- name: paasta-redis                                   #서비스 릴리즈 이름(필수)
+  version: 2.0                                         #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                          # canary 인스턴스 수(필수)
@@ -429,7 +430,7 @@ update:
   max_in_flight: 6                                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:                                           # 컴파일시 필요한 가상머신의 속성(필수)
+compilation:                                           #컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:            # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     cpu: 2
     disk: 4096
@@ -441,8 +442,8 @@ compilation:                                           # 컴파일시 필요한 
 jobs:
 - instances: 1
   name: paasta-redis-broker                # 작업 이름(필수)
-  networks:                                # 네트워크 구성정보
-  - name: default                          # Networks block에서 선언한 network 이름(필수)
+  networks:
+  - name: default
     static_ips:
     - 10.30.60.71                          # 사용할 IP addresses 정의(필수)
   persistent_disk: 4096                    # 영구적 디스크 사이즈 정의(옵션)
@@ -453,16 +454,15 @@ jobs:
       password: nats
       port: 4222
       user: nats
-  resource_pool: services-small
+  resource_pool: services-small 
   templates:
   - name: cf-redis-broker
     release: paasta-redis
   - name: syslog-configurator
     release: paasta-redis
-
 - instances: 3
   name: dedicated-node                        # 전용 노드
-  networks:                               
+  networks:
   - name: default
     static_ips:                              # 전용 노드 IP 목록(필수)
     - 10.30.60.72
@@ -518,22 +518,22 @@ jobs:
     release: paasta-redis
 
 meta:
-  apps_domain: 115.68.46.30.xip.io
+  apps_domain: 115.68.46.186.xip.io
   broker:                                                      # broker 정보 : 디폴트 포트 12350
-    host: paasta-redis-broker.115.68.46.30.xip.io
+    host: paasta-redis-broker.115.68.46.186.xip.io
     name: redis
     password: admin
     username: admin
   cf:                                                          # paas-ta 정보
     admin_password: admin
     admin_username: admin
-    api_url: https://api.115.68.46.30.xip.io
-    apps_domain: 115.68.46.30.xip.io
+    api_url: https://api.115.68.46.186.xip.io
+    apps_domain: 115.68.46.186.xip.io
     skip_ssl_validation: false
-    system_domain: 115.68.46.30.xip.io
+    system_domain: 115.68.46.186.xip.io
   deployment_name: paasta-redis-service
   director_uuid: d363905f-eaa0-4539-a461-8c1318498a32          # uuid 정보 bosh status
-  external_domain: 115.68.46.30.xip.io
+  external_domain: 115.68.46.186.xip.io
   nats:                                                        # nats 정보
     machines:
     - 10.30.110.31
@@ -559,8 +559,8 @@ meta:
   route_name: paasta-redis-broker
   service_name: redis
   syslog_aggregator: null
-
-networks:                             # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+networks:
+- name: default
   subnets:
   - cloud_properties:
       name: Internal                                            # vsphere 에서 사용하는 network 이름(필수)
@@ -575,20 +575,19 @@ networks:                             # 네트워크 블록에 나열된 각 서
     - 10.30.60.81 - 10.30.254.254
     static:                                                     #사용 가능한 IP 설정
     - 10.30.60.71 - 10.30.60.80
-
 properties:
   broker:                                                       # broker 정보
-    host: paasta-redis-broker.115.68.46.30.xip.io
+    host: paasta-redis-broker.115.68.46.186.xip.io
     name: redis
     password: admin
     username: admin
   cf:                                                           # paas-ta 정보 
     admin_password: admin
     admin_username: admin
-    api_url: https://api.115.68.46.30.xip.io
-    apps_domain: 115.68.46.30.xip.io
+    api_url: https://api.115.68.46.186.xip.io
+    apps_domain: 115.68.46.186.xip.io
     skip_ssl_validation: false
-    system_domain: 115.68.46.30.xip.io
+    system_domain: 115.68.46.186.xip.io
   redis:
     agent:
       backend_port: 54321
@@ -620,16 +619,17 @@ properties:
     save_command: anotherrandomstring
   syslog_aggregator: null
 
-resource_pools:                                      # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name은 고유해야함(필수)
+resource_pools:
 - cloud_properties:
     cpu: 1
     disk: 8192
     ram: 1024
-  name: services-small                               # 고유한 resource pool 이름
+  name: services-small
   network: default 
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent    # stemcell 이름(필수)
-    version: "3263.8"                                 # stemcell 버전(필수)
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    version: "3312.15"
+
 ```
 
 <br>
@@ -771,7 +771,7 @@ OK
 - 등록된 Redis 서비스 브로커를 확인한다.
 
 ```
-$cf service-brokers
+$ cf service-brokers
 ```
 ```
 Getting service brokers as admin...
@@ -807,7 +807,7 @@ broker: paasta-pinpoint-broker
 $ cf enable-service-access redis-sb
 ```
 ```
-cf service-access
+$ cf service-access
 ```
 ```
 Getting service access as admin...
@@ -843,7 +843,7 @@ Sample App 구조는 다음과 같다.
   </tr>
   <tr>
     <td>manifest.yml</td>
-    <td>개방형클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
+    <td>PaaS-TA에 app 배포시 필요한 설정을 저장하는 파일</td>
   </tr>
   <tr>
     <td>Gemfile</td>
@@ -961,7 +961,7 @@ $ curl -X DELETE $APP/foo<br>
 <br>
 <div id='15'></div>
 # 4. Redis Client 툴 접속
-Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
+Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 PaaS-TA에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 PaaS-TA 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
 
 <div id='16'></div>
 ### 4.1. Redis Desktop Manager 설치 및 연결
@@ -1000,7 +1000,7 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 예) $ cfenvredis-example-app<br>
 ![redis_image_23]
 
-- SSH Tunnel탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
+- SSH Tunnel탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
 (참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
 ![redis_image_24]
 
@@ -1010,29 +1010,29 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 - 신규 키 등록후 확인<br>
 ![redis_image_26]
 
-[redis_image_01]:/images/paasta-service/redis/redis_image_01.png
-[redis_image_02]:/images/paasta-service/redis/redis_image_02.png
-[redis_image_03]:/images/paasta-service/redis/redis_image_03.png
-[redis_image_04]:/images/paasta-service/redis/redis_image_04.png
-[redis_image_05]:/images/paasta-service/redis/redis_image_05.png
-[redis_image_06]:/images/paasta-service/redis/redis_image_06.png
-[redis_image_07]:/images/paasta-service/redis/redis_image_07.png
-[redis_image_08]:/images/paasta-service/redis/redis_image_08.png
-[redis_image_09]:/images/paasta-service/redis/redis_image_09.png
-[redis_image_10]:/images/paasta-service/redis/redis_image_10.png
-[redis_image_11]:/images/paasta-service/redis/redis_image_11.png
-[redis_image_12]:/images/paasta-service/redis/redis_image_12.png
-[redis_image_13]:/images/paasta-service/redis/redis_image_13.png
-[redis_image_14]:/images/paasta-service/redis/redis_image_14.png
-[redis_image_15]:/images/paasta-service/redis/redis_image_15.png
-[redis_image_16]:/images/paasta-service/redis/redis_image_16.png
-[redis_image_17]:/images/paasta-service/redis/redis_image_17.png
-[redis_image_18]:/images/paasta-service/redis/redis_image_18.png
-[redis_image_19]:/images/paasta-service/redis/redis_image_19.png
-[redis_image_20]:/images/paasta-service/redis/redis_image_20.png
-[redis_image_21]:/images/paasta-service/redis/redis_image_21.png
-[redis_image_22]:/images/paasta-service/redis/redis_image_22.png
-[redis_image_23]:/images/paasta-service/redis/redis_image_23.png
-[redis_image_24]:/images/paasta-service/redis/redis_image_24.png
-[redis_image_25]:/images/paasta-service/redis/redis_image_25.png
-[redis_image_26]:/images/paasta-service/redis/redis_image_26.png
+[redis_image_01]:/images/paasta-service/redis/redis_image/redis_image_01.png
+[redis_image_02]:/images/paasta-service/redis/redis_image/redis_image_02.png
+[redis_image_03]:/images/paasta-service/redis/redis_image/redis_image_03.png
+[redis_image_04]:/images/paasta-service/redis/redis_image/redis_image_04.png
+[redis_image_05]:/images/paasta-service/redis/redis_image/redis_image_05.png
+[redis_image_06]:/images/paasta-service/redis/redis_image/redis_image_06.png
+[redis_image_07]:/images/paasta-service/redis/redis_image/redis_image_07.png
+[redis_image_08]:/images/paasta-service/redis/redis_image/redis_image_08.png
+[redis_image_09]:/images/paasta-service/redis/redis_image/redis_image_09.png
+[redis_image_10]:/images/paasta-service/redis/redis_image/redis_image_10.png
+[redis_image_11]:/images/paasta-service/redis/redis_image/redis_image_11.png
+[redis_image_12]:/images/paasta-service/redis/redis_image/redis_image_12.png
+[redis_image_13]:/images/paasta-service/redis/redis_image/redis_image_13.png
+[redis_image_14]:/images/paasta-service/redis/redis_image/redis_image_14.png
+[redis_image_15]:/images/paasta-service/redis/redis_image/redis_image_15.png
+[redis_image_16]:/images/paasta-service/redis/redis_image/redis_image_16.png
+[redis_image_17]:/images/paasta-service/redis/redis_image/redis_image_17.png
+[redis_image_18]:/images/paasta-service/redis/redis_image/redis_image_18.png
+[redis_image_19]:/images/paasta-service/redis/redis_image/redis_image_19.png
+[redis_image_20]:/images/paasta-service/redis/redis_image/redis_image_20.png
+[redis_image_21]:/images/paasta-service/redis/redis_image/redis_image_21.png
+[redis_image_22]:/images/paasta-service/redis/redis_image/redis_image_22.png
+[redis_image_23]:/images/paasta-service/redis/redis_image/redis_image_23.png
+[redis_image_24]:/images/paasta-service/redis/redis_image/redis_image_24.png
+[redis_image_25]:/images/paasta-service/redis/redis_image/redis_image_25.png
+[redis_image_26]:/images/paasta-service/redis/redis_image/redis_image_26.png
