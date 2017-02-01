@@ -335,7 +335,7 @@ resource_pools:                               # 배포시 사용하는 resource 
   network: default
   stemcell:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent     # stemcell 이름(필수)
-    version: "3263.8"                                  # stemcell 버전(필수)
+    version: "3309"                                  # stemcell 버전(필수)
 ```
 <br>
 
