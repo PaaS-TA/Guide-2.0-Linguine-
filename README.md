@@ -42,6 +42,8 @@
 - [Eclipse plugin 개발도구 사용] (../../../Documents-PaaSTA-1.0/blob/master/Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 - [운영자 포털 가이드](./Use-Guide/PaaS-TA 운영자 포탈 가이드_v1.0.md)
 - [사용자 포털 가이드](./Use-Guide/PaaS-TA 사용자 포탈 가이드_v1.0.md)
+- [플랫폼 설치 자동화 사용 가이드](./Use-Guide/PaaS-TA 플랫폼 설치자동화 가이드_v1.0.md)
+- [PaaS-TA 미터링 API 사용 가이드](./Use-Guide/PaaS-TA_usage reporting API 사용가이드_v1.0.md)
 
 ## 개발 언어 별 어플리케이션 가이드
 - [Node.js](../../../Documents-PaaSTA-1.0/blob/master/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
