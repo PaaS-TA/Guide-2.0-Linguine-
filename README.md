@@ -8,9 +8,9 @@
   - BOSH 설치([AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
   - Controller 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_vSphere_install_guide.md),
 [AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Controller/Controller_Openstack_install_guide.md))
-  - Container 설치([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
-[AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
-[Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
+  - Container 설치([vSphere](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_vSphere_install_guide.md),
+[AWS](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_AWS_install_guide.md),
+[Openstack](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Container/Container_Openstack_install_guide.md))
 - 플랫폼 설치
   - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
   - [플랫폼 설치 자동화 (PaaS-TA v2.0)](./Install-Guide/Platform Install System/PaaS-TA 플랫폼 설치자동화 설치가이드_v1.0.md)
