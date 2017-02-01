@@ -85,6 +85,8 @@ CF & Diego Document:
 
 ###2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
 
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0zhZ14v#0zhZ14v)
+
 	  IEDA-WEB-INSTALLER.tar
 	  OPENPAAS-IEDA-WEB.tar
 
