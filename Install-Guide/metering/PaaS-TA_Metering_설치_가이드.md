@@ -571,25 +571,23 @@ PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사�
 [다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
 
   	##다운로드 대상 파일
-  	PAASTA-USAGE-METERING.tar
+  	PaaS-TA-Usage-Reporting.tar
 
   	##대상 파일을<설치 경로>에 다운로드
   	$ cd <설치 경로>
 
   	##파일압축 해제
-  	$ tar xvf PAASTA-USAGE-METERING.zip
+  	$ tar xvf PaaS-TA-Usage-Reporting.tar
 
 
 ###<div id='30'/>3.3.2. paasta-usage-reporting 배포
 
-  	$ cd <설치 경로>/PAASTA-USAGE-METERING/usageReporting
+  	$ cd <설치 경로>/PaaS-TA-Usage-Reporting/usageReporting
 
   	## Abacus 연동을 위한 DB 및 Secure 정보 설정
   	$ vi manifest.yml
   	※ manifest.yml 내용 및 수정 사항에 대해서는 별도 기술
 
-  	##paasta-usage-reporting 배포
-  	$ cd <설치 경로>/PAASTA-USAGE-METERING
   	$ cf push
 
 ※ paasta-usage-reporting과 연동하기 위한 인터페이스는 다음 파일을
