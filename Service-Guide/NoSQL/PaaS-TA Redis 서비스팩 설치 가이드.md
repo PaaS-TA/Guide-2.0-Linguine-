@@ -1,1038 +1,1085 @@
 ## Table of Contents
+
 1. [문서 개요](#1)
-     * [1.1. 목적](#2)
-     * [1.2. 범위](#3)
-     * [1.3. 시스템 구성도](#4)
-     * [1.4. 참고자료](#5)
-2. [Redis 서비스팩 설치](#6)
-     * [2.1. 설치전 준비사항](#7)
-     * [2.2. Redis 서비스 릴리즈 업로드](#8)
-     * [2.3. Redis 서비스 Deployment 파일 수정 및 배포](#9)
-     * [2.4. Redis 서비스 브로커 등록](#10)
-3. [Redis 연동 Sample App 설명](#11)
-     * [3.1. Sample App 구조](#12)
-     * [3.2. PaaS-TA에서 서비스 신청](#13)
-     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#14)
-4. [Redis Client 툴 접속](#15)
-     * [4.1. Redis Desktop Manager 설치 및 연결](#16)
+     * [1.1. 목적](#1-1)
+     * [1.2. 범위](#1-2)
+     * [1.3. 시스템 구성도](#1-3)
+     * [1.4. 참고자료](#1-4)
 
+2. [Mongodb 서비스팩 설치](#2)
+     * [2.1. 설치전 준비사항](#2-1)
+     * [2.2. Mongodb 서비스 릴리즈 업로드](#2-2)
+     * [2.3. Mongodb 서비스 Deployment 파일 수정 및 배포](#2-3)
+     * [2.4. Mongodb 서비스 브로커 등록](#2-4)
 
-<br>
+3. [Mongodb 연동 Sample App 설명](#3)
+     * [3.1. Sample App 구조](#3-1)
+     * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#3-2)
+     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#3-3)
+4. [Mongodb Client 툴 접속](#4)
+     * [4.1. MongoChef 설치 및 연결](#4-1)
+
 <div id='1'></div>
 # 1. 문서 개요
 
 <br>
-<div id='2'></div>
+<div id='1-1'></div>
 ### 1.1. 목적
-      
-본 문서(Redis 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 Redis 서비스팩을 Bosh를 이용하여 설치하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application에서 Redis 서비스를 사용하는 방법을 기술하였다.
+
+본 문서(Mongodb 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 Mongodb 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 Mongodb 서비스를 사용하는 방법을 기술하였다.
 
 <br>
-<div id='3'></div>
+<div id='1-2'></div>
 ### 1.2. 범위 
 
-설치 범위는 Redis서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
+설치 범위는 Mongodb 서비스팩을 검증하기 위한 기본 설치를 기준으로
+작성하였다.
 
-<br>
 <div id='4'></div>
 ### 1.3. 시스템 구성도
-본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
-![시스템 구성도][redis_image_01]
+
+본 문서의 설치된 시스템 구성도입니다. Mongodb Server, Mongodb 서비스
+브로커로 최소사항을 구성하였다.
+
+![시스템구성도][mongodb_image_02]
 
 <table>
-  <tr>
+  <td>
     <td>구분</td>
     <td>스펙</td>
+  </td>
+  <tr>
+    <td>openpaas-mongodb-broker</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk</td>
   </tr>
   <tr>
-    <td>paasta-redis-broker</td>
-    <td>1vCPU / 1GB RAM / 8GB Disk+4GB(영구적 Disk)</td>
+    <td>Mongos</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk</td>
   </tr>
   <tr>
-    <td>dedicated-node</td>
-    <td>1vCPU / 1GB RAM / 8GB Disk+4GB(영구적 Disk)</td>
+    <td>Mongo Config</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
+  </tr>
+  <tr>
+    <td>Mongod</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
   </tr>
 </table>
 
-<br>
-<div id='5'></div>
+<div id='1-4'></div>
 ### 1.4. 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs) <br>
-[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-<br>
-<div id='6'></div>
-#   2. Redis 서비스팩 설치
+[http://bosh.io/docs](http://bosh.io/docs)
+[http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/)
 
-<br>
-<div id='7'></div>
+<div id='2'></div>
+#   2. Mongodb 서비스팩 설치
+
+<div id='2-1'></div>
 ### 2.1. 설치전 준비사항
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
-BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
--    PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
+본 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 타켓 설정이 되어 있어야 한다.
 
-<br>
-<div id='8'></div>
-###   2.2. Redis 서비스 릴리즈 업로드
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
 
--    PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 paasta-redis-2.0.tgz 파일을 확인한다.
-```
-$ ls --all
-```
-```
-.  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
-.. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
-```
+-   PaaS-TA 에서 제공하는 압축된 릴리즈 파일들을 다운받는다.
+    (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
+
+-   설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수 있다.
+
+    [https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0](https://github.com/penPaaSRnD/Documents-PaaSTA-2.0)
 
 <br>
--    업로드 되어 있는 릴리즈 목록을 확인한다.
-```
-$ bosh releases
-```
-```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on 'bosh'
+<div id='2-2'></div>
+###   2.2. Mongodb 서비스 릴리즈 업로드
 
-+--------------------------+----------+-------------+
-| Name                     | Versions | Commit Hash |
-+--------------------------+----------+-------------+
-| cflinuxfs2-rootfs        | 1.40.0*  | 19fe09f4+   |
-| empty-release            | 1+dev.1* | 00000000    |
-| etcd                     | 86*      | 2dfbef00+   |
-| paasta-container         | 2.0*     | b857e171    |
-| paasta-controller        | 2.0*     | 0f315314    |
-| paasta-garden-runc       | 2.0*     | ea5f5d4d+   |
-| paasta-influxdb-grafana  | 2.0*     | 00000000    |
-| paasta-logsearch         | 2.0*     | 00000000    |
-| paasta-metrics-collector | 2.0*     | 00000000    |
-+--------------------------+----------+-------------+
-(*) Currently deployed
-(+) Uncommitted changes
+-   PaaS-TA-Services.zip 파일 압축을 풀고 폴더안에 있는 Mongodb 서비스 릴리즈 asta-mongodb-shard-2.0.tgz 파일을 확인한다.
 
-Releases total: 9
 ```
-Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+   $ cd PaaS-TA-Services
+   $ ls –all
 
+    -rw-rw-r-- 1 ubuntu ubuntu 121273779 Jan 16 04:05 paasta-mongodb-shard-2.0.tgz
+```
 <br>
--    Redis 서비스 릴리즈 파일을 업로드한다.
+-   업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ```
-$ bosh upload release paasta-redis-2.0.tgz
-```
-```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on 'bosh'
-
-+--------------------------+----------+-------------+
-| Name                     | Versions | Commit Hash |
-+--------------------------+----------+-------------+
-| cflinuxfs2-rootfs        | 1.40.0*  | 19fe09f4+   |
-| empty-release            | 1+dev.1* | 00000000    |
-| etcd                     | 86*      | 2dfbef00+   |
-| paasta-container         | 2.0*     | b857e171    |
-| paasta-controller        | 2.0*     | 0f315314    |
-| paasta-garden-runc       | 2.0*     | ea5f5d4d+   |
-| paasta-influxdb-grafana  | 2.0*     | 00000000    |
-| paasta-logsearch         | 2.0*     | 00000000    |
-| paasta-metrics-collector | 2.0*     | 00000000    |
-+--------------------------+----------+-------------+
-(*) Currently deployed
-(+) Uncommitted changes
-
-Releases total: 9
-inception@inception-new:~/bosh-space/kimdojun/redis$ bosh upload release paasta-redis-2.0.tgz 
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on 'bosh'
-
-Verifying manifest...
-Extract manifest                                             OK
-Manifest exists                                              OK
-Release name/version                                         OK
-
-File exists and readable                                     OK
-Read package 'cf-cli' (1 of 8)                               OK
-Package 'cf-cli' checksum                                    OK
-Read package 'cf-redis-broker' (2 of 8)                      OK
-Package 'cf-redis-broker' checksum                           OK
-Read package 'cf-redis-nginx' (3 of 8)                       OK
-Package 'cf-redis-nginx' checksum                            OK
-Read package 'cf-redis-smoke-tests' (4 of 8)                 OK
-Package 'cf-redis-smoke-tests' checksum                      OK
-Read package 'go' (5 of 8)                                   OK
-Package 'go' checksum                                        OK
-Read package 'redis-common' (6 of 8)                         OK
-Package 'redis-common' checksum                              OK
-Read package 'redis' (7 of 8)                                OK
-Package 'redis' checksum                                     OK
-Read package 'ruby' (8 of 8)                                 OK
-Package 'ruby' checksum                                      OK
-Package dependencies                                         OK
-Checking jobs format                                         OK
-Read job 'broker-deregistrar' (1 of 6), version fd74f060a430d793ed734328638db0a5fee34395 OK
-Job 'broker-deregistrar' checksum                            OK
-Extract job 'broker-deregistrar'                             OK
-Read job 'broker-deregistrar' manifest                       OK
-Check template 'errand.sh.erb' for 'broker-deregistrar'      OK
-Job 'broker-deregistrar' needs 'cf-cli' package              OK
-Monit file for 'broker-deregistrar'                          OK
-Read job 'broker-registrar' (2 of 6), version 77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf OK
-Job 'broker-registrar' checksum                              OK
-Extract job 'broker-registrar'                               OK
-Read job 'broker-registrar' manifest                         OK
-Check template 'errand.sh.erb' for 'broker-registrar'        OK
-Job 'broker-registrar' needs 'cf-cli' package                OK
-Monit file for 'broker-registrar'                            OK
-Read job 'cf-redis-broker' (3 of 6), version a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8 OK
-Job 'cf-redis-broker' checksum                               OK
-Extract job 'cf-redis-broker'                                OK
-Read job 'cf-redis-broker' manifest                          OK
-Check template 'pre-start.erb' for 'cf-redis-broker'         OK
-Check template 'cf-redis-broker_ctl.erb' for 'cf-redis-broker' OK
-Check template 'health_check.sh.erb' for 'cf-redis-broker'   OK
-Check template 'process-watcher_ctl.erb' for 'cf-redis-broker' OK
-Check template 'process-destroyer_ctl.erb' for 'cf-redis-broker' OK
-Check template 'nginx_ctl.erb' for 'cf-redis-broker'         OK
-Check template 'broker.yml.erb' for 'cf-redis-broker'        OK
-Check template 'nginx.conf.erb' for 'cf-redis-broker'        OK
-Check template 'redis.conf.erb' for 'cf-redis-broker'        OK
-Check template 'drain.sh' for 'cf-redis-broker'              OK
-Job 'cf-redis-broker' needs 'cf-redis-broker' package        OK
-Job 'cf-redis-broker' needs 'redis-common' package           OK
-Job 'cf-redis-broker' needs 'cf-redis-nginx' package         OK
-Job 'cf-redis-broker' needs 'redis' package                  OK
-Monit file for 'cf-redis-broker'                             OK
-Read job 'dedicated-node' (4 of 6), version 660e3ceee60783b8dcbc01fef065371370fe2265 OK
-Job 'dedicated-node' checksum                                OK
-Extract job 'dedicated-node'                                 OK
-Read job 'dedicated-node' manifest                           OK
-Check template 'agent.yml.erb' for 'dedicated-node'          OK
-Check template 'redis.conf.erb' for 'dedicated-node'         OK
-Check template 'nginx.conf.erb' for 'dedicated-node'         OK
-Check template 'redis_ctl.erb' for 'dedicated-node'          OK
-Check template 'redis-agent_ctl.erb' for 'dedicated-node'    OK
-Check template 'nginx_ctl.erb' for 'dedicated-node'          OK
-Check template 'redis-agent.pem.erb' for 'dedicated-node'    OK
-Check template 'redis-agent.key.erb' for 'dedicated-node'    OK
-Check template 'drain-redis.sh' for 'dedicated-node'         OK
-Job 'dedicated-node' needs 'redis' package                   OK
-Job 'dedicated-node' needs 'redis-common' package            OK
-Job 'dedicated-node' needs 'cf-redis-nginx' package          OK
-Job 'dedicated-node' needs 'cf-redis-broker' package         OK
-Monit file for 'dedicated-node'                              OK
-Read job 'smoke-tests' (5 of 6), version e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c OK
-Job 'smoke-tests' checksum                                   OK
-Extract job 'smoke-tests'                                    OK
-Read job 'smoke-tests' manifest                              OK
-Check template 'config.json.erb' for 'smoke-tests'           OK
-Check template 'errand.sh.erb' for 'smoke-tests'             OK
-Job 'smoke-tests' needs 'go' package                         OK
-Job 'smoke-tests' needs 'cf-redis-smoke-tests' package       OK
-Job 'smoke-tests' needs 'cf-cli' package                     OK
-Monit file for 'smoke-tests'                                 OK
-Read job 'syslog-configurator' (6 of 6), version e74e363f8b9ac570f30b32d024e41ef2c89db03f OK
-Job 'syslog-configurator' checksum                           OK
-Extract job 'syslog-configurator'                            OK
-Read job 'syslog-configurator' manifest                      OK
-Check template 'syslog-configurator_ctl.erb' for 'syslog-configurator' OK
-Check template 'syslog_forwarder.conf.erb' for 'syslog-configurator' OK
-Job 'syslog-configurator' needs 'redis-common' package       OK
-Monit file for 'syslog-configurator'                         OK
-
-Release info
-------------
-Name:    paasta-redis
-Version: 2.0
-
-Packages
- - cf-cli (33a64fb1b0ca68b3403fe5b0254e86ec7d672dba)
- - cf-redis-broker (f530f8b2135eac4a888c2da20177082eb081ee65)
- - cf-redis-nginx (dd15c82027671c74b108c52bcecb64fcaf9c0d38)
- - cf-redis-smoke-tests (b347f491c873fdd9e878c90defd276a82f980023)
- - go (32629593cd827ebaf88981b56d205bea6c8b7c18)
- - redis-common (3747d5011f5405b1f8033653dae31b28e6839451)
- - redis (c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f)
- - ruby (9b59d2f2700da81a98c38c73cd27b6ccf26f188c)
-
-Jobs
- - broker-deregistrar (fd74f060a430d793ed734328638db0a5fee34395)
- - broker-registrar (77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf)
- - cf-redis-broker (a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8)
- - dedicated-node (660e3ceee60783b8dcbc01fef065371370fe2265)
- - smoke-tests (e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c)
- - syslog-configurator (e74e363f8b9ac570f30b32d024e41ef2c89db03f)
-
-License
- - license (443041add743bce9c52077d8f3d2e130c08340c5)
-
-Checking if can repack release for faster upload...
-cf-cli (33a64fb1b0ca68b3403fe5b0254e86ec7d672dba) UPLOAD
-cf-redis-broker (f530f8b2135eac4a888c2da20177082eb081ee65) UPLOAD
-cf-redis-nginx (dd15c82027671c74b108c52bcecb64fcaf9c0d38) UPLOAD
-cf-redis-smoke-tests (b347f491c873fdd9e878c90defd276a82f980023) UPLOAD
-go (32629593cd827ebaf88981b56d205bea6c8b7c18) UPLOAD
-redis-common (3747d5011f5405b1f8033653dae31b28e6839451) UPLOAD
-redis (c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f) UPLOAD
-ruby (9b59d2f2700da81a98c38c73cd27b6ccf26f188c) UPLOAD
-broker-deregistrar (fd74f060a430d793ed734328638db0a5fee34395) UPLOAD
-broker-registrar (77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf) UPLOAD
-cf-redis-broker (a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8) UPLOAD
-dedicated-node (660e3ceee60783b8dcbc01fef065371370fe2265) UPLOAD
-smoke-tests (e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c) UPLOAD
-syslog-configurator (e74e363f8b9ac570f30b32d024e41ef2c89db03f) UPLOAD
-Uploading the whole release
-
-Uploading release
-paasta-redis-:  96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo     | 104.3MB  22.8MB/s ETA:  00:00:00
-Director task 
- Started extracting release > Extracting release. Done (00:00:01)
-
- Started verifying manifest > Verifying manifest. Done (00:00:00)
-
- Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)
-
- Started creating new packages
- Started creating new packages > cf-cli/33a64fb1b0ca68b3403fe5b0254e86ec7d672dba. Done (00:00:00)
- Started creating new packages > cf-redis-broker/f530f8b2135eac4a888c2da20177082eb081ee65. Done (00:00:00)
- Started creating new packages > cf-redis-nginx/dd15c82027671c74b108c52bcecb64fcaf9c0d38. Done (00:00:00)
- Started creating new packages > cf-redis-smoke-tests/b347f491c873fdd9e878c90defd276a82f980023. Done (00:00:00)
- Started creating new packages > go/32629593cd827ebaf88981b56d205bea6c8b7c18. Done (00:00:02)
- Started creating new packages > redis-common/3747d5011f5405b1f8033653dae31b28e6839451. Done (00:00:00)
- Started creating new packages > redis/c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f. Done (00:00:00)
- Started creating new packages > ruby/9b59d2f2700da81a98c38c73cd27b6ccf26f188c. Done (00:00:00)
-    Done creating new packages (00:00:02)
-
- Started creating new jobs
- Started creating new jobs > broker-deregistrar/fd74f060a430d793ed734328638db0a5fee34395. Done (00:00:00)
- Started creating new jobs > broker-registrar/77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf. Done (00:00:00)
- Started creating new jobs > cf-redis-broker/a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8. Done (00:00:00)
- Started creating new jobs > dedicated-node/660e3ceee60783b8dcbc01fef065371370fe2265. Done (00:00:00)
- Started creating new jobs > smoke-tests/e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c. Done (00:00:00)
- Started creating new jobs > syslog-configurator/e74e363f8b9ac570f30b32d024e41ef2c89db03f. Done (00:00:00)
-    Done creating new jobs (00:00:00)
-
- Started release has been created > paasta-redis/2.0. Done (00:00:00)
-
-Task 2337 done
-
-Started        2017-01-13 06:03:46 UTC
-Finished  2017-01-13 06:03:49 UTC
-Duration  :00:03
-paasta-redis-:  96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo     | 104.6MB  10.7MB/s Time: 00:00:09
-
-Release uploaded
+   $ bosh releases
 ```
 
-<br>
--    업로드 된 Redis 릴리즈를 확인한다.
-```
-$ bosh releases
-```
-```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on 'bosh'
-
-+--------------------------+----------+-------------+
-| Name                     | Versions | Commit Hash |
-+--------------------------+----------+-------------+
-| cflinuxfs2-rootfs        | 1.40.0*  | 19fe09f4+   |
-| empty-release            | 1+dev.1* | 00000000    |
-| etcd                     | 86*      | 2dfbef00+   |
-| paasta-container         | 2.0*     | b857e171    |
-| paasta-controller        | 2.0*     | 0f315314    |
-| paasta-garden-runc       | 2.0*     | ea5f5d4d+   |
-| paasta-influxdb-grafana  | 2.0*     | 00000000    |
-| paasta-logsearch         | 2.0*     | 00000000    |
-| paasta-metrics-collector | 2.0*     | 00000000    |
-| paasta-redis             | 2.0      | 2d766084+   |
-+--------------------------+----------+-------------+
-(*) Currently deployed
-(+) Uncommitted changes
-
-Releases total: 10
-```
-
-<br>
-<div id='9'></div>
-###   2.3. Redis 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
-Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
-
--    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다. 
-예) vsphere 일 경우 paasta_redis_image_2.0.yml를 복사
-
--    Director UUID를 확인한다.
-BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
-
+-   Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 ```
-$ bosh status
-```
-```
-Config
-            /home/inception/.bosh_config
-
-Director
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
- Name       bosh
- URL        https://10.30.40.105:25555
- Version    .1.0 (00000000)
- User       admin
- UUID       d363905f-eaa0-4539-a461-8c1318498a32
- CPI        vsphere_cpi
- dns        disabled
- compiled_package_cache disabled
- snapshots  disabled
-
-Deployment
- Manifest   /home/inception/crossent-deploy/paasta-logsearch.yml
+  +--------------------+----------------+-------------+
+  | Name              | Versions        | Commit Hash |
+  +--------------------+----------------+-------------+
+  | cf-monitoring     | 0+dev.1\*       | 00000000    |
+  | cflinuxfs2-rootfs | 1.40.0\*        | 19fe09f4+   |
+  | etcd | 86\*       | 2dfbef00+       |             |
+  | logsearch         | 203.0.0+dev.1\* | 00000000    |
+  | metrics-collector | 0+dev.1\*       | 00000000    |
+  | paasta-container  | 0+dev.1\*       | b857e171    |
+  | paasta-controller | 0+dev.1\*       | 0f315314    |
+  | paasta-garden-runc| 2.0\*           | ea5f5d4d+   |
+  +--------------------+----------------+-------------+
+  (\*) Currently deployed
+  (+) Uncommitted changes
+  -------------------------------------------------------
 ```
 
-<br>
--    Deploy시 사용할 Stemcell을 확인한다.
+-   Mongodb 서비스 릴리즈를 업로드한다.
+
 ```
-$ bosh stemcells
+   $ bosh upload release {서비스 릴리즈 파일 PATH}
+   $ bosh upload release paasta-mongodb-shard-2.0.tgz
+  Uploading release
+  paasta-mongod: 96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | 111.0MB 22.9MB/s ETA: 00:00:00
+  Director task 692
+  Started extracting release > Extracting release. Done (00:00:01)
+  Started verifying manifest > Verifying manifest. Done (00:00:00)
+  Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)
+  Started creating new packages
+  Started creating new packages > mongodb\_broker/d547d39098e73acb70d58ab2be2c18c2410dfa5b. Done (00:00:01)
+  Started creating new packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:01)
+  Started creating new packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)
+  Started creating new packages > mongodb/b355ac045b257e6a0cec85874c6fb6e7abe92b6d. Done (00:00:00)
+  Done creating new packages (00:00:02)
+  Started creating new jobs
+  Started creating new jobs > mongodb\_slave/cd18c5187f44f8e3d1d2c7937047cc748a851a43. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker/10da2f3c0e374b01f818b28ff5ecb8044fd0cd1a. Done (00:00:00)
+  Started creating new jobs > mongodb\_config/dcb9c707d4e9757a150f540ee5af39efb8580f04. Done (00:00:01)
+  Started creating new jobs > mongodb\_master/adfc199c9d2f3aceaf31fe56e553e15faf605ee7. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker\_deregistrar/d797f068e89265313436b7c6439d93288d0fafbe. Done (00:00:00)
+  Started creating new jobs > mongodb\_shard/a549bee23d326211549a2dce9def42d85b655e4d. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker\_registrar/a4892a7dfec7acdc7ba0cd2618a79ee3b2f80d9b. Done (00:00:00)
+  Done creating new jobs (00:00:01)
+  Started release has been created > paasta-mongodb-shard/2.0. Done (00:00:00)
+  Task 692 done
+  Started 2017-01-16 04:16:20 UTC
+  Finished 2017-01-16 04:16:24 UTC
+  Duration 00:00:04
+  paasta-mongod: 96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | 111.3MB 11.0MB/s Time: 00:00:10
+  Release uploaded
 ```
+
+-   업로드 된 Mongodb 릴리즈를 확인한다.
+
 ```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on 'bosh'
+   $ bosh releases
+   $ bosh releases
+  Acting as user 'admin' on 'my-bosh'
+  +----------------------+----------------+-------------+
+  | Name                 | Versions      | Commit Hash  |
+  +----------------------+----------------+-------------+
+  | cf-monitoring        | 0+dev.1\*     | 00000000     |
+  | cflinuxfs2-rootfs    | 1.40.0\*      | 19fe09f4+    |
+  | etcd | 86\*          | 2dfbef00+     |              |
+  | logsearch            | 203.0.0+dev.1\* | 00000000   |
+  | metrics-collector    | 0+dev.1\*     | 00000000     |
+  | paasta-container     | 0+dev.1\*     | b857e171     |
+  | paasta-controller    | 0+dev.1\*     | 0f315314     |
+  | paasta-garden-runc   | 2.0\*         | ea5f5d4d+    |
+  | paasta-mongodb-shard | 2.0\*         | 85e3f01e+    |
+  +----------------------+----------------+-------------+
+  (\*) Currently deployed
+  (+) Uncommitted changes
+  Releases total: 9
 
-+------------------------------------------+---------------+---------+-----------------------------------------+
-| Name                                     | OS            | Version | CID                                     |
-+------------------------------------------+---------------+---------+-----------------------------------------+
-| bosh-vsphere-esxi-ubuntu-trusty-go_agent | ubuntu-trusty | 3263.8* | sc-af443b65-9335-43b1-9b64-6d1791a10428 |
-| bosh-vsphere-esxi-ubuntu-trusty-go_agent | ubuntu-trusty | 3309*   | sc-e00c788b-ac6b-4089-bc43-f56a3ffdb55a |
-+------------------------------------------+---------------+---------+-----------------------------------------+
+```  
+ -  Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
+  
+<div id='2-3'></div>
+###   2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
 
-(*) Currently in-use
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML[^2] 파일이다.
 
-Stemcells total: 2
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^3](OS, BOSH agent) 을 사용할것이며 Release[^4](Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
+
+-   PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는OpenStack용 Mongodb Deployment 화일인 paasta-mongodb-shard-openstack-2.0.yml를 복사한다.
+
+> 다운로드 받은 Deployment Yml 파일을 확인한다.
+> (paasta-mongodb-shard-openstack-2.0.yml)
+
 ```
-Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
+   $ ls –all
+```
+![mongodb_image_03]
+  
+-   Director UUID를 확인한다.
 
-<br>
--    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+> BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH
+> Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH
+> Director 에 target 되어 있는 UUID를 확인할수 있다.
 
+  ```
+   $ bosh status
+  ```
+  
+  ![mongodb_image_04]
+
+-   Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+
+  ```
+   $bosh stemcells
+  ```
+  ![mongodb_image_05]
+  
+  Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
+  
+-   paasta-mongodb-shard-openstack-2.0.yml Deployment 파일을 서버 환경에
+    맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 ```yaml
-# paasta-redis-service 설정 파일 내용
+  \# paasta-mongodb-shard-vsphere 설정 파일 내용
 
-name: paasta-redis-service                             # 서비스 배포이름(필수)
-director_uuid: 873c784d-3e91-4c78-95a3-b492024c389f    #bosh status 에서 확인한 Director UUID을 입력(필수)
-
-releases:
-- name: paasta-redis                                   #서비스 릴리즈 이름(필수)
-  version: 2.0                                         #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
-
-update:
-  canaries: 1                                          # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-180000                      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 6                                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
-
-compilation:                                           #컴파일시 필요한 가상머신의 속성(필수)
-  cloud_properties:            # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
-    cpu: 2
-    disk: 4096
-    ram: 4096
-  network: default                       # Networks block에서 선언한 network 이름(필수)
-  reuse_compilation_vms: true            # 컴파일지 VM 재사용 여부(옵션)
-  workers: 6                             # 컴파일 하는 가상머신의 최대수(필수)
-
-jobs:
-- instances: 1
-  name: paasta-redis-broker                # 작업 이름(필수)
-  networks:
+  name: paasta-mongodb-shard-service \# 서비스 배포이름(필수)
+  director\_uuid \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# \#bosh status 에서 확인한 Director UUID을 입력(필수)
+  release:
+  name: paasta-mongodb-shard \#서비스 릴리즈 이름(필수)
+  version: 2.0 \#서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  compilation: \# 컴파일시 필요한 가상머신의 속성(필수)
+  cloud\_properties: \# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance\_type, availability\_zone)
+  instance\_type: monitoring \# 인스턴스 타입: Flavors 타입 (필수)
+  network: default \# Networks block에서 선언한 network 이름(필수)
+  reuse\_compilation\_vms: true \# 컴파일지 VM 재사용 여부(옵션)
+  workers: 4 \# 컴파일 하는 가상머신의 최대수(필수)
+  \# this section describes how updates are handled
+  update:
+  canaries: 1 \# canary 인스턴스 수(필수)
+  canary\_watch\_time: 30000 \# canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update\_watch\_time: 30000 \# non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  max\_in\_flight: 4
+  networks: \# 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
   - name: default
-    static_ips:
-    - 10.30.60.71                          # 사용할 IP addresses 정의(필수)
-  persistent_disk: 4096                    # 영구적 디스크 사이즈 정의(옵션)
-  properties:
-    nats:                                  # paas-ta nats 정보
-      machines:
-      - 10.30.110.31
-      password: nats
-      port: 4222
-      user: nats
-  resource_pool: services-small 
-  templates:
-  - name: cf-redis-broker
-    release: paasta-redis
-  - name: syslog-configurator
-    release: paasta-redis
-- instances: 3
-  name: dedicated-node                        # 전용 노드
-  networks:
-  - name: default
-    static_ips:                              # 전용 노드 IP 목록(필수)
-    - 10.30.60.72
-    - 10.30.60.73
-    - 10.30.60.74
-  persistent_disk: 4096
-  resource_pool: services-small
-  templates:
-  - name: dedicated-node
-    release: paasta-redis
-  - name: syslog-configurator
-    release: paasta-redis
-
-- instances: 1
-  lifecycle: errand                                  # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
-  name: broker-registrar
-  networks:
-  - name: default
-  properties:
-    broker:
-      host: 10.30.60.71
-      name: paasta-redis-service
-      password: admin
-      username: admin
-  resource_pool: services-small
-  templates:
-  - name: broker-registrar
-    release: paasta-redis
-
-- instances: 1
-  lifecycle: errand
-  name: broker-deregistrar
-  networks:
-  - name: default
-  properties:
-    broker:
-      host: 10.30.60.71
-      name: paasta-redis-service
-      password: admin
-      username: admin
-  resource_pool: services-small
-  templates:
-  - name: broker-deregistrar
-    release: paasta-redis
-- instances: 1
-  lifecycle: errand
-  name: smoke-tests
-  networks:
-  - name: default
-  resource_pool: services-small
-  templates:
-  - name: smoke-tests
-    release: paasta-redis
-
-meta:
-  apps_domain: 115.68.46.186.xip.io
-  broker:                                                      # broker 정보 : 디폴트 포트 12350
-    host: paasta-redis-broker.115.68.46.186.xip.io
-    name: redis
-    password: admin
-    username: admin
-  cf:                                                          # paas-ta 정보
-    admin_password: admin
-    admin_username: admin
-    api_url: https://api.115.68.46.186.xip.io
-    apps_domain: 115.68.46.186.xip.io
-    skip_ssl_validation: false
-    system_domain: 115.68.46.186.xip.io
-  deployment_name: paasta-redis-service
-  director_uuid: d363905f-eaa0-4539-a461-8c1318498a32          # uuid 정보 bosh status
-  external_domain: 115.68.46.186.xip.io
-  nats:                                                        # nats 정보
-    machines:
-    - 10.30.110.31
-    password: nats
-    port: 4222
-    user: nats
-  redis:
-    bg_save_command: yetanotherrandomstring
-    broker:                                                       # broker 정보
-      dedicated_vm_plan_id: 48b35349-d3de-4e19-bc4a-66996ae07766
-      name: redis
-      service_id: 7aba7e52-f61b-4263-9de1-14e9d11fb67d
-      shared_vm_plan_id: 78bf886c-bc50-4f31-a03c-cb786a158286
-      subdomain: paasta-redis-broker
-    config_command: configalias
-    dedicated_plan:
-      instance_count: 3                                        # 전용노드 수
-    save_command: anotherrandomstring
-    shared_plan:
-      instance_limit: 10                                       # 공유 노드 수
-      max_memory: 262144000
-  release_name: paasta-redis
-  route_name: paasta-redis-broker
-  service_name: redis
-  syslog_aggregator: null
-networks:
-- name: default
   subnets:
-  - cloud_properties:
-      name: Internal                                            # vsphere 에서 사용하는 network 이름(필수)
-    dns:                                                        # dns 정보 
-    - 8.8.8.8
-    gateway: 10.30.20.23
-    name: default_unused
-    range: 10.30.0.0/16
-    reserved:                                                   # 설치시 제외할 IP 설정
-    - 10.30.0.1 - 10.30.10.254
-    - 10.30.40.1 - 10.30.60.70
-    - 10.30.60.81 - 10.30.254.254
-    static:                                                     #사용 가능한 IP 설정
-    - 10.30.60.71 - 10.30.60.80
-properties:
-  broker:                                                       # broker 정보
-    host: paasta-redis-broker.115.68.46.186.xip.io
-    name: redis
-    password: admin
-    username: admin
-  cf:                                                           # paas-ta 정보 
-    admin_password: admin
-    admin_username: admin
-    api_url: https://api.115.68.46.186.xip.io
-    apps_domain: 115.68.46.186.xip.io
-    skip_ssl_validation: false
-    system_domain: 115.68.46.186.xip.io
-  redis:
-    agent:
-      backend_port: 54321
-    bg_save_command: yetanotherrandomstring
-    broker:
-      auth:
-        password: admin
-        username: admin
-      backend_host: 10.30.60.71
-      backend_port: 12345
-      dedicated_nodes:
-      - 10.30.60.72
-      - 10.30.60.73
-      - 10.30.60.74
-      dedicated_vm_plan_id: 48b35349-d3de-4e19-bc4a-66996ae07766
-      enable_service_access: true
-      host: 10.30.60.71
-      name: redis
-      network: default
-      route_name: paasta-redis-broker
-      service_id: 7aba7e52-f61b-4263-9de1-14e9d11fb67d
-      service_instance_limit: 20                                    # 최대 서비스 인스턴스 개수
-      service_name: redis
-      shared_vm_plan_id: 78bf886c-bc50-4f31-a03c-cb786a158286
-      subdomain: redis-broker
-    config_command: configalias
-    host: 10.30.60.71
-    maxmemory: 262144000
-    save_command: anotherrandomstring
-  syslog_aggregator: null
+  - cloud\_properties:
+  net\_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317
+  security\_groups: \[bosh\]
+  dns: \# DNS 정보
+  - 10.244.3.4
+  - 8.8.8.8
+  gateway: 10.244.3.1
+  range: 10.244.3.0/24 \# 사용할 네트워크 범위
+  reserved: \# 설치시 제외할 IP 설정
+  - 10.244.3.2 - 10.244.3.140
 
-resource_pools:
-- cloud_properties:
-    cpu: 1
-    disk: 8192
-    ram: 1024
-  name: services-small
-  network: default 
+  static:
+  - 10.244.3.141 - 10.244.3.170 \#사용 가능한 IP 설정
+  
+  resource\_pools: \# 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+  
+  - cloud\_properties:
+  instance\_type: monitoring
+  env:
+  bosh: \#password: dhvms09!
+  password:  $6 $mwZOg/kA $r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
+  
+  \#bosh:
+  
+  \# password:  $6 $4gDD3aV0rdqlrKC $2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  
+  name: small \# 고유한 resource pool 이름
+  network: default
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-    version: "3309"
+  name: bosh-openstack-kvm-ubuntu-trusty-go\_agent \# stemcell 이름(필수)
+  version: 3309 \# stemcell 버전(필수)
 
-```
+  jobs:
+  - name: mongodb\_slave1 \#작업 이름(필수): mongodb replica set의 slave 서버
+  template: mongodb\_slave \# job template 이름(필수)
+  instances: 1 \# job 인스턴스 수(필수)
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  networks: \# 네트워크 구성정보
+  - name: default \# Networks block에서 선언한 network 이름(필수)
 
-<br>
--    Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
-```
-$ bosh deployment paasta_redis_image_2.0.yml
-```
-```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh'
-Getting deployment properties from director...
+  static\_ips: \# 사용할 IP addresses 정의(필수)
+  - 10.244.3.142
 
-Detecting deployment changes
-----------------------------
+  properties:
+  replSetName: op1 \# replicaSet1 의 이름
+  - name: mongodb\_master1 \#작업 이름(필수): mongodb replica set의 master 서버
+  template: mongodb\_master \# job template 이름(필수)
+  instances: 1 \# job 인스턴스 수(필수)
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks: \# 네트워크 구성정보
+  
+  - name: default \# Networks block에서 선언한 network 이름(필수)
+  
+  static\_ips:
+  
+  - 10.244.3.141 \# 사용할 IP addresses 정의(필수)
+  
+  properties:
+  
+  replSet\_hosts: \["10.244.3.141","10.244.3.142"\] \# 첫번째 Host는 replicaSet1의 master
+  
+  replSetName: op1 \# replicaSet1 의 이름
+  
+  - name: mongodb\_config
+  
+  template: mongodb\_config
+  
+  instances: 1
+  
+  resource\_pool: small
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks:
+  
+  - name: default
+  
+  static\_ips:
+  
+  - 10.244.3.150
+  
+  - name: mongodb\_shard
+  
+  template: mongodb\_shard
+  
+  instances: 1
+  
+  resource\_pool: small
+  
+  persistent\_disk: 9000 \# 영구적 디스크 사이즈 정의(옵션): 16G
+  
+  networks:
+  
+  - name: default
+  
+  static\_ips:
+  
+  - 10.244.3.170
+  
+  properties:
+  
+  bindIp: 0.0.0.0
+  
+  configsvr\_hosts: \# mongodb\_config hosts
+  
+  - 10.244.3.150
+  
+  repl\_name\_host\_list: \# mongodb\_master properties
+  
+  - op1/10.244.3.141 \# replicaSet1 의 이름/host
+  
+  \# - op2/10.244.3.144 \# replicaSet2 의 이름/host
+  
+  \# - op3/10.244.3.147 \# replicaSet3 의 이름/host
+  
+  - name: mongodb\_broker \#작업 이름(필수): mongodb 서비스 브로커
+  
+  template: mongodb\_broker \# job template 이름(필수)
+  
+  instances: 1 \# job 인스턴스 수(필수)
+  
+  resource\_pool: small \# resource\_pools block에 정의한 resource pool 이름(필수)
+  
+  networks: \# 네트워크 구성정보
+  
+  - name: default \# Networks block에서 선언한 network 이름(필수)
+  
+  static\_ips: \# 사용할 IP addresses 정의(필수)
+  
+  - 10.244.3.154
+  
+  - name : mongodb\_broker\_registrar \# 작업 이름: 서비스 브로커 등록
+  
+  template : mongodb\_broker\_registrar
+  
+  instances: 1
+  
+  lifecycle: errand \# bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
+  
+  resource\_pool: small
+  
+  networks:
+  
+  - name: default
+  
+  properties:
+  
+  broker: \# 서비스 브로커 설정 정보
+  
+  host: 10.244.3.154 \# 서비스 브로커 IP
+  
+  name: Mongo-DB \# CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
+  
+  password: cloudfoundry \# 브로커 접근 아이디 비밀번호(필수)
+  
+  username: admin \# 브로커 접근 아이디(필수)
+  
+  protocol: http
+  
+  port: 8080 \# 브로커 포트
+  
+  cf:
+  
+  admin\_password: admin \# CF 사용자의 패스워드
+  
+  admin\_username: admin \# CF 사용자 이름
+  
+  api\_url: https://api.api.115.68.151.188.xip.io \# CF 설치시 설정한 api uri 정보(필수)
+  
+  release: paasta-mongodb-shard
+  
+  - name : mongodb\_broker\_deregistrar \# 작업 이름: 서비스 브로커 삭제
+  
+  template : mongodb\_broker\_deregistrar
+  
+  instances: 1
+  
+  lifecycle: errand
+  
+  resource\_pool: small
+  
+  networks:
+  
+  - name: default
+  
+  properties:
+  
+  broker:
+  
+  host: 10.244.3.154
+  
+  name: Mongo-DB
+  
+  password: cloudfoundry
+  
+  username: admin
+  
+  protocol: http
+  
+  port: 8080
+  
+  cf:
+  
+  admin\_password: admin
+  
+  admin\_username: admin
+  
+  api\_url: https://api.115.68.151.188.xip.io
+  
+  release: paasta-mongodb-shard
+  
+  meta:
+  
+  apps\_domain: api.115.68.151.188.xip.io \# CF 설치시 설정한 apps 도메인 정보
+  
+  environment: null
+  
+  external\_domain: api.115.68.151.188.xip.io \# CF 설치시 설정한 외부 도메인 정보
+  
+  nats: \# CF 설치시 설정한 nats 정보
+  
+  machines:
+  
+  - 10.244.3.11
+  
+  password: admin
+  
+  port: 4222
+  
+  user: nats
+  
+  syslog\_aggregator: null
+  
+  properties:
+  
+  mongodb: \# mongodb shard release의 여러 job에서 공통적으로 하용하는 properties
+  
+  \# key는 shard를 구성할 때 mongos와 각 replicaSet의 인증을 하기위해 사용
+  
+  key: |
+  
+  +Qy+1icfeV8D2WXIfCojRjvYlryMVI2Ry+dAi8mYZ1H1Z9pDstRkOC0/oJYs0L/i
+  
+  +Dj/3PurWo8MJuqBYrWVGsRnsx31um0SVAgFZM2GQEKvHIByX5hq/MuHlulSLM0h
+  
+  GKkMT19zqDwFBFIN53jN0PLuuOnJ6FxZSb4cTLymfWM543WGpYx/31b8ehPYyeRp
+  
+  T7P2o2vUd9hecb8mQFxcjsBN7PTLwuPb5lK0BRL4Ze7rh6qeC8j7M3zimV8lX2X5
+  
+  9EtWlQP0ORYIlFpqijatZhS8Bf5AfI1EW6kZgfqwycl2ghxmSIbeleiqyQgYZNKQ
+  
+  yBXV9disuBXcKy4tsOjSFvKw7y61kjjQOn8KXElefokefdLbcrpeARP6LR9WwR1v
+  
+  ZTHcChfzWA4apHo6gJZkoqGVPjF4ArXTYxZfC+hHrsa5oe3XZjNapwV6XQfBNCuQ
+  
+  EihT3Td/B7iAUWJnGQvugFJwYKJ5EYOYubhk8QtO9QIvoZxQPDq9tgUsVgiQ6gty
+  
+  ZT83oxFAIgm3vky9l3uPwYi6jQ2FvsEJvDyiZl7gulOaC5UD/BdcM4Y5n/dxy/6Y
+  
+  qphWWuPsJwnYBXLJgwtTZ/NkYDYyX/tL9gyzXGPkpMMD7DofFjWEpJvHlVRKIxp1
+  
+  /zlxbVOMAmASgZDaqFperSQQyrfQqpuvAA8pRkWgorROyrsiRYYWlJZWWa4qHlI9
+  
+  OZ1dDp8o71l3v0SqsKbEtxINpdiUNx4OdafsMNN/KVxw9oGdrPXnDl5DomtmAoKZ
+  
+  uaCf3AQ3RsDeymgVX3j5EpLCHBhcPj+0B5tv4Yln652HAzDissOUKPyDf+PJaVRo
+  
+  OfDOkUvmuqnwl45DOoOtZ0BMw7hXGdgm6Xfv5jEmtSjJzQ1pfwHOOfiY+zZWhHAi
+  
+  ow/WNvLtUgNUhobi+OQb11bMMNNtmGWe+cZft6QzBsnd2xa/tAYTZDfAJ8OCvYQK
+  
+  e46UrHd54ZJFzdzicRZ8DeuU9G4K
+  
+  user: root \# admin 권한 사용자이름
+  
+  passwd: paasta \# admin 권한 사용자 비밀번호
+  
+  \# replSetName: op
+  
+  \# bindIp: 10.244.3.153 \# shard server ip
+  
+  port: 27017 \# mongodb port
+  
+  mongodb\_broker:
+  
+  db\_name: mongodb-broker \# mongodb broker 관리용 데이터베이스
+  
+  authsource: admin \# mongodb broker 관리용 데이터베이스에 접근할 때 인증정보가 있는 데이터베이스
+  
+  hosts: 10.244.3.153 \# mongodb Host
+  ```
 
-...<manifest 파일 내용 출력// 생략 >...
+-   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
-Please review all changes carefully 
+  ```
+   $ bosh deployment {Deployment manifest 파일 PATH}
+  
+   $ bosh deployment paasta-mongodb-shard-2.0.yml
+  
+  Deployment set to '/home/ubuntu/workspace/bd\_test/paasta-mongodb-shard-2.0.yml'
+  ```
 
-Deploying
----------
-Are you sure you want to deploy? (type 'yes' to continue): yes
+-   Mongodb 서비스팩을 배포한다.
 
-Director task 
-Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
+  ```
+   $ bosh deploy
+  
+  Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
+  
+  Getting deployment properties from director...
+  
+  Unable to get properties list from director, trying without it...
+  
+  Detecting deployment changes
+  
+  ----------------------------
+  
+  resource\_pools:
+  
+  …
+  
+  중략
+  
+  …
+  
+  Please review all changes carefully
+  
+  Deploying
+  
+  ---------
+  
+  Are you sure you want to deploy? (type 'yes' to continue): yes
+  
+  Director task 756
+  
+  Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
+  
+  Started preparing deployment > Preparing deployment. Done (00:00:01)
+  
+  Started preparing package compilation > Finding packages to compile. Done (00:00:00)
+  
+  Started creating missing vms
+  
+  Started creating missing vms > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd)
+  
+  Started creating missing vms > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)
+  
+  Started creating missing vms > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff)
+  
+  Done creating missing vms > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (00:01:20)
+  
+  Started creating missing vms > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)
+  
+  Done creating missing vms > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (00:01:24)
+  
+  Started creating missing vms > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598)
+  
+  Done creating missing vms > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (00:01:24)
+  
+  Done creating missing vms > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (00:01:21)
+  
+  Done creating missing vms > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (00:01:21)
+  
+  Done creating missing vms (00:02:45)
+  
+  Started updating job mongodb\_slave1 > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (canary). Done (00:01:11)
+  
+  Started updating job mongodb\_master1 > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (canary). Done (00:01:07)
+  
+  Started updating job mongodb\_config > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (canary). Done (00:01:15)
+  
+  Started updating job mongodb\_shard > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (canary). Done (00:01:13)
+  
+  Started updating job mongodb\_broker > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (canary). Done (00:00:48)
+  
+  Task 756 done
+  
+  Started 2017-01-16 09:19:33 UTC
+  
+  Finished 2017-01-16 09:27:53 UTC
+  
+  Duration 00:08:20
+  
+  Deployed 'paasta-mongodb-shard-service' to 'my-bosh'
+  ```
 
- Started preparing deployment > Preparing deployment. Done (00:00:02)
+-   배포된 Mongodb 서비스팩을 확인한다.
 
- Started preparing package compilation > Finding packages to compile. Done (00:00:00)
+  ```
+   $ bosh vms
 
- Started compiling packages
- Started compiling packages > cf-cli/33a64fb1b0ca68b3403fe5b0254e86ec7d672dba
- Started compiling packages > cf-redis-smoke-tests/b347f491c873fdd9e878c90defd276a82f980023
- Started compiling packages > redis/c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f
- Started compiling packages > cf-redis-nginx/dd15c82027671c74b108c52bcecb64fcaf9c0d38
- Started compiling packages > redis-common/3747d5011f5405b1f8033653dae31b28e6839451
- Started compiling packages > go/32629593cd827ebaf88981b56d205bea6c8b7c18
-    Done compiling packages > redis-common/3747d5011f5405b1f8033653dae31b28e6839451(00:01:17)
-    Done compiling packages > cf-redis-smoke-tests/b347f491c873fdd9e878c90defd276a82f980023(00:01:20)
-    Done compiling packages > cf-cli/33a64fb1b0ca68b3403fe5b0254e86ec7d672dba(00:01:22)
-    Done compiling packages > go/32629593cd827ebaf88981b56d205bea6c8b7c18(00:01:57)
- Started compiling packages > cf-redis-broker/f530f8b2135eac4a888c2da20177082eb081ee65
-    Done compiling packages > redis/c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f(00:02:20)
-    Done compiling packages > cf-redis-nginx/dd15c82027671c74b108c52bcecb64fcaf9c0d38(00:02:21)
-    Done compiling packages > cf-redis-broker/f530f8b2135eac4a888c2da20177082eb081ee65(00:00:26)
-    Done compiling packages (00:02:23)
+  Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
+  Director task 764
+  Task 764 done
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  | VM                                                       | State   | AZ  | VM Type | IPs          |
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  | mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) | running | n/a | small   | 10.244.3.154 |
+  | mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) | running | n/a | small   | 10.244.3.150 |
+  | mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)| running | n/a | small   | 10.244.3.141 |
+  | mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)  | running | n/a | small   | 10.244.3.170 |
+  | mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) | running | n/a | small   | 10.244.3.142 |
+  +----------------------------------------------------------+---------+-----+---------+--------------+
+  
+  VMs total: 5
+  ```
+<div id='2-4'></div>
+### 2.4. Mongodb 서비스 브로커 등록
 
- Started creating missing vms
- Started creating missing vms > paasta-redis-broker/113f1267-9b53-4e1c-94db-2e29abfbd687 (0)
- Started creating missing vms > dedicated-node/a90f1ed2-d7cd-437d-9671-b49901b1d7b3 (0)
- Started creating missing vms > dedicated-node/55611f55-db59-4c58-b74e-bf14deaea025 (1)
- Started creating missing vms > dedicated-node/c74d92c7-2d0f-4d51-9868-d7aad55167ee (2)
-    Done creating missing vms > dedicated-node/a90f1ed2-d7cd-437d-9671-b49901b1d7b3 (0)(00:01:05)
-    Done creating missing vms > dedicated-node/c74d92c7-2d0f-4d51-9868-d7aad55167ee (2)(00:01:06)
-    Done creating missing vms > dedicated-node/55611f55-db59-4c58-b74e-bf14deaea025 (1)(00:01:07)
-    Done creating missing vms > paasta-redis-broker/113f1267-9b53-4e1c-94db-2e29abfbd687 (0)(00:01:09)
-    Done creating missing vms (00:01:09)
+Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Mongodb 서비스 브로커를 등록해 주어야 한다.
 
- Started updating instance paasta-redis-broker> paasta-redis-broker/113f1267-9b53-4e1c-94db-2e29abfbd687 (0) (canary). Done (00:01:3)
- Started updating instance dedicated-node
- Started updating instance dedicated-node> dedicated-node/a90f1ed2-d7cd-437d-9671-b49901b1d7b3 (0) (canary). Done (00:01:36)
- Started updating instance dedicated-node> dedicated-node/55611f55-db59-4c58-b74e-bf14deaea025 (1)
- Started updating instance dedicated-node> dedicated-node/c74d92c7-2d0f-4d51-9868-d7aad55167ee (2). Done (00:01:31)
-    Done updating instance dedicated-node> dedicated-node/55611f55-db59-4c58-b74e-bf14deaea025 (1)(00:01:32)
-    Done updating instance dedicated-node(00:03:08)
+서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
 
-Task 2551 done
+-   서비스 브로커 목록을 확인한다.
 
-Started        2017-01-13 09:15:17 UTC
-Finished  2017-01-13 09:24:08 UTC
-Duration  :08:51
+  ```
+   $ cf service-brokers
+  ```
+  ![mongodb_image_06]
+  
+-   Mongodb 서비스 브로커를 등록한다.
 
-Deployed 'paasta-redis-service' to 'bosh'
-```
+  ```
+   $ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}
+  ```
+  -   서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+  
+  -   서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+  
+  -   서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+  ```
+   $ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http://10.30.60.54:8080
+  ```
+  ![mongodb_image_07]
 
-<br>
--    배포된 Redis 서비스팩을 확인한다.
-```
-$ bosh vms
-```
-```
-RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh'
+-   등록된 Mongodb 서비스 브로커를 확인한다.
 
-Director task 
+  ```
+   $ cf service-brokers
+  
+  ```
 
-Task 2415 done
+  ![mongodb_image_08]
 
-+--------------------------------------------------------------+---------+-----+----------------+-------------+
-| VM                                                           | State   | AZ  | VM Type        | IPs         |
-+--------------------------------------------------------------+---------+-----+----------------+-------------+
-| dedicated-node/0 (a1017de7-dbd9-4eeb-9790-996b69a9f06c)      | running | n/a | services-small | 10.30.60.72 |
-| dedicated-node/1 (4020a083-6bfa-431e-a047-2f567775cfbb)      | running | n/a | services-small | 10.30.60.73 |
-| dedicated-node/2 (904bd212-43dc-45ef-876e-37a9cad54d36)      | running | n/a | services-small | 10.30.60.74 |
-| paasta-redis-broker/0 (b1ed5994-741d-4e7c-9bf9-2406621b10ec) | running | n/a | services-small | 10.30.60.71 |
-+--------------------------------------------------------------+---------+-----+----------------+-------------+
+-   접근 가능한 서비스 목록을 확인한다.
 
-VMs total: 4
-```
+  ```
+   $ cf service-access
+  
+  ```
+  
+  ![mongodb_image_09]
+  
+  서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
-<br>
-<div id='10'></div>
-### 2.4. Redis 서비스 브로커 등록
-Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
-서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인하여야 한다
+-   특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시
+    확인한다. (전체 조직)
 
-<br>
-- 서비스 브로커 목록을 확인한다.
+  ```
+   $ cf enable-service-access Mongo-DB
+  
+   $ cf service-access
+  
+  ```
+  ![mongodb_image_10]
 
-```
-$ cf service-brokers
-```
-```
-Getting service brokers as admin...
+<div id='3'></div>
+#   3. Mongodb연동 Sample App 설명
 
-name                     url
-paasta-pinpoint-broker  http://10.30.70.82:8080
-```
+본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 Mongodb의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
-<br>
-- Redis 서비스 브로커를 등록한다.
-
-```
-cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} http://{서비스브로커 호스트}:{서비스브로커 포트}
-
-- 서비스브로커 이름 : 서비스 브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
-- 서비스브로커 사용자ID / 비밀번호 : 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
-- 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
-```
-```
-$ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80
-```
-```
-Creating service broker paasta-redis-brokeras admin...
-OK
-```
-
-<br>
-- 등록된 Redis 서비스 브로커를 확인한다.
-
-```
-$ cf service-brokers
-```
-```
-Getting service brokers as admin...
-
-name                     url
-paasta-pinpoint-broker  http://10.30.70.82:8080
-paasta-redis-broker     http://10.30.60.71:12350
-```
-
-<br>
-- 접근 가능한 서비스 목록을 확인한다.
-
-```
-$ cf service-access
-```
-```
-Getting service access as admin...
-broker: paasta-redis-broker
-  service   plan           access   orgs
-  redis     shared-vm      none
-  redis     dedicated-vm   none
-
-broker: paasta-pinpoint-broker
-  service    plan                access   orgs
-  Pinpoint   Pinpoint_standard   none
-```
-서비스 브로커 등록시 최초에는 접근을 허용하지 않는다. 따라서 access는 none으로 설정된다.
-
-<br>
-- 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
-
-```
-$ cf enable-service-access redis-sb
-```
-```
-$ cf service-access
-```
-```
-Getting service access as admin...
-broker: paasta-redis-broker
-  service   plan           access   orgs
-  redis     shared-vm      all
-  redis     dedicated-vm   all
-
-broker: paasta-pinpoint-broker
-  service    plan                access   orgs
-  Pinpoint   Pinpoint_standard   none
-```
-
-<br>
-<div id='11'></div>
-#   3. Redis연동 Sample App 설명
-본 Sample App은 PaaS-TA에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
-
-<br>
-<div id='12'></div>
+<div id='3-1'></div>
 ### 3.1. Sample App 구조
-Sample App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
 
-Sample App 구조는 다음과 같다.
+Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Mongodb 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Mongodb 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+
+Sample Web App 구조는 다음과 같다.
+
 <table>
-  <tr>
+  <th>
     <td>이름</td>
     <td>설명</td>
-  </tr>
+  </th>
   <tr>
-    <td>lib</td>
-    <td>Sample 소스디렉토리</td>
+    <td>src</td>
+    <td>Sample 소스 디렉토리/td>
   </tr>
   <tr>
     <td>manifest.yml</td>
-    <td>PaaS-TA에 app 배포시 필요한 설정을 저장하는 파일</td>
+    <td>개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
   </tr>
   <tr>
-    <td>Gemfile</td>
-    <td>Sample App 구동시 필요한 ruby gem 설정 파일</td>
+    <td>build.gradle</td>
+    <td>gradle project 설정 파일</td>
   </tr>
   <tr>
-    <td>config.ru</td>
-    <td>Sample App 구동 파일</td>
+    <td>build</td>
+    <td>gradle 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)</td>
   </tr>
 </table>
 
-<br>
-- PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 복사한다.
 
-><div>$ ls -all</div>
->![redis_image_02]
+-   PaaS-TA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는
+    Mongodb Sample Web App인 hello-spring-mongodb 를복사한다.
 
-<br>
-<div id='13'></div>
-### 3.2. PaaS-TA에서 서비스 신청
-Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
-*참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+  ```
+   $ ls -all
+  
+  ```
+  ![mongodb_image_11]
 
-<br>
-- 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
+<div id='3-2'></div>
+### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+--------------------------------------------
 
-><div>$ cf marketplace</div>
->![redis_image_03]
+Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 
-<br>
-- Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
+\*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는
+사용자로 로그인이 되어 있어야 한다.
 
-```
-$ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
-- 서비스명 : redis로 Marketplace에서 보여지는 서비스 명칭이다.
-- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vm 플랜을 지원한다.
-- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
-```
+-   먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
-><div>$ cf create-service redis shared-vm redis-service-instance</div>
->![redis_image_04]
+  ```
+   $ cf marketplace
+  
+  ```
+  ![mongodb_image_12]
 
-<br>
-- 생성된 Redis 서비스 인스턴스를 확인한다.
+-   Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을
+    한다.
 
-><div>$ cf services</div>
->![redis_image_05]
+  ```
+   $ cf create-service {서비스명} {서비스플랜} {내서비스명}
+  
+  ```
+  -   서비스명 : Mongo-DB로 Marketplace에서 보여지는 서비스 명칭이다.
+  -   서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다.
+  -   내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 
-<br>
-<div id='14'></div>
+```  
+   $ cf create-service Mongo-DB default-plan mongodb-service-instance
+```  
+  ![mongodb_image_13]
+
+-   생성된 Mongodb 서비스 인스턴스를 확인한다.
+
+  ```
+   $ cf services
+  
+  ```
+  ![mongodb_image_14]
+
+<div id='3-3'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
-*참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+-----------------------------------------------------
 
+서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스
+인스턴스를 Bind 하여 App에서 Mongodb 서비스를 이용한다.
+
+\*참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할
+수 있는 사용자로 로그인이 되어 있어야 한다.
+
+-   Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
+
+  ```
+   $ cd hello-spring-mongodb
+   $ vi manifest.yml
+  ```
+
+  ```yaml
+  ---
+  applications:
+  
+  - name: hello-spring-mongodb \#배포할 App 이름
+  
+  memory: 512M \# 배포시 메모리 사이즈
+  
+  instances: 1 \# 배포 인스턴스 수
+  
+  path: ./build/libs/hello-spring-mongodb.war \#배포하는 App 파일 PATH
+  
+  참고: ./build/libs/hello-spring-mongodb.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
+  ```
+
+-   --no-start 옵션으로 App을 배포한다.
+
+> --no-start: App 배포시 구동은 하지 않는다.
+
+  ```
+   $ cf push --no-start
+  
+  ```
+  ![mongodb_image_15]
+
+-   배포된 Sample App을 확인하고 로그를 수행한다.
+
+  ```
+   $ cf apps
+  
+  ![mongodb_image_16]
+  
+   $ cf logs {배포된 App명}
+  
+   $ cf logs hello-spring-mongodb
+  
+  ![mongodb_image_17]
+
+  ```
+
+-   Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
+
+  ```
+   $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
+  
+  ![mongodb_image_18]
+  ```
+
+-   바인드가 적용되기 위해서 App을 재기동한다.
+
+  ```
+   $ cf restart hello-spring-mongodb
+  
+  ![mongodb_image_19]
+  ```
+
+-   (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이
+    안될 경우 보안 그룹을 추가한다.
+
+  -------------------------------------------------------------------------------------------
+  -   rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
+  
+   $ vi rule.json
+  
+  \[
+  
+  {
+  
+  "protocol": "tcp",
+  
+  "destination": "10.20.0.153",
+  
+  "ports": "27017"
+  
+  }
+  
+  > \]
+  
+  -   보안 그룹을 생성한다.
+  
+   $ cf create-security-group Mongo-DB rule.json
+  
+  ![mongodb_image_20]
+  
+  -   모든 App에 Mongodb 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
+  
+   $ cf bind-running-security-group Mongo-DB
+  
+  ![mongodb_image_21]
+  
+  -   App을 리부팅 한다.
+  
+   $ cf restart hello-spring-Mongodb
+  
+  ![mongodb_image_22]
+  -------------------------------------------------------------------------------------------
+
+-   App이 정상적으로 Mongodb 서비스를 사용하는지 확인한다.
+
+  -   curl 로 확인
+  
+  ```
+   $ curl hello-spring-Mongodb.115.68.46.30.xip.io
+  ```
+
+  ![mongodb_image_23]
+  
+  -   브라우져에서 확인
+  
+  ![mongodb_image_24]
+
+<div id='4'></div>
+# 4. Mongodb Client 툴 접속
+======================
+
+Application에 바인딩된 Mongodb 서비스 연결정보는 Private IP로 구성되어
+있기 때문에 Mongodb Client 툴에서 직접 연결할수 없다. 따라서 SSH 터널,
+Proxy 터널 등을 제공하는 Mongodb Client 툴을 사용해서 연결하여야 한다.
+본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Mongodb Client
+툴로써는 MongoChef 로 가이드한다. MongoChef 에서 접속하기 위해서 먼저
+SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로
+접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP
+와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이
+부분은 OpenStack관리자 및 PaaS-TA 운영자에게 문의하여 구성한다.
+
+<div id='4-1'></div>
+### 4.1.  MongoChef 설치 & 연결
+
+MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
+
+-   MongoChef을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을
+    다운로드 한다.\
+    [http://3t.io/mongochef/download/platform/](http://3t.io/mongochef/download/platform/)\
+    ![mongodb_image_25]
+
+-   다운로드한 설치파일을 실행한다.\
+    ![mongodb_image_26]
+
+-   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.\
+    ![mongodb_image_27]
+
+-   프로그램 라이선스에 관련된 내용이다. 동의(I accept the terms in the
+    License Agreement)에 체크 후 Next 버튼을 클릭한다.\
+    ![mongodb_image_28]
+
+-   MongoChef 을 설치할 경로를 설정 후 Next 버튼을 클릭한다.
+
+> 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files
+> 폴더에 설치가 된다.\
+> ![mongodb_image_29]
+
+-   Install 버튼을 클릭하여 설치를 진행한다.\
+    ![mongodb_image_30]
+
+-   Finish 버튼 클릭으로 설치를 완료한다.\
+    ![mongodb_image_31]
+
+-   MongoChef를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에
+    접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect버튼을
+    클릭한다.\
+    ![mongodb_image_32]
+
+-   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.\
+    ![mongodb_image_33]
+
+-   Server에 접속하기 위한 Connection 정보를 입력한다.\
+    ![mongodb_image_34]
+    서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf
+    env &lt;app\_name&gt; 명령어로 이용하여 확인한다.\
+    예)  $ cf env hello-spring-mongodb\
+    ![mongodb_image_35]
+
+-   Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.\
+    ![mongodb_image_36]
+
+> SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링
+> 가능한 서버 정보를 입력한다. 
+  ![mongodb_image_37]
+> \
 <br>
-- Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
-
-```
-$ cd redis-example-app
-```
-```
-$ vi manifest.yml
-```
-```yaml
----
-applications:
-- name: redis-example-app    # 배포할 App 이름
-  memory: 256M               # 배포시 메모리 크기
-  instances: 1               # 배포시인스턴스 수
-path: .                      # 배포시 구동되는 Path
-```
-
+> 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를
+> 한다.\
+> ![mongodb_image_38]
 <br>
-- --no-start 옵션으로 App을 배포한다. 
---no-start: App 배포시 구동은 하지 않는다.
+> \
+> 모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 눌러
+> 빠져나온다.
 
-><div>$ cf push --no-start<br></div>
->![redis_image_06]
+-   Save 버튼을 눌러 작성한 접속정보를 저장한다.
 
-- 배포된 Sample App을 확인하고 로그를 수행한다.
+> ![mongodb_image_39]
 
-><div>$ cf apps<br></div>
->![redis_image_07]
-><div>$ cf logs {배포된 App명}
->$ cf logs redis-example-app</div>
->![redis_image_08]
+-   방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.\
+    > ![mongodb_image_40]
 
-- Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
+-   접속이 완료되면 좌측에 스키마 정보가 나타난다. 컬럼을 더블클릭
+    해보면 우측에 적재되어있는 데이터가 출력된다.\
+    > ![mongodb_image_41]
 
-><div>$ cf bind-service redis-example-appredis-service-instance</div>
->![redis_image_09]
+-   우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을
+    클릭한다.
 
-- 바인드가 적용되기 위해서 App을 재기동한다.
+> 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.\
+> ![mongodb_image_42]
 
-><div>$ cf restart redis-example-app</div>
->![redis_image_10]
+[^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
+    변경 내용을 기술한다.)
 
-- App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
+[^2]: YAML Ain’t Markup Language, http://www.yaml.org,
+    http://ko.wikipedia.org/wiki/YAML
 
-><div>- curl 로 확인<br>
-- Redis Application 을 이용하여 Key 값으로 데이터 저장<br>
-$ export APP=redis-example-app.controller.open-paas.com<br>
-$ curl -X PUT $APP/foo -d 'data=bar'<br>
-><div>
->![redis_image_11]
-><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
-$ curl -X GET $APP/foo<br>
-></div>
->![redis_image_12]
-><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
-$ curl -X DELETE $APP/foo<br>
-></div>
->![redis_image_13]
+[^3]: BOSH가 Stemcell로부터 복사된 VM을 제어할 수 있도록 BOSH Agent가
+    내장되어 있는데 이를 “Stemcell”이라 부른다.
 
-<br>
-<div id='15'></div>
-# 4. Redis Client 툴 접속
-Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 PaaS-TA에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 PaaS-TA 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
+[^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
 
-<div id='16'></div>
-### 4.1. Redis Desktop Manager 설치 및 연결
-Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
-- Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
-[**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
-![redis_image_14]
-
-- 다운로드한 설치파일을 실행한다.<br>
-![redis_image_15]
-
-- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
-![redis_image_16]
-
-- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
-![redis_image_17]
-
-- Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
-별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
-![redis_image_18]
-
-- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
-![redis_image_19]
-
-- Finish 버튼 클릭으로 설치를 완료한다.<br>
-![redis_image_20]
-
-- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
-![redis_image_21]
-
-- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
-![redis_image_22]
-
-- 서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
-예) $ cfenvredis-example-app<br>
-![redis_image_23]
-
-- SSH Tunnel탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
-(참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
-![redis_image_24]
-
-- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
-![redis_image_25]
-
-- 신규 키 등록후 확인<br>
-![redis_image_26]
-
-[redis_image_01]:/images/paasta-service/redis/redis_image_01.png
-[redis_image_02]:/images/paasta-service/redis/redis_image_02.png
-[redis_image_03]:/images/paasta-service/redis/redis_image_03.png
-[redis_image_04]:/images/paasta-service/redis/redis_image_04.png
-[redis_image_05]:/images/paasta-service/redis/redis_image_05.png
-[redis_image_06]:/images/paasta-service/redis/redis_image_06.png
-[redis_image_07]:/images/paasta-service/redis/redis_image_07.png
-[redis_image_08]:/images/paasta-service/redis/redis_image_08.png
-[redis_image_09]:/images/paasta-service/redis/redis_image_09.png
-[redis_image_10]:/images/paasta-service/redis/redis_image_10.png
-[redis_image_11]:/images/paasta-service/redis/redis_image_11.png
-[redis_image_12]:/images/paasta-service/redis/redis_image_12.png
-[redis_image_13]:/images/paasta-service/redis/redis_image_13.png
-[redis_image_14]:/images/paasta-service/redis/redis_image_14.png
-[redis_image_15]:/images/paasta-service/redis/redis_image_15.png
-[redis_image_16]:/images/paasta-service/redis/redis_image_16.png
-[redis_image_17]:/images/paasta-service/redis/redis_image_17.png
-[redis_image_18]:/images/paasta-service/redis/redis_image_18.png
-[redis_image_19]:/images/paasta-service/redis/redis_image_19.png
-[redis_image_20]:/images/paasta-service/redis/redis_image_20.png
-[redis_image_21]:/images/paasta-service/redis/redis_image_21.png
-[redis_image_22]:/images/paasta-service/redis/redis_image_22.png
-[redis_image_23]:/images/paasta-service/redis/redis_image_23.png
-[redis_image_24]:/images/paasta-service/redis/redis_image_24.png
-[redis_image_25]:/images/paasta-service/redis/redis_image_25.png
-[redis_image_26]:/images/paasta-service/redis/redis_image_26.png
+[mongodb_image_01]:/images/paasta-service/mongodb/mongodb_1.png
+[mongodb_image_02]:/images/paasta-service/mongodb/mongodb_2.png
+[mongodb_image_03]:/images/paasta-service/mongodb/mongodb_3.png
+[mongodb_image_04]:/images/paasta-service/mongodb/mongodb_4.png
+[mongodb_image_05]:/images/paasta-service/mongodb/mongodb_5.png
+[mongodb_image_06]:/images/paasta-service/mongodb/mongodb_6.png
+[mongodb_image_07]:/images/paasta-service/mongodb/mongodb_7.png
+[mongodb_image_08]:/images/paasta-service/mongodb/mongodb_8.png
+[mongodb_image_09]:/images/paasta-service/mongodb/mongodb_9.png
+[mongodb_image_10]:/images/paasta-service/mongodb/mongodb_10.png
+[mongodb_image_11]:/images/paasta-service/mongodb/mongodb_11.png
+[mongodb_image_12]:/images/paasta-service/mongodb/mongodb_12.png
+[mongodb_image_13]:/images/paasta-service/mongodb/mongodb_13.png
+[mongodb_image_14]:/images/paasta-service/mongodb/mongodb_14.png
+[mongodb_image_15]:/images/paasta-service/mongodb/mongodb_15.png
+[mongodb_image_16]:/images/paasta-service/mongodb/mongodb_16.png
+[mongodb_image_17]:/images/paasta-service/mongodb/mongodb_17.png
+[mongodb_image_18]:/images/paasta-service/mongodb/mongodb_18.png
+[mongodb_image_19]:/images/paasta-service/mongodb/mongodb_19.png
+[mongodb_image_20]:/images/paasta-service/mongodb/mongodb_20.png
+[mongodb_image_21]:/images/paasta-service/mongodb/mongodb_21.png
+[mongodb_image_22]:/images/paasta-service/mongodb/mongodb_22.png
+[mongodb_image_23]:/images/paasta-service/mongodb/mongodb_23.png
+[mongodb_image_24]:/images/paasta-service/mongodb/mongodb_24.png
+[mongodb_image_25]:/images/paasta-service/mongodb/mongodb_25.png
+[mongodb_image_26]:/images/paasta-service/mongodb/mongodb_26.png
+[mongodb_image_27]:/images/paasta-service/mongodb/mongodb_27.png
+[mongodb_image_28]:/images/paasta-service/mongodb/mongodb_28.png
+[mongodb_image_29]:/images/paasta-service/mongodb/mongodb_29.png
+[mongodb_image_30]:/images/paasta-service/mongodb/mongodb_30.png
+[mongodb_image_31]:/images/paasta-service/mongodb/mongodb_31.png
+[mongodb_image_32]:/images/paasta-service/mongodb/mongodb_32.png
+[mongodb_image_33]:/images/paasta-service/mongodb/mongodb_33.png
+[mongodb_image_34]:/images/paasta-service/mongodb/mongodb_34.png
+[mongodb_image_35]:/images/paasta-service/mongodb/mongodb_35.png
+[mongodb_image_36]:/images/paasta-service/mongodb/mongodb_36.png
+[mongodb_image_37]:/images/paasta-service/mongodb/mongodb_37.png
+[mongodb_image_38]:/images/paasta-service/mongodb/mongodb_38.png
+[mongodb_image_39]:/images/paasta-service/mongodb/mongodb_39.png
+[mongodb_image_40]:/images/paasta-service/mongodb/mongodb_40.png
+[mongodb_image_41]:/images/paasta-service/mongodb/mongodb_41.png
+[mongodb_image_42]:/images/paasta-service/mongodb/mongodb_42.png
