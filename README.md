@@ -12,7 +12,7 @@
 [AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 - 플랫폼 설치
-  - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/Documents-PaaSTA-1.0/Install-Guide/Platform Install System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
+  - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/Install-Guide/Platform Install System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
   - [플랫폼 설치 자동화 (PaaS-TA v2.0)](./Install-Guide/Platform Install System/PaaS-TA 플랫폼 설치자동화 설치가이드_v1.0.md)
  
 ## 서비스 설치 가이드
