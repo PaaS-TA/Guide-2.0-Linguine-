@@ -2,10 +2,10 @@
 
 ## 플랫폼 설치 가이드
 - [설치 파일 다운로드 받기](./Download_Page.md)
-
 - 플랫폼 설치
   - [플랫폼 설치 자동화 (PaaS-TA v1.0)](../../../Documents-PaaSTA-1.0/blob/master/Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
   - [플랫폼 설치 자동화 (PaaS-TA v2.0)](./Install-Guide/Platform Install System/PaaS-TA_플랫폼_설치_자동화_설치_가이드.md)
+  
 - PaaS-TA 미터링 설치
   - [PaaS-TA 미터링](./Install-Guide/metering/PaaS-TA_Metering_설치_가이드.md)
   
