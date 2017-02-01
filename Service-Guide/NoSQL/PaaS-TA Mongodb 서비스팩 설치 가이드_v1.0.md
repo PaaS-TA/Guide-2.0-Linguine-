@@ -44,10 +44,10 @@
 ![시스템구성도][mongodb_image_2]
 
 <table>
-  <th>
+  <td>
     <td>구분</td>
     <td>스펙</td>
-  </th>
+  </td>
   <tr>
     <td>openpaas-mongodb-broker</td>
     <td>1vCPU / 1GB RAM / 8GB Disk</td>
@@ -136,25 +136,25 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
   Uploading release
   paasta-mongod: 96% |oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | 111.0MB 22.9MB/s ETA: 00:00:00
   Director task 692
-  Started extracting release &gt; Extracting release. Done (00:00:01)
-  Started verifying manifest &gt; Verifying manifest. Done (00:00:00)
-  Started resolving package dependencies &gt; Resolving package dependencies. Done (00:00:00)
+  Started extracting release > Extracting release. Done (00:00:01)
+  Started verifying manifest > Verifying manifest. Done (00:00:00)
+  Started resolving package dependencies > Resolving package dependencies. Done (00:00:00)
   Started creating new packages
-  Started creating new packages &gt; mongodb\_broker/d547d39098e73acb70d58ab2be2c18c2410dfa5b. Done (00:00:01)
-  Started creating new packages &gt; java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:01)
-  Started creating new packages &gt; cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)
-  Started creating new packages &gt; mongodb/b355ac045b257e6a0cec85874c6fb6e7abe92b6d. Done (00:00:00)
+  Started creating new packages > mongodb\_broker/d547d39098e73acb70d58ab2be2c18c2410dfa5b. Done (00:00:01)
+  Started creating new packages > java7/cb28502f6e89870255182ea76e9029c7e9ec1862. Done (00:00:01)
+  Started creating new packages > cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0. Done (00:00:00)
+  Started creating new packages > mongodb/b355ac045b257e6a0cec85874c6fb6e7abe92b6d. Done (00:00:00)
   Done creating new packages (00:00:02)
   Started creating new jobs
-  Started creating new jobs &gt; mongodb\_slave/cd18c5187f44f8e3d1d2c7937047cc748a851a43. Done (00:00:00)
-  Started creating new jobs &gt; mongodb\_broker/10da2f3c0e374b01f818b28ff5ecb8044fd0cd1a. Done (00:00:00)
-  Started creating new jobs &gt; mongodb\_config/dcb9c707d4e9757a150f540ee5af39efb8580f04. Done (00:00:01)
-  Started creating new jobs &gt; mongodb\_master/adfc199c9d2f3aceaf31fe56e553e15faf605ee7. Done (00:00:00)
-  Started creating new jobs &gt; mongodb\_broker\_deregistrar/d797f068e89265313436b7c6439d93288d0fafbe. Done (00:00:00)
-  Started creating new jobs &gt; mongodb\_shard/a549bee23d326211549a2dce9def42d85b655e4d. Done (00:00:00)
-  Started creating new jobs &gt; mongodb\_broker\_registrar/a4892a7dfec7acdc7ba0cd2618a79ee3b2f80d9b. Done (00:00:00)
+  Started creating new jobs > mongodb\_slave/cd18c5187f44f8e3d1d2c7937047cc748a851a43. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker/10da2f3c0e374b01f818b28ff5ecb8044fd0cd1a. Done (00:00:00)
+  Started creating new jobs > mongodb\_config/dcb9c707d4e9757a150f540ee5af39efb8580f04. Done (00:00:01)
+  Started creating new jobs > mongodb\_master/adfc199c9d2f3aceaf31fe56e553e15faf605ee7. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker\_deregistrar/d797f068e89265313436b7c6439d93288d0fafbe. Done (00:00:00)
+  Started creating new jobs > mongodb\_shard/a549bee23d326211549a2dce9def42d85b655e4d. Done (00:00:00)
+  Started creating new jobs > mongodb\_broker\_registrar/a4892a7dfec7acdc7ba0cd2618a79ee3b2f80d9b. Done (00:00:00)
   Done creating new jobs (00:00:01)
-  Started release has been created &gt; paasta-mongodb-shard/2.0. Done (00:00:00)
+  Started release has been created > paasta-mongodb-shard/2.0. Done (00:00:00)
   Task 692 done
   Started 2017-01-16 04:16:20 UTC
   Finished 2017-01-16 04:16:24 UTC
@@ -216,7 +216,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^
    $ bosh status
   ```
   
-  ![mongodb_image_4.png]
+  ![mongodb_image_4]
 
 -   Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
 
@@ -228,7 +228,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^
   Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
   
 -   paasta-mongodb-shard-openstack-2.0.yml Deployment 파일을 서버 환경에
-    맞게 수정한다. 
+    맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 ```yaml
   \# paasta-mongodb-shard-vsphere 설정 파일 내용
 
@@ -592,43 +592,43 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^
   
   Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
   
-  Started preparing deployment &gt; Preparing deployment. Done (00:00:01)
+  Started preparing deployment > Preparing deployment. Done (00:00:01)
   
-  Started preparing package compilation &gt; Finding packages to compile. Done (00:00:00)
+  Started preparing package compilation > Finding packages to compile. Done (00:00:00)
   
   Started creating missing vms
   
-  Started creating missing vms &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd)
+  Started creating missing vms > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd)
   
-  Started creating missing vms &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)
+  Started creating missing vms > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)
   
-  Started creating missing vms &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff)
+  Started creating missing vms > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff)
   
-  Done creating missing vms &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (00:01:20)
+  Done creating missing vms > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (00:01:20)
   
-  Started creating missing vms &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)
+  Started creating missing vms > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)
   
-  Done creating missing vms &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (00:01:24)
+  Done creating missing vms > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (00:01:24)
   
-  Started creating missing vms &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598)
+  Started creating missing vms > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598)
   
-  Done creating missing vms &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (00:01:24)
+  Done creating missing vms > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (00:01:24)
   
-  Done creating missing vms &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (00:01:21)
+  Done creating missing vms > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (00:01:21)
   
-  Done creating missing vms &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (00:01:21)
+  Done creating missing vms > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (00:01:21)
   
   Done creating missing vms (00:02:45)
   
-  Started updating job mongodb\_slave1 &gt; mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (canary). Done (00:01:11)
+  Started updating job mongodb\_slave1 > mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) (canary). Done (00:01:11)
   
-  Started updating job mongodb\_master1 &gt; mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (canary). Done (00:01:07)
+  Started updating job mongodb\_master1 > mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c) (canary). Done (00:01:07)
   
-  Started updating job mongodb\_config &gt; mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (canary). Done (00:01:15)
+  Started updating job mongodb\_config > mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) (canary). Done (00:01:15)
   
-  Started updating job mongodb\_shard &gt; mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (canary). Done (00:01:13)
+  Started updating job mongodb\_shard > mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00) (canary). Done (00:01:13)
   
-  Started updating job mongodb\_broker &gt; mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (canary). Done (00:00:48)
+  Started updating job mongodb\_broker > mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) (canary). Done (00:00:48)
   
   Task 756 done
   
@@ -697,7 +697,7 @@ Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
   
   ```
 
-  ![mongodb_image_8.png]
+  ![mongodb_image_8]
 
 -   접근 가능한 서비스 목록을 확인한다.
 
@@ -764,7 +764,7 @@ Sample Web App 구조는 다음과 같다.
    $ ls -all
   
   ```
-  ![mongodb_image_21]
+  ![mongodb_image_11]
 
 <div id='3-2'></div>
 ### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
@@ -781,7 +781,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
    $ cf marketplace
   
   ```
-  ![mongodb_image_22.png]
+  ![mongodb_image_12]
 
 -   Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을
     한다.
@@ -797,7 +797,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 ```  
    $ cf create-service Mongo-DB default-plan mongodb-service-instance
 ```  
-  ![mongodb_image_23]
+  ![mongodb_image_13]
 
 -   생성된 Mongodb 서비스 인스턴스를 확인한다.
 
@@ -805,7 +805,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
    $ cf services
   
   ```
-  ![mongodb_image_24.png]
+  ![mongodb_image_14]
 
 <div id='3-3'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
@@ -847,20 +847,20 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
    $ cf push --no-start
   
   ```
-  ![mongodb_image_25.png]
+  ![mongodb_image_15]
 
 -   배포된 Sample App을 확인하고 로그를 수행한다.
 
   ```
    $ cf apps
   
-  ![mongodb_image_26.png]
+  ![mongodb_image_16]
   
    $ cf logs {배포된 App명}
   
    $ cf logs hello-spring-mongodb
   
-  ![mongodb_image_27.png]
+  ![mongodb_image_17]
 
   ```
 
@@ -869,7 +869,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
   ```
    $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
   
-  ![mongodb_image_28.png]
+  ![mongodb_image_18]
   ```
 
 -   바인드가 적용되기 위해서 App을 재기동한다.
@@ -877,7 +877,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
   ```
    $ cf restart hello-spring-mongodb
   
-  ![mongodb_image_29]
+  ![mongodb_image_19]
   ```
 
 -   (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이
@@ -906,19 +906,19 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
   
    $ cf create-security-group Mongo-DB rule.json
   
-  ![mongodb_image_19]
+  ![mongodb_image_20]
   
   -   모든 App에 Mongodb 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
   
    $ cf bind-running-security-group Mongo-DB
   
-  ![mongodb_image_20]
+  ![mongodb_image_21]
   
   -   App을 리부팅 한다.
   
    $ cf restart hello-spring-Mongodb
   
-  ![mongodb_image_21.png]
+  ![mongodb_image_22]
   -------------------------------------------------------------------------------------------
 
 -   App이 정상적으로 Mongodb 서비스를 사용하는지 확인한다.
@@ -929,11 +929,11 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
    $ curl hello-spring-Mongodb.115.68.46.30.xip.io
   ```
 
-  ![mongodb_image_22]
+  ![mongodb_image_23]
   
   -   브라우져에서 확인
   
-  ![mongodb_image_23]
+  ![mongodb_image_24]
 
 <div id='4'></div>
 # 4. Mongodb Client 툴 접속
@@ -957,56 +957,56 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 -   MongoChef을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을
     다운로드 한다.\
     [http://3t.io/mongochef/download/platform/](http://3t.io/mongochef/download/platform/)\
-    ![mongodb_image_24]
-
--   다운로드한 설치파일을 실행한다.\
     ![mongodb_image_25]
 
--   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.\
+-   다운로드한 설치파일을 실행한다.\
     ![mongodb_image_26]
+
+-   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.\
+    ![mongodb_image_27]
 
 -   프로그램 라이선스에 관련된 내용이다. 동의(I accept the terms in the
     License Agreement)에 체크 후 Next 버튼을 클릭한다.\
-    ![mongodb_image_27]
+    ![mongodb_image_28]
 
 -   MongoChef 을 설치할 경로를 설정 후 Next 버튼을 클릭한다.
 
 > 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files
 > 폴더에 설치가 된다.\
-> ![mongodb_image_28]
+> ![mongodb_image_29]
 
 -   Install 버튼을 클릭하여 설치를 진행한다.\
-    ![mongodb_image_29]
+    ![mongodb_image_30]
 
 -   Finish 버튼 클릭으로 설치를 완료한다.\
-    ![mongodb_image_30]
+    ![mongodb_image_31]
 
 -   MongoChef를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에
     접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect버튼을
     클릭한다.\
-    ![mongodb_image_31]
-
--   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.\
     ![mongodb_image_32]
 
--   Server에 접속하기 위한 Connection 정보를 입력한다.\
+-   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.\
     ![mongodb_image_33]
+
+-   Server에 접속하기 위한 Connection 정보를 입력한다.\
+    ![mongodb_image_34]
     서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf
     env &lt;app\_name&gt; 명령어로 이용하여 확인한다.\
     예)  $ cf env hello-spring-mongodb\
-    ![mongodb_image_34]
+    ![mongodb_image_35]
 
 -   Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.\
-    ![mongodb_image_35]
+    ![mongodb_image_36]
 
 > SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링
 > 가능한 서버 정보를 입력한다. 
-  ![mongodb_image_36]
+  ![mongodb_image_37]
 > \
 <br>
 > 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를
 > 한다.\
-> ![mongodb_image_37]
+> ![mongodb_image_38]
 <br>
 > \
 > 모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 눌러
@@ -1014,20 +1014,20 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 
 -   Save 버튼을 눌러 작성한 접속정보를 저장한다.
 
-> ![mongodb_image_38]
+> ![mongodb_image_39]
 
 -   방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.\
-    > ![mongodb_image_39]
+    > ![mongodb_image_40]
 
 -   접속이 완료되면 좌측에 스키마 정보가 나타난다. 컬럼을 더블클릭
     해보면 우측에 적재되어있는 데이터가 출력된다.\
-    > ![mongodb_image_40]
+    > ![mongodb_image_41]
 
 -   우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을
     클릭한다.
 
 > 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.\
-> ![mongodb_image_41]
+> ![mongodb_image_42]
 
 [^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
     변경 내용을 기술한다.)
