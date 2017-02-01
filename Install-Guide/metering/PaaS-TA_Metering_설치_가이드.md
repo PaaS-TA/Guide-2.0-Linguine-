@@ -593,7 +593,7 @@ PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사�
 ※ paasta-usage-reporting과 연동하기 위한 인터페이스는 다음 파일을
 참조한다.
 
-[PaaS-TA_Usage_Reporting_API_가이드](../../../../Use-Guide/PaaS-TA_Usage_Reporting_API_가이드.md)
+[PaaS-TA_Usage_Reporting_API_가이드](../../Use-Guide/PaaS-TA_Usage_Reporting_API_%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 
 ※ paasta-usage-reporting manifest.yml
 
