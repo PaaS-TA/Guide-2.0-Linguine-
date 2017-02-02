@@ -42,6 +42,7 @@
 브로커로 최소사항을 구성하였다.
 
 ![시스템구성도][mongodb_image_02]
+![시스템 구성도][1-3-0-0]
 
 <table>
   <td>
@@ -927,46 +928,43 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 
 [^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
 
-
-[mongodb_image_01]:/images/paasta-service/mongodb/mongodb_1.png
-[mongodb_image_02]:/images/paasta-service/mongodb/mongodb_2.png
-[mongodb_image_03]:/images/paasta-service/mongodb/mongodb_3.png
-[mongodb_image_04]:/images/paasta-service/mongodb/mongodb_4.png
-[mongodb_image_05]:/images/paasta-service/mongodb/mongodb_5.png
-[mongodb_image_06]:/images/paasta-service/mongodb/mongodb_6.png
-[mongodb_image_07]:/images/paasta-service/mongodb/mongodb_7.png
-[mongodb_image_08]:/images/paasta-service/mongodb/mongodb_8.png
-[mongodb_image_09]:/images/paasta-service/mongodb/mongodb_9.png
-[mongodb_image_10]:/images/paasta-service/mongodb/mongodb_10.png
-[mongodb_image_11]:/images/paasta-service/mongodb/mongodb_11.png
-[mongodb_image_12]:/images/paasta-service/mongodb/mongodb_12.png
-[mongodb_image_13]:/images/paasta-service/mongodb/mongodb_13.png
-[mongodb_image_14]:/images/paasta-service/mongodb/mongodb_14.png
-[mongodb_image_15]:/images/paasta-service/mongodb/mongodb_15.png
-[mongodb_image_16]:/images/paasta-service/mongodb/mongodb_16.png
-[mongodb_image_17]:/images/paasta-service/mongodb/mongodb_17.png
-[mongodb_image_18]:/images/paasta-service/mongodb/mongodb_18.png
-[mongodb_image_19]:/images/paasta-service/mongodb/mongodb_19.png
-[mongodb_image_20]:/images/paasta-service/mongodb/mongodb_20.png
-[mongodb_image_21]:/images/paasta-service/mongodb/mongodb_21.png
-[mongodb_image_22]:/images/paasta-service/mongodb/mongodb_22.png
-[mongodb_image_23]:/images/paasta-service/mongodb/mongodb_23.png
-[mongodb_image_24]:/images/paasta-service/mongodb/mongodb_24.png
-[mongodb_image_25]:/images/paasta-service/mongodb/mongodb_25.png
-[mongodb_image_26]:/images/paasta-service/mongodb/mongodb_26.png
-[mongodb_image_27]:/images/paasta-service/mongodb/mongodb_27.png
-[mongodb_image_28]:/images/paasta-service/mongodb/mongodb_28.png
-[mongodb_image_29]:/images/paasta-service/mongodb/mongodb_29.png
-[mongodb_image_30]:/images/paasta-service/mongodb/mongodb_30.png
-[mongodb_image_31]:/images/paasta-service/mongodb/mongodb_31.png
-[mongodb_image_32]:/images/paasta-service/mongodb/mongodb_32.png
-[mongodb_image_33]:/images/paasta-service/mongodb/mongodb_33.png
-[mongodb_image_34]:/images/paasta-service/mongodb/mongodb_34.png
-[mongodb_image_35]:/images/paasta-service/mongodb/mongodb_35.png
-[mongodb_image_36]:/images/paasta-service/mongodb/mongodb_36.png
-[mongodb_image_37]:/images/paasta-service/mongodb/mongodb_37.png
-[mongodb_image_38]:/images/paasta-service/mongodb/mongodb_38.png
-[mongodb_image_39]:/images/paasta-service/mongodb/mongodb_39.png
-[mongodb_image_40]:/images/paasta-service/mongodb/mongodb_40.png
-[mongodb_image_41]:/images/paasta-service/mongodb/mongodb_41.png
-[mongodb_image_42]:/images/paasta-service/mongodb/mongodb_42.png
+[mongodb_image_04]:/images/paasta-service/mongodb/mongodb-4.png
+[mongodb_image_05]:/images/paasta-service/mongodb/mongodb-5.png
+[mongodb_image_06]:/images/paasta-service/mongodb/mongodb-6.png
+[mongodb_image_02]:/images/paasta-service/mongodb/mongodb-2.png
+[mongodb_image_03]:/images/paasta-service/mongodb/mongodb-3.png
+[mongodb_image_07]:/images/paasta-service/mongodb/mongodb-7.png
+[mongodb_image_08]:/images/paasta-service/mongodb/mongodb-8.png
+[mongodb_image_09]:/images/paasta-service/mongodb/mongodb-9.png
+[mongodb_image_10]:/images/paasta-service/mongodb/mongodb-10.png
+[mongodb_image_11]:/images/paasta-service/mongodb/mongodb-11.png
+[mongodb_image_12]:/images/paasta-service/mongodb/mongodb-12.png
+[mongodb_image_13]:/images/paasta-service/mongodb/mongodb-13.png
+[mongodb_image_14]:/images/paasta-service/mongodb/mongodb-14.png
+[mongodb_image_15]:/images/paasta-service/mongodb/mongodb-15.png
+[mongodb_image_16]:/images/paasta-service/mongodb/mongodb-16.png
+[mongodb_image_17]:/images/paasta-service/mongodb/mongodb-17.png
+[mongodb_image_18]:/images/paasta-service/mongodb/mongodb-18.png
+[mongodb_image_19]:/images/paasta-service/mongodb/mongodb-19.png
+[mongodb_image_20]:/images/paasta-service/mongodb/mongodb-20.png
+[mongodb_image_21]:/images/paasta-service/mongodb/mongodb-21.png
+[mongodb_image_22]:/images/paasta-service/mongodb/mongodb-22.png
+[mongodb_image_23]:/images/paasta-service/mongodb/mongodb-23.png
+[mongodb_image_24]:/images/paasta-service/mongodb/mongodb-24.png
+[mongodb_image_25]:/images/paasta-service/mongodb/mongodb-25.png
+[mongodb_image_26]:/images/paasta-service/mongodb/mongodb-26.png
+[mongodb_image_27]:/images/paasta-service/mongodb/mongodb-27.png
+[mongodb_image_28]:/images/paasta-service/mongodb/mongodb-28.png
+[mongodb_image_29]:/images/paasta-service/mongodb/mongodb-29.png
+[mongodb_image_30]:/images/paasta-service/mongodb/mongodb-30.png
+[mongodb_image_31]:/images/paasta-service/mongodb/mongodb-31.png
+[mongodb_image_32]:/images/paasta-service/mongodb/mongodb-32.png
+[mongodb_image_33]:/images/paasta-service/mongodb/mongodb-33.png
+[mongodb_image_34]:/images/paasta-service/mongodb/mongodb-34.png
+[mongodb_image_35]:/images/paasta-service/mongodb/mongodb-35.png
+[mongodb_image_36]:/images/paasta-service/mongodb/mongodb-36.png
+[mongodb_image_37]:/images/paasta-service/mongodb/mongodb-37.png
+[mongodb_image_38]:/images/paasta-service/mongodb/mongodb-38.png
+[mongodb_image_39]:/images/paasta-service/mongodb/mongodb-39.png
+[mongodb_image_40]:/images/paasta-service/mongodb/mongodb-40.png
+[mongodb_image_41]:/images/paasta-service/mongodb/mongodb-41.png
