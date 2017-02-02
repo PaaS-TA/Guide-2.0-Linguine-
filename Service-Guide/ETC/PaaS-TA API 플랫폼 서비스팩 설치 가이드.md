@@ -81,7 +81,7 @@ Acting as user 'admin' on 'my-bosh'
 +-----------------+----------+-------------+
 | Name            | Versions | Commit Hash |
 +-----------------+----------+-------------+
-| empty-release | 2.0      | 870201f29+   |
+| empty-release   | 2.0      | 870201f29+  |
 +-----------------+----------+-------------+
 (+) Uncommitted changes
 
