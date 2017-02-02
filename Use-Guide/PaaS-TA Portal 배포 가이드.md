@@ -177,8 +177,9 @@ OK
 
 ```
 $ cf cups portal-eureka-service -p '{"uri":"http://portal-registration.115.68.46.186.xip.io"}'
-
-##### 윈도우 환경에서 명령어 입력시
+```
+##### Windows 환경에서 명령어 입력시
+```
 $ cf cups portal-eureka-service -p '{\"uri\":\"http://portal-registration.monitoring.open-paas.com\"}'
 ```
 
@@ -1162,7 +1163,7 @@ portal-api-v2        started           1/1         1G       1G     portal-api-v2
 <div id='20'></div>
 ###  3.6. 카탈로그 이미지 파일 업로드
 
-PaaS-TA 포털에 기본 생성되는 카탈로그에 대한 이미지를 업로드 한다. 카탈로그 이미지 업로드는 운영자 포털을 통해서 진행하고 사용자 포털의 카탈로그 화면에서 이미지를 확인할 수 있다. 업로드할 이미지 파일은 [카탈로그 이미지] 폴더에서 확인할 수 있다. [PaaSTA 운영자 포털 사용가이드_v1.0의 [5.4 카탈로그 관리 서비스] 항목을 참고하여 각 카탈로그에 맞는 이미지를 업로드한다.
+PaaS-TA 포털에 기본 생성되는 카탈로그에 대한 이미지를 업로드 한다. 카탈로그 이미지 업로드는 운영자 포털을 통해서 진행하고 사용자 포털의 카탈로그 화면에서 이미지를 확인할 수 있다. 업로드할 이미지 파일은 '카탈로그 이미지' 폴더에서 확인할 수 있다. [PaaSTA 운영자 포털 가이드](./Use-Guide/PaaS-TA 운영자 포탈 가이드_v1.0.md)의 [5.4 카탈로그 관리 서비스] 항목을 참고하여 각 카탈로그에 맞는 이미지를 업로드한다.
 
 
 <br>
@@ -1253,8 +1254,10 @@ $ cf create-user no-org-user 1234
 ```
 
 <br>
-6.  enable-feature-flag - 사용자가 액세스하여 기능을 사용할 수 있도록 기능을 사용으로 설정
-사용법 :cf enable-feature-flag FEATURE_NAME
+6.  사용자가 조직을 생성할 수 있도록 설정을 변경한다.
+```
+cf enable-feature-flag [FEATURE_NAME]
+```
 ```
 $ cf enable-feature-flag user_org_creation
 ```
