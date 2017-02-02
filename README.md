@@ -18,8 +18,8 @@
   - [GlusterFS](./Service-Guide/Storage/PaaS-TA GlusterFS 서비스팩 설치 가이드.md)
 - MessageQueue 설치
   - [RabbitMQ](./Service-Guide/MessageQueue/PaaS-TA RabbitMQ 서비스팩 설치 가이드.md)
-- API Platform 설치
-  - [API Platform](./Service-Guide/ETC/PaaS-TA API 플랫폼 서비스팩 설치 가이드.md)
+- API Platform 설
+  - [API Platform](./Service-Guide/ETC/PaaS-TA API 플랫폼 서비스팩 설치 가이드.md)
 - Web IDE 설치
   - [Web IDE](./Service-Guide/WEBIDE/PaaS-TA WEB IDE 설치 가이드.md)
   
