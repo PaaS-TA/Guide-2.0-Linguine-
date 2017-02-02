@@ -27,7 +27,7 @@
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도이다. API 플랫폼(api manager), API 플랫폼 서비스 브로커, Business Activity Monitor(bam), Maria DB로 최소사항을 구성하였다.
 
-![apiplatform_image_01]
+![apiplatform_image_01](= 250x250)
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
@@ -993,7 +993,7 @@ $ cf bind-service hello-servlet-api phoneverification-instance-unlimited
 $ cf env hello-servlet-api
 ```
 
-[apiplatform_image_01]:/images/paasta-service/apiplatform/apiplatform_image_01.png =250x100
+[apiplatform_image_01]:/images/paasta-service/apiplatform/apiplatform_image_01.png
 [apiplatform_image_02]:/images/paasta-service/apiplatform/apiplatform_image_02.png 
 [apiplatform_image_03]:/images/paasta-service/apiplatform/apiplatform_image_03.png
 [apiplatform_image_04]:/images/paasta-service/apiplatform/apiplatform_image_04.png
