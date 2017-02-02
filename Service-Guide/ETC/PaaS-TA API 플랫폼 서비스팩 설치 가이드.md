@@ -993,8 +993,8 @@ $ cf bind-service hello-servlet-api phoneverification-instance-unlimited
 $ cf env hello-servlet-api
 ```
 
-[apiplatform_image_01]:/images/paasta-service/apiplatform/apiplatform_image_01.png 
-[apiplatform_image_02]:/images/paasta-service/apiplatform/apiplatform_image_02.png =250x
+[apiplatform_image_01]:/images/paasta-service/apiplatform/apiplatform_image_01.png=250x100
+[apiplatform_image_02]:/images/paasta-service/apiplatform/apiplatform_image_02.png 
 [apiplatform_image_03]:/images/paasta-service/apiplatform/apiplatform_image_03.png
 [apiplatform_image_04]:/images/paasta-service/apiplatform/apiplatform_image_04.png
 [apiplatform_image_05]:/images/paasta-service/apiplatform/apiplatform_image_05.png
