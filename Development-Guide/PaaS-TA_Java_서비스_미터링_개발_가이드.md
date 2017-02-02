@@ -38,11 +38,7 @@
      * [API 서비스 연동 샘플 애플리케이션 배포 및 서비스 연결](#35)
     * [서비스 바인딩 CF-Abacus 연동 테스트](#36)
     * [단위 테스트](#37)
-
-
-
-
-
+    * [샘플 코드](#38)
 
 
 #<div id='1'/>1.  개요
@@ -1151,6 +1147,12 @@ mock 적용을 위하여, owermock-mockito-release-full:1.6.1 을 사용하였�
 	
 	-   Spring Tool Suite 의 네비게이터 트리의 /meteringTest 경로에서 오른쪽
 			마우스 클릭 > Run As > JUNIT 테스트
+
+##<div id='38'/>2.9. 샘플코드
+
+샘플 코드는 아래의 사이트에 다운로드 할 수 있다.
+
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
 
 
 [Java_Service_Metering_Image01]:images/Java_Service_Metering/service_broker_api_architecture.png

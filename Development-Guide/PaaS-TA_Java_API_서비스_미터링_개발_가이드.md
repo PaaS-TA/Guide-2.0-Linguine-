@@ -31,7 +31,7 @@
      * [API 서비스 애플리케이션 배포 및 서비스 등록](#27)
      * [API 서비스 연동 샘플 애플리케이션 배포 및 서비스 연결](#28)
     * [API 및 CF-Abacus 연동 테스트](#29)
-     
+    * [샘플 코드](#30)
 	
 #<div id='1'/>1. 개요
 
@@ -59,14 +59,9 @@
 본 문서에서 언급 하는 “API 서비스를 사용하는 애플리케이션”은 별도로 제공
 하는 **Node.js API 미터링 개발 가이드**를 참고 하여 개발 한다.
 
-
-
 ###<div id='5'/>1.1.3. 참고 자료
 -   [https://docs.cloudfoundry.org/devguide/](https://docs.cloudfoundry.org/devguide/)
 -   [https://github.com/cloudfoundry-incubator/cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
-
-
-
 
 
 ##<div id='6'/>2. JAVA API 서비스 미터링 개발가이드
@@ -139,7 +134,6 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
     
 
 별도 제공하는 Abacus 설치 가이드를 참고하여 CF-Abacus를 설치한다.
-
 
 
 ##<div id='10'/>2.3 샘플 API 서비스 개발 
@@ -1055,8 +1049,11 @@ API 연동 샘플 애플리케이션의 url을 통해 웹 브라우저에서 접
 		예)
 		$ curl 'http://abacus-usage-reporting.bosh-lite.com/v1/metering/organizations/877d01b2-d177-4209-95b0-00de794d9bba/aggregated/usage'
 
+##<div id='30'/>2.8. 샘플코드
 
+샘플코드는 아래의 사이트에 다운로드 할 수 있다.
 
+[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
 
 [Java_Api_Service_Metering_Image01]:images/Java_Api_Service_Metering/meteringAPI_development_range.png
 [Java_Api_Service_Metering_Image02]:images/Java_Api_Service_Metering/sampleAPI_Service.png
