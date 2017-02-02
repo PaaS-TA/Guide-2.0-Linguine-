@@ -938,5 +938,5 @@ $ curl lab-rat.115.68.46.186.xip.io<br>
 [rabbitmq_image_15]:/images/paasta-service/rabbitmq/rabbitmq_image_15.png
 [rabbitmq_image_16]:/images/paasta-service/rabbitmq/rabbitmq_image_16.png
 [rabbitmq_image_17]:/images/paasta-service/rabbitmq/rabbitmq_image_17.png
-[rabbitmq_image_17]:/images/paasta-service/rabbitmq/rabbitmq_image_18.png
-[rabbitmq_image_17]:/images/paasta-service/rabbitmq/rabbitmq_image_19.png
+[rabbitmq_image_18]:/images/paasta-service/rabbitmq/rabbitmq_image_18.png
+[rabbitmq_image_19]:/images/paasta-service/rabbitmq/rabbitmq_image_19.png
