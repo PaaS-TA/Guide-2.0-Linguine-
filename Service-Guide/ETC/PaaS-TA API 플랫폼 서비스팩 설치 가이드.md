@@ -63,7 +63,7 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 
 - PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 API 플랫폼 서비스 릴리즈 paasta-apiplatform-2.0.tgz 파일을 확인한다.
 
-`$ ls –all`
+```$ ls –all```
 
 ```
 .  cf236      paasta-apiplatform-2.0.tgz paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz              paasta-rabbitmq-2.0.tgz paasta-web-ide-2.0.tgz
@@ -994,7 +994,7 @@ $ cf env hello-servlet-api
 ```
 
 [apiplatform_image_01]:/images/paasta-service/apiplatform/apiplatform_image_01.png
-[apiplatform_image_02]:/images/paasta-service/apiplatform/apiplatform_image_02.png
+[apiplatform_image_02]:/images/paasta-service/apiplatform/apiplatform_image_02.png 
 [apiplatform_image_03]:/images/paasta-service/apiplatform/apiplatform_image_03.png
 [apiplatform_image_04]:/images/paasta-service/apiplatform/apiplatform_image_04.png
 [apiplatform_image_05]:/images/paasta-service/apiplatform/apiplatform_image_05.png

@@ -31,7 +31,7 @@
 
 | 구분 | Resource Pool | 스펙 |
 |--------|-------|-------|
-| openpaas-mysql-broker | services-small | 1vCPU / 1GB RAM / 8GB Disk |
+| paasta-mysql-broker | services-small | 1vCPU / 1GB RAM / 8GB Disk |
 | proxy | services-small | 1vCPU / 1GB RAM / 8GB Disk |
 | mysql_z1 | services-small | 1vCPU / 1GB RAM / 8GB Disk +8GB(영구적 Disk) |
 
@@ -48,6 +48,7 @@
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.<br>
 PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)<br>
 
+※	설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수 있다. https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
