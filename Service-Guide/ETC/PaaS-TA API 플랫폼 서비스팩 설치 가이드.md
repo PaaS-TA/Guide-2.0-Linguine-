@@ -27,7 +27,7 @@
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도이다. API 플랫폼(api manager), API 플랫폼 서비스 브로커, Business Activity Monitor(bam), Maria DB로 최소사항을 구성하였다.
 
-![apiplatform_image_01](= 250x250)
+![apiplatform_image_01]({width=40px height=400px})
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
