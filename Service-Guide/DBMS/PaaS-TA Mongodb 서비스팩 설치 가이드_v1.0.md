@@ -42,13 +42,12 @@
 브로커로 최소사항을 구성하였다.
 
 ![시스템구성도][mongodb_image_02]
-![시스템 구성도][1-3-0-0]
 
 <table>
-  <td>
-    <td>구분</td>
-    <td>스펙</td>
-  </td>
+  <tr>
+    <th>구분</th>
+    <th>스펙</th>
+  </tr>
   <tr>
     <td>openpaas-mongodb-broker</td>
     <td>1vCPU / 1GB RAM / 8GB Disk</td>
@@ -96,7 +95,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -   PaaS-TA-Services.zip 파일 압축을 풀고 폴더안에 있는 Mongodb 서비스 릴리즈 asta-mongodb-shard-2.0.tgz 파일을 확인한다.
 
-```
+```sh
    $ cd PaaS-TA-Services
    $ ls –all
 
@@ -105,13 +104,13 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 <br>
 -   업로드 되어 있는 릴리즈 목록을 확인한다.
 
-```
+```sh
    $ bosh releases
 ```
 
 -   Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-```
+```sh
   +--------------------+----------------+-------------+
   | Name              | Versions        | Commit Hash |
   +--------------------+----------------+-------------+
@@ -131,7 +130,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -   Mongodb 서비스 릴리즈를 업로드한다.
 
-```
+```sh
    $ bosh upload release {서비스 릴리즈 파일 PATH}
    $ bosh upload release paasta-mongodb-shard-2.0.tgz
   Uploading release
@@ -229,7 +228,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell[^
   Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
   
 -   paasta-mongodb-shard-openstack-2.0.yml Deployment 파일을 서버 환경에
-    맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+    맞게 수정한다. 
 ```yaml
   # paasta-mongodb-shard-vsphere 설정 파일 내용
 ---
@@ -447,7 +446,7 @@ properties:
 
 -   Mongodb 서비스팩을 배포한다.
 
-  ```
+  ```sh
    $ bosh deploy
   
   Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
@@ -531,7 +530,7 @@ properties:
 
 -   배포된 Mongodb 서비스팩을 확인한다.
 
-  ```
+  ```sh
    $ bosh vms
 
   Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
@@ -540,11 +539,11 @@ properties:
   +----------------------------------------------------------+---------+-----+---------+--------------+
   | VM                                                       | State   | AZ  | VM Type | IPs          |
   +----------------------------------------------------------+---------+-----+---------+--------------+
-  | mongodb\_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) | running | n/a | small   | 10.244.3.154 |
-  | mongodb\_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) | running | n/a | small   | 10.244.3.150 |
-  | mongodb\_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)| running | n/a | small   | 10.244.3.141 |
-  | mongodb\_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)  | running | n/a | small   | 10.244.3.170 |
-  | mongodb\_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) | running | n/a | small   | 10.244.3.142 |
+  | mongodb_broker/0 (9de2c4f3-abd0-4cf3-91cb-674ae7d3b598) | running | n/a | small   | 10.244.3.154 |
+  | mongodb_config/0 (2409b059-873e-45d1-b452-05fd5a336fff) | running | n/a | small   | 10.244.3.150 |
+  | mongodb_master1/0 (6090417a-2183-4d98-ac5b-9883172f2e0c)| running | n/a | small   | 10.244.3.141 |
+  | mongodb_shard/0 (3e7db12a-0c39-4cb3-9e31-04a647206c00)  | running | n/a | small   | 10.244.3.170 |
+  | mongodb_slave1/0 (66bbef0c-e135-417c-ba20-d61195fb7cfd) | running | n/a | small   | 10.244.3.142 |
   +----------------------------------------------------------+---------+-----+---------+--------------+
   
   VMs total: 5
@@ -573,16 +572,15 @@ Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
   -   서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
   
   -   서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
-  ```
+  ```sh
    $ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http://10.30.60.54:8080
   ```
   ![mongodb_image_07]
 
 -   등록된 Mongodb 서비스 브로커를 확인한다.
 
-  ```
+  ```sh
    $ cf service-brokers
-  
   ```
 
   ![mongodb_image_08]
@@ -591,7 +589,6 @@ Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 
   ```
    $ cf service-access
-  
   ```
   
   ![mongodb_image_09]
@@ -622,10 +619,10 @@ Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다
 Sample Web App 구조는 다음과 같다.
 
 <table>
-  <th>
-    <td>이름</td>
-    <td>설명</td>
-  </th>
+  <tr>
+    <th>이름</th>
+    <th>설명</th>
+  </tr>
   <tr>
     <td>src</td>
     <td>Sample 소스 디렉토리/td>
@@ -650,13 +647,11 @@ Sample Web App 구조는 다음과 같다.
 
   ```
    $ ls -all
-  
-  ```
+    ```
   ![mongodb_image_11]
 
 <div id='3-2'></div>
 ### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
---------------------------------------------
 
 Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 
@@ -667,7 +662,6 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 
   ```
    $ cf marketplace
-  
   ```
   ![mongodb_image_12]
 
@@ -697,7 +691,6 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 
 <div id='3-3'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
------------------------------------------------------
 
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스
 인스턴스를 Bind 하여 App에서 Mongodb 서비스를 이용한다.
@@ -707,13 +700,13 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 
 -   Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
-  ```
+  ```sh
    $ cd hello-spring-mongodb
    $ vi manifest.yml
   ```
 
   ```yaml
-  ---
+  
   applications:
   
   - name: hello-spring-mongodb \#배포할 App 이름
@@ -739,39 +732,37 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 
 -   배포된 Sample App을 확인하고 로그를 수행한다.
 
-  ```
+  ```sh
    $ cf apps
-  
+  ```
+
   ![mongodb_image_16]
-  
+
+  ```sh
    $ cf logs {배포된 App명}
-  
    $ cf logs hello-spring-mongodb
-  
+  ```   
   ![mongodb_image_17]
 
-  ```
 
 -   Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
-  ```
+  ```sh
    $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
   
-  ![mongodb_image_18]
   ```
 
 -   바인드가 적용되기 위해서 App을 재기동한다.
 
   ```
    $ cf restart hello-spring-mongodb
-  
-  ![mongodb_image_19]
+  ![mongodb_image_18]
   ```
 
 -   (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이
     안될 경우 보안 그룹을 추가한다.
 
-  -------------------------------------------------------------------------------------------
+  
   -   rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
   
    $ vi rule.json
@@ -788,27 +779,27 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
   
   }
   
-  > \]
+   \]
   
-  -   보안 그룹을 생성한다.
+    -   보안 그룹을 생성한다.
   
    $ cf create-security-group Mongo-DB rule.json
-  
-  ![mongodb_image_20]
+    ![mongodb_image_19]
   
   -   모든 App에 Mongodb 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
   
+  ```sh
    $ cf bind-running-security-group Mongo-DB
-  
-  ![mongodb_image_21]
+  ```
+    ![mongodb_image_20]
   
   -   App을 리부팅 한다.
-  
+  ```sh
    $ cf restart hello-spring-Mongodb
+  ```
   
-  ![mongodb_image_22]
-  -------------------------------------------------------------------------------------------
-
+     ![mongodb_image_21]
+  
 -   App이 정상적으로 Mongodb 서비스를 사용하는지 확인한다.
 
   -   curl 로 확인
@@ -816,16 +807,14 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
   ```
    $ curl hello-spring-Mongodb.115.68.46.30.xip.io
   ```
-
-  ![mongodb_image_23]
+  ![mongodb_image_22]
   
   -   브라우져에서 확인
   
-  ![mongodb_image_24]
-
+  ![mongodb_image_23]
+  
 <div id='4'></div>
 # 4. Mongodb Client 툴 접속
-======================
 
 Application에 바인딩된 Mongodb 서비스 연결정보는 Private IP로 구성되어
 있기 때문에 Mongodb Client 툴에서 직접 연결할수 없다. 따라서 SSH 터널,
@@ -843,79 +832,92 @@ SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴
 MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 
 -   MongoChef을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을
-    다운로드 한다.\
-    [http://3t.io/mongochef/download/platform/](http://3t.io/mongochef/download/platform/)\
+    다운로드 한다.
+    [http://3t.io/mongochef/download/platform/](http://3t.io/mongochef/download/platform/)
+    ![mongodb_image_24]
+
+-   다운로드한 설치파일을 실행한다.
+
     ![mongodb_image_25]
 
--   다운로드한 설치파일을 실행한다.\
+-   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.
+
     ![mongodb_image_26]
 
--   MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.\
-    ![mongodb_image_27]
-
 -   프로그램 라이선스에 관련된 내용이다. 동의(I accept the terms in the
-    License Agreement)에 체크 후 Next 버튼을 클릭한다.\
-    ![mongodb_image_28]
+    License Agreement)에 체크 후 Next 버튼을 클릭한다.
+
+    ![mongodb_image_27]
 
 -   MongoChef 을 설치할 경로를 설정 후 Next 버튼을 클릭한다.
 
-> 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files
-> 폴더에 설치가 된다.\
-> ![mongodb_image_29]
+ > 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files  폴더에 설치가 된다.
 
--   Install 버튼을 클릭하여 설치를 진행한다.\
+    ![mongodb_image_28]
+
+-   Install 버튼을 클릭하여 설치를 진행한다.
+
+    ![mongodb_image_29]
+
+-   Finish 버튼 클릭으로 설치를 완료한다.
+
     ![mongodb_image_30]
-
--   Finish 버튼 클릭으로 설치를 완료한다.\
-    ![mongodb_image_31]
 
 -   MongoChef를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에
     접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect버튼을
-    클릭한다.\
+    클릭한다.
+
+    ![mongodb_image_31]
+
+-   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.
+
     ![mongodb_image_32]
 
--   새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.\
+-   Server에 접속하기 위한 Connection 정보를 입력한다.
+
     ![mongodb_image_33]
-
--   Server에 접속하기 위한 Connection 정보를 입력한다.\
-    ![mongodb_image_34]
     서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf
-    env &lt;app\_name&gt; 명령어로 이용하여 확인한다.\
-    예)  $ cf env hello-spring-mongodb\
-    ![mongodb_image_35]
+    env &lt;app\_name&gt; 명령어로 이용하여 확인한다.
 
--   Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.\
-    ![mongodb_image_36]
+    예)  $ cf env hello-spring-mongodb
+
+    ![mongodb_image_34]
+
+-   Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.
+
+    ![mongodb_image_35]
 
 > SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링
 > 가능한 서버 정보를 입력한다. 
-  ![mongodb_image_37]
-> \
+    ![mongodb_image_36]
+    
 <br>
 > 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를
-> 한다.\
-> ![mongodb_image_38]
+> 한다.
+ ![mongodb_image_37]
 <br>
-> \
+
 > 모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 눌러
 > 빠져나온다.
 
 -   Save 버튼을 눌러 작성한 접속정보를 저장한다.
 
-> ![mongodb_image_39]
+ ![mongodb_image_38]
 
--   방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.\
-    > ![mongodb_image_40]
+-   방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.
+
+    ![mongodb_image_39]
 
 -   접속이 완료되면 좌측에 스키마 정보가 나타난다. 컬럼을 더블클릭
-    해보면 우측에 적재되어있는 데이터가 출력된다.\
-    > ![mongodb_image_41]
+    해보면 우측에 적재되어있는 데이터가 출력된다.
+
+    ![mongodb_image_40]
 
 -   우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을
     클릭한다.
 
-> 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.\
-> ![mongodb_image_42]
+> 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
+    ![mongodb_image_41]
 
 [^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
     변경 내용을 기술한다.)
@@ -927,6 +929,7 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
     내장되어 있는데 이를 “Stemcell”이라 부른다.
 
 [^4]: Release는 시스템에서 설치될 구성 및 소프트웨어들을 포함한다.
+
 
 [mongodb_image_04]:/images/paasta-service/mongodb/mongodb-4.png
 [mongodb_image_05]:/images/paasta-service/mongodb/mongodb-5.png
