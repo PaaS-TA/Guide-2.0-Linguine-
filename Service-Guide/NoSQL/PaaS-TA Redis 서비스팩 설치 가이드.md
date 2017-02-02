@@ -125,6 +125,8 @@ $ bosh upload release paasta-redis-2.0.tgz
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'bosh'
 
+<<<<<<< HEAD
+=======
 +--------------------------+----------+-------------+
 | Name                     | Versions | Commit Hash |
 +--------------------------+----------+-------------+
@@ -146,6 +148,7 @@ inception@inception-new:~/bosh-space/kimdojun/redis$ bosh upload release paasta-
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'bosh'
 
+>>>>>>> b8c1a91d8fa30fbedd61b987b71f24592e56dc41
 Verifying manifest...
 Extract manifest                                             OK
 Manifest exists                                              OK
@@ -359,13 +362,17 @@ Releases total: 10
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
+<<<<<<< HEAD
+-    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다. 
+예) vsphere 일 경우 paasta_redis_vsphere_2.0.yml를 복사
+
+=======
 -    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다.
 예) vsphere 일 경우 paasta_redis_image_2.0.yml를 복사
+>>>>>>> b8c1a91d8fa30fbedd61b987b71f24592e56dc41
 
 -    Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
-
-
 ```
 $ bosh status
 ```
@@ -635,7 +642,16 @@ resource_pools:
 <br>
 -    Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
-$ bosh deployment paasta_redis_image_2.0.yml
+$ bosh deployment paasta_redis_vsphere_2.0.yml
+```
+```
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Deployment set to '/home/inception/bosh-space/kimdojun/redis/paasta_redis_vsphere_2.0.yml'
+```
+<br>
+- Redis 서비스팩을 배포한다.
+```
+$ bosh deploy
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
