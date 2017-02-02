@@ -208,7 +208,7 @@ portal-eureka-service  user-provided
 포털은 파일 관리를 위해 Object Storage를 사용하기 때문에 PaaSTA 포털 Object Storage를 설치 하여야 한다.  [PaaS-TA Portal Obejct Storage 설치 가이드]를 참고하여 Object Storage를 설치한다.
 Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 설정된 값을 수정해야 한다. Object Storage 설치 시 입력한 값을 바탕으로 다음 항목의 값을 수정한다.
 
-![object_storage_image_01]
+![portal_deploy_image_01]
 
 ※ 중괄호({}) 안의 값은 Object Storage의 deployment 파일 설정값
 
