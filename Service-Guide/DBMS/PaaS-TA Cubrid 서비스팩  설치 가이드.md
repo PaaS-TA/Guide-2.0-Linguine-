@@ -82,6 +82,7 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 
 >$ cd ../../<br>
 >$ bosh releases<br>
+<br>
 >RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
 >Acting as user 'admin' on 'bosh'<br>
 ><br>
