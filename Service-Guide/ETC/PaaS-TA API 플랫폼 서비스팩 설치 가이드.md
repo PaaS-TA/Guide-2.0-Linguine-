@@ -346,7 +346,7 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 
 
 <br>
-- Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+- Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```yml
 # paasta-apiplatform-vsphere 설정 파일 내용
