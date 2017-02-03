@@ -301,7 +301,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 ><div>$ bosh status</div>
 >![2-1-0-9]
 
-- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+- Deploy시 사용할 Stemcell을 확인한다.
  
 ><div>$ bosh stemcells</div>
 >![2-1-0-10]
