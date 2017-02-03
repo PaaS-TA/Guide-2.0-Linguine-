@@ -79,11 +79,11 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 
 - Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
 
->$ cd ../../
->$ bosh releases
->RSA 1024 bit CA certificates are loaded due to old openssl compatibility
->Acting as user 'admin' on 'bosh'
->
+>$ cd ../../<br>
+>$ bosh releases<br>
+>RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
+>Acting as user 'admin' on 'bosh'<br>
+><br>
 >+--------------------------------------+-----------+-------------+<br>
 >| Name                                 | Versions  | Commit Hash |<br>                
 >+--------------------------------------+-----------+-------------+<br>         
@@ -106,12 +106,6 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 ><br>
 >Releases total: 13<br>
 >Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
-
-- Cubrid 서비스 릴리즈를 생성한다. 
-
->$ bosh create release --force --final --name pasta-cubrid --version 2.0                                                   
-![2-1-0-7]  
-![2-1-0-8]  
 
 - Cubrid 서비스 릴리즈를 업로드한다.
 
