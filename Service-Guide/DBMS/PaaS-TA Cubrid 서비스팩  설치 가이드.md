@@ -43,13 +43,17 @@
     <td>구분</td>
     <td>스펙</td>
   </tr>
+   <tr>
+    <td>(cubrid_resource_pools)</td>
+    <td>1vCPU / 1GB RAM / 8GB Disk</td>
+  </tr>
   <tr>
-    <td>openpaas-cubrid-broker</td>
-    <td>1vCPU / 4GB RAM / 8GB Disk</td>
+    <td>paasta-cubrid-broker</td>
+    <td>(cubrid_resource_pools)</td>
   </tr>
   <tr>
     <td>Cubrid</td>
-    <td>1vCPU / 4GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
+    <td>(cubrid_resource_pools)</td>
   </tr>
 </table>
 
@@ -68,32 +72,10 @@
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.<br>
 PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
+※	설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수 있다. https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0
 
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
-
-- 다운받은 Release 디렉토리안의 openpaas-cubrid-release 디렉토리로 이동한다.
-
->$ cd openpaas-service-release
->$ ls –all                                                      
-![2-1-0-3]  
->$ cd open-cubrid-release
->$ ls -all
-![2-1-0-4]  
-
-- Cubrid 서비스 릴리즈를 업로드한다.
-
->$ bosh upload release {서비스 릴리즈 파일 PATH}
->
->$ bosh upload release openpaas-cubrid-1.0.tgz  
-![2-1-0-5]
->src/cubrid 디렉토리가 생성된 것을 확인
->
->$ cd cubrid
->$ wget http://ftp.cubrid.org/CUBRID_Engine/9.3.2/CUBRID-9.3.2.0016-linux.x86_64.tar.gz
->$ ls -all                                                     
-![2-1-0-6]  
->Cubrid 소스파일이 다운로드된 것을 확인
 
 - Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
 
