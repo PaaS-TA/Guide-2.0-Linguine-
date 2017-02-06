@@ -69,6 +69,7 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 >PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**  
 >PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
 
+<br>
 ###2.2. WEB-IDE 릴리즈 업로드
 
 - PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 WEB-IDE 서비스 릴리즈 paasta-web-ide-2.0.tgz 파일을 복사한다.
