@@ -1369,7 +1369,7 @@ spring:
           required: true
         maximumTotalQps: 90
         authUrl: http://localhost:8080
-        **imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png**
+        imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
         sFile: emailTemplate.html
         subject: PaaS-TA User Potal 인증메일(Local)
         contextUrl: user/authUser
