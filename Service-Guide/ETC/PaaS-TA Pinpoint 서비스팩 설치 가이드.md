@@ -40,7 +40,7 @@
 
 본 문서의 설치된 시스템 구성도입니다. Pinpoint Server, HBase의 HBase Master2, HBase Slave2, Collector 2, Pinpoint 서비스 브로커, WebUI3로 최소사항을 구성하였다. 
 
-![시스템구성도][pinpoint_image_02]
+![시스템구성도][pinpoint_image_01]
 
 <table>
   <tr>
