@@ -870,8 +870,10 @@ Sample App 구조는 다음과 같다.
 <br>
 - PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 복사한다.
 
-><div>$ ls -all</div>
->![redis_image_02]
+```
+$ ls -all
+```
+![redis_image_02]
 
 <br>
 <div id='13'></div>
@@ -882,8 +884,10 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 <br>
 - 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
-><div>$ cf marketplace</div>
->![redis_image_03]
+```
+$ cf marketplace
+```
+![redis_image_03]
 
 <br>
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
@@ -895,14 +899,18 @@ $ cf create-service {서비스명} {서비스 플랜} {내 서비스명}
 - 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
 ```
 
-><div>$ cf create-service redis shared-vm redis-service-instance</div>
->![redis_image_04]
+```
+$ cf create-service redis shared-vm redis-service-instance
+```
+![redis_image_04]
 
 <br>
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
-><div>$ cf services</div>
->![redis_image_05]
+```
+$ cf services
+```
+![redis_image_05]
 
 <br>
 <div id='14'></div>
