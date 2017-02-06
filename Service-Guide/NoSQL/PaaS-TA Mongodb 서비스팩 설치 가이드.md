@@ -67,9 +67,9 @@
 <div id='5'></div>
 ### 1.4. 참고자료
 
-[*http://bosh.io/docs*](http://bosh.io/docs)
+[**http://bosh.io/docs**](http://bosh.io/docs)
 
-[*http://docs.cloudfoundry.org/*](http://docs.cloudfoundry.org/)
+[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 <br>
 <div id='6'></div>
@@ -82,6 +82,11 @@
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
+
+- 다운로드 위치
+>PaaSTA-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0nkrJ16>**  
+>PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**  
+>PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
 
 <br>
 <div id='8'></div>
