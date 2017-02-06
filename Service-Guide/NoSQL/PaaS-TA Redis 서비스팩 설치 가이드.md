@@ -151,7 +151,6 @@ inception@inception-new:~/bosh-space/kimdojun/redis$ bosh upload release paasta-
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'bosh'
 
->>>>>>> b8c1a91d8fa30fbedd61b987b71f24592e56dc41
 Verifying manifest...
 Extract manifest                                             OK
 Manifest exists                                              OK
@@ -931,45 +930,67 @@ path: .                      # 배포시 구동되는 Path
 
 <br>
 - --no-start 옵션으로 App을 배포한다.
---no-start: App 배포시 구동은 하지 않는다.
+  --no-start: App 배포시 구동은 하지 않는다.
 
-><div>$ cf push --no-start<br></div>
->![redis_image_06]
+```
+$ cf push --no-start
+```
+![redis_image_06]
 
+<br>
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
-><div>$ cf apps<br></div>
->![redis_image_07]
-><div>$ cf logs {배포된 App명}
->$ cf logs redis-example-app</div>
->![redis_image_08]
+```
+$ cf apps
+```
+![redis_image_07]
 
+```
+$ cf logs redis-example-app
+```
+![redis_image_08]
+
+<br>
 - Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
-><div>$ cf bind-service redis-example-appredis-service-instance</div>
->![redis_image_09]
+```
+$ cf bind-service redis-example-app redis-service-instance
+```
+![redis_image_09]
 
-- 바인드가 적용되기 위해서 App을 재기동한다.
+- 바인드를 적용하기 위해서 App을 재기동한다.
 
-><div>$ cf restart redis-example-app</div>
->![redis_image_10]
+```
+$ cf restart redis-example-app
+```
+![redis_image_10]
 
+<br>
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
-><div>- curl 로 확인<br>
-- Redis Application 을 이용하여 Key 값으로 데이터 저장<br>
-$ export APP=redis-example-app.controller.open-paas.com<br>
-$ curl -X PUT $APP/foo -d 'data=bar'<br>
-><div>
->![redis_image_11]
-><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
-$ curl -X GET $APP/foo<br>
-></div>
->![redis_image_12]
-><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
-$ curl -X DELETE $APP/foo<br>
-></div>
->![redis_image_13]
+<br>
+- curl 로 확인
+
+##### Redis Application 을 이용하여 Key 값으로 데이터 저장
+```
+$ export APP=redis-example-app.controller.open-paas.com
+```
+```
+$ curl -X PUT $APP/foo -d 'data=bar'
+```
+![redis_image_11]
+
+##### Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get
+```
+$ curl -X GET $APP/foo
+```
+![redis_image_12]
+
+##### Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제
+```
+$ curl -X DELETE $APP/foo
+```
+![redis_image_13]
 
 <br>
 <div id='15'></div>
