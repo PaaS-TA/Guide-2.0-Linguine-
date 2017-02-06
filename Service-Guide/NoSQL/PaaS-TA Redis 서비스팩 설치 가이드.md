@@ -130,8 +130,6 @@ $ bosh upload release paasta-redis-2.0.tgz
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'bosh'
 
-<<<<<<< HEAD
-=======
 +--------------------------+----------+-------------+
 | Name                     | Versions | Commit Hash |
 +--------------------------+----------+-------------+
