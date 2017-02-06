@@ -362,14 +362,8 @@ Releases total: 10
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
-<<<<<<< HEAD
 -    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다. 
 예) vsphere 일 경우 paasta_redis_vsphere_2.0.yml를 복사
-
-=======
--    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다.
-예) vsphere 일 경우 paasta_redis_image_2.0.yml를 복사
->>>>>>> b8c1a91d8fa30fbedd61b987b71f24592e56dc41
 
 -    Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
@@ -425,11 +419,11 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 # paasta-redis-service 설정 파일 내용
 
 name: paasta-redis-service                             # 서비스 배포이름(필수)
-director_uuid: 873c784d-3e91-4c78-95a3-b492024c389f    #bosh status 에서 확인한 Director UUID을 입력(필수)
+director_uuid: 873c784d-3e91-4c78-95a3-b492024c389f    # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: paasta-redis                                   #서비스 릴리즈 이름(필수)
-  version: 2.0                                         #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+- name: paasta-redis                                   # 서비스 릴리즈 이름(필수)
+  version: 2.0                                         # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                          # canary 인스턴스 수(필수)
@@ -437,7 +431,7 @@ update:
   max_in_flight: 6                                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:                                           #컴파일시 필요한 가상머신의 속성(필수)
+compilation:                                           # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:            # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     cpu: 2
     disk: 4096
@@ -484,7 +478,7 @@ jobs:
     release: paasta-redis
 
 - instances: 1
-  lifecycle: errand                                  # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
+  lifecycle: errand                         # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar
   networks:
   - name: default
@@ -580,7 +574,7 @@ networks:
     - 10.30.0.1 - 10.30.10.254
     - 10.30.40.1 - 10.30.60.70
     - 10.30.60.81 - 10.30.254.254
-    static:                                                     #사용 가능한 IP 설정
+    static:                                                     # 사용 가능한 IP 설정
     - 10.30.60.71 - 10.30.60.80
 properties:
   broker:                                                       # broker 정보

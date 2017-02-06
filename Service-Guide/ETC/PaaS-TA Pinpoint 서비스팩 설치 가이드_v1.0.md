@@ -542,12 +542,11 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 - Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```
-$ vi paasta-pinpoint-cluster-vsphere-1.0.yml
+$ vi paasta-pinpoint-cluster-vsphere-2.0.yml
 ```
 ```yaml
+# paasta-pinpoint-cluster-vsphere-2.0.yml 설정 파일 내용
 
-
-# openpaas-paasta-pinpoint-vSphere-1.0설정 파일 내용
 <% num_collectors = 2 %>
 <% num_slaves = 2 %>
 <% num_webui = 2 %>
@@ -567,7 +566,7 @@ $ vi paasta-pinpoint-cluster-vsphere-1.0.yml
 <% udp_stat_listen_port = '29995' %>
 <% udp_span_listen_port = '29996' %>
 ---
-name: openpaas-paasta-pinpoint
+name: paasta-pinpoint
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32
 release:
 name: paasta-pinpoint-cluster
@@ -770,7 +769,7 @@ webui:
 <br>
 -   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
-$ bosh deployment paasta-pinpoint-cluster-vsphere-1.0.yml
+$ bosh deployment paasta-pinpoint-cluster-vsphere-2.0.yml
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -783,7 +782,7 @@ $ bosh deploy
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-Acting as user 'admin' on deployment 'openpaas-paasta-pinpoint' on 'bosh'
+Acting as user 'admin' on deployment 'paasta-pinpoint' on 'bosh'
 Getting deployment properties from director...
 Unable to get properties list from director, trying without it...
 
@@ -926,7 +925,7 @@ networks:
   static_ips:
   - 10.30.70.82
 
-name: openpaas-paasta-pinpoint
+name: paasta-pinpoint
 
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32
 
@@ -1108,7 +1107,7 @@ Task 503 done
 
 ```
 $ bosh run errand h_master_register
-Acting as user 'admin' on deployment 'openpaas-paasta-pinpoint' on 'my-bosh'
+Acting as user 'admin' on deployment 'paasta-pinpoint' on 'my-bosh'
 
 Director task 1875
 Started preparing deployment > Preparing deployment. Done (00:00:00)

@@ -6,6 +6,7 @@
      * [1.4. 참고자료](#5)
 2. [설치전 준비사항](#6)
      * [2.1. 기본설치 항목](#7)
+     * [2.2. 사용자의 조직 생성 Flag 활성화](#23)
      * [2.2. 조직 및 공간 생성](#8)
      * [2.3. 레디스 서비스 브로커 등록 및 활성화](#9)
      * [2.4. 레디스 서비스 인스턴스 생성](#10)
@@ -109,8 +110,22 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다..
 
 <br>
+<div id='23'></div>
+###   2.2. 사용자의 조직 생성 Flag 활성화
+PaaS-TA는 기본적으로 일반 사용자는 조직을 생성할 수 없도록 설정되어 있다. 포털 배포를 위해 조직 및 공간을 생성해야 하고 또 테스트를 구동하기 위해서도 필요하므로 사용자가 조직을 생성할 수 있도록 user_org_creation FLAG를 활성화 한다. FLAG 활성화를 위해서는 PaaS-TA 운영자 계정으로 로그인이 필요하다.
+
+```
+$ cf enable-feature-flag user_org_creation
+```
+```
+Setting status of user_org_creation as admin...
+OK
+
+Feature user_org_creation Enabled.
+```
+
 <div id='8'></div>
-###   2.2. 조직 및 공간 생성
+###   2.3. 조직 및 공간 생성
 
 - PaaS-TA 어드민 계정으로 포탈을 배포할 조직 및 공간을 생성하거나 배포할 공간으로 타켓설정을 한다.
 ```
@@ -125,7 +140,7 @@ $ cf target –o <조직명> -s <공간명>
 
 <br>
 <div id='9'></div>
-###   2.3. 레디스 서비스 브로커 등록 및 활성화
+###   2.4. 레디스 서비스 브로커 등록 및 활성화
 
 <br>
 - Redis 서비스 브로커를 확인한다.
@@ -136,8 +151,8 @@ $ cf service-brokers
 Getting service brokers as admin...
 
 name                     url
-paasta-pinpoint-broker  http://10.30.70.82:8080
-paasta-redis-broker     http://10.30.60.71:12350
+paasta-pinpoint-broker   http://10.30.70.82:8080
+paasta-redis-broker      http://10.30.60.71:12350
 ```
 
 <br>
@@ -158,7 +173,7 @@ TIP:  Use 'cf marketplace -s SERVICE' to view descriptions of individual plans o
 
 <br>
 <div id='10'></div>
-###   2.4. 레디스 서비스 인스턴스 생성
+###   2.5. 레디스 서비스 인스턴스 생성
 <br>
 - Redis 서비스가 활성화 되면 서비스 인스턴스를 생성할 수 있다. 포털이 사용할 Redis 서비스의 서비스 인스턴스를 생성한다.
 ```
@@ -171,7 +186,7 @@ OK
 
 <br>
 <div id='11'></div>
-###   2.5. 유레카 사용자 제공 서비스 생성
+###   2.6. 유레카 사용자 제공 서비스 생성
 <br>
 - 사용자 서비스 eureka user provide service 등록
 
@@ -204,7 +219,7 @@ portal-eureka-service  user-provided
 
 <br>
 <div id='12'></div>
-###   2.6. Portal Object Storage 설치 및 설정 변경
+###   2.7. Portal Object Storage 설치 및 설정 변경
 
 포털은 파일 관리를 위해 Object Storage를 사용하기 때문에 PaaSTA 포털 Object Storage를 설치 하여야 한다.  [[**PaaS-TA 포탈 Obejct Storage 설치 가이드**](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%ED%8F%AC%ED%83%88%20Object%20Storage%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)]를 참고하여 Object Storage를 설치한다.
 Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 설정된 값을 수정해야 한다. Object Storage 설치 시 입력한 값을 바탕으로 다음 항목의 값을 수정한다.
@@ -220,7 +235,7 @@ Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 �
 
 <br>
 <div id='13'></div>
-###   2.7.  Postgresql 기본 데이터 베이스 생성
+###   2.8.  Postgresql 기본 데이터 베이스 생성
 PaaS-TA-Portal 서비스를 하기위해 배포 파일이 있는 PaaSTA-Portal/postgresql/의 portal-postgresql-init.sh, postgresql.sql을 실행하여야 한다.
 
 <br>
@@ -528,7 +543,7 @@ Getting apps in org OCP/ space prd as admin...
 OK
 
 name                  requested state   instances   memory   disk   urls
-portal-registration  started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
+portal-registration   started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
 ```
 
 <br>
@@ -1251,15 +1266,6 @@ $ cf set-space-role junit-test-user app-test-org app-test-space SpaceDeveloper
 5.  조직이 없는 사용자를 생성한다.
 ```
 $ cf create-user no-org-user 1234
-```
-
-<br>
-6.  사용자가 조직을 생성할 수 있도록 설정을 변경한다.
-```
-cf enable-feature-flag [FEATURE_NAME]
-```
-```
-$ cf enable-feature-flag user_org_creation
 ```
 
 [portal_deploy_image_01]:/images/paasta-portal/portal-deploy/portal_deploy_image_01.png
