@@ -1282,7 +1282,9 @@ $ cd PaaS-TA-Portal/openPaasPaastaPortalApi
 
 spring.profiles가 세가지로 분류되어 있다. 각 spring.profiles 별로 값을 다르게 사용할 수 있고 각 spring.profiles는 연속된 3개의 대시('---')로 구분한다. 예시에서는 spring.profiles 값이 local인 경우를 예로 설명하기 때문에 연속된 3개의 대시('---')로 구분했을때, spring.profiles 값이 local인 경우와 동일한 범위내에 있는 설정 값을 수정하도록 한다.
 
+```
 $ vi src/resources/application.yml
+```
 ```yaml
 # Spring properties
 spring:
@@ -1367,7 +1369,7 @@ spring:
           required: true
         maximumTotalQps: 90
         authUrl: http://localhost:8080
-        imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
+        **imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png**
         sFile: emailTemplate.html
         subject: PaaS-TA User Potal 인증메일(Local)
         contextUrl: user/authUser
