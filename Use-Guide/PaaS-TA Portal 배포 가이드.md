@@ -1302,9 +1302,9 @@ server:
 cloudfoundry:
   cc:
     api:
-      url: https://api.115.68.46.186.xip.io       # PaaS-TA 플랫폼의 API url
-      uaaUrl: https://uaa.115.68.46.186.xip.io    # PaaS-TA 플랫폼의 UAA url
-  # CloudFoundry Login information
+      url: https://api.115.68.46.186.xip.io       # PaaS-TA 플랫폼의 API url(수정 필요)
+      uaaUrl: https://uaa.115.68.46.186.xip.io    # PaaS-TA 플랫폼의 UAA url(수정 필요)
+  # CloudFoundry Login information
   user:
     admin:
       username: admin
@@ -1331,29 +1331,29 @@ spring:
   datasource:
     cc:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:5524/ccdb        # PaaS-TA 플랫폼의 ccdb 접속 url
+      url: jdbc:postgresql://localhost:5524/ccdb        # PaaS-TA 플랫폼의 ccdb 접속 url(수정 필요)
       username: ccadmin
       password: admin
     portal:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:5524/portaldb    #(Portal DB로 PaaS-TA 플랫폼에 내장된 PostgreSQL을 사용할 경우) PaaS-TA 플랫폼의 portaldb 접속 url
+      url: jdbc:postgresql://localhost:5524/portaldb    #(Portal DB로 PaaS-TA 플랫폼에 내장된 PostgreSQL을 사용할 경우) PaaS-TA 플랫폼의 portaldb 접속 url(수정 필요)
       username: portaladmin
       password: admin
       mysql:
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/portaldb?autoReconnect=true&useUnicode=true&characterEncoding=utf8  # (Portal DB로 Mysql 서비스팩을 사용할 경우) MySQL 서비스팩의 portaldb 접속 url 
+        url: jdbc:mysql://localhost:3306/portaldb?autoReconnect=true&useUnicode=true&characterEncoding=utf8  # (Portal DB로 Mysql 서비스팩을 사용할 경우) MySQL 서비스팩의 portaldb 접속 url (수정 필요)
         username: portaladmin
         password: admin
     uaa:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://{localhost}:5524/uaadb      # PaaS-TA 플랫폼의 uaadb 접속 url
+      url: jdbc:postgresql://{localhost}:5524/uaadb      # PaaS-TA 플랫폼의 uaadb 접속 url (수정 필요)
       username: uaaadmin
       password: admin
   objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta
-    authUrl: http://{localhost}:5000/v2.0                # PaaS-TA Portal Object Storage AuthUrl
+    authUrl: http://{localhost}:5000/v2.0                # PaaS-TA Portal Object Storage AuthUrl (수정 필요)
     container: portal-container
   mail:
     smtp:
@@ -1381,8 +1381,7 @@ eureka:
     hostname: localhost
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:2221/eureka/           # defaultZone: http://[portal-registration의 접속 호스트
-]/eureka/
+      defaultZone: http://127.0.0.1:2221/eureka/           # defaultZone: http://[portal-registration의 접속 호스트]/eureka/ (수정 필요)
  logging:
   level:
     org.openpaas.paasta.portal.api.mapper: DEBUG
