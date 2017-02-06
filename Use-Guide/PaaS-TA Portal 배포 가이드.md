@@ -59,7 +59,7 @@
   </tr>
   <tr>
     <td>portal-web-admin</td>
-    <td>1</td>
+    <td>N</td>
     <td>1GB</td>    
     <td>1GB Disk</td>
   </tr>
@@ -92,7 +92,7 @@
 <br>
 <div id='5'></div>
 ### 1.4. 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs) <br>
+[**http://bosh.io/docs**](http://bosh.io/docs)<br>
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 <br>
@@ -103,11 +103,8 @@
 <div id='7'></div>
 ### 2.1. 기본설치 항목
 
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 타켓 설정이 되어 있어야 한다.
-BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
-
-PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다..
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
+PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다.
 
 <br>
 <div id='23'></div>
@@ -1266,6 +1263,136 @@ $ cf set-space-role junit-test-user app-test-org app-test-space SpaceDeveloper
 5.  조직이 없는 사용자를 생성한다.
 ```
 $ cf create-user no-org-user 1234
+```
+
+<br>
+6.	PaaS-TA 포털 레포지토리를 Clone 한다.
+```
+$ git clone https://github.com/OpenPaaSRnD/PaaS-TA-Portal.git
+```
+
+<br>
+7.	PaaS-TA Porta API 디렉토리로 이동한다.
+```
+$ cd PaaS-TA-Portal/openPaasPaastaPortalApi
+```
+
+<br>
+8.	현재의 PaaS-TA 설치 환경에 맞게 PaaS-TA 포털 API 설정을 변경한다. 현재 디렉토리 기준으로 변경이 필요한 파일의 경로는 'src/resources/application.yml' 이다. 굵은 글씨로 쓰여진 항목을 사용자의 설치 환경에 맞게 수정한다.
+
+spring.profiles가 세가지로 분류되어 있다. 각 spring.profiles 별로 값을 다르게 사용할 수 있고 각 spring.profiles는 연속된 3개의 대시('---')로 구분한다. 예시에서는 spring.profiles 값이 local인 경우를 예로 설명하기 때문에 연속된 3개의 대시('---')로 구분했을때, spring.profiles 값이 local인 경우와 동일한 범위내에 있는 설정 값을 수정하도록 한다.
+
+$ vi src/resources/application.yml
+```yaml
+# Spring properties
+spring:
+  application:
+     name: portal-api  # Service registers under this name
+# jdbc 종류 (postgresql, mysql)
+  jdbc: postgresql
+#  jdbc: mysql
+
+# HTTP Server
+server:
+  port: ${PORT:2222}   # HTTP (Tomcat) port
+
+# CloudFoundry API Url
+cloudfoundry:
+  cc:
+    api:
+      url: https://api.115.68.46.186.xip.io       # PaaS-TA 플랫폼의 API url
+      uaaUrl: https://uaa.115.68.46.186.xip.io    # PaaS-TA 플랫폼의 UAA url
+  # CloudFoundry Login information
+  user:
+    admin:
+      username: admin
+      password: admin
+    uaaClient:
+      clientId: login
+      clientSecret: login-secret
+      adminClientId: admin
+      adminClientSecret: admin-secret
+      loginClientId: login
+      loginClientSecret: login-secret
+      skipSSLValidation: true
+  authorization: cf-Authorization
+
+abacus:
+  url: http://paasta-usage-reporting.115.68.46.186.xip.io/v1
+
+---
+spring:
+  profiles: local
+  security:
+    username: admin
+    password: openpaasta
+  datasource:
+    cc:
+      driverClassName: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5524/ccdb        # PaaS-TA 플랫폼의 ccdb 접속 url
+      username: ccadmin
+      password: admin
+    portal:
+      driverClassName: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5524/portaldb    #(Portal DB로 PaaS-TA 플랫폼에 내장된 PostgreSQL을 사용할 경우) PaaS-TA 플랫폼의 portaldb 접속 url
+      username: portaladmin
+      password: admin
+      mysql:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/portaldb?autoReconnect=true&useUnicode=true&characterEncoding=utf8  # (Portal DB로 Mysql 서비스팩을 사용할 경우) MySQL 서비스팩의 portaldb 접속 url 
+        username: portaladmin
+        password: admin
+    uaa:
+      driverClassName: org.postgresql.Driver
+      url: jdbc:postgresql://{localhost}:5524/uaadb      # PaaS-TA 플랫폼의 uaadb 접속 url
+      username: uaaadmin
+      password: admin
+  objectStorage:
+    tenantName: paasta-portal
+    username: paasta-portal
+    password: paasta
+    authUrl: http://{localhost}:5000/v2.0                # PaaS-TA Portal Object Storage AuthUrl
+    container: portal-container
+  mail:
+    smtp:
+      host: smtp.gmail.com
+      port: 465
+      username: PaaS-TA 관리자
+      password: openpasta!
+      userEmail: openpasta@gmail.com
+      properties:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+        maximumTotalQps: 90
+        authUrl: http://localhost:8080
+        imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png
+        sFile: emailTemplate.html
+        subject: PaaS-TA User Potal 인증메일(Local)
+        contextUrl: user/authUser
+multipart:
+  maxFileSize: 1000Mb
+  maxRequestSize: 1000Mb
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:2221/eureka/           # defaultZone: http://[portal-registration의 접속 호스트
+]/eureka/
+ logging:
+  level:
+    org.openpaas.paasta.portal.api.mapper: DEBUG
+---
+... 하단 생략 ...
+```
+
+<br>
+10.	Gradle 테스트 수행
+
+```
+$ gradle -Plocation=local clean test 
 ```
 
 [portal_deploy_image_01]:/images/paasta-portal/portal-deploy/portal_deploy_image_01.png
