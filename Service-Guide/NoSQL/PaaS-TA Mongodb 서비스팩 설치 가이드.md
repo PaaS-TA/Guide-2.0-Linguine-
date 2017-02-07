@@ -913,3 +913,4 @@ SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH �
 [mongodb_image_39]:/images/paasta-service/mongodb/mongodb_image_39.png
 [mongodb_image_40]:/images/paasta-service/mongodb/mongodb_image_40.png
 [mongodb_image_41]:/images/paasta-service/mongodb/mongodb_image_41.png
+[mongodb_image_42]:/images/paasta-service/mongodb/mongodb_image_42.png
