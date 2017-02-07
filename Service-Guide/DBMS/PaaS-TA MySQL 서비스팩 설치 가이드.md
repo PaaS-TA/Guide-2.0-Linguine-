@@ -39,9 +39,9 @@
 [**http://bosh.io/docs**](http://bosh.io/docs)  
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-#2. MySQL 서비스팩 설치
+# 2. MySQL 서비스팩 설치
 
-###2.1. 설치전 준비사항
+### 2.1. 설치전 준비사항
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.<br>
@@ -55,11 +55,11 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
 
 <br>
-###2.2. MySQL 서비스 릴리즈 업로드
+### 2.2. MySQL 서비스 릴리즈 업로드
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
->$bosh releases<br>
+>$ bosh releases<br>
 ><br>
 >RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
 >Acting as user 'admin' on 'bosh'<br>
@@ -101,7 +101,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 -	업로드 된 MySQL 릴리즈를 확인한다.
 
->$bosh releases<br>
+>$ bosh releases<br>
 >RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
 >Acting as user 'admin' on 'bosh'<br>
 ><br>
@@ -141,7 +141,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
     다운로드 받은 Deployment Yml 파일을 확인한다.
 
 
->$ls –all<br>
+>$ ls –all<br>
 ><br>
 > total 851588<br>
 > drwxrwxr-x  5 inception inception      4096 Jan  9 10:18 .<br>
@@ -358,7 +358,7 @@ resource_pools:                               # 배포시 사용하는 resource 
 
 -	배포된 MySQL 서비스팩을 확인한다.
 
->$bosh vms paasta-mysql-service<br>
+>$ bosh vms paasta-mysql-service<br>
 > <br>
 > RSA 1024 bit CA certificates are loaded due to old openssl compatibility<br>
 > Acting as user 'admin' on deployment 'paasta-mysql-service' on 'bosh'<br>
@@ -400,7 +400,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
   서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
   서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
->`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
+>`$ cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
 
 >![update_mysql_vsphere_17]
 
@@ -450,7 +450,7 @@ Sample Web App 구조는 다음과 같다.
 
 ##### PaaSTA-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
 
->`$ls -all`
+>`$ ls -all`
 
 >![update_mysql_vsphere_21]
 
@@ -459,13 +459,13 @@ Sample Web App 구조는 다음과 같다.
 ### 3.2. PaaS-TA에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 
-*참고: 서비스 신청시 PaaS-TA에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
 
 ##### 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
->`$cf marketplace`
+>`$ cf marketplace`
 
 >![update_mysql_vsphere_22]
 
