@@ -1,38 +1,44 @@
 ## Table of Contents
-1. [문서 개요](#1-문서-개요)
-  - 1.1. [목적](#11-목적)
-  - 1.2. [범위](#12-범위)
-  - 1.3. [시스템 구성도](#13-시스템-구성도)
-  - 1.4. [참고자료](#14-참고자료)
-2. [WEB IDE 설치](#2-mysql-서비스팩-설치)
-  - 2.1. [설치전 준비사항](#21-설치전-준비사항)
-  - 2.2. [WEB-IDE 릴리즈 업로드](#22-WEB-IDE-릴리즈-업로드)
-  - 2.3. [WEB-IDE Deployment 파일 수정 및 배포](#23-WEB-IDE-deployment-파일-수정-및-배포)
-  - 2.4. [MySQL 서비스 브로커 등록](#24-WEB-IDE-브로커-등록)
-3. [WEB-IDE의 PaaS-TA 포털사이트 연동](#3-web-ide의-paas-ta-포털사이트-연동)
-  - 3.1. [WEB-IDE 신청](#31-WEB-IDE-신청)
-  - 3.2. [WEB-IDE 신청 취소](#32-WEB-IDE-신청-취소)
-  - 3.3. [WEB-IDE 신청 리스트 조회](#33-WEB-IDE-신청-리스트-조회)
-  - 3.4. [WEB-IDE 신청 사용 승인](#33-WEB-IDE-신청-사용-승인)
-  - 3.5. [WEB-IDE 신청 완료](#33-WEB-IDE-신청-완료)
-  - 3.6. [WEB-IDE 대시보드 화면](#33-WEB-IDE-대시보드-화면)
-4. [WEB-IDE 에서 CF CLI 사용법](#4-WEB-IDE-에서-CF-CLI-사용법)
-  - 4.1. [WEB-IDE New Project 화면](#41-WEB-IDE-New-Project-화면)
-  - 4.2. [WEB-IDE Workspace 화면](#41-WEB-IDE-Workspace-화면)
-  - 4.3. [WEB-IDE Teminal에서의 CF CLI 실행](#41-WEB-IDE-Teminal에서의-CF-CLI-실행)
+1. [문서 개요](#1)
+  - 1.1. [목적](#2)
+  - 1.2. [범위](#3)
+  - 1.3. [시스템 구성도](#4)
+  - 1.4. [참고자료](#5)
+2. [WEB IDE 설치](#6)
+  - 2.1. [설치전 준비사항](#7)
+  - 2.2. [WEB-IDE 릴리즈 업로드](#8)
+  - 2.3. [WEB-IDE Deployment 파일 수정 및 배포](#9)
+3. [WEB-IDE의 PaaS-TA 포털사이트 연동](#10)
+  - 3.1. [WEB-IDE 신청](#11)
+  - 3.2. [WEB-IDE 신청 취소](#12)
+  - 3.3. [WEB-IDE 신청 리스트 조회](#13)
+  - 3.4. [WEB-IDE 신청 사용 승인](#14)
+  - 3.5. [WEB-IDE 신청 완료](#15)
+  - 3.6. [WEB-IDE 대시보드 화면](#16)
+4. [WEB-IDE 에서 CF CLI 사용법](#17)
+  - 4.1. [WEB-IDE New Project 화면](#18)
+  - 4.2. [WEB-IDE Workspace 화면](#19)
+  - 4.3. [WEB-IDE Teminal에서의 CF CLI 실행](#20)
 
-
+<br>
+<div id='1'></div>
 # 1. 문서 개요
+<br>
+<div id='2'></div>
 ### 1.1. 목적
 
 본 문서(WEB-IDE 설치 가이드)는 paasta에서 사용할 수 있는 WEB-IDE의
 설치를 Bosh를 이용하여 설치 하는 방법과 paasta 포털에서 WEB-IDE 서비스를
 사용하는 방법을 기술하였다.
 
+<br>
+<div id='3'></div>
 ### 1.2. 범위
 설치 범위는 WEB-IDE 사용을 검증하기 위한 기본 설치를 기준으로
 작성하였다.
 
+<br>
+<div id='4'></div>
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Browser(paasta Portal), WEB IDE
 Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
@@ -44,6 +50,8 @@ Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 | paasta-web-ide1 | resource\_pools | 1vCPU / 2GB RAM / 10GB Disk |
 | paasta-web-ide1 | resource\_pools | 1vCPU / 2GB RAM / 10GB Disk |
 
+<br>
+<div id='5'></div>
 ### 1.4. 참고자료
 
 > [***http://bosh.io/docs***](http://bosh.io/docs)
@@ -53,8 +61,11 @@ Server, Workspace, Desktop IDE로 최소사항을 구성하였다.
 >[***https://www.eclipse.org/che/technology/***](https://www.eclipse.org/che/technology/)
 
 
-
+<br>
+<div id='6'></div>
 #2. WEB IDE 설치
+<br>
+<div id='7'></div>
 ###2.1. 설치전 준비사항
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
@@ -69,6 +80,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
 
 <br>
+<div id='8'></div>
 ###2.2. WEB-IDE 릴리즈 업로드
 
 - PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 WEB-IDE 서비스 릴리즈 paasta-web-ide-2.0.tgz 파일을 복사한다.
@@ -161,7 +173,8 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >
 >Releases total: 24
 
-
+<br>
+<div id='9'></div>
 ###2.2. WEB-IDE Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한
@@ -429,9 +442,9 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 -   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
->$bosh deployment {Deployment manifest 파일 PATH}
+>$ bosh deployment {Deployment manifest 파일 PATH}
 >
->$bosh deployment paasta\_web\_ide\_vsphere\_2.0.yml
+>$ bosh deployment paasta\_web\_ide\_vsphere\_2.0.yml
 >
 >Deployment set to '/mnt/bosh-space/release/eclipse-che-release/deployment/ paasta\_web\_ide\_vsphere\_2.0'
 >
@@ -518,15 +531,20 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 >
 >VMs total: 2
 
+<br>
+<div id='10'></div>
 #3. WEB-IDE의 PaaS-TA 포털사이트 연동
 
+<br>
+<div id='11'></div>
 ###3.1. WEB-IDE 신청
 
 -   PaaS-TA 사용자 포털 조직 화면에서 WEB IDE 신청 버튼을 눌러 WEB-IDE
     사용을 신청한다.
 
 ![](/images/paasta-service/webide/web-ide-02.png)
-
+<br>
+<div id='12'></div>
 ###3.2. WEB-IDE 신청 취소
 
 -   WEB IDE 신청 후 사용을 원하지 않을 경우 신청 취소를 할 수 도 있다.
@@ -535,12 +553,16 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-03.png)
 
+<br>
+<div id='13'></div>
 ###3.3. WEB-IDE 신청 리스트 조회
 
 -   관리자는 파스타 포털 관리자 화면에서 WEB IDE 신청 리스트를 조회한다.
 
 ![](/images/paasta-service/webide/web-ide-04.png)
 
+<br>
+<div id='14'></div>
 ###3.4. WEB-IDE 신청 사용 승인
 
 -   관리자는 사용자 신청사항에 이미 설치된 WEB IDE URL를 선택한다.
@@ -549,6 +571,8 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-05.png)
 
+<br>
+<div id='15'></div>
 ###3.5. WEB-IDE 신청 완료
 
 -   WEB IDE 사용승인이 완료되면 사용자 화면에서 WEB IDE 아이콘이
@@ -558,6 +582,8 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-06.png)
 
+<br>
+<div id='16'></div>
 ###3.6. WEB-IDE 대시보드 화면
 
 -   WEB IDE 아이콘을 클릭하면 관리자에 의해 할당된 WEB IDE 대시보드
@@ -565,7 +591,11 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-07.png)
 
+<br>
+<div id='17'></div>
 #4. WEB-IDE 에서 CF CLI 사용법
+<br>
+<div id='18'></div>
 ###4.1. WEB-IDE New Project 화면
 
 -   사용할 언어를 선택하고 Create workspace and project 로 새로운
@@ -577,6 +607,8 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-09.png)
 
+<br>
+<div id='19'></div>
 ###4.2. WEB-IDE Workspace 화면
 
 -   Open Project를 누르면 Workspace 화면이 열린다.
@@ -587,6 +619,8 @@ packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params
 
 ![](/images/paasta-service/webide/web-ide-11.png)
 
+<br>
+<div id='20'></div>
 ###4.3. WEB-IDE Teminal에서의 CF CLI 실행
 
 > -cf api 명령을 이용해 endpoint를 지정한다.
