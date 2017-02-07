@@ -102,8 +102,10 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
-※	설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수 있다. <br>
-     https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0
+- 다운로드 위치<br>
+>PaaSTA-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0nkrJ16>**  
+>PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**  
+>PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
 
 <br>
 <div id='pinpoint-서비스-릴리즈-업로드'></div>
