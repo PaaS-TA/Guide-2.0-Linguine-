@@ -207,7 +207,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 ```
 $ ls –all
 ```
-![mongodb_image_02]
+![mongodb_image_03]
 
 <br>
 - Director UUID를 확인한다.
@@ -217,7 +217,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 $ bosh status
 ```
 
-![mongodb_image_03]
+![mongodb_image_04]
 
 <br>
 - Deploy시 사용할 Stemcell을 확인한다.
@@ -225,7 +225,7 @@ $ bosh status
 ```
 $ bosh stemcells
 ```
-![mongodb_image_04]
+![mongodb_image_05]
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
 <br>
@@ -546,7 +546,7 @@ Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 ```
 $ cf service-brokers
 ```
-![mongodb_image_05]
+![mongodb_image_06]
 
 -	Mongodb 서비스 브로커를 등록한다.
 
@@ -565,7 +565,7 @@ $cf create-service-broker {서비스브로커 이름} {서비스브로커 사용
 ```
 $ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http://10.30.60.54:8080
 ```
-![mongodb_image_06]
+![mongodb_image_07]
 
 <br>
 -   등록된 mongodb 서비스 브로커를 확인한다.
@@ -573,7 +573,7 @@ $ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http:
 ```
 $ cf service-brokers
 ```
-![mongodb_image_07]
+![mongodb_image_08]
 
 <br>
 -   접근 가능한 서비스 목록을 확인한다.
@@ -581,7 +581,7 @@ $ cf service-brokers
 ```
 $ cf service-access
 ```
-![mongodb_image_08]
+![mongodb_image_09]
 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
 <br>
@@ -591,7 +591,7 @@ $ cf service-access
 $ cf enable-service-access Mongo-DB
 $ cf service-access
 ```
-![mongodb_image_09]
+![mongodb_image_10]
 
 <br>
 <div id='11'></div>
@@ -635,7 +635,7 @@ Sample Web App 구조는 다음과 같다.
 ```
 $ ls -all
 ```
-![mongodb_image_10]
+![mongodb_image_11]
 
 
 <br>
@@ -651,7 +651,7 @@ Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 �
 ```
 $ cf marketplace
 ```
-![mongodb_image_11]
+![mongodb_image_12]
 
 
 <br>
@@ -668,14 +668,14 @@ $ cf create-service {서비스명} {서비스플랜} {내서비스명}
 ```
 $ cf create-service Mongo-DB default-plan mongodb-service-instance
 ```
-![mongodb_image_12]
+![mongodb_image_13]
 
 <br>
 -	생성된 Mongodb 서비스 인스턴스를 확인한다.
 ```
 $ cf services
 ```
-![mongodb_image_13]
+![mongodb_image_14]
 
 <br>
 <div id='14'></div>
@@ -708,27 +708,26 @@ applications:
 ```
 $ cf push --no-start
 ```
-![mongodb_image_14]
-
+![mongodb_image_15]
 <br>
 -	배포된 Sample App을 확인하고 로그를 수행한다.
 ```
 $ cf apps
 ```
-![mongodb_image_15]
+![mongodb_image_16]
   
 ```
 $ cf logs {배포된 App명}
 $ cf logs hello-spring-mongodb
 ```
-![mongodb_image_16]
+![mongodb_image_17]
 
 <br>
 -	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 ```
 $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
 ```
-![mongodb_image_17]
+![mongodb_image_42]
 
 <br>
 -	바인드가 적용되기 위해서 App을 재기동한다.
