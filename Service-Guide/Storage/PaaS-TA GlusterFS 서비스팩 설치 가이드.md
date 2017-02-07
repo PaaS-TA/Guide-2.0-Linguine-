@@ -64,7 +64,7 @@
 <div id='7'></div>
 ### 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
+서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.
 BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
 -    PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
@@ -108,7 +108,7 @@ Releases total: 1
 GlusterFS 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 <br>
--	GlusterFS 서비스 릴리즈 파일을업로드한다.
+-	GlusterFS 서비스 릴리즈 파일을 업로드한다.
 ```
 $ bosh upload release paasta-glusterfs-2.0.tgz
 ```
@@ -264,7 +264,7 @@ Releases total: 1
 <div id='9'></div>
 ###   2.3. glusterfs 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
-Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등;이 정의 되어 있다.
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
 <br>
 -	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 GlusterFS Deployment 파일을 복사한다.
@@ -281,7 +281,7 @@ ls –all
 
 <br>
 -	Director UUID를 확인한다.
-BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
+BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
 
 ```
 $ bosh status
@@ -391,7 +391,7 @@ jobs:
   template: op-glusterfs-java-broker
 
 - instances: 1
-  lifecycle: errand                    # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
+  lifecycle: errand                    # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar
   networks:
   - name: paasta_network
@@ -429,7 +429,7 @@ jobs:
   resource_pool: services-small
   template: broker-deregistrar
 
-networks:                        # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+networks:                        # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수 있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
 - name: paasta_network
   subnets:
   - cloud_properties:
@@ -629,7 +629,7 @@ $ cf service-access
 <br>
 <div id='12'></div>
 ### 3.1. Sample App 구조
-Sample Web App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 GlusterFS 환경정보(서비스 연결 정보)와파일 업로드하고 확인하는 기능을 제공한다.
+Sample Web App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우저나 curl로 해당 App에 접속 하여 GlusterFS 환경정보(서비스 연결 정보)와파일 업로드하고 확인하는 기능을 제공한다.
 
 Sample App 구조는 다음과 같다.
 <table>
@@ -647,11 +647,11 @@ Sample App 구조는 다음과 같다.
   </tr>
   <tr>
     <td>pom.xml</td>
-    <td>메이븐 project 설정 파일</td>
+    <td>maven project 설정 파일</td>
   </tr>
   <tr>
     <td>target</td>
-    <td>메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)</td>
+    <td>maven build시 생성되는 디렉토리(war 파일, classes 폴더 등)</td>
   </tr>
 </table>
 
@@ -775,9 +775,8 @@ $ curl --form attchFile=@../../../Desert.jpg --form press=OK hello-spring-gluste
 ![glusterfs_image_16]
 
 <ve>
-##### 브라우져에서 이미지 확인
+##### 브라우에서 이미지 확인
 ![glusterfs_image_17]
-
 
 [glusterfs_image_01]:/images/paasta-service/glusterfs/glusterfs_image_01.png
 [glusterfs_image_02]:/images/paasta-service/glusterfs/glusterfs_image_02.png
