@@ -7,10 +7,10 @@
 2. [설치전 준비사항](#6)
      * [2.1. 기본설치 항목](#7)
      * [2.2. 사용자의 조직 생성 Flag 활성화](#23)
-     * [2.2. 조직 및 공간 생성](#8)
-     * [2.3. 레디스 서비스 브로커 등록 및 활성화](#9)
-     * [2.4. 레디스 서비스 인스턴스 생성](#10)
-     * [2.5. 유레카 사용자 제공 서비스 생성](#11)
+     * [2.2. 조직 및 공간 생성](#8)
+     * [2.3. Redis 서비스 브로커 등록 및 활성화](#9)
+     * [2.4. Redis 서비스 인스턴스 생성](#10)
+     * [2.5.  사용자 제공 서비스 생성](#11)
      * [2.6. Portal Object Storage 설치 및 설정 변경](#12)
      * [2.7. Postgresql 기본 데이터 베이스 생성](#13)
 3. [PaaS-TA 배포](#14)
@@ -103,7 +103,7 @@
 <div id='7'></div>
 ### 2.1. 기본설치 항목
 
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 target 설정이 되어 있어야 한다. BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다.
 
 <br>
@@ -124,7 +124,7 @@ Feature user_org_creation Enabled.
 <div id='8'></div>
 ###   2.3. 조직 및 공간 생성
 
-- PaaS-TA 어드민 계정으로 포탈을 배포할 조직 및 공간을 생성하거나 배포할 공간으로 타켓설정을 한다.
+- PaaS-TA 어드민 계정으로 포탈을 배포할 조직 및 공간을 생성하거나 배포할 공간으로 target 설정을 한다.
 ```
 $ cf create-org <조직명>
 ```
@@ -137,7 +137,7 @@ $ cf target –o <조직명> -s <공간명>
 
 <br>
 <div id='9'></div>
-###   2.4. 레디스 서비스 브로커 등록 및 활성화
+###   2.4. Redis 서비스 브로커 등록 및 활성화
 
 <br>
 - Redis 서비스 브로커를 확인한다.
@@ -170,7 +170,7 @@ TIP:  Use 'cf marketplace -s SERVICE' to view descriptions of individual plans o
 
 <br>
 <div id='10'></div>
-###   2.5. 레디스 서비스 인스턴스 생성
+###   2.5. Redis 서비스 인스턴스 생성
 <br>
 - Redis 서비스가 활성화 되면 서비스 인스턴스를 생성할 수 있다. 포털이 사용할 Redis 서비스의 서비스 인스턴스를 생성한다.
 ```
@@ -233,7 +233,7 @@ Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 �
 <br>
 <div id='13'></div>
 ###   2.8.  Postgresql 기본 데이터 베이스 생성
-PaaS-TA-Portal 서비스를 하기위해 배포 파일이 있는 PaaSTA-Portal/postgresql/의 portal-postgresql-init.sh, postgresql.sql을 실행하여야 한다.
+PaaS-TA-Portal 서비스를 하기 위해 배포 파일이 있는 PaaSTA-Portal/postgresql/의 portal-postgresql-init.sh, postgresql.sql을 실행하여야 한다.
 
 <br>
 - CloudFoundry내의 PostgreSql이 설치 되어있는 곳을 확인한다.
@@ -314,7 +314,7 @@ drwx------ 2 vcap vcap   4096 Jan 18 06:25 .cache/
 ```
 
 <br>
-- 스크립트를 확인한여, 생성할 데이터 베이스명, postgresql vesrsion 및 사용자를 확인한다.
+- 스크립트를 확인하여, 생성할 데이터베이스 명, postgresql vesrsion 및 사용자를 확인한다.
 ```
 $ vi ./portal-postgresql-init.sh
 ```
@@ -427,7 +427,7 @@ portaldb-> \l
 <br>
 - manifest를 확인한다.
 manifest는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
-Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 name, memory, instance, host, path, buildpack, env등 을 사용것인지 정의가 되어 있다.
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 name, memory, instance, host, path, buildpack, env등을 사용 할 것인지 정의가 되어 있다.
 
 <br>
 - portal-registration의 manifest.yml 확인 한다.
@@ -729,7 +729,7 @@ portal-registration  started           1/1         512M     1G     portal-regist
 <div id='17'></div>
 ###  3.3. 포탈 APIV2 배포
 
-배포 어플리케이션은 potal-api 어플리케이션과는 다른 cloudfoundry version의 api 서비스를 통한 기능개발을 위해 배포 되어야하는 어플리케이션이다.
+배포 어플리케이션은 potal-api 어플리케이션과는 다른 cloudfoundry version의 api 서비스를 통한 기능개발을 위해 배포 되어야 하는 어플리케이션이다.
 
 <br>
 - portal-apiV2 의 manifest.yml확인
@@ -1189,7 +1189,7 @@ PaaS-TA 포털에 기본 생성되는 카탈로그에 대한 이미지를 업로
 PaaSTA Potal  JUnit 테스트 Class를 구동하기 위해 다음과 같은 작업이 필요하다.
 
 <br>
-1.  테스트 조직, 테스트 공간, 테스트 앱을 생성하여야한다.
+1.  테스트 조직, 테스트 공간, 테스트 앱을 생성하여야 한다.
 ```
 cf create-org [조직명]
 cf create-space [공간명]
