@@ -1400,7 +1400,6 @@ test.clientUserPassword=1234
 test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
 test.adminUserName=admin
 
-
 #ORG TEST
 test.noOrgClientUserName=no-org-user
 test.appTestOrg=app-test-org
@@ -1410,8 +1409,6 @@ test.noAuthTestOrg=junit-org-test-org-no-auth
 test.nonexistentOrg=nonexistent-org
 test.nonexistentOrNoAuthOrg=nonexistentOrNoAuthOrg
 test.createTestOrg=junit-org-test-org-create
-
-
 
 #SPACE TEST
 test.testOrg=junit-space-test-org
@@ -1428,7 +1425,6 @@ test.nonexistentApp=nonexistentApp
 test.domainName=115.68.46.186.xip.io
 test.testHost=testhost
 
-
 #SERVICE TEST
 #COMMON
 test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url (수정 필요)
@@ -1436,7 +1432,6 @@ test.clientUserName=junit-test-user
 test.clientUserPassword=1234
 test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
 test.adminUserName=admin
-
 
 #ORG TEST
 test.noOrgClientUserName=no-org-user
@@ -1447,8 +1442,6 @@ test.noAuthTestOrg=junit-org-test-org-no-auth
 test.nonexistentOrg=nonexistent-org
 test.nonexistentOrNoAuthOrg=nonexistentOrNoAuthOrg
 test.createTestOrg=junit-org-test-org-create
-
-
 
 #SPACE TEST
 test.testOrg=junit-space-test-org
@@ -1465,13 +1458,60 @@ test.nonexistentApp=nonexistentApp
 test.domainName=115.68.46.186.xip.io            # PaaS-TA 플랫폼의 기본 도메인 (수정 필요)
 test.testHost=testhost
 
-
 #SERVICE TEST
 test.serviceTestOrg=junit-service-test-org
 test.serviceTestSpace=junit-service-test-space
 test.userProvidedInstanceName=user-provided-test-instance
 test.createTestUP=user-provided-create-test
 
+#COMMON CODE, CATALOG, MY QUESTION, USER MANAGEMENT
+test.cf.authorization=cf-Authorization
+test.admin.id=admin
+test.admin.password=admin
+test.org=catalog-test-org
+test.space=catalog-test-space
+test.file.path=./src/test/java/resources/images/test.jpg
+test.domain.url=115.68.46.186.xip.io                     # PaaS-TA 플랫폼의 기본 도메인 (수정 필요)
+test.java.build.pack=java_buildpack_offline
+test.ruby.build.pack=ruby_buildpack
+test.egov.build.pack=egov_buildpack
+#COMMON
+test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url (수정 필요)
+test.clientUserName=junit-test-user
+test.clientUserPassword=1234
+test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
+test.adminUserName=admin
+
+#ORG TEST
+test.noOrgClientUserName=no-org-user
+test.appTestOrg=app-test-org
+test.appTestSpace=app-test-space
+test.orgTestOrg=junit-org-test-org
+test.noAuthTestOrg=junit-org-test-org-no-auth
+test.nonexistentOrg=nonexistent-org
+test.nonexistentOrNoAuthOrg=nonexistentOrNoAuthOrg
+test.createTestOrg=junit-org-test-org-create
+
+#SPACE TEST
+test.testOrg=junit-space-test-org
+test.testSpace=junit-test-space
+test.createTestSpace=junit-space-test-space-create
+test.noAuthTestSpace=junit-space-test-space-no-auth
+test.noAuthSpaceTestOrg=junit-space-test-org-no-auth
+test.nonexistentOrNoAuthSpace=test-nonexistent-no-auth-space
+test.noContentTestOrg=junit-space-test-org-no-content
+
+# APP TEST
+test.testApp=test-app
+test.nonexistentApp=nonexistentApp
+test.domainName=115.68.46.186.xip.io            # PaaS-TA 플랫폼의 기본 도메인 (수정 필요)
+test.testHost=testhost
+
+#SERVICE TEST
+test.serviceTestOrg=junit-service-test-org
+test.serviceTestSpace=junit-service-test-space
+test.userProvidedInstanceName=user-provided-test-instance
+test.createTestUP=user-provided-create-test
 
 #COMMON CODE, CATALOG, MY QUESTION, USER MANAGEMENT
 test.cf.authorization=cf-Authorization
@@ -1485,7 +1525,6 @@ test.java.build.pack=java_buildpack_offline
 test.ruby.build.pack=ruby_buildpack
 test.egov.build.pack=egov_buildpack
 test.user.id.email.account=mingu@bluedigm.com
-
 
 #USER TEST
 test.insetTestId=insertUser
