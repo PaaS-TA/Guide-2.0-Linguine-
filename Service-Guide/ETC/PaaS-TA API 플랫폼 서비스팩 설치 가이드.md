@@ -47,7 +47,7 @@
 <br>
 ### 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
+서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.
 BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
@@ -484,13 +484,13 @@ jobs:
   networks:                                    # 네트워크 구성정보
   - name: default                              # Networks block에서 선언한 network 이름
   properties:                                  # job에 대한 속성을 지정(필수)
-    cf:                                        # PaaS-TA 접속 정보    
-      api_url: http://api.115.68.46.30.xip.io  # PaaS-TA 접속 URL
+    cf:                                        # PaaS-TA 접속 정보    
+      api_url: http://api.115.68.46.30.xip.io  # PaaS-TA 접속 URL
       admin_username: "admin"                  # PaaS-TA 접속 유저이름
       admin_password: "admin"                  # PaaS-TA 접속 패스워드
       skip_ssl_validation: "true"              # PaaS-TA 접속 옵션의 일부
     broker:                                    # API Platform Service Broker 설정정보
-      name: apiplatform-service-broker         # API Platform Service Broker 생성명
+      name: apiplatform-service-broker         # API Platform Service Broker 
 ```
 
 <br>
@@ -600,7 +600,7 @@ VMs total: 4
 <br>
 ### 2.4. API 매니저에서 API 생성 및 배포
 API 플랫폼 서비스 팩에는 API 매니저(API 플랫폼) 서비스 브로커가 포함되어 있다. API 매니저에 등록된 API 서비스를 PaaS-TA에서 사용하기 위해서는 PaaS-TA에서 이 서비스 브로커를 등록하여야 한다. 이때, API 매니저에 API 서비스가 존재하지 않으면, PaaS-TA에서 API 매니저 서비스 브로커를 등록할 수 없기 때문에 서비스 브로커를 등록하기 전에 API 매니저에서 API 서비스를 등록한다. 
-※ 본 문서에서 등록하는 API 서비스는 WSO2 API Manager의 공식 문서에서 가이드하는 샘플 API이다.
+※ 본 문서에서 등록하는 API 서비스는 WSO2 API Manager의 공식 문서에서 가이드 하는 샘플 API이다.
 
 <br>
 ##### 2.4.1. 터널링 설정
