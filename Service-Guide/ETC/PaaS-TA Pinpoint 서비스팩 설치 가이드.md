@@ -117,14 +117,14 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 -  Github에서 다운로드 받은 paasta-pinpoint-release 폴더로 이동하여 Pinpoint 릴리즈 파일을 확인한다.
 
 ```
-$ls paasta-pinpoint-cluster-2.0.tgz
+$ls paasta-pinpoint-2.0.tgz
 
 ```
 
 <br>
 -  릴리즈를 업로드한다.
 ```
-$ bosh upload release paasta-pinpoint-cluster-2.0.tgz
+$ bosh upload release paasta-pinpoint-2.0.tgz
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -351,7 +351,7 @@ Monit file for 'collector'                                   OK
 
 Release info
 ------------
-Name:    paasta-pinpoint-cluster
+Name:    paasta-pinpoint-service
 Version: 2.0
 
 Packages
@@ -433,7 +433,7 @@ Started creating new jobs > h_slave/ca15d7c5e57fbd7ecfb7a4614dd8bee8d43efe84. Do
 Started creating new jobs > collector/062974e137db2e4262036a38198c2c167fbc6f0c. Done (00:00:00)
    Done creating new jobs (00:00:01)
 
-Started release has been created > paasta-pinpoint-cluster/2.0. Done (00:00:00)
+Started release has been created > paasta-pinpoint-service/2.0. Done (00:00:00)
 
 Task 441 done
 
@@ -471,7 +471,7 @@ Acting as user 'admin' on 'bosh'
 |                         | 0+dev.6  | 00000000    |
 |                         | 0+dev.7  | 00000000    |
 | paasta-glusterfs        | 2.0*     | 85e3f01e+   |
-| paasta-pinpoint-cluster | 2.0      | 85e3f01e+   |
+| paasta-pinpoint-service | 2.0      | 85e3f01e+   |
 | swift-keystone-release  | 0+dev.1* | 00000000    |
 +-------------------------+----------+-------------+
 (*) Currently deployed
@@ -539,234 +539,208 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 - Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```
-$ vi paasta-pinpoint-cluster-vsphere-2.0.yml
+$ vi paasta-pinpoint-vsphere-2.0.yml
 ```
 ```yaml
-# paasta-pinpoint-cluster-vsphere-2.0.yml 설정 파일 내용
-
-<% num_collectors = 2 %>
-<% num_slaves = 2 %>
-<% num_webui = 2 %>
-<% h_master_ip = '10.30.70.75' %>
-<% h_secondary_ip = '10.30.70.76' %>
-#<% h_slave_ips = ["10.30.70.73", "10.30.70.74", "10.30.70.75"] %>
-<% h_slave_ips = ["10.30.70.73", "10.30.70.74"] %>
-#<% collector_ips = ["10.30.70.40","10.30.70.41","10.30.70.43"] %>
-<% collector_ips = ["10.30.70.40","10.30.70.41"] %>
-<% haproxy_webui_ip = '10.30.70.78' %>
-<% haproxy_webui_public_ip = '115.68.46.182' %>
-<% haproxy_webui_http_port = '80' %>
-#<% webui_ips = ["10.30.70.79", "10.30.70.80", "10.30.70.81"] %>
-<% webui_ips = ["10.30.70.79", "10.30.70.80"] %>
-<% broker_ip = '10.30.70.82' %>
-<% tcp_listen_port = '29994' %>
-<% udp_stat_listen_port = '29995' %>
-<% udp_span_listen_port = '29996' %>
----
-name: paasta-pinpoint
-director_uuid: d363905f-eaa0-4539-a461-8c1318498a32
-release:
-name: paasta-pinpoint-cluster
-version: latest
-compilation:
-workers: 6
-network: default
-cloud_properties:
-  ram: 4096
-  disk: 8096
-  cpu: 4
+# paasta-pinpoint-vsphere 설정 파일 내용
+name: paasta-pinpoint-service                           # 서비스 배포이름(필수)
+director_uuid: d363905f-eaa0-4539-a461-8c1318498a32     # bosh status 에서 확인한 Director UUID을 입력(필수)
+compilation:                             # 컴파일시 필요한 가상머신의 속성(필수)
+  workers: 6                             # 컴파일 하는 가상머신의 최대수(필수)
+  network: default                       # Networks block에서 선언한 network 이름(필수)
+  cloud_properties:                      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
+    ram: 4096
+    disk: 8096
+    cpu: 4
 update:
-canaries: 1
-canary_watch_time: 120000
-update_watch_time: 120000
-max_in_flight: 8
-
+  canaries: 1                            # canary 인스턴스 수(필수)
+  canary_watch_time: 120000              # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update_watch_time: 120000              # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 8                       # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
 networks:
-- name: default
-subnets:
-- cloud_properties:
-    name: Internal
-  dns:
-  - 10.30.20.24
-  - 8.8.8.8
-  gateway: 10.30.20.23
-  name: default_unused
-  range: 10.30.0.0/16
-  reserved:
-  - 10.30.20.0 - 10.30.20.22
-  - 10.30.20.24 - 10.30.20.255
-  - 10.30.40.0 - 10.30.40.255
-  - 10.30.60.0 - 10.30.60.112
-  static:
-  - 10.30.70.0 - 10.30.70.255 
-- name: public_network
-type: manual
-subnets:
-- cloud_properties:
-    name: External
-  dns:
-  - 8.8.8.8
-  range: 115.68.46.176/28
-  gateway: 115.68.46.177
-  static:
-  - <%= haproxy_webui_public_ip %>
+- name: default                           # Networks block에서 선언한 network 이름(필수)
+  subnets:
+  - cloud_properties:
+      name: Internal          # vsphere 에서 사용하는 network 이름(필수)
+    dns:                      # DNS 정보
+    - 10.30.20.24
+    - 8.8.8.8
+    gateway: 10.30.20.23
+    name: default_unused
+    range: 10.30.0.0/16
+    reserved:                         # 설치시 제외할 IP 설정
+    - 10.30.20.0 - 10.30.20.22
+    - 10.30.20.24 - 10.30.20.255
+    - 10.30.40.0 - 10.30.40.255
+    - 10.30.60.0 - 10.30.60.112
+    static:
+    - 10.30.70.0 - 10.30.70.255       #사용 가능한 IP 설정
+- name: public_network                #퍼블릭 네트워크
+  type: manual
+  subnets:
+  - cloud_properties:
+      name: External
+    dns:
+    - 8.8.8.8
+    range: 115.68.46.176/28
+    gateway: 115.68.46.177
+    static:
+    - 115.68.46.182
 
-resource_pools:
-- name: pinpoint_small 
+resource_pools:               # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+- name: pinpoint_smallc        # 고유한 resource pool 이름
   network: default
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-    version: 3263.8 
-  cloud_properties:
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent      # stemcell 이름(필수)
+    version: '3263.8'                                   # stemcell 버전(필수)
+  cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
     cpu: 1
     disk: 4096
     ram: 1024
 - name: pinpoint_medium
   network: default
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-    version: 3263.8
-  cloud_properties:
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent      # stemcell 이름(필수)
+    version: '3263.8'                                   # stemcell 버전(필수)
+  cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
     cpu: 2
     disk: 8192
     ram: 2048
 jobs:
-- name: h_slave
-template: h_slave
-instances: <%= num_slaves %>
-resource_pool: pinpoint_small
-networks:
-- name: default
-  static_ips:
-  <% h_slave_ips.each do |ip| %>
-  - <%= ip %>
-  <% end %>
-- name: h_secondary
-template: h_secondary
-instances: 1
-resource_pool: pinpoint_small
-networks:
-- name: default
-  static_ips:
-  - <%= h_secondary_ip %>
-- name: h_master
-template: h_master
-instances: 1
-resource_pool: pinpoint_medium
-networks:
-- name: default
-  static_ips:
-  - <%= h_master_ip %>
-- name : h_master_register
-template : h_master_register
-instances: 1
-lifecycle: errand   
-resource_pool: pinpoint_small
-networks:
-- name: default 
-- name: collector
-template: collector
-instances: <%= num_collectors %>
-resource_pool: pinpoint_medium
-networks:
-- name: default
-  static_ips:
-  <% collector_ips.each do |ip| %>
-  - <%= ip %>
-  <% end %>
-- name: haproxy_webui
-template: haproxy_webui
-instances: 1
-resource_pool: pinpoint_small
-networks:
-- name: default
-  static_ips:
-  - <%= haproxy_webui_ip %>
-- name: public_network
-  default: [dns, gateway]
-  static_ips: <%= haproxy_webui_public_ip %>
-- name: webui
-template: webui
-instances: <%= num_webui %>
-resource_pool: pinpoint_small
-networks:
-- name: default
-  static_ips:
-  <% webui_ips.each do |ip| %>
-  - <%= ip %>
-  <% end %>
-- name: pinpoint_broker
-template: broker
-instances: 1
-resource_pool: pinpoint_small
-networks:
-- name: default
-  static_ips:
-  - <%= broker_ip %>
+- name: h_slave                           #작업 이름(필수)
+  template: h_slave                       # job template 이름(필수)
+  instances: 2                            # job 인스턴스 수(필수)
+  resource_pool: pinpoint_small           # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                               # 네트워크 구성정보
+  - name: default                         # Networks block에서 선언한 network 이름(필수)
+    static_ips:                           # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP
+    - 10.30.70.90
+    - 10.30.70.91
+- name: h_secondary                       #작업 이름(필수)
+  template: h_secondary                   # job template 이름(필수)
+  instances: 1                            # job 인스턴스 수(필수)
+  resource_pool: pinpoint_small           # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                               # 네트워크 구성정보
+  - name: default                         # Networks block에서 선언한 network 이름(필수)
+    static_ips:                           # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP
+    - 10.30.70.76                       
+- name: h_master                          #작업 이름(필수)
+  template: h_master                      # job template 이름(필수)
+  instances: 1                            # job 인스턴스 수(필수)
+  resource_pool: pinpoint_medium          # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                               # 네트워크 구성정보          
+  - name: default                         # Networks block에서 선언한 network 이름(필수)
+    static_ips:                           # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP  
+    - 10.30.70.75                         
+- name: h_master_register                 #작업 이름(필수)
+  template: h_master_register             # job template 이름(필수)
+  instances: 1                            # job 인스턴스 수(필수)
+  lifecycle: errand                       # resource_pools block에 정의한 resource pool 이름(필수)
+  resource_pool: pinpoint_small           # 네트워크 구성정보
+  networks:                               # Networks block에서 선언한 network 이름(필수)
+  - name: default
+- name: collector                         #작업 이름(필수)
+  template: collector                     # job template 이름(필수)
+  instances: 2                            # job 인스턴스 수(필수)
+  resource_pool: pinpoint_medium          # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                               # 네트워크 구성정보
+  - name: default                         # Networks block에서 선언한 network 이름(필수)
+    static_ips:                           # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP                          
+    - 10.30.70.45
+    - 10.30.70.46
+- name: haproxy_webui                     #작업 이름(필수)
+  template: haproxy_webui                 # job template 이름(필수)
+  instances: 1                            # job 인스턴스 수(필수)
+  resource_pool: pinpoint_small           # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                               # 네트워크 구성정보
+  - name: default                         # Networks block에서 선언한 network 이름(필수)
+    static_ips:                           # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP                          
+    - 10.30.70.78
+  - name: public_network
+    default:
+    - dns
+    - gateway
+    static_ips: 115.68.46.182
+- name: webui                              #작업 이름(필수)
+  template: webui                          # job template 이름(필수)
+  instances: 2                             # job 인스턴스 수(필수)
+  resource_pool: pinpoint_small            # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                                # 네트워크 구성정보
+  - name: default                          # Networks block에서 선언한 network 이름(필수)
+    static_ips:                            # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP                          
+    - 10.30.70.79
+    - 10.30.70.80
+- name: pinpoint_broker                    #작업 이름(필수)
+  template: broker                         # job template 이름(필수)
+  instances: 1                             # job 인스턴스 수(필수)
+  resource_pool: pinpoint_small            # resource_pools block에 정의한 resource pool 이름(필수)
+  networks:                                # 네트워크 구성정보
+  - name: default                          # Networks block에서 선언한 network 이름(필수)
+    static_ips:                            # 사용할 IP addresses 정의(필수): Pinpoint 서버 IP                          
+    - 10.30.70.82
+properties:                                # Pinpoint 설정정보
+  master:                                  # Pinpoint master 설정정보
+    host_name: h-master                    # Pinpoint master name
+    host_ip: 10.30.70.75                   # Pinpoint master IP
+    port: 9000                             # Pinpoint master port
+    http_port: 50070                       # Pinpoint master http port
+    replication: 2                         # Pinpoint master 복제개수
+    tcp_listen_port: 29994                 # Pinpoint master tcp port
+    udp_stat_listen_port: 29995            # Pinpoint master udp stat port
+    udp_span_listen_port: 29996            # Pinpoint master udp span port
+  broker:                                  # Pinpoint broker 설정정보
+    collector_ips:                         # Pinpoint collector ip 설정정보
+    - 10.30.70.45 
+    - 10.30.70.46
+    collector_tcp_port: 29994              # Pinpoint collector tcp port 설정정보
+    collector_stat_port: 29995             # Pinpoint collector stat port 설정정보
+    collector_span_port: 29996             # Pinpoint collector span port 설정정보
+    dashboard_uri: http://115.68.46.182:80/#/main   # Pinpoint dashboard url 설정정보
+  secondary:                               # Pinpoint secondary 설정정보
+    host_name: h-secondary                 # Pinpoint secondary name
+    host_ip: 10.30.70.76                   # Pinpoint secondary IP
+    http_port: 50090                       # Pinpoint secondary port
+  yarn:                                    # Pinpoint yarn 설정정보      
+    host_name: h-master                    # Pinpoint yarn name
+    host_ip: 10.30.70.75                   # Pinpoint yarn ip
+    resource_tracker_port: 8025            # Pinpoint yarn resource_tracker_port
+    scheduler_port: 8030                   # Pinpoint yarn scheduler_port
+    resourcemanager_port: 8040             # Pinpoint yarn resourcemanager_port
+  slave:                                   # Pinpoint slave 설정정보      
+    host_names:                            # Pinpoint slave name
+    - h-slave0
+    - h-slave1
+    host_ips:                              # Pinpoint slave ip
+    - 10.30.70.90
+    - 10.30.70.91
+  collector:                               # Pinpoint collector 설정정보  
+    host_names:                            # Pinpoint collector host name
+    - h-collector0
+    - h-collector1
+    host_ips:                              # Pinpoint collector host IP
+    - 10.30.70.45
+    - 10.30.70.46
+  haproxy:                                 # Pinpoint haproxy 설정정보  
+    host_name: haproxy-webui               # Pinpoint haproxy host name
+    host_ip: 10.30.70.78                   # Pinpoint haproxy host IP
+    http_port: 80                          # Pinpoint haproxy host port
+  webui:                                   # Pinpoint webui 설정정보  
+    host_names:                            # Pinpoint webui host name
+    - h-webui0
+    - h-webui1
+    host_ips:                              # Pinpoint webui host IP
+    - 10.30.70.79
+    - 10.30.70.80
+releases:
+- name: paasta-pinpoint-service                             # 서비스 릴리즈 이름(필수)
+  version: 2.0                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
-properties:
-master:
-  host_name: h-master
-  host_ip: <%= h_master_ip %>
-  port: 9000
-  http_port: 50070
-  replication: <%= num_slaves %>
-  tcp_listen_port: <%= tcp_listen_port %>
-  udp_stat_listen_port: <%= udp_stat_listen_port %>
-  udp_span_listen_port: <%= udp_span_listen_port %>
-broker:
-  collector_ips: <%= collector_ips %>
-  collector_tcp_port: <%= tcp_listen_port %>
-  collector_stat_port: <%= udp_stat_listen_port %>
-  collector_span_port: <%= udp_span_listen_port %>
-  dashboard_uri: http://<%= haproxy_webui_public_ip %>:<%= haproxy_webui_http_port %>/#/main
-secondary:
-  host_name: h-secondary
-  host_ip: <%= h_secondary_ip %>
-  http_port: 50090
-yarn:
-  host_name: h-master
-  host_ip: <%= h_master_ip %>
-  resource_tracker_port: 8025
-  scheduler_port: 8030
-  resourcemanager_port: 8040
-slave:
-  host_names:
-    <% num_slaves.times do |i| %>
-    <%= "- h-slave#{i}" %>
-    <% end %>
-  host_ips: 
-    <% h_slave_ips.each do |ip| %>
-    - <%= ip %>
-    <% end %>
-collector:
-  host_names:
-    <% num_collectors.times do |i| %>
-    <%= "- h-collector#{i}" %>
-    <% end %>
-  host_ips: 
-    <% collector_ips.each do |ip| %>
-    - <%= ip %>
-    <% end %>
-haproxy:
-  host_name: haproxy-webui
-  host_ip: <%= haproxy_webui_ip %>
-  http_port: <%= haproxy_webui_http_port %>
-webui:
-  host_names:
-    <% num_webui.times do |i| %>
-    <%= "- h-webui#{i}" %>
-    <% end %>
-  host_ips: 
-    <% webui_ips.each do |ip| %>
-    - <%= ip %>
-    <% end %>
 ```
 
 <br>
 -   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
-$ bosh deployment paasta-pinpoint-cluster-vsphere-2.0.yml
+$ bosh deployment paasta-pinpoint-vsphere-2.0.yml
 ```
 ```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -927,7 +901,7 @@ name: paasta-pinpoint
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32
 
 release:
-name: paasta-pinpoint-cluster
+name: paasta-pinpoint-service
 version: latest
 
 properties:
