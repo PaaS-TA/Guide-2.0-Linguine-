@@ -1390,6 +1390,142 @@ eureka:
 ```
 
 <br>
+9.	현재의 PaaS-TA 설치 환경에 맞게 PaaS-TA 포털 API 테스트 설정을 변경한다. 현재 디렉토리 기준으로 변경이 필요한 파일의 경로는 'src/test/resources/config.properties'이다.
+
+```
+#COMMON
+test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url
+test.clientUserName=junit-test-user
+test.clientUserPassword=1234
+test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
+test.adminUserName=admin
+
+
+#ORG TEST
+test.noOrgClientUserName=no-org-user
+test.appTestOrg=app-test-org
+test.appTestSpace=app-test-space
+test.orgTestOrg=junit-org-test-org
+test.noAuthTestOrg=junit-org-test-org-no-auth
+test.nonexistentOrg=nonexistent-org
+test.nonexistentOrNoAuthOrg=nonexistentOrNoAuthOrg
+test.createTestOrg=junit-org-test-org-create
+
+
+
+#SPACE TEST
+test.testOrg=junit-space-test-org
+test.testSpace=junit-test-space
+test.createTestSpace=junit-space-test-space-create
+test.noAuthTestSpace=junit-space-test-space-no-auth
+test.noAuthSpaceTestOrg=junit-space-test-org-no-auth
+test.nonexistentOrNoAuthSpace=test-nonexistent-no-auth-space
+test.noContentTestOrg=junit-space-test-org-no-content
+
+# APP TEST
+test.testApp=test-app
+test.nonexistentApp=nonexistentApp
+test.domainName=115.68.46.186.xip.io
+test.testHost=testhost
+
+
+#SERVICE TEST
+#COMMON
+test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url (수정 필요)
+test.clientUserName=junit-test-user
+test.clientUserPassword=1234
+test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
+test.adminUserName=admin
+
+
+#ORG TEST
+test.noOrgClientUserName=no-org-user
+test.appTestOrg=app-test-org
+test.appTestSpace=app-test-space
+test.orgTestOrg=junit-org-test-org
+test.noAuthTestOrg=junit-org-test-org-no-auth
+test.nonexistentOrg=nonexistent-org
+test.nonexistentOrNoAuthOrg=nonexistentOrNoAuthOrg
+test.createTestOrg=junit-org-test-org-create
+
+
+
+#SPACE TEST
+test.testOrg=junit-space-test-org
+test.testSpace=junit-test-space
+test.createTestSpace=junit-space-test-space-create
+test.noAuthTestSpace=junit-space-test-space-no-auth
+test.noAuthSpaceTestOrg=junit-space-test-org-no-auth
+test.nonexistentOrNoAuthSpace=test-nonexistent-no-auth-space
+test.noContentTestOrg=junit-space-test-org-no-content
+
+# APP TEST
+test.testApp=test-app
+test.nonexistentApp=nonexistentApp
+test.domainName=115.68.46.186.xip.io            # PaaS-TA 플랫폼의 기본 도메인 (수정 필요)
+test.testHost=testhost
+
+
+#SERVICE TEST
+test.serviceTestOrg=junit-service-test-org
+test.serviceTestSpace=junit-service-test-space
+test.userProvidedInstanceName=user-provided-test-instance
+test.createTestUP=user-provided-create-test
+
+
+#COMMON CODE, CATALOG, MY QUESTION, USER MANAGEMENT
+test.cf.authorization=cf-Authorization
+test.admin.id=admin
+test.admin.password=admin
+test.org=catalog-test-org
+test.space=catalog-test-space
+test.file.path=./src/test/java/resources/images/test.jpg
+test.domain.url=115.68.46.186.xip.io                     # PaaS-TA 플랫폼의 기본 도메인 (수정 필요)
+test.java.build.pack=java_buildpack_offline
+test.ruby.build.pack=ruby_buildpack
+test.egov.build.pack=egov_buildpack
+test.user.id.email.account=mingu@bluedigm.com
+
+
+#USER TEST
+test.insetTestId=insertUser
+test.updateTestUser=updateUser
+test.password=insertUser
+test.newPassword=newPassword
+test.testUser=junit-test-user
+test.testUserPassword=1234
+
+#Email TEST
+test.inviteId=openpasta@gmail.com
+test.userId=openpasta@gmail.com
+test.emailId=aaa@gmail.com
+test.resetPassword.html=resetPassword.html
+
+#Email Org Role invite TEST
+
+test.org-role-user=lij
+test.org-role-user-guid=db040322-c831-4d51-b391-4f9ff8102dc9
+
+#Service Broker
+test.serviceBrokerName=redis-service-broker
+test.serviceBrokerUsername=admin
+test.serviceBrokerPassword=admin
+test.serviceBrokerUrl=http://10.30.120.71:80        # PaaS-TA 플랫폼에 등록된 Redis 서비스 브로커 url (수정 필요)
+
+#AuthorityGroup TEST
+test.authorityGroup=testAuthGroup
+test.authorityGroupForEachTest=testAuthGroup.forEachTest
+
+#UaaCommon
+test.uaaAdminClientId=admin
+test.uaaAdminClientSecret=admin
+test.uaaLoginClientId=login
+test.uaaLoginClientSecret=admin
+test.uaaTarget=https://uaa.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 UAA url (수정 필요)
+test.skipSSLValidation=true
+```
+
+<br>
 10.	Gradle 테스트 수행
 
 ```
