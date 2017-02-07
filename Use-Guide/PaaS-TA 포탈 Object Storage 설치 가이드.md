@@ -463,4 +463,4 @@ Task 2486 done
 VMs total: 1
 ```
 
-[object_storage_image_01]:/images/paasta-portal/portal_deploy/object_storage_image_01.png
+[object_storage_image_01]:/images/paasta-portal/portal-object-storage/object_storage_image_01.png
