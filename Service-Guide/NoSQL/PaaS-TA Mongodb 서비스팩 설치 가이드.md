@@ -736,7 +736,9 @@ $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
 ```
 $ cf restart hello-spring-mongodb
 ```
+
 ![mongodb_image_18]
+
 (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.
 
 <br>
