@@ -101,6 +101,7 @@
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
 
 PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
+
 <br>
 - 다운로드 위치
 
@@ -1183,7 +1184,7 @@ is subject to logging and monitoring.
 
 Errand 'h_master_register' completed successfully (exit code 0)
 ```
-<br?
+<br>
 <div id='pinpoint-서비스-브로커-등록'></div>
 ### 2.5. Pinpoint 서비스 브로커 등록
 
