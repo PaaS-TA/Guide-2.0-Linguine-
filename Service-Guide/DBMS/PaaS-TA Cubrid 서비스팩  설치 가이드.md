@@ -12,7 +12,7 @@
      * [2.4. Cubrid 서비스 브로커 등록](#10)
 3. [Cubrid 연동 Sample App 설명](#11)
      * [3.1. Sample App 구조](#12)
-     * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#13)
+     * [3.2. PaaS-TA에서 서비스 신청](#13)
      * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#14)
 4. [Cubrid Client 툴 접속](#15)
      * [4.1. Putty 다운로드 및 터널링](#16)
@@ -680,7 +680,7 @@ properties:
 <div id='10'></div>
 ### 2.4. Cubrid 서비스 브로커 등록
 Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Cubrid 서비스 브로커를 등록해 주어야 한다.  
-서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
+서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
 
 - 서비스 브로커 목록을 확인한다.
 
@@ -689,8 +689,8 @@ Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 
 - Cubrid 서비스 브로커를 등록한다.
 
->$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}  
-- 서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  
+>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}  
+- 서비스팩 이름 : 서비스 팩 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  
 - 서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.  
 - 서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.  
 >
@@ -716,10 +716,10 @@ Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 
 <div id='11'></div>
 #   3. Cubrid연동 Sample App 설명
-본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 Cubrid의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+본 Sample Web App은 PaaS-TA에 배포되며 Cubrid의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 <div id='12'></div>
 ### 3.1. Sample App 구조
-Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Cubrid 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Cubrid 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Cubrid 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Cubrid 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
 <table>
@@ -733,7 +733,7 @@ Sample Web App 구조는 다음과 같다.
   </tr>
   <tr>
     <td>manifest.yml</td>
-    <td>개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
+    <td>PaaS-TA에 app 배포시 필요한 설정을 저장하는 파일</td>
   </tr>
   <tr>
     <td>pom.xml</td>
@@ -745,18 +745,18 @@ Sample Web App 구조는 다음과 같다.
   </tr>
 </table>
 
-- OpenPaaS-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 Cubrid Sample Web App인 hello-spring-cubrid를 복사한다.
+- PaaS-TA-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 Cubrid Sample Web App인 hello-spring-cubrid를 복사한다.
 
 ><div>$ ls -all</div>
 >![3-1-0-0]
 
 <div id='13'></div>
-### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+### 3.2. PaaS-TA에서 서비스 신청
 Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
-*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시 PaaS-TA에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 
-- 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+- 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$ cf marketplace</div>
 >![3-2-0-0]
@@ -779,7 +779,7 @@ Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신
 <div id='14'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Cubrid 서비스를 이용한다.  
-*참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 - Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
@@ -788,7 +788,7 @@ Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신
 ```yaml
 ---
 applications:
-- name: hello-spring-cubrid #배포할 App 이름
+- name: hello-spring-cubrid # 배포할 App 이름
   memory: 512M # 배포시 메모리 사이즈
   instances: 1 # 배포 인스턴스 수
   path: target/hello-spring-cubrid-1.0.0-BUILD-SNAPSHOT.war #배포하는 App 파일 PATH
