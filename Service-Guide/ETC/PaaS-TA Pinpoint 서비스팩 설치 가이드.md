@@ -1176,7 +1176,7 @@ Traces
 Warning: Permanently added 'h-master,10.244.2.21' (ECDSA) to the list of known hosts.
 Unauthorized use is strictly prohibited. All access and activity
 is subject to logging and monitoring.
-2016-12-14 06:44:22,899 WARN ㅊㄹ [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-12-14 06:44:22,899 WARN [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 
 Errand 'h_master_register' completed successfully (exit code 0)
 ```
@@ -1276,19 +1276,18 @@ Pinpoint Pinpoint\_standard all
 <div id='sample-web-app-연동-pinpoint-연동'></div>
 #   3. Sample Web App 연동 Pinpoint 연동
 
-본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 Pinpoint의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
-
+본 Sample Web App은 개방형 클라우드 플랫폼에 배포되며 Pinpoint의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 <br>
 <div id ='sample-web-app-구조'></div>
 ### 3.1. Sample App 구조
 
 Sample Web App은 PaaS-TA에 App으로 배포가 된다. 배포된
 App에 Pinpoint 서비스 Bind 를 통하여 초기 데이터를 생성하게 된다. 바인드
-완료 후 연결 url을 통하여 브라우로 해당 App에 대한 Pinpoint 서비스
+완료 후 연결 url을 통하여 브라우저로 해당 App에 대한 Pinpoint 서비스
 모니터링을 할 수 있다.
 
 -   Spring-music App을 이용하여 Pinpoint 모니터링을 테스트 하였다.
--   앱을 다운로드후 –b 옵션을 주어 buildpack을 지정하여 push 해 놓는다.
+-   앱을 다운로드 후 –b 옵션을 주어 buildpack을 지정하여 push 해 놓는다.
 
 ```
 $ cf push -b java_buildpack_pinpoint --no-start
@@ -1333,7 +1332,7 @@ spring-music-pinpoint   stopped           0/1         512M     1G     spring-mus
 Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 신청(Provision)을 해야 한다.
 
-\*참고: 서비스 신청시 PaaS-TA에서 서비스를신청 할 수 있는
+\*참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는
 사용자로 로그인이 되어 있어야 한다.
 
 -   먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을
