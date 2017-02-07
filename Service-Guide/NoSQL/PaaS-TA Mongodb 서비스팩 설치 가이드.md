@@ -80,13 +80,10 @@
 ### 2.1.  설치전 준비사항
 본 서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
+PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
 
-- PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
-
-- 다운로드 위치
->PaaSTA-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0nkrJ16>**  
->PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**  
->PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**
+※	설치에 필요한 모든 다운로드 파일 및 문서는 다음 Url에서 찾을 수 있다.<br>
+     https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0
 
 <br>
 <div id='8'></div>
@@ -202,9 +199,9 @@ Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
 ###  2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
-Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere 용 Mongodb Deployment 화일인 paasta-mongodb-shard-vsphere-2.0.yml 를 복사한다.
+- PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere 용 Mongodb Deployment 파일인 paasta-mongodb-shard-vsphere-2.0.yml 를 복사한다.
 다운로드 받은 Deployment Yml 파일을 확인한다. (paasta-mongodb-shard-vsphere-2.0.yml)
 
 ```
@@ -214,7 +211,7 @@ $ ls –all
 
 <br>
 - Director UUID를 확인한다.
-BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director에 target 되어 있는 UUID를 확인할 수 있다.
+BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director에 target 되어 있는 UUID를 확인할 수 있다.
 
 ```
 $ bosh status
@@ -410,7 +407,7 @@ meta:
   syslog_aggregator: null
 
 properties:
-  mongodb:            # mongodb shard release의 여러 job에서 공통적으로 하용하는 properties
+  mongodb:            # mongodb shard release의 여러 job에서 공통적으로 허용하는 properties
                       # key는 shard를 구성할 때 mongos와 각 replicaSet의 인증을 하기위해 사용
     key: |
       +Qy+1icfeV8D2WXIfCojRjvYlryMVI2Ry+dAi8mYZ1H1Z9pDstRkOC0/oJYs0L/i
@@ -606,7 +603,7 @@ $ cf service-access
 <div id ='12'></div>
 ### 3.1. Sample App 구조
 
-Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Mongodb 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Mongodb 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Mongodb 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우저나 curl로 해당 App에 접속 하여 Mongodb 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
 
@@ -634,7 +631,7 @@ Sample Web App 구조는 다음과 같다.
 </table>
 
 <br>
--	PaaS-TA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 Mongodb Sample Web App인 hello-spring-mongodb 를복사한다.
+-	PaaS-TA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 Mongodb Sample Web App인 hello-spring-mongodb를 복사한다.
 ```
 $ ls -all
 ```
@@ -646,7 +643,7 @@ $ ls -all
 ### 3.2. PaaS-TA에서 서비스 신청
 
 Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
-*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
 -	먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
@@ -742,7 +739,7 @@ $ cf restart hello-spring-mongodb
 (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.
 
 <br>
-- rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
+- rule.json 파일을 만들고 아래와 같이 내용을 넣는다.
 ```
 $ vi rule.json
 ```
@@ -764,7 +761,7 @@ $ cf create-security-group Mongo-DB rule.json
 ![mongodb_image_19]
 
 <br>
--	모든 App에 Mongodb 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
+-	모든 App에 Mongodb 서비스를 사용할 수 있도록 생성한 보안 그룹을 적용한다.
 ```
 $ cf bind-running-security-group Mongo-DB
 ```
@@ -786,9 +783,8 @@ $ curl hello-spring-Mongodb.115.68.46.30.xip.io
 ![mongodb_image_22]
 
 <br>
--	브라우져에서 확인
+-	브라우에서 확인
 ![mongodb_image_23]
-
 <br>
 <div id='15'></div>
 # 4.  Mongodb Client 툴 접속
@@ -856,7 +852,7 @@ SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH �
 
 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를 한다.
 ![mongodb_image_37]
-모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 눌러 빠져나온다.
+모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 누른다.
 
 <br>
 -	Save 버튼을 눌러 작성한 접속정보를 저장한다.
@@ -871,7 +867,7 @@ SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH �
 ![mongodb_image_40]
 
 <br>
--	우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다. 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
+-	우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다. Query문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
 ![mongodb_image_41]
 
 
