@@ -11,7 +11,7 @@
   - 2.4. [MySQL 서비스 브로커 등록](#24-mysql-서비스-브로커-등록)
 3. [MySQL 연동 Sample Web App 설명](#3-mysql-연동-sample-web-app-설명)
   - 3.1. [Sample Web App 구조](#31-sample-web-app-구조)
-  - 3.2. [개방형 클라우드 플랫폼에서 서비스 신청](#32-개방형-클라우드-플랫폼에서-서비스-신청)
+  - 3.2. [PaaS-TA에서 서비스 신청](#32-개방형-클라우드-플랫폼에서-서비스-신청)
   - 3.3. [Sample Web App에 서비스 바인드 신청 및 App 확인](#33-sample-web-app에-서비스-바인드-신청-및-app-확인)
 4. [MySQL Client 툴 접속](#4-mysql-client-툴-접속)
   - 4.1. [HeidiSQL 설치 및 연결](#41-heidisql-설치-및-연결)
@@ -85,8 +85,10 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 ><br>
 >Releases total: 12<br>
 >Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인<br>
+
 <br>
 -	MySQL 서비스 릴리즈 파일을 업로드한다.
+
 >$ bosh upload release <br>
 >※	본 샘플은 직접 릴리즈 파일을 생성하도록 안내하고 있으므로 'bosh upload release'만 입력한다. 릴리즈 파일을 직접 생성하지 않고 다운로드 받거나 릴리즈 파일 다운로드 URL이 존재하는 경우는 파일 경로 또는 다운로드 URL을 아래와 같이 입력한다.<br>
 >$ bosh upload release {서비스 릴리즈 파일 PATH 또는 URL}<br>
@@ -380,7 +382,7 @@ resource_pools:                               # 배포시 사용하는 resource 
 
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
-서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
+서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 ##### 서비스 브로커 목록을 확인한다.
 
@@ -392,9 +394,9 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### MySQL 서비스 브로커를 등록한다.
 
->`$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL(IP)}`
+>`$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL(IP)}`
   
-  서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+  서비스팩 이름 : 서비스 팩 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
   서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
   서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
@@ -431,22 +433,22 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 >![update_mysql_vsphere_20]
 
 # 3. MySQL 연동 Sample Web App 설명
-본 Sample Web App은 개방형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+본 Sample Web App은 PaaS-TA에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
 ### 3.1. Sample Web App 구조
 
-Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
 
 | 이름 | 설명
 | ---- | ------------
 | src | Sample 소스 디렉토리
-| manifest | 개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일
+| manifest | PaaS-TA에 app 배포시 필요한 설정을 저장하는 파일
 | pom.xml | 메이븐 project 설정 파일
 | target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
 
-##### OpenPaaS-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
+##### PaaSTA-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
 
 >`$ls -all`
 
@@ -454,14 +456,14 @@ Sample Web App 구조는 다음과 같다.
 
 <br>
 
-### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+### 3.2. PaaS-TA에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 
-*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시 PaaS-TA에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
 
-##### 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+##### 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 >`$cf marketplace`
 
@@ -492,7 +494,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 ### 3.3. Sample Web App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다. 
-*참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
 
