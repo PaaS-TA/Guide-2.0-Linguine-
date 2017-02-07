@@ -1394,7 +1394,7 @@ eureka:
 
 ```
 #COMMON
-test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url
+test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url (수정 필요)
 test.clientUserName=junit-test-user
 test.clientUserPassword=1234
 test.clientUserGuid=02aa0a5b-b8dd-4c4e-a6ec-d36586dd269a
