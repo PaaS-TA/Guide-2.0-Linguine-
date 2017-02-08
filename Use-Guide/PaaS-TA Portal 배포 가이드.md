@@ -589,7 +589,7 @@ applications:
     cloudfoundry_user_uaaClient_loginClientId: login
     cloudfoundry_user_uaaClient_loginClientSecret: login-secret
 
-    cloudfoundry_user_uaaClient_skipSSLValidation: true       # Uaa와 통신할때, ssl 유효성 체크 skip 여부. 기본값 true이며 true 일때 유효성 체크 하지 않음
+    cloudfoundry_user_uaaClient_skipSSLValidation: true       # Uaa와 통신할 때, ssl 유효성 체크 skip 여부. 기본값 true이며 true 일때 유효성 체크 하지 않음
     cloudfoundry_authorization: cf-Authorization
 
     abacus_url: http://paasta-usage-reporting.115.68.46.186.xip.io/v1     # 모니터링 앱 Url
@@ -605,14 +605,14 @@ applications:
     spring_datasource_cc_username: ccadmin
     spring_datasource_cc_password: admin
 
-    # PaaS-TA 포털 DB 접속 정보. PaaS-TA Cloud Controller Deployment 참조하여 작성 
+    # PaaS-TA 포털 DB 접속 정보.
     # PaaS-TA Cloud Controller Deployment 파일인 paasta-controller-2.0-{IaaS 종류}.yml 파일을 참조하여 작성 
     spring_datasource_portal_driverClassName: org.postgresql.Driver
     spring_datasource_portal_url: jdbc:postgresql://10.30.150.42:5524/portaldb
     spring_datasource_portal_username: portaladmin
     spring_datasource_portal_password: admin
 
-    # PaaS-TA UAA DB 접속 정보. PaaS-TA Cloud Controller Deployment 참조하여 작성
+    # PaaS-TA UAA DB 접속 정보.
     # PaaS-TA Cloud Controller Deployment 파일인 paasta-controller-2.0-{IaaS 종류}.yml 파일을 참조하여 작성 
     spring_datasource_uaa_driverClassName: org.postgresql.Driver
     spring_datasource_uaa_url: jdbc:postgresql://10.30.150.42:5524/uaadb
@@ -638,7 +638,7 @@ applications:
     spring_mail_smtp_properties_starttls_required: true
     spring_mail_smtp_properties_maximumTotalQps: 90
     spring_mail_smtp_properties_authUrl: http://portal-web-user.115.68.46.186.xip.io         # PaaS-TA 사용자 포털 Url
-    spring_mail_smtp_properties_imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png   # PaaS-TA 로고 이미지 Url   
+    spring_mail_smtp_properties_imgUrl: http://52.201.48.51:8080/v1/KEY_84586dfdc15e4f8b9c2a8e8090ed9810/portal-container/65bdc7f43e11433b8f17683f96c7e626.png                                    # PaaS-TA 로고 이미지 Url   
     spring_mail_smtp_properties_sFile: emailTemplate.html
     spring_mail_smtp_properties_subject: PaaS-TA User Potal 인증메일
     spring_mail_smtp_properties_contextUrl: user/authUser
@@ -791,21 +791,21 @@ applications:
     cf_username: admin
     cf_password: admin
 
-    # PaaS-TA CCDB 접속 정보. 
+    # PaaS-TA CCDB 접속 정보
     # PaaS-TA Cloud Controller Deployment 파일인 paasta-controller-2.0-{IaaS 종류}.yml 파일을 참조하여 작성 
     datasource_cc_driverClassName: org.postgresql.Driver
     datasource_cc_url: jdbc:postgresql://10.30.150.42:5524/ccdb
     datasource_cc_username: ccadmin
     datasource_cc_password: admin
 
-    # PaaS-TA 포털 DB 접속 정보. PaaS-TA Cloud Controller Deployment 참조하여 작성 
+    # PaaS-TA 포털 DB 접속 정보
     # PaaS-TA Cloud Controller Deployment 파일인 paasta-controller-2.0-{IaaS 종류}.yml 파일을 참조하여 작성 
     datasource_portal_driverClassName: org.postgresql.Driver
     datasource_portal_url: jdbc:postgresql://10.30.150.42:5524/portaldb
     datasource_portal_username: portaladmin
     datasource_portal_password: admin
 
-    # PaaS-TA 포털 Object Storage 접속 정보.
+    # PaaS-TA 포털 Object Storage 접속 정보
     # 포털 Object Storage Deployment 파일인 paasta_portal_object_storage_{IaaS 종류}_2.0.yml 파일을 참조하여 작성
     datasource_uaa_driverClassName: org.postgresql.Driver
     datasource_uaa_url: jdbc:postgresql://10.30.150.42:5524/uaadb

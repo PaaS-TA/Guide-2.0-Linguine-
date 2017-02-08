@@ -75,8 +75,8 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 $ ls --all
 ```
 ```
-.  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
-.. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
+.   카탈로그이미지  api2          paasta-portal-object-storage-2.0.tgz  registraion  web-admin
+..  api             auto-scaling  postgresql 
 ```
 
 <br>
