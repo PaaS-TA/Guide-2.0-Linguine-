@@ -6,32 +6,33 @@
 	 * [참고자료](#5)
 
 2. [Abacus 배포](#6)
-    * [배포 전제 조건](#7)
-    * [Node.js 설치](#8)
-     * [Node.js 설치 순서](#9)
-    * [pouchdb, couchdb 설치](#10)
-     * [couchdb 설치](#11)
-     * [pouchdb 설치(옵션)](#12)
-     * [설치 확인](#13)
-    * [CF에 abacus UAA 계정 등록](#14)
-     * [UAA 클라이언트 설치](#15)
-     * [CF 앱 사용량 수집을 위한 UAA 계정 드록](#16)
-     * [Secured Abacus를 위한 UAA 계정 등록](#17)
-    * [cf-abacus 배포](#18)
-     * [Git을 통해 cf-abacus를 다운받는다.](#19)
-     * [gradle build를 위한 dependency 추가](#20)
-     * [Abacus와 연동할 DB 및 Secure 정보 설정](#21)
-     * [Abacus 빌드](#22)
-     * [Abacus 배포](#23)
-     * [Abaus-cf-bridge 배포](#24)
-* [PAASTA-USAGE-REPORTION 배포](#25)
-    * [배포 전제 조건](#26)
-    * [CF에 UAA 계정 등록](#27)
-    * [paasta-usage-repoting 배포](#28)
-    * [다운로드](#29)
-    * [paasta-usage-reportion 배포](#30)
-    * [배포 형상](#31)
-    * [api 호출 예제](#32)
+    * [미터링 범위](#7)
+    * [배포 전제 조건](#8)
+    * [Node.js 설치](#9)
+     * [Node.js 설치 순서](#10)
+    * [pouchdb, couchdb 설치](#11)
+     * [couchdb 설치](#12)
+     * [pouchdb 설치(옵션)](#13)
+     * [설치 확인](#14)
+    * [CF에 abacus UAA 계정 등록](#15)
+     * [UAA 클라이언트 설치](#16)
+     * [CF 앱 사용량 수집을 위한 UAA 계정 드록](#17)
+     * [Secured Abacus를 위한 UAA 계정 등록](#18)
+    * [cf-abacus 배포](#19)
+     * [Git을 통해 cf-abacus를 다운받는다.](#20)
+     * [gradle build를 위한 dependency 추가](#21)
+     * [Abacus와 연동할 DB 및 Secure 정보 설정](#22)
+     * [Abacus 빌드](#23)
+     * [Abacus 배포](#24)
+     * [Abaus-cf-bridge 배포](#25)
+* [PAASTA-USAGE-REPORTION 배포](#26)
+    * [배포 전제 조건](#27)
+    * [CF에 UAA 계정 등록](#28)
+    * [paasta-usage-repoting 배포](#29)
+    * [다운로드](#30)
+    * [paasta-usage-reportion 배포](#31)
+    * [배포 형상](#32)
+    * [api 호출 예제](#33)
 
 #<div id='1'/>1.  개요
 ##<div id='2'/>1.1.  문서 개요
@@ -555,22 +556,22 @@ applications:
 ※	참고: cf-abacus 는 cf-abacus 가 설치 완료 된 이후 시점부터, cf 상의 app이 새로 push 되거나 cf stop 및 cf start 된 cf event 를 기반으로 데이터를 수집, 집계한다.
 
 
-#<div id='25'/>3.  PAASTA-USAGE-REPORTING 배포
+#<div id='26'/>3.  PAASTA-USAGE-REPORTING 배포
 
 PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사용량을
 보고하는 서비스이다.
 
-##<div id='26'/>3.1.  배포 전제 조건 
+##<div id='27'/>3.1.  배포 전제 조건 
 
 [[Abacus 배포 전제 조건](#7)]  참조.
 
-##<div id='27'/>3.2.  CF에 UAA 계정 등록 
+##<div id='28'/>3.2.  CF에 UAA 계정 등록 
 
 [[Abacus UAA 계정 등록](#14)]  참조.
 
-##<div id='28'/>3.3.  paasta-usage-repoting 배포 
+##<div id='29'/>3.3.  paasta-usage-repoting 배포 
 
-###<div id='29'/>3.3.1.다운로드 
+###<div id='30'/>3.3.1.다운로드 
 
 [다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
 
@@ -584,7 +585,7 @@ PAASTA-USAGE-REPORTING은 abacus 시스템과 연동하여 PAASTA에 앱의 사�
   	$ tar xvf PaaS-TA-Usage-Reporting.tar
 
 
-###<div id='30'/>3.3.2. paasta-usage-reporting 배포
+###<div id='31'/>3.3.2. paasta-usage-reporting 배포
 
   	$ cd <설치 경로>/PaaS-TA-Usage-Reporting/usageReporting
 
@@ -628,7 +629,7 @@ applications:
 ```
 
 
-###<div id='31'/>3.3.3. 배포 형상
+###<div id='32'/>3.3.3. 배포 형상
 
   	$ cf a
 
@@ -637,7 +638,7 @@ applications:
   	name requested state instances memory disk urls
   	paasta-usage-reporting started 1/1 512M 512M paasta-usage-reporting.bosh-lite.com
 
-###<div id='32'/>3.3.4.  api 호출 예제
+###<div id='33'/>3.3.4.  api 호출 예제
 
   	$ curl -k -X GET https://paasta-usage-reporting.bosh-lite.com/v1/org/:org_id/space/:space_id
 
