@@ -27,8 +27,8 @@
 <div id='2'></div>
 ### 1.1. 목적
 
-본 문서(WEB-IDE 설치 가이드)는 paasta에서 사용할 수 있는 WEB-IDE의
-설치를 Bosh를 이용하여 설치 하는 방법과 paasta 포털에서 WEB-IDE 서비스를
+본 문서(WEB-IDE 설치 가이드)는 PaaS-TA에서 사용할 수 있는 WEB-IDE의
+설치를 Bosh를 이용하여 설치 하는 방법과 PaaS-TA 포털에서 WEB-IDE 서비스를
 사용하는 방법을 기술하였다.
 
 <br>
