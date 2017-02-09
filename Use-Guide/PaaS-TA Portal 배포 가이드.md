@@ -444,7 +444,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 name, memo
 $ vi manifest.yml
 ```
 
-```
+```yml
 ---
 applications:
 - name: portal-registration
@@ -560,7 +560,7 @@ portal-registration   started           1/1         512M     1G     portal-regis
 ```
 $ vi manifest.yml
 ```
-```
+```yml
 ---
 applications:
 - name: portal-api                         # 앱 이름
@@ -757,7 +757,7 @@ portal-registration  started           1/1         512M     1G     portal-regist
 ```
 $ vi manifest.yml
 ```
-```
+```yml
 ---
 applications:
 - name: portal-api-v2                       # 앱 이름
@@ -913,7 +913,7 @@ portal-api-v2        started           1/1         1G       1G     portal-api-v2
 ```
 $ vi manifest.yml
 ```
-```
+```yml
 ---
 applications:
 - name: portal-web-user
@@ -1057,7 +1057,7 @@ portal-api-v2        started           1/1         1G       1G     portal-api-v2
 ```
 $ vi manifest.yml
 ```
-```
+```yml
 ---
 applications:
 - name: portal-web-admin
