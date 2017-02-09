@@ -1501,6 +1501,7 @@ test.domain.url=115.68.46.186.xip.io                     # PaaS-TA 플랫폼의 
 test.java.build.pack=java_buildpack_offline
 test.ruby.build.pack=ruby_buildpack
 test.egov.build.pack=egov_buildpack
+
 #COMMON
 test.apiTarget=https://api.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 API url (수정 필요)
 test.clientUserName=junit-test-user
