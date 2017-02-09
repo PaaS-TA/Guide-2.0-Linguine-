@@ -1372,14 +1372,14 @@ spring:
         password: admin
     uaa:
       driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://{localhost}:5524/uaadb      # PaaS-TA 플랫폼의 uaadb 접속 url (수정 필요)
+      url: jdbc:postgresql://localhost:5524/uaadb      # PaaS-TA 플랫폼의 uaadb 접속 url (수정 필요)
       username: uaaadmin
       password: admin
   objectStorage:
     tenantName: paasta-portal
     username: paasta-portal
     password: paasta
-    authUrl: http://{localhost}:5000/v2.0                # PaaS-TA Portal Object Storage AuthUrl (수정 필요)
+    authUrl: http://localhost:5000/v2.0                # PaaS-TA Portal Object Storage AuthUrl (수정 필요)
     container: portal-container
   mail:
     smtp:
