@@ -38,6 +38,7 @@
 - [플랫폼 설치 자동화 사용 가이드](./Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
 - [PaaS-TA 미터링 API 가이드](./Use-Guide/PaaS-TA_Usage_Reporting_API_가이드.md)
 - [PaaS-TA 모니터링 화면 가이드](./Use-Guide/PaaS-TA 모니터링 화면 가이드_v1.0.md)
+- [PaaS-TA 모니터링 DB 및 Metrics 가이드](./Use-Guide/PaaS-TA 모니터링 DB 및 Metrics 가이드.md)
 
 ## 개발 언어 별 어플리케이션 가이드
 - [Node.js](../../../Documents-PaaSTA-1.0/blob/master/Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
