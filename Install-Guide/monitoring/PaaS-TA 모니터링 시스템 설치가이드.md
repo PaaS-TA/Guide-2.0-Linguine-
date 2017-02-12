@@ -1,18 +1,22 @@
 ## Table of Contents
 1. [문서 개요](#1)
      * [1.1. 목적](#2)
+     
 2. [Metrics Architecture](#3)
      * [2.1.  Architecure](#4)
      * [2.2.  Component 설명](#5)
+
 3. [Log Architecture](#6)
      * [3.1.  Architecture](#7)
      * [3.2.  Component 설명](#8)
 
-4. [InfluxDB 설치 방법](#9)
+4. 설치 전제 조건(#9)
 
-5. [Logsearch 설치 방법](#10)
+5. [InfluxDB 설치 방법](#10)
 
-6. [Metrics Collector 서비스 설치 방법](#11)
+6. [Logsearch 설치 방법](#11)
+
+7. [Metrics Collector 서비스 설치 방법](#12)
 
 <div id='1'></div>
 # 1. 문서 개요
@@ -51,7 +55,10 @@
 <kbd>![3-2-1]</kbd>
 
 <div id='9'></div>
-# 4. InfluxDB(Metrics Database) 시스템 설치 방법
+# 4. 모니터링 시스템 관련 서비스들을 설치하기전 사전에 Bosh 및 PaaS-TA 2.0 서비스들이 설치되어 있어야 하며,Bosh는 Micro Bosh 또는 Full Bosh로 설치되어야 한다. 
+
+<div id='10'></div>
+# 5. InfluxDB(Metrics Database) 시스템 설치 방법
 
 본 장에서는 모니터링 시스템의 매트릭스(Metrics) 정보를 저장 및 관리하는 데이터베이스 시스템인 InfluxDB과 모니터링 시스템의 화면 UI인 Grafana 서비스를 설치하는 방법에 대해 기술하였다.
 자세한 설치 가이드는 IaaS 환경에 맞는 설치가이드를 참조하면 된다.
@@ -60,8 +67,8 @@
 - [Vsphere  환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20InfluxDB%20%EB%B0%8F%20Grafana%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(VMWare)_v1.0.md)
 - [AWS 환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20InfluxDB%20%EB%B0%8F%20Grafana%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(AWS)_v1.0.md)
 
-<div id='10'></div>
-# 5. Logsearch (로그정보 수집) 시스템 설치 방법
+<div id='11'></div>
+# 6. Logsearch (로그정보 수집) 시스템 설치 방법
 
 본 장에서는 모니터링 시스템의 로그 정보를 저장 및 관리하는 Repository 시스템인 Logsearch를 설치하는 방법에 대해 기술하였다.
 자세한 설치 가이드는 IaaS 환경에 맞는 설치가이드를 참조하면 된다.
@@ -70,8 +77,8 @@
 - [Vsphere  환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20Logsearch%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(VMWare)_v1.0.md)
 - [AWS 환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20Logsearch%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(AWS)_v1.0.md)
 
-<div id='11'></div>
-# 6. Metrics Collector 서비스 설치 방법
+<div id='12'></div>
+# 7. Metrics Collector 서비스 설치 방법
 
 본 장에서는 PaaSTA 서비스들의 매트릭스(Metrics) 정보를 수집하여 InfluxDB시스템의 데이터베이스에 정보를 저장하는 서비스의 설치하는 방법에 대해 기술하였다.
 자세한 설치 가이드는 IaaS 환경에 맞는 설치가이드를 참조하면 된다.
