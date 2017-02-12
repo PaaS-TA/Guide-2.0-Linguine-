@@ -10,7 +10,7 @@
      * [3.1.  Architecture](#7)
      * [3.2.  Component 설명](#8)
 
-4. 설치 전제 조건(#9)
+4. [설치 전제 조건](#9)
 
 5. [InfluxDB 설치 방법](#10)
 
@@ -55,7 +55,9 @@
 <kbd>![3-2-1]</kbd>
 
 <div id='9'></div>
-# 4. 모니터링 시스템 관련 서비스들을 설치하기전 사전에 Bosh 및 PaaS-TA 2.0 서비스들이 설치되어 있어야 하며,Bosh는 Micro Bosh 또는 Full Bosh로 설치되어야 한다. 
+# 4. 설치 전제 조건
+
+모니터링 시스템 관련 서비스들을 설치하기전 사전에 Bosh 및 PaaS-TA 2.0 서비스들이 설치되어 있어야 하며,Bosh는 Micro Bosh 또는 Full Bosh로 설치되어야 한다. 
 
 <div id='10'></div>
 # 5. InfluxDB(Metrics Database) 시스템 설치 방법
