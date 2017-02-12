@@ -11,7 +11,7 @@
 5. [InfluxDB 설치 방법](#10)
 6. [Logsearch 설치 방법](#11)
 7. [Metrics Collector 서비스 설치 방법](#12)
-8. [Bosh Monitoring Agent 설치 ](#13)
+8. [Bosh Monitoring Agent 설치 방법](#13)
 
 <div id='1'></div>
 # 1. 문서 개요
@@ -89,7 +89,7 @@
 
 본 장에서는 Bosh 서비스에서 기본적으로 제공되지 않는 Bosh 서비스 Metrics 수집 Agent 및 로그 수집 Agent 설치 방법에 대해 기술하였다.자세한 설치 가이드는 아래 링크에 연결된 문서를 참조하면 된다.
 
-- [설치 가이드]https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/BOSH/Bosh%20Monitoring%20Agent%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C_v1.0.md)
+- [설치 가이드](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/BOSH/Bosh%20Monitoring%20Agent%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C_v1.0.md)
 
 [2-1-1]:images/monitoring-architecture/2-1-1.png
 [2-2-1]:images/monitoring-architecture/2-2-1.png
