@@ -83,6 +83,7 @@
 - [OpenStack 환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20Metrics%20Collector%20%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(OpenStack)_v1.0.md)
 - [Vsphere  환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20Metrics%20Collector%20%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(VMWare)_v1.0.md)
 - [AWS 환경](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Install-Guide/Services/PaaS-TA%20Metrics%20Collector%20%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C(AWS)_v1.0.md)
+
 <div id='13'></div>
 # 8. Bosh Monitoring Agent 설치 방법
 
