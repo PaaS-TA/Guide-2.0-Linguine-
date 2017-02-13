@@ -97,7 +97,7 @@ jobs:
     - 10.10.18.51												#static IP
   - name: elastic												#external network(public) name
     static_ips:
-    - 115.68.151.208 											#external IP (public)
+    - "xxx.xxx.xxx.xxx"											#external IP (public)
   properties:
     influxdb:
       database: cf_metric_db									#default database
@@ -121,13 +121,13 @@ jobs:
     - 10.10.18.53												#local IP			
   - name: elastic												#external network(public) name
     static_ips:
-    - 115.68.151.183
+    - "xxx.xxx.xxx.xxx"                                         #public ip
 
   properties:
     grafana:
       listen_port: 3000											#grafana listen port
       admin_username: admin										#grafana admin account
-      admin_password: cfmonitor									#grafana admin password
+      admin_password: admin 									#grafana admin password
       users: 
         allow_sign_up: true
         auto_assign_organization: true
@@ -165,9 +165,9 @@ networks:
 
 properties:
   openstack: &openstack																							
-      auth_url: http://115.68.151.175:5000/v3					#openstack auth url
+      auth_url: http://"xxx.xxx.xxx.xxx":5000/v3				#openstack auth url
       username: admin											#openstack admin id
-      api_key: cfmonit											#openstack admin password
+      api_key: admin											#openstack admin password
       project: admin											#related project name
       domain: default											#default domain
       region: RegionOne																										
