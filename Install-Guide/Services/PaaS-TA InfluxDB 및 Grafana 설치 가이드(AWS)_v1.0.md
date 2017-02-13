@@ -94,7 +94,7 @@ jobs:
     - 10.10.18.51												#static IP
   - name: elastic												#external network(public) name
     static_ips:
-    - 52.207.82.208 											#external IP (public)
+    - "xxx.xxx.xxx.xxx"											#external IP (public)
   properties:
     influxdb:
       database: cf_metric_db									#default database
@@ -118,13 +118,13 @@ jobs:
     - 10.10.18.53												#local IP			
  - name: elastic												#external network(public) name
    static_ips:	
-   - 52.206.215.49												#external IP (public) 
+   - "xxx.xxx.xxx.xxx"											#external IP (public) 
 
   properties:
     grafana:
       listen_port: 3000											#grafana listen port
       admin_username: admin										#grafana admin account
-      admin_password: cfmonitor									#grafana admin password
+      admin_password: admin 									#grafana admin password
       users: 
         allow_sign_up: true
         auto_assign_organization: true
