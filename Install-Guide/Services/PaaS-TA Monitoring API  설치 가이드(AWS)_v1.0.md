@@ -86,14 +86,14 @@ networks:
 - name: monitoring-api-server-net							#network name
   subnets:
   - cloud_properties:
-      aws_access_key_id: AKIAISNP3PVAIXMA6ASQ							#AWS access key
-      aws_secret_access_key: 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	#AWS secret 
+      aws_access_key_id: xxxxxxxxxxx            						#AWS access key
+      aws_secret_access_key: xxxxxxxxxxx                                #AWS secret 
       region: us-east-1d												#AWS availability zone
       security_groups:		
-      - cf-diego-stack2-BOSHSecurityGroup-B0M401A4NYS4 					#AWS security group name
-      subnet: subnet-f4b255d9											#AWS subnet id
+      - cf-xxxxxxxx                                 					#AWS security group name
+      subnet: subnet-xxxxxx  											#AWS subnet id
     dns:
-    - 52.71.253.54											#dns ip
+    - xx.xx.xx.xx											#dns ip
     - 10.10.0.2
     gateway: 10.10.5.1										#gateway 
     range: 10.10.5.0/24										#static ip range
