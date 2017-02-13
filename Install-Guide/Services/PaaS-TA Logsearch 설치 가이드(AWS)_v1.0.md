@@ -284,7 +284,7 @@ jobs:
     - 10.10.18.15										#local static ip
   - name: elastic
     static_ips:
-    - 52.23.100.116 									#external ip (public)
+    - "xxx.xxx.xxx.xxx"									#external ip (public)
   properties:
     haproxy:											#port forwarding
       cluster_monitor:									#각 서비스들의 default port 정보는 jobs/haproxy/spec 파일에 정의
