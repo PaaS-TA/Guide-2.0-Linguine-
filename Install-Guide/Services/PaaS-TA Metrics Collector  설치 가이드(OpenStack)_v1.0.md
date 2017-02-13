@@ -115,9 +115,9 @@ networks:
 
 properties:
   openstack: &openstack
-      auth_url: http://115.68.151.175:5000/v3			#openstack auth url
+      auth_url: http://"xxx.xxx.xxx.xxx":5000/v3		#openstack auth url
       username: admin									#openstack admin id
-      api_key: cfmonit									#openstack admin password
+      api_key: admin									#openstack admin password
       project: admin									#related project name
       domain: default									#default domain
       region: RegionOne																										
@@ -127,7 +127,7 @@ properties:
     address: null
     port: null
   metrics_collector:
-    uaaUrl: https://uaa.v2.monitxpert.com				#uaa target url
+    uaaUrl: https://uaa.xxx.xxx.xxx.xxx.xip.io			#uaa target url
     clientId: cf										#uaa client id
     clientPass: null									#uaa client password
     influx:
@@ -136,7 +136,7 @@ properties:
       cf_measurement: cf_metrics						#target influxdb measurement
       cf_process_measurement : cf_process_metrics		#target influxdb process measurement
     dopplerUrl:
-    - wss://doppler.v2.monitxpert.com:4443				#doppler websocket url
+    - wss://doppler.xxx.xxx.xxx.xxx.xip.io:4443			#doppler websocket url
     log_level: info
 
 releases:
