@@ -297,7 +297,7 @@ jobs:
     - gateway
     name: external
     static_ips:
-    - 115.68.46.185
+    - "xxx.xxx.xxx.xxx"                             #public ip
   properties:
     haproxy:										# haproxy 모듈의 Port Forwarding 정보
       cluster_monitor:
@@ -353,10 +353,10 @@ networks:
     dns:
     - 10.30.20.27										#dns
     - 8.8.8.8
-    gateway: 115.68.46.17								#gateway
-    range: 115.68.46.16/24								#public ip range
+    gateway: "xxx.xxx.xxx.xxx"							#gateway
+    range: "xxx.xxx.xxx.xxx"/24							#public ip range
     static:
-    - 115.68.46.185										#available public ip
+    - "xxx.xxx.xxx.xxx"									#available public ip
   type: manual
 
 properties:
