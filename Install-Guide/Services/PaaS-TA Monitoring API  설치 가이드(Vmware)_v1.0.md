@@ -86,7 +86,7 @@ jobs:
     - gateway
     name: external
     static_ips:
-    - 115.68.46.189														#public ip
+    - "xxx.xxx.xxx.xxx"													#public ip
   properties: {}
   update:
     max_in_flight: 1
@@ -115,10 +115,10 @@ networks:
     dns:
     - 10.30.20.27														#dns
     - 8.8.8.8
-    gateway: 115.68.46.17												#gateway
-    range: 115.68.46.16/24												#static ip range
+    gateway: "xxx.xxx.xxx.xxx"											#gateway
+    range: "xxx.xxx.xxx.xxx"/24											#static ip range
     static:
-    - 115.68.46.189														#available ip range
+    - "xxx.xxx.xxx.xxx"													#available ip range
   type: manual
 
 resource_pools:
