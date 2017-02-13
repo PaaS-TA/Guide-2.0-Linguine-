@@ -316,12 +316,12 @@ networks:
 - name: paasta-logsearch-net												#network name
   subnets:
   - cloud_properties:
-      aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
-      aws_secret_access_key: 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		#aws secret key
+      aws_access_key_id: xxxxxxxxx           								#aws access key
+      aws_secret_access_key: xxxxxxx                                 		#aws secret key
       region: us-east-1d													#available zone
       security_groups:
-      - cf-diego-stack3-BOSHSecurityGroup-1M3CG3J07BRQ9						#security group
-      subnet: subnet-bef96f93												#subnet id
+      - cf-xxxxxxxx                                  						#security group
+      subnet: subnet-xxxxxxxx												#subnet id
     dns:
     - 10.10.18.2										#dns
     gateway: 10.10.18.1									#gateway
@@ -368,8 +368,8 @@ releases:
 resource_pools:
 - cloud_properties:
     availability_zone: us-east-1d						                #available zone
-    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
-    aws_secret_access_key: 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		#aws secret key
+    aws_access_key_id: xxxxxxxxxx        								#aws access key
+    aws_secret_access_key: xxxxxxxxxx                            		#aws secret key
     ephemeral_disk:
       size: 2048 
       type: gp2
