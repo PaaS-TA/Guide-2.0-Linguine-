@@ -175,7 +175,7 @@ resource_pools:
     version: latest														#stemcell version
 - cloud_properties:
     availability_zone: us-east-1d										#available zone
-    aws_access_key_id: AKIAISNP3PVAIXMA6ASQ								#aws access key
+    aws_access_key_id: xxxxxxxxxxxxxxxxxxxx								#aws access key
     aws_secret_access_key: xxxxxxxxxxxxxxxxxxx                  		#aws secret key
     instance_type: t2.small												#aws flavor
   name: grafana															#resource name
