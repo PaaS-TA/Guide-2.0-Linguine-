@@ -92,8 +92,7 @@ networks:
       net_id: b7c8c08f-2d3b-4a86-bd10-641cb6faa317			#network id
       security_groups: [bosh]								#security group
     dns:
-    - 52.71.253.54											#dns ip
-    - 10.10.0.2
+    - 10.10.0.2											#dns ip
     gateway: 10.10.5.1										#gateway 
     range: 10.10.5.0/24										#static ip range
     reserved:		
@@ -104,9 +103,9 @@ networks:
 
 properties:
   openstack: &openstack																							
-      auth_url: http://115.68.151.175:5000/v3				#openstack auth url
+      auth_url: http://"xxx.xxx.xxx.xxx":5000/v3			#openstack auth url
       username: admin										#openstack admin id
-      api_key: cfmonit										#openstack admin password
+      api_key: admin										#openstack admin password
       project: admin										#related project name
       domain: default										#default domain
       region: RegionOne																										
