@@ -99,7 +99,7 @@ networks:
       - cf-diego-stack2-InternalSecurityGroup-11HQXLKO7IEWL		#security group
       subnet: subnet-f4b255d9									#subnet id
     dns:
-    - 52.71.253.54												#dns
+    - 10.10.5.2 												#dns
     gateway: 10.10.5.1											#gateway
     range: 10.10.5.0/24											#static ip range
     reserved:	
@@ -113,7 +113,7 @@ properties:
     address: null
     port: null
   metrics_collector:
-    uaaUrl: https://uaa.v2.monitxpert.com						#uaa target url
+    uaaUrl: https://uaa.xxx.xxx.xxx.xxx.xip.io					#uaa target url
     clientId: cf												#uaa client id
     clientPass: null											#uaa client password
     influx:
@@ -122,7 +122,7 @@ properties:
       cf_measurement: cf_metrics								#target influxdb measurement
       cf_process_measurement : cf_process_metrics				#target influxdb process measurement
     dopplerUrl:
-    - wss://doppler.v2.monitxpert.com:4443						#doppler websocket url
+    - wss://doppler.xxx.xxx.xxx.xxx.xip.io:4443					#doppler websocket url
     log_level: debug
     
 releases:
