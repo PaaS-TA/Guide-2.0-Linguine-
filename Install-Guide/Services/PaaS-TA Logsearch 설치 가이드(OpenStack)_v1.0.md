@@ -289,7 +289,7 @@ jobs:
     - 10.244.3.125
   - name: provider
     static_ips:
-    - 115.68.151.183									#external ip (public)
+    - "xxx.xxx.xxx.xxx"									#external ip (public)
   properties:
     haproxy:											#port forwarding
       cluster_monitor:									#각 서비스들의 default port 정보는 jobs/haproxy/spec 파일에 정의 
