@@ -57,7 +57,7 @@ CF & Diego Document:
 설치한 가상머신에 실행환경을 구성한다. 환경 구성에 있어서 전제조건으로
 가상머신은 외부와 통신이 가능해야 한다.
 
-플랫폼 설치 자동화의 실행환경을 구성하기 위해 다음의 패키지를 설치 스크립트를 통해 자동으로 설치한다.
+플랫폼 설치 자동화의 실행환경을 구성하기 위해 다음의 패키지를 플랫폼 설치 자동화 설치 스크립트를 통해 자동으로 설치한다.
 -	Ruby (1.9.3 이상)
 -	bosh-init
 -	bosh_cli
@@ -101,6 +101,9 @@ CF & Diego Document:
 
 	$ cd IEDA-WEB-INSTALLER
 	$ ./deployer-install.sh <OPENPAAS_IEDA_WEB.tar 파일이 있는 경로>/OPENPAAS_IEDA_WEB.tar <mysql 비밀번호>
+	
+	ex)
+	$ ./deployer-install.sh ~/Downloads/OPENPAAS_IEDA_WEB.tar 1q2w3e4r5t
 
 
 
