@@ -380,7 +380,7 @@ GRANT
 <br>
 - PostgreSql 서버에 접속하여 기본데이터가 입력되었는지 확인한다.
 ```
-$ /var/vcap/packages/postgres-9.4.6/bin/psql -U portaladmin -p 5524 -d portaldb
+$ /var/vcap/packages/postgres-9.4.9/bin/psql -U portaladmin -p 5524 -d portaldb
 ```
 ```
 portaldb-> \du
@@ -400,7 +400,7 @@ portaldb-> \du
 <br>
 - Postgresql Database 목록을 조회한다. 
 ```
-$ /var/vcap/packages/postgres-9.4.6/bin/psql -U portaladmin -p 5524 -d portaldb
+$ /var/vcap/packages/postgres-9.4.9/bin/psql -U portaladmin -p 5524 -d portaldb
 ```
 ```
 portaldb-> \l
