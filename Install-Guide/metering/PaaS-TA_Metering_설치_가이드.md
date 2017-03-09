@@ -14,6 +14,7 @@
      * [couchdb 설치](#12)
      * [pouchdb 설치(옵션)](#13)
      * [설치 확인](#14)
+     * [CouchDB 계정 생성](#32)
     * [CF에 abacus UAA 계정 등록](#15)
      * [UAA 클라이언트 설치](#16)
      * [CF 앱 사용량 수집을 위한 UAA 계정 드록](#17)
@@ -203,6 +204,8 @@ API 서비스를 미터링하는 방법에 대해 기술 하였다.
   	$ curl localhost:5984 
   	> {"couchdb":"Welcome","version":"1.5.1",...}
 
+###<div id='32'/>2.4.4.  CouchDB 계정 생성
+[CouchDB 계정 생성](https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Install-Guide/metering/Couchdb_Create_Admin.md)
 
 ##<div id='15'/>2.5.  CF에 abacus UAA 계정 등록
 
