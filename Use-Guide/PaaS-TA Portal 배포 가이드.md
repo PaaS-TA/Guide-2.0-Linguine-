@@ -244,6 +244,25 @@ Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 �
 PaaS-TA-Portal 서비스를 하기 위해 배포 파일이 있는 PaaSTA-Portal/postgresql/의 portal-postgresql-init.sh, postgresql.sql을 실행하여야 한다.
 
 <br>
+※ postgresql.sql을 실행하기 전에 파일을 열어 관리자 계정의 정보를 Potal-DB에 삽입하는 SQL을 추가한다. 관리자 계정의 정보를 Portal DB에 삽입하지 않을 경우, 관리자 포털(Web Admin)에 로그인했을때, 관리자 메뉴에 접근 할 수 없는 오류가 발생할 수 있다. 
+
+postgresql.sql 파일을 vi 에티더로 연다.
+```
+$ vi postgresql.sql
+```
+
+3958 라인으로 이동한다.
+```
+:3958
+```
+
+관리자 계정을 Portal DB의 user_detail 컬럼에 삽입하는 SQL을 추가한다. 현재 user_id를 '관리자 계정'이라는 값으로 삽입하도록 작성되어 있는데, Portal API 배포시 manifest.yml 파일에 입력한 관리자 ID와 동일한 값으로 변경한다. Portal API의 manifest.yml의 'cloudfoundry_user_admin_username' 값이 관리자 계정 ID가 된다. [[**3.2. 포탈 API 배포**](#16)] 를 참고한다.
+```
+INSERT INTO user_detail (user_id, status, tell_phone, zip_code, address, address_detail, user_name, admin_yn, refresh_token, auth_access_cnt, auth_access_time, img_path) VALUES ('관리자 계정 ID', '1', '01012345678', NULL, NULL, NULL, 'name', 'Y', NULL, 0, NULL, NULL);
+```
+
+<br>
+<br>
 - CloudFoundry내의 PostgreSql이 설치 되어있는 곳을 확인한다.
 
 ```
@@ -940,6 +959,12 @@ applications:
     eureka_client_serviceUrl_defaultZone: ${vcap.services.portal-eureka-service.credentials.uri}/eureka/
     eureka_instance_hostname: ${vcap.application.uris[0]}
 
+    # api manifest의 spring_security_username + ":" + spring_security_password를 Base64 인코딩하여 입력해야 합니다.
+    # 예를 들어서 api manifest의 값이 아래와 같다면
+    # spring_security_username: user
+    # spring_security_password: password
+    # user:password 를 인코딩해야합니다.
+    # Base64 인코딩 사이트: http://www.convertstring.com/ko/EncodeDecode/Base64Encode
     paasta_portal_api_authorization_base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
     paasta_portal_api_url: http://PORTAL-API
 
@@ -1084,6 +1109,12 @@ applications:
     eureka_client_serviceUrl_defaultZone: ${vcap.services.portal-eureka-service.credentials.uri}/eureka/
     eureka_instance_hostname: ${vcap.application.uris[0]}
 
+    # api manifest의 spring_security_username + ":" + spring_security_password를 Base64 인코딩하여 입력해야 합니다.
+    # 예를 들어서 api manifest의 값이 아래와 같다면
+    # spring_security_username: user
+    # spring_security_password: password
+    # user:password 를 인코딩해야합니다.
+    # Base64 인코딩 사이트: http://www.convertstring.com/ko/EncodeDecode/Base64Encode
     paasta_portal_api_authorization_base64: Basic YWRtaW46b3BlbnBhYXN0YQ==
     paasta_portal_api_url: http://PORTAL-API
 
