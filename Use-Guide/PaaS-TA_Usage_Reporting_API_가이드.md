@@ -1,6 +1,6 @@
 ## Table of Contents
 1. [문서개요](#1)
-	* [문서 개요](#2)
+	* [목적](#2)
 	* [범위](#3)
 2. [GET org_app_usage_summary](#4)
 	* [Request Parameters](#5)
@@ -15,32 +15,32 @@
 	* [cURL](#14)
 	* [Response body](#15)
 
-#<div id='1'/>1.  문서 개요
+# <div id='1'/>1.  문서 개요
 
-##<div id='2'/>1.1.  목적
+## <div id='2'/>1.1.  목적
 
 본 문서는 PaaS-TA Usage Reporting의 API 호출에 대해 기술하였다.
 
-##<div id='3'/>1.2.  범위 
+## <div id='3'/>1.2.  범위 
 
 본 문서에서는 PaaS-TA Usage Reporting의 API의 인터페이스 정보 및 호출
 방법에 대해 작성되었다.
 
 
-#<div id='4'/>2. GET org_app_usage_summary
+# <div id='4'/>2. GET org_app_usage_summary
 
 해당 조회 월 1일부터 현재 시간까지의 org / space 에서 동작 중인 각 app의
 메모리 사용량을 조회한다. space_id parameter 가 ‘all’ 인 경우, org
 전체의 값을 리턴한다.
 
-##<div id='5'/>2.1.  Request Parameters 
+## <div id='5'/>2.1.  Request Parameters 
 
 |  이름  |설명 |기본값| 유효값| 예시값|
 |--------|----|-----|------|-------|
 |org_id   |조직 아이디       |-|	org_guid	        |‘7726b51e-b7b4-4b9f-a1cf-78eab2710e2d’|
 |space_id |	스페이스 아이디	|-|	space_guid, ‘all’	|‘b5e7f478-6f26-457f-97ce-c57a31afe157’|
 
-##<div id='6'/>2.2.  cURL
+## <div id='6'/>2.2.  cURL
 
 	curl -i -X GET http://paasta-usage-reporting.your-domain.com/v1/org/:org_id/space/:space_id
 
