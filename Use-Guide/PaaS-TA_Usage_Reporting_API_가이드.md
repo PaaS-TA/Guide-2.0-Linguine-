@@ -16,6 +16,7 @@
 	* [Response body](#15)
 
 #<div id='1'/>1.  문서 개요
+
 ##<div id='2'/>1.1.  목적
 
 본 문서는 PaaS-TA Usage Reporting의 API 호출에 대해 기술하였다.
