@@ -1152,7 +1152,7 @@ mock 적용을 위하여, owermock-mockito-release-full:1.6.1 을 사용하였�
 
 샘플 코드는 아래의 사이트에 다운로드 할 수 있다.
 
-[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
+[다운로드](https://paas-ta.kr/data/packages/2.0/PaaSTA-Metering.zip)
 
 
 [Java_Service_Metering_Image01]:images/Java_Service_Metering/service_broker_api_architecture.png
