@@ -112,8 +112,8 @@ PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다.
 -	PaaS-TA에서 제공하는 포털 배포에 필요한 파일들을 다운받는다. (PaaSTA-Portal.zip)
 
 - 다운로드 위치
->PaaSTA-Portal : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0Va2oNg>**  
->PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**
+>PaaSTA-Portal : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Portal.zip>**  
+>PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**
 
 <br>
 <div id='23'></div>
