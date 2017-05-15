@@ -85,9 +85,9 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (Pa
 <br>
 - 다운로드 위치
 
->PaaSTA-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0nkrJ16>**  
->PaaSTA-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0744Pee>**  
->PaaSTA-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0S8FdZz>**  
+>PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
+>PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
+>PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
 <br>
 <div id='8'></div>
