@@ -1053,7 +1053,7 @@ API 연동 샘플 애플리케이션의 url을 통해 웹 브라우저에서 접
 
 샘플코드는 아래의 사이트에 다운로드 할 수 있다.
 
-[다운로드](http://extdisk.hancom.com:8080/share.cgi?ssid=0ior8a5#0ior8a5)
+[다운로드](https://paas-ta.kr/data/packages/2.0/PaaSTA-Metering.zip)
 
 [Java_Api_Service_Metering_Image01]:images/Java_Api_Service_Metering/meteringAPI_development_range.png
 [Java_Api_Service_Metering_Image02]:images/Java_Api_Service_Metering/sampleAPI_Service.png
