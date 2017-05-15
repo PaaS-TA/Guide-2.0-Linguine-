@@ -1281,6 +1281,10 @@ applications:
     ribbon_eureka_enabled: true
     ribbon_ConnectTimeout: 30000
     ribbon_ReadTimeout: 30000
+    
+    # paas-ta 설치시 등록한 어드민 아이디 / 패스워드
+    cloudfoundry_user_admin_username: admin
+    cloudfoundry_user_admin_password: xxxxx
 
 ```
 
