@@ -52,6 +52,7 @@ Monitoring API 서버를 설치하기 위해서는 사전에 PaaS-TA 서비스�
 $ bosh upload release paasta-monitoring-api-server-2.0.tgz
 
 <kbd>![2-1-1]</kbd>
+
 <kbd>![2-1-2]</kbd>
 
 <div id='7'></div>
