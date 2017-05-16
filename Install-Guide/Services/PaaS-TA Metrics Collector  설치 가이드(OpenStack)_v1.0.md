@@ -73,7 +73,6 @@ $ vi metrics-collector-release.yml
 
 ```
 ---
----
 compilation:
   cloud_properties:
     name: random
