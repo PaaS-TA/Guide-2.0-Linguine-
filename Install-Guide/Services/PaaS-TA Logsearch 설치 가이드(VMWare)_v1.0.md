@@ -43,7 +43,7 @@
 
 하단 링크로 접속하여 PaaS-TA 모니터링 패키지 파일을 다운로드하여, 압축해제한다.
 
->PaaS-TA 모니터링 : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Monitoring.zip>**
+>PaaS-TA 모니터링 : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Monitoring.zip>** <br>
 >다운로드 받은 PaaSTA-Monitoring.zip 파일을 압축해제한다. <br>
 >paasta-logsearch-2.0.tgz 파일을 확인한다. <br>
 
