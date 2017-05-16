@@ -45,11 +45,9 @@
 
 >PaaS-TA 모니터링 : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Monitoring.zip>**
 
->다운로드 받은 PaaSTA-Monitoring.zip 파일을 압축해제한다.
-
->paasta-influxdb-grafana-2.0.tgz 파일을 확인한다.
-
-다음의 명령어를 이용하여 릴리즈 파일을 bosh에 업로드한다.
+>다운로드 받은 PaaSTA-Monitoring.zip 파일을 압축해제한다. <br>
+>paasta-influxdb-grafana-2.0.tgz 파일을 확인한다. <br>
+다음의 명령어를 이용하여 릴리즈 파일을 bosh에 업로드한다. <br>
 
 $ bosh upload release paasta-influxdb-grafana-2.0.tgz
 
