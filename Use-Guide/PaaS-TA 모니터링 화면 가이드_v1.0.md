@@ -204,14 +204,14 @@ Dashboard 화면에서 보고자하는 Table을 생성하는 방법에 대해서
 위의 과정을 통해 생성된 메인화면이다.
 <kbd>![4]</kbd>
 
-[2-1-1]:images/monitoring/login.png
+[2-1-1]:images/monitoring/2-1-1.png
 [2-1-2]:images/monitoring/2-1-2.png
 [2-1-3]:images/monitoring/2-1-3.png
 [2-1-4]:images/monitoring/2-1-4.png
 [2-1-5]:images/monitoring/2-1-5.png
 [2-1-6]:images/monitoring/2-1-6.png
 [2-1-7]:images/monitoring/2-1-7.png
-[2-2-1]:images/monitoring/login.png
+[2-2-1]:images/monitoring/2-1-1.png
 [2-2-2]:images/monitoring/2-2-2.png
 [2-2-3]:images/monitoring/2-2-3.png
 [2-2-4]:images/monitoring/2-2-4.png
