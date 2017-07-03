@@ -103,6 +103,9 @@
 
 <kbd>![3-1-3]</kbd>
 
+> DataSource 정보는 추후에 화면에 보여줄 Graph 또는 Table 차트 생성시 사용된다.
+> 예를 들어, Bosh 서비스의 CPU Chart를 생성시, 생성한 Bosh 서비스의 DataSource가 "Bosh" 이면, CPU Chart 생성화면의 Metrics Tab의 Panel data source 부분을 "Bosh"로 선택한다.
+
 <div id='9'></div>
 
 ### 3.2.  Dashboard Import
@@ -158,6 +161,10 @@ Dashboard 화면에서 보고자하는 Chart를 생성하는 방법에 대해서
 <kbd>![3-4-3]</kbd>
 
 ### 3.4.4 "Panel data source" 영역을 클릭하여, 팝업된 메뉴에서 연결하고자 하는 데이터 소스를 선택한다.
+
+> 위의 DataSource 생성 부분에서 생성한 DataSource와 연동된다.
+> 각각의 DataSource에서 관리하는 데이터베이스와 Measurement 정보는 아래를 참조한다.
+- [Monitoring Database & Measurements](https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Use-Guide/PaaS-TA%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%20DB%20%EB%B0%8F%20Metrics%20%EA%B0%80%EC%9D%B4%EB%93%9C.md) 
 
 <kbd>![3-4-4]</kbd>
 
