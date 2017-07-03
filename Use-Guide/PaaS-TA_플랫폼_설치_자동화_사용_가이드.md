@@ -1030,8 +1030,8 @@ Home 디렉토리에 .bosh_plugin 디렉토리를 생성하고 배포에 필요�
 클릭한다. ([2.1.3](#9) 참고)
 
 	  ※ 공개 스템셀 참조 사이트
-	  http://bosh.cloudfoundry.org/stemcells
-
+	  http://bosh.cloudfoundry.org/stemcells 
+          AWS 환경의 BOOTSTRAP 설치 시에는 반드시 Lite 유형의 스템셀을 다운로드 하여야 한다.
 ![PaaSTa_Platform_Use_Guide_Image37]
 
 -   본 가이드에서는 버전 3312.12을 다운로드 하였다.
