@@ -310,7 +310,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
  
 ><div>$ bosh stemcells</div>
 >![2-1-0-10]
-><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.</div>
+><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3215.4 버전을 업로드를 해야 한다.</div>
 
 - Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
@@ -362,7 +362,7 @@ resource_pools:               # 배포시 사용하는 resource pools를 명시�
     network: default
     stemcell:
       name: bosh-vsphere-esxi-ubuntu-trusty-go_agent  # stemcell 이름(필수)
-      version: 3309 # stemcell 버전(필수)
+      version: 3215.4                # stemcell 버전(3215.4 버전으로 사용)
     cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
       cpu: 1
       disk: 8192
