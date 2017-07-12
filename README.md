@@ -4,7 +4,7 @@
 - [설치 파일 다운로드 받기](./Download_Page.md)
 - 플랫폼 설치
   - [플랫폼 설치 자동화](./Install-Guide/Platform%20Install%20System/PaaS-TA_플랫폼_설치_자동화_설치_가이드.md)
-  - [플랫폼 설치 자동화 사용가이드](../..//Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
+  - [플랫폼 설치 자동화 사용가이드](../Use-Guide/PaaS-TA_플랫폼_설치_자동화_사용_가이드.md)
 - PaaS-TA 미터링 설치
   - [PaaS-TA 미터링](./Install-Guide/metering/PaaS-TA_Metering_설치_가이드.md)
   
