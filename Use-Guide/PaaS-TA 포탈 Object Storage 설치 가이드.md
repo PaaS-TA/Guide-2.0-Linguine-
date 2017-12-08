@@ -9,23 +9,23 @@
      * [2.2. Object Strorage 릴리즈 업로드](#8)
      * [2.3. Object Strorage Deployment 파일 수정 및 배포](#9)
 
-<br>
-<div id='1'></div>
-# 1. 문서 개요
 
-<br>
-<div id='2'></div>
-### 1.1. 목적
+
+# <div id='1'> 1. 문서 개요
+
+
+
+### <div id='2'> 1.1. 목적
 본 문서(포털 Object Storage 설치 가이드)는 PaaS-TA 포털에서 사용하는 Object Storage의 설치를 Bosh를 이용하여 설치 하는 방법을 기술하였다.
 
-<br>
-<div id='3'></div>
-### 1.2. 범위 
+
+
+### <div id='3'> 1.2. 범위
 설치 범위는 Object Storage 사용을 검증하기 위한 기본 설치를 기준으로 작성하였다.
 
-<br>
-<div id='4'></div>
-### 1.3. 시스템 구성도
+
+
+### <div id='4'> 1.3. 시스템 구성도
 본 문서에서 설명하는 Object Storage의 시스템 설치 구성도이다. OpenStack Swift의 간편한 설치를 지원하는 Swift All In One과 인증처리를 위한 Keystone으로 기본 최소사항을 구성하였다.
 ※	Openstack 환경에서는 Portal Object Storage를 설치할 필요없이, OpenStack이 제공하는 Openstack Swift 서비스를 이용할 수 있다.
 
@@ -42,20 +42,20 @@
   </tr>
 </table>
 
-<br>
-<div id='5'></div>
-### 1.4. 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs)<br>
-[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)<br>
-[**http://docs.openstack.org/developer/swift/**](http://docs.openstack.org/developer/swift/)<br>
 
-<br>
-<div id='6'></div>
-# 2. Object Storage 설치
 
-<br>
-<div id='7'></div>
-### 2.1. 설치전 준비사항
+### <div id='5'> 1.4. 참고자료
+[**http://bosh.io/docs**](http://bosh.io/docs)
+[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+[**http://docs.openstack.org/developer/swift/**](http://docs.openstack.org/developer/swift/)
+
+
+
+# <div id='6'> 2. Object Storage 설치
+
+
+
+### <div id='7'> 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
@@ -63,12 +63,12 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 -	PaaS-TA에서 제공하는 포털 릴리즈 파일들을 다운받는다. (PaaSTA-Portal.zip)
 
 - 다운로드 위치
->PaaSTA-Portal : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Portal.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**
+> PaaSTA-Portal : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Portal.zip>**  
+> PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**
 
-<br>
-<div id='8'></div>
-###   2.2. Object Storage 릴리즈 업로드
+
+
+### <div id='8'> 2.2. Object Storage 릴리즈 업로드
 
 -	PaaSTA-Portal.zip의 압축을 풀고 폴더 안에 있는 파스타 포털 Object Storage 릴리즈 paasta-portal-object-storage-2.0.tgz 파일을 확인한다.
 ```
@@ -76,10 +76,10 @@ $ ls --all
 ```
 ```
 .   카탈로그이미지  api2          paasta-portal-object-storage-2.0.tgz  registraion  web-admin
-..  api             auto-scaling  postgresql 
+..  api             auto-scaling  postgresql
 ```
 
-<br>
+
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 $ bosh releases
@@ -99,7 +99,7 @@ Releases total: 1
 ```
 Portal Object Storage 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-<br>
+
 -	Object Storage 릴리즈 파일을 업로드한다
 ```
 $ bosh upload release paasta-portal-object-storage-2.0.tgz
@@ -180,7 +180,7 @@ Uploading the whole release
 
 Uploading release
 paasta-portal:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo   | 370.7MB  25.4MB/s ETA:  00:00:00
-Director task 
+Director task
  Started extracting release > Extracting release. Done (00:00:04)
 
  Started verifying manifest > Verifying manifest. Done (00:00:00)
@@ -207,7 +207,7 @@ paasta-portal:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 Release uploaded
 ```
 
-<br>
+
 -	업로드 된 Object Storage 릴리즈를 확인한다.
 ```
 $ bosh releases
@@ -240,18 +240,18 @@ Releases total: 13
 
 ```
 
-<br>
-<div id='9'></div>
-###   2.3. Object Storage Deployment 파일 수정 및 배포
+
+
+### <div id='9'> 2.3. Object Storage Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent)을 사용 할 것인지와 Release(Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
-<br>
--	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Portal Object Storage Deployment 파일을 복사한다. 
+
+-	PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Portal Object Storage Deployment 파일을 복사한다.
 예) vsphere 일 경우 paasta_portal_object_storage_vsphere_2.0.yml를 복사
 
 
-<br>
+
 -	Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
 
@@ -278,7 +278,7 @@ Deployment
  Manifest   /home/inception/crossent-deploy/paasta-logsearch.yml
 ```
 
-<br>
+
 -	Deploy시 사용할 Stemcell을 확인한다.
 ```
 $ bosh stemcells
@@ -300,10 +300,11 @@ Stemcells total: 2
 ```
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
-<br>
+
 -	Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석 내용을 참고)
 
-```yaml
+```
+yaml
 # paasta_portal_object_storage_vsphere_2.0.yml 설정 파일 내용
 ---
 name: paasta-portal-object-storage                    # 서비스 배포 이름 (필수)
@@ -379,7 +380,7 @@ properties:
   keystone_email: email@email.com             # 최소 생성되는 유저의 이메일
 ```
 
-<br>
+
 -    Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
 $ bosh deployment paasta_portal_object_storage_vsphere_2.0.yml
@@ -389,7 +390,7 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Deployment set to '/home/inception/bosh-space/kimdojun/swift/paasta_portal_object_storage_vsphere_2.0.yml'
 ```
 
-<br>
+
 -	Object Storage를 배포한다.
 ※	서버 사양에 따라 5분 ~ 20분 정도 소요된다.
 ```
@@ -412,7 +413,7 @@ Deploying
 ---------
 Are you sure you want to deploy? (type 'yes' to continue): yes
 
-Director task 
+Director task
 Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
 
  Started preparing deployment > Preparing deployment. Done (00:00:00)
@@ -441,7 +442,7 @@ Duration	:09:58
 Deployed 'paasta-portal-object-storage' to 'bosh'
 ```
 
-<br>
+
 -	배포된 Object Storage를 확인한다.
 ```
 $ bosh vms paasta-portal-object-storage
@@ -450,7 +451,7 @@ $ bosh vms paasta-portal-object-storage
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on deployment 'paasta-portal-object-storage' on 'bosh'
 
-Director task 
+Director task
 
 Task 2486 done
 
