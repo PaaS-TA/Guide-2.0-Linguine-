@@ -1,48 +1,48 @@
 ## Table of Contents
-- 1. [문서 개요](#1)<br>
-     - [1.1. 목적](#2)<br>
-     - [1.2. 범위](#3)<br>
-     - [1.3. 시스템 구성도](#4)<br>
-     - [1.4. 참고자료](#5)<br>
-- 2. [설치전 준비사항](#6)<br>
-     - [2.1. 기본설치 항목](#7)<br>
-     - [2.2. 사용자의 조직 생성 Flag 활성화](#23)<br>
-     - [2.3. 조직 및 공간 생성](#8)<br>
-     - [2.4. Redis 서비스 브로커 등록 및 활성화](#9)<br>
-     - [2.5. Redis 서비스 인스턴스 생성](#10)<br>
-     - [2.6. 사용자 제공 서비스 생성](#11)<br>
-     - [2.7. Portal Object Storage 설치 및 설정 변경](#12)<br>
-     - [2.8. Postgresql 기본 데이터 베이스 생성](#13)<br>
-- 3. [PaaS-TA 배포](#14)<br>
-     - [3.1. 포탈 Registration 배포](#15)<br>
-     - [3.2. 포탈 API 배포](#16)<br>
-     - [3.3. 포탈 APIV2 배포](#17)<br>
-     - [3.4. 사용자 포탈 배포](#18)<br>
-     - [3.5. 운영자 포탈 배포](#19)<br>
-     - [3.6. 앱 오토스케일러 배포](#19-1)<br>
-     - [3.7. 카탈로그 이미지 파일 업로드](#20)<br>
-- 4. [테스트 케이스 구동 가이드](#21)<br>
-     - [4.1. 테스트시 절차](#22)<br>
+- 1. [문서 개요](#1)
+     - [1.1. 목적](#2)
+     - [1.2. 범위](#3)
+     - [1.3. 시스템 구성도](#4)
+     - [1.4. 참고자료](#5)
+- 2. [설치전 준비사항](#6)
+     - [2.1. 기본설치 항목](#7)
+     - [2.2. 사용자의 조직 생성 Flag 활성화](#23)
+     - [2.3. 조직 및 공간 생성](#8)
+     - [2.4. Redis 서비스 브로커 등록 및 활성화](#9)
+     - [2.5. Redis 서비스 인스턴스 생성](#10)
+     - [2.6. 사용자 제공 서비스 생성](#11)
+     - [2.7. Portal Object Storage 설치 및 설정 변경](#12)
+     - [2.8. Postgresql 기본 데이터 베이스 생성](#13)
+- 3. [PaaS-TA 배포](#14)
+     - [3.1. 포탈 Registration 배포](#15)
+     - [3.2. 포탈 API 배포](#16)
+     - [3.3. 포탈 APIV2 배포](#17)
+     - [3.4. 사용자 포탈 배포](#18)
+     - [3.5. 운영자 포탈 배포](#19)
+     - [3.6. 앱 오토스케일러 배포](#19-1)
+     - [3.7. 카탈로그 이미지 파일 업로드](#20)
+- 4. [테스트 케이스 구동 가이드](#21)
+     - [4.1. 테스트시 절차](#22)
 
-<br>
-<div id='1'></div>
-# 1. 문서 개요
 
-<br>
-<div id='2'></div>
-### 1.1. 목적
+
+# <div id='1'> 1. 문서 개요
+
+
+
+### <div id='2'> 1.1. 목적
       
 본 문서(Paas-TA Potal 배포 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA 에서 배포 되는 Potal을 PaaS-TA를 이용하여 설치 하는 방법을 기술하였다.
 
-<br>
-<div id='3'></div>
-### 1.2. 범위 
+
+
+### <div id='3'> 1.2. 범위 
 
 배포 범위는 PaaS-TA Potal을 검증하기 위한 기본 설치 및 배포를 기준으로 작성하였다. 
 
-<br>
-<div id='4'></div>
-### 1.3. 시스템 구성도
+
+
+### <div id='4'> 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. 사용자 포탈 1, 운영자 포탈 1, 포탈 API 1, 포탈 APIV2 1, 포탈 Registration 1, 포탈 오토스케일 1 로 최소사항을 구성하였다.
 
 ![portal_deploy_image_01]
@@ -92,19 +92,19 @@
   </tr>  
 </table>
 
-<br>
-<div id='5'></div>
-### 1.4. 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs)<br>
+
+
+### <div id='5'> 1.4. 참고자료
+[**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-<br>
-<div id='6'></div>
-#   2. 설치전 준비사항
 
-<br>
-<div id='7'></div>
-### 2.1. 기본설치 항목
+
+# <div id='6'> 2. 설치전 준비사항
+
+
+
+### <div id='7'> 2.1. 기본설치 항목
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH에 로그인 및 target 설정이 되어 있어야 한다. BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다.
@@ -115,9 +115,9 @@ PaaSTA-Portal 폴더에서 설치에 필요한 파일을 확인한다.
 >PaaSTA-Portal : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Portal.zip>**  
 >PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**
 
-<br>
-<div id='23'></div>
-###   2.2. 사용자의 조직 생성 Flag 활성화
+
+
+### <div id='23'>  2.2. 사용자의 조직 생성 Flag 활성화
 PaaS-TA는 기본적으로 일반 사용자는 조직을 생성할 수 없도록 설정되어 있다. 포털 배포를 위해 조직 및 공간을 생성해야 하고 또 테스트를 구동하기 위해서도 필요하므로 사용자가 조직을 생성할 수 있도록 user_org_creation FLAG를 활성화 한다. FLAG 활성화를 위해서는 PaaS-TA 운영자 계정으로 로그인이 필요하다.
 
 ```
@@ -130,8 +130,8 @@ OK
 Feature user_org_creation Enabled.
 ```
 
-<div id='8'></div>
-###   2.3. 조직 및 공간 생성
+
+### <div id='8'> 2.3. 조직 및 공간 생성
 
 - PaaS-TA 어드민 계정으로 포탈을 배포할 조직 및 공간을 생성하거나 배포할 공간으로 target 설정을 한다.
 ```
@@ -144,11 +144,11 @@ $ cf create-space <공간명>
 $ cf target –o <조직명> -s <공간명>
 ```
 
-<br>
-<div id='9'></div>
-###   2.4. Redis 서비스 브로커 등록 및 활성화
 
-<br>
+
+### <div id='9'> 2.4. Redis 서비스 브로커 등록 및 활성화
+
+
 - Redis 서비스 브로커를 확인한다.
 ```
 $ cf service-brokers
@@ -161,7 +161,7 @@ paasta-pinpoint-broker   http://10.30.70.82:8080
 paasta-redis-broker      http://10.30.60.71:12350
 ```
 
-<br>
+
 - Redis 서비스 브로커가 생성되어 있지 않은 경우 [[**PaaS-TA Redis 서비스팩 설치 가이드**](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Service-Guide/NoSQL/PaaS-TA%20Redis%20%EC%84%9C%EB%B9%84%EC%8A%A4%ED%8C%A9%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)]를 참고하여 Redis 서비스팩을 설치하고 서비스 브로커를 생성 및 활성화한다. 다음 명령어를 통해 Redis 서비스가 활성화 되었는지 확인할 수 있다.
 
 ```
@@ -177,10 +177,10 @@ redis    shared-vm, dedicated-vm   Redis service to provide a key-value store
 TIP:  Use 'cf marketplace -s SERVICE' to view descriptions of individual plans of a given service.
 ```
 
-<br>
-<div id='10'></div>
-###   2.5. Redis 서비스 인스턴스 생성
-<br>
+
+
+###  <div id='10'> 2.5. Redis 서비스 인스턴스 생성
+
 - Redis 서비스가 활성화 되면 서비스 인스턴스를 생성할 수 있다. 포털이 사용할 Redis 서비스의 서비스 인스턴스를 생성한다.
 ```
 $ cf create-service redis shared-vm portal-redis-session
@@ -190,10 +190,10 @@ Creating service instance portal-redis-session in org OCP/ space prd as admin...
 OK
 ```
 
-<br>
-<div id='11'></div>
-###   2.6. 유레카 사용자 제공 서비스 생성
-<br>
+
+
+### <div id='11'>  2.6. 유레카 사용자 제공 서비스 생성
+
 - 사용자 서비스 eureka user provide service 등록
 
 ```
@@ -209,7 +209,7 @@ Creating user provided service portal-eureka-service in org OCP/ space prd as ad
 OK
 ```
 
-<br>
+
 - eureka user provide service 등록 확인
 ```
 $ cf services
@@ -223,9 +223,9 @@ portal-redis-session   redis           shared-vm                create succeeded
 portal-eureka-service  user-provided
 ```
 
-<br>
-<div id='12'></div>
-###   2.7. Portal Object Storage 설치 및 설정 변경
+
+
+### <div id='12'>  2.7. Portal Object Storage 설치 및 설정 변경
 
 포털은 파일 관리를 위해 Object Storage를 사용하기 때문에 PaaSTA 포털 Object Storage를 설치 하여야 한다.  [[**PaaS-TA 포탈 Obejct Storage 설치 가이드**](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%ED%8F%AC%ED%83%88%20Object%20Storage%20%EC%84%A4%EC%B9%98%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)]를 참고하여 Object Storage를 설치한다.
 Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 설정된 값을 수정해야 한다. Object Storage 설치 시 입력한 값을 바탕으로 다음 항목의 값을 수정한다.
@@ -235,16 +235,16 @@ Object Storage 설치가 완료되었다면, Portal API manifest.yml 파일에 �
 ※ 중괄호({}) 안의 값은 Object Storage의 deployment 파일 설정값
 
 1.  spring_objectStorage_tenantName : {properties.keystone_tenantname}
-2.  spring_objectStorage _username : {properties.keystone_username}
-3.  spring_objectStorage _password : {properties.keystone_password}
+2.  spring_objectStorage_username : {properties.keystone_username}
+3.  spring_objectStorage_password : {properties.keystone_password}
 4.  spring_objectStorage_authUrl : http://{properties.proxy_ip}:{properties.keystone_auth_port}/v2.0
 
-<br>
-<div id='13'></div>
-###   2.8.  Postgresql 기본 데이터 베이스 생성
+
+
+###  <div id='13'> 2.8.  Postgresql 기본 데이터 베이스 생성
 PaaS-TA-Portal 서비스를 하기 위해 배포 파일이 있는 PaaSTA-Portal/postgresql/의 portal-postgresql-init.sh, postgresql.sql을 실행하여야 한다.
 
-<br>
+
 ※ postgresql.sql을 실행하기 전에 파일을 열어 관리자 계정의 정보를 Potal-DB에 삽입하는 SQL을 추가한다. 관리자 계정의 정보를 Portal DB에 삽입하지 않을 경우, 관리자 포털(Web Admin)에 로그인했을때, 관리자 메뉴에 접근 할 수 없는 오류가 발생할 수 있다. 
 
 postgresql.sql 파일을 vi 에티더로 연다.
@@ -262,8 +262,8 @@ $ vi postgresql.sql
 INSERT INTO user_detail (user_id, status, tell_phone, zip_code, address, address_detail, user_name, admin_yn, refresh_token, auth_access_cnt, auth_access_time, img_path) VALUES ('관리자 계정 ID', '1', '01012345678', NULL, NULL, NULL, 'name', 'Y', NULL, 0, NULL, NULL);
 ```
 
-<br>
-<br>
+
+
 - CloudFoundry내의 PostgreSql이 설치 되어있는 곳을 확인한다.
 
 ```
@@ -298,14 +298,14 @@ Task 1940 done
 VMs total: 13
 ```
 
-<br>
+
 - 배포할 서버에 postgresql 폴더안의 파일을 업로드한다.
 ```
 scp 파일명 vcap@서버ip://복사할 폴더위치
 $ scp  * vcap@10.244.0.130:/home/vcap/
 ```
 
-<br> 
+ 
 - PostgreSql 서버에 접속하여 파일을 확인한다.
 ```
 $ ssh vcap@10.244.0.130
@@ -324,7 +324,7 @@ To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 ```
 
-<br>
+
 ```
 $ ll
 ```
@@ -341,7 +341,7 @@ drwx------ 2 vcap vcap   4096 Jan 18 06:25 .cache/
 -rw-r--r-- 1 vcap vcap    675 Apr  9  2014 .profile
 ```
 
-<br>
+
 - 스크립트를 확인하여, 생성할 데이터베이스 명, postgresql vesrsion 및 사용자를 확인한다.
 ```
 $ vi ./portal-postgresql-init.sh
@@ -366,7 +366,7 @@ $PSQL_BIN_DIR/psql -U $PSQL_USER -p $PSQL_PORT -d postgres -c "ALTER ROLE \"port
 $PSQL_BIN_DIR/psql -U $PSQL_USER -p $PSQL_PORT -d postgres -c "CREATE DATABASE \"portaldb\""
 $PSQL_BIN_DIR/psql -U portaladmin -p $PSQL_PORT -d portaldb -a -f $INIT_SQL_DIR/postgresql.sql
 ```
-<br>
+
 - 스크립트 파일을 실행한다.
 (실행권한이 없을경우 .chmod +x 파일명을 실행하여 실행권한을 부여한다.)
 ```
@@ -397,7 +397,7 @@ GRANT
 -- PostgreSQL database dump complete
 --
 ```
-<br>
+
 - PostgreSql 서버에 접속하여 기본데이터가 입력되었는지 확인한다.
 ```
 $ /var/vcap/packages/postgres-9.4.9/bin/psql -U portaladmin -p 5524 -d portaldb
@@ -417,7 +417,7 @@ portaldb-> \du
 
 ```
 
-<br>
+
 - Postgresql Database 목록을 조회한다. 
 ```
 $ /var/vcap/packages/postgres-9.4.9/bin/psql -U portaladmin -p 5524 -d portaldb
@@ -441,30 +441,31 @@ portaldb-> \l
 
 ```
 
-<br>
-<div id='14'></div>
-#    3.  PaaS-TA 배포
 
-<br>
-<div id='15'></div>
-###  3.1.  포탈 Registration 배포
 
-<br>
+# <div id='14'> 3.  PaaS-TA 배포
+
+
+
+### <div id='15'>  3.1.  포탈 Registration 배포
+
+
 - PaaS-TA-Portal 서비스를 하기위해 배포 파일이 있는 PaaSTA-Portal\registraion\에서 파일을 배포할 서버에 복사한다.
 
-<br>
+
 - manifest를 확인한다.
 manifest는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 name, memory, instance, host, path, buildpack, env등을 사용 할 것인지 정의가 되어 있다.
 
-<br>
+
 - portal-registration의 manifest.yml 확인 한다.
 
 ```
 $ vi manifest.yml
 ```
 
-```yml
+```
+yml
 ---
 applications:
 - name: portal-registration
@@ -483,7 +484,7 @@ applications:
     server_port: 2221
 ```
 
-<br>
+
 - manifest.yml이 있는 폴더로 이동하여 cf push 명령어를 이용하여 배포한다.
 ```
 $ cf push
@@ -558,7 +559,7 @@ buildpack: java_buildpack_offline
     state     since                    cpu    memory           disk         details
 #0  running   2017-01-19 02:32:10 PM   0.0%   272.8M of 512M   162M of 1G
 ```
-<br>
+
 - 배포 확인
 ```
 $ cf apps
@@ -571,16 +572,17 @@ name                  requested state   instances   memory   disk   urls
 portal-registration   started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
 ```
 
-<br>
-<div id='16'></div>
-###  3.2. 포탈 API 배포
 
-<br>
+
+### <div id='16'> 3.2. 포탈 API 배포
+
+
 - portal-api 의 manifest.yml확인
 ```
 $ vi manifest.yml
 ```
-```yml
+```
+yml
 ---
 applications:
 - name: portal-api                         # 앱 이름
@@ -752,7 +754,7 @@ buildpack: java_buildpack_offline
 #0  running   2017-01-19 02:41:55 PM   35.1%    607.3M of 1.5G   200.8M of 1G
 #1  running   2017-01-19 02:41:56 PM   122.8%   637.6M of 1.5G   200.8M of 1G
 ```
-<br>
+
 - 배포 확인
 ```
 $ cf apps
@@ -766,18 +768,19 @@ portal-api           started           2/2         1.5G     1G     portal-api.11
 portal-registration  started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
 ```
 
-<br>
-<div id='17'></div>
-###  3.3. 포탈 APIV2 배포
+
+
+### <div id='17'> 3.3. 포탈 APIV2 배포
 
 배포 어플리케이션은 potal-api 어플리케이션과는 다른 cloudfoundry version의 api 서비스를 통한 기능개발을 위해 배포 되어야 하는 어플리케이션이다.
 
-<br>
+
 - portal-api-v2 의 manifest.yml확인
 ```
 $ vi manifest.yml
 ```
-```yml
+```
+yml
 ---
 applications:
 - name: portal-api-v2                       # 앱 이름
@@ -833,7 +836,7 @@ applications:
     datasource_uaa_password: admin
 ```
 
-<br>
+
 - manifest.yml이 있는 폴더로 이동하여 cf push 명령어를 이용하여 배포한다.
 ```
 $ cf push
@@ -910,7 +913,7 @@ buildpack: java_buildpack_offline
 #0  running   2017-01-19 02:48:02 PM   0.0%   370.2M of 1G   196.2M of 1G
 ```
 
-<br>
+
 - 배포 확인
 ```
 $ cf apps
@@ -924,16 +927,17 @@ portal-api           started           2/2         1.5G     1G     portal-api.11
 portal-registration  started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
 portal-api-v2        started           1/1         1G       1G     portal-api-v2.115.68.46.186.xip.io
 ```
-<br>
-<div id='18'></div>
-###  3.4. 사용자 포탈 배포
 
-<br>
+
+### <div id='18'> 3.4. 사용자 포탈 배포
+
+
 - manifest.yml확인
 ```
 $ vi manifest.yml
 ```
-```yml
+```
+yml
 ---
 applications:
 - name: portal-web-user
@@ -977,7 +981,7 @@ applications:
     eureka_client_serviceUrl_defaultZone: ${vcap.services.portal-eureka-service.credentials.uri}/eureka/
 ```
 
-<br>
+
 - manifest.yml이 있는 폴더로 이동하여 cf push 명령어를 이용하여 배포한다.
 ```
 $ cf push
@@ -1058,7 +1062,7 @@ buildpack: java_buildpack_offline
 #0  running   2017-01-19 02:55:25 PM   245.2%   469.8M of 1G   204M of 1G
 ```
 
-<br>
+
 - 배포 확인
 ```
 $ cf apps
@@ -1074,16 +1078,17 @@ portal-registration  started           1/1         512M     1G     portal-regist
 portal-api-v2        started           1/1         1G       1G     portal-api-v2.115.68.46.186.xip.io
 ```
 
-<br>
-<div id='19'></div>
-###  3.5. 운영자 포탈 배포
 
-<br>
+
+### <div id='19'> 3.5. 운영자 포탈 배포
+
+
 - manifest.yml 확인
 ```
 $ vi manifest.yml
 ```
-```yml
+```
+yml
 ---
 applications:
 - name: portal-web-admin
@@ -1128,7 +1133,7 @@ applications:
     monitoringSite_password: openpaas
 ```
 
-<br>
+
 - manifest.yml이 있는 폴더로 이동하여 cf push 명령어를 이용하여 배포한다.
 
 ```
@@ -1211,7 +1216,7 @@ buildpack: java_buildpack_offline
 ```
 
 
-<br>
+
 - 배포 확인
 ```
 $ cf apps
@@ -1229,19 +1234,20 @@ portal-api-v2        started           1/1         1G       1G     portal-api-v2
 ```
 
 
-<br>
 
-<div id='19-1'></div>
-###  3.6. 앱 오토스케일러 배포
+
+
+### <div id='19-1'> 3.6. 앱 오토스케일러 배포
 
 portal-auto-scaler 배포는 cloudfoundry에 배포되어 있는 앱의 자동 스케일 업 서비스를 하기 위한 배포 어플리케이션이다.
 
-<br>
+
 - portal-auto-scaler 의 manifest.yml확인
 ```
 $ vi manifest.yml
 ```
-```yml
+```
+yml
 ---
 applications:
 - name: portal-auto-scaler                          # 앱 이름
@@ -1288,11 +1294,11 @@ applications:
 
 ```
 
-<br>
+
 - manifest.yml이 있는 폴더로 이동하여 cf push 명령어를 이용하여 배포한다.
 
 
-<br>
+
 
 ```
 $ cf push
@@ -1366,7 +1372,7 @@ buildpack: java_buildpack_offline
 #0  running   2017-01-19 02:48:02 PM   0.0%   240.2M of 512MG   196.2M of 512M
 ```
 
-<br>
+
 - 배포 확인
 
 ```
@@ -1382,32 +1388,32 @@ portal-registration  started           1/1         512M     1G     portal-regist
 portal-auto-scaling started           1/1         512M     1G     portal-registration.115.68.46.186.xip.io
 portal-api-v2        started           1/1         1G       1G     portal-api-v2.115.68.46.186.xip.io
 ```
-<br>
 
-<div id='20'></div>
-###  3.6. 카탈로그 이미지 파일 업로드
+
+
+### <div id='20'> 3.6. 카탈로그 이미지 파일 업로드
 
 PaaS-TA 포털에 기본 생성되는 카탈로그에 대한 이미지를 업로드 한다. 카탈로그 이미지 업로드는 운영자 포털을 통해서 진행하고 사용자 포털의 카탈로그 화면에서 이미지를 확인할 수 있다. 업로드할 이미지 파일은 '카탈로그 이미지' 폴더에서 확인할 수 있다. [[**PaaSTA 운영자 포털 가이드**](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%EC%9A%B4%EC%98%81%EC%9E%90%20%ED%8F%AC%ED%83%88%20%EA%B0%80%EC%9D%B4%EB%93%9C_v1.0.md)]의 [[**5.4 카탈로그 관리 서비스**](https://github.com/OpenPaaSRnD/Documents-PaaSTA-2.0/blob/master/Use-Guide/PaaS-TA%20%EC%9A%B4%EC%98%81%EC%9E%90%20%ED%8F%AC%ED%83%88%20%EA%B0%80%EC%9D%B4%EB%93%9C_v1.0.md#5.4)] 항목을 참고하여 각 카탈로그에 맞는 이미지를 업로드한다.
 
 
-<br>
-<div id='21'></div>
-#  4. 테스트 케이스 구동 가이드
 
-<br>
-<div id='22'></div>
-###  4.1.  테스트시 절차
+
+# <div id='21'>  4. 테스트 케이스 구동 가이드
+
+
+
+### <div id='22'> 4.1.  테스트시 절차
 
 PaaSTA Potal  JUnit 테스트 Class를 구동하기 위해 다음과 같은 작업이 필요하다.
 
-<br>
+
 1.  테스트 조직, 테스트 공간, 테스트 앱을 생성하여야 한다.
 ```
 cf create-org [조직명]
 cf create-space [공간명]
 cf push [테스트 앱명]
 ```
-<br>
+
 ##### 조직 생성
 ```
 $ cf create-org app-test-org      
@@ -1419,7 +1425,7 @@ OK
 Assigning role OrgManager to user admin in org app-test-org ...
 OK
 ```
-<br>
+
 ##### 공간 생성
 ```
 $ cf create-space app-test-space  
@@ -1433,7 +1439,7 @@ Assigning role RoleSpaceDeveloper to user admin in org app-test-org / space app-
 OK
 ```
 
-<br>
+
 ##### 테스트 앱 생성
 
 ```
@@ -1450,7 +1456,7 @@ Binding test-app.115.68.46.186.xip.io to test-app...
 OK
 ```
 
-<br>
+
 2.  테스트 관리자 권한 사용자를 생성한다.
 ```
 $ cf create-user [사용자아이디] [비밀번호]
@@ -1459,37 +1465,37 @@ $ cf create-user [사용자아이디] [비밀번호]
 $ cf create-user junit-test-user 1234
 ```
 
-<br>
+
 3.  테스트 사용자에 조직매니저 권한을 부여한다.
 ```
 $ cf set-org-role junit-test-user app-test-org OrgManager
 ```
 
-<br>
+
 4.  테스트 사용자에 공간에 대한 권한을 부여한다.
 ```
 $ cf set-space-role junit-test-user app-test-org app-test-space SpaceDeveloper
 ```
 
-<br>
+
 5.  조직이 없는 사용자를 생성한다.
 ```
 $ cf create-user no-org-user 1234
 ```
 
-<br>
+
 6.	PaaS-TA 포털 레포지토리를 Clone 한다.
 ```
 $ git clone https://github.com/OpenPaaSRnD/PaaS-TA-Portal.git
 ```
 
-<br>
+
 7.	PaaS-TA Porta API 디렉토리로 이동한다.
 ```
 $ cd PaaS-TA-Portal/openPaasPaastaPortalApi
 ```
 
-<br>
+
 8.	현재의 PaaS-TA 설치 환경에 맞게 PaaS-TA 포털 API 설정을 변경한다. 현재 디렉토리 기준으로 변경이 필요한 파일의 경로는 'src/resources/application.yml' 이다. 굵은 글씨로 쓰여진 항목을 사용자의 설치 환경에 맞게 수정한다.
 
 spring.profiles가 세가지로 분류되어 있다. 각 spring.profiles 별로 값을 다르게 사용할 수 있고 각 spring.profiles는 연속된 3개의 대시('---')로 구분한다. 예시에서는 spring.profiles 값이 local인 경우를 예로 설명하기 때문에 연속된 3개의 대시('---')로 구분했을때, spring.profiles 값이 local인 경우와 동일한 범위내에 있는 설정 값을 수정하도록 한다.
@@ -1497,7 +1503,8 @@ spring.profiles가 세가지로 분류되어 있다. 각 spring.profiles 별로 
 ```
 $ vi src/resources/application.yml
 ```
-```yaml
+```
+yaml
 # Spring properties
 spring:
   application:
@@ -1601,7 +1608,7 @@ eureka:
 ... 하단 생략 ...
 ```
 
-<br>
+
 9.	현재의 PaaS-TA 설치 환경에 맞게 PaaS-TA 포털 API 테스트 설정을 변경한다. 현재 디렉토리 기준으로 변경이 필요한 파일의 경로는 'src/test/resources/config.properties'이다.
 
 ```
@@ -1777,7 +1784,7 @@ test.uaaTarget=https://uaa.115.68.46.186.xip.io      # PaaS-TA 플랫폼의 UAA 
 test.skipSSLValidation=true
 ```
 
-<br>
+
 10.	Gradle 테스트 수행
 
 ```
