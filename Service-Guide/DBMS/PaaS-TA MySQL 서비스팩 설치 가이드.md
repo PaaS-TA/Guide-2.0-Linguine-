@@ -54,7 +54,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >PaaSTA-Deployment : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Deployment.zip>**  
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
-<br>
+
 ### 2.2. MySQL 서비스 릴리즈 업로드
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
