@@ -76,7 +76,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >| paasta-cubrid                        | 2.0*      | 85e3f01e+   |<br>
 >| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
 >| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
->| paasta-portal-release                | 0+dev.1*  | 00000000    |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
 >| paasta-redis                         | 2.0       | 2d766084+   |<br>
 >| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
 >+--------------------------------------+-----------+-------------+<br>
@@ -118,7 +118,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
 >| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
 >| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
->| paasta-portal-release                | 0+dev.1*  | 00000000    |<br>
+>| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
 >| paasta-redis                         | 2.0       | 2d766084+   |<br>
 >| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
 >+--------------------------------------+-----------+-------------+<br>
