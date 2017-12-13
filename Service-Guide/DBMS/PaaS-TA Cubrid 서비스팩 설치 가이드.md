@@ -20,21 +20,21 @@
 
      
 
-<div id='1'></div>
-# 1. 문서 개요
 
-<div id='2'></div>
-### 1.1. 목적
+# <div id='1'> 1. 문서 개요
+
+
+### <div id='2'> 1.1. 목적
       
 본 문서(Cubrid 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 Cubrid 서비스팩을 Bosh를 이용하여 설치 하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application 에서 Cubrid 서비스를 사용하는 방법을 기술하였다.
 
-<div id='3'></div>
-### 1.2. 범위 
+
+### <div id='3'> 1.2. 범위 
 
 설치 범위는 Cubrid 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
-<div id='4'></div>
-### 1.3. 시스템 구성도
+
+### <div id='4'> 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Cubrid Server, Cubrid 서비스 브로커로 최소사항을 구성하였다.  
 ![시스템 구성도][1-3-0-0]
 
@@ -57,16 +57,16 @@
   </tr>
 </table>
 
-<div id='5'></div>
-### 1.4. 참고자료
+
+### <div id='5'> 1.4. 참고자료
 **<http://bosh.io/docs>**  
 **<http://docs.cloudfoundry.org/>**
 
-<div id='6'></div>
-#   2. Cubrid 서비스팩 설치
 
-<div id='7'></div>
-### 2.1. 설치전 준비사항
+# <div id='6'>  2. Cubrid 서비스팩 설치
+
+
+### <div id='7'> 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.<br>
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.<br>
@@ -74,14 +74,14 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
 - 다운로드 위치  
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
+>PaaSTA-Services : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Services.zip>**  
+>PaaSTA-Deployment : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Deployment.zip>**  
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
 <br>
 
-<div id='8'></div>
-###   2.2. Cubrid 서비스 릴리즈 업로드
+
+### <div id='8'>  2.2. Cubrid 서비스 릴리즈 업로드
 
 - Release Root 디렉토리로 이동하여 업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -105,7 +105,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
 >| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
 >| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
->| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-portal-release                | 0+dev.1*  | 00000000    |<br>
 >| paasta-redis                         | 2.0       | 2d766084+   |<br>
 >+--------------------------------------+-----------+-------------+<br>
 >(*) Currently deployed<br>
@@ -280,8 +280,8 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인<br>
 <br>
 
-<div id='9'></div>
-### 2.3.  Cubrid 서비스 Deployment 파일 수정 및 배포
+
+### <div id='9'> 2.3.  Cubrid 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
@@ -303,14 +303,14 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 - Director UUID를 확인한다.
 - BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
 
-><div>$ bosh status</div>
+><div>$ bosh status
 >![2-1-0-9]
 
 - Deploy시 사용할 Stemcell을 확인한다.
  
-><div>$ bosh stemcells</div>
+><div>$ bosh stemcells
 >![2-1-0-10]
-><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3215.4 버전을 업로드를 해야 한다.</div>
+><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3215.4 버전을 업로드를 해야 한다.
 
 - Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
@@ -677,14 +677,14 @@ properties:
 
 
 
-<div id='10'></div>
-### 2.4. Cubrid 서비스 브로커 등록
+
+### <div id='10'> 2.4. Cubrid 서비스 브로커 등록
 Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Cubrid 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
 
 - 서비스 브로커 목록을 확인한다.
 
-><div>$ cf service-brokers</div>
+><div>$ cf service-brokers
 ![2-4-0-0]
 
 - Cubrid 서비스 브로커를 등록한다.
@@ -699,14 +699,14 @@ Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 
 - 등록된 Cubrid 서비스 브로커를 확인한다.
 
-><div>$ cf service-brokers</div>
+><div>$ cf service-brokers
 >![2-4-2-0]
 
 - 접근 가능한 서비스 목록을 확인한다.
 
-><div>$ cf service-access</div>
+><div>$ cf service-access
 >![2-4-3-0]
-><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
+><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
@@ -714,11 +714,11 @@ Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 >$ cf service-access  
 >![2-4-4-0]
 
-<div id='11'></div>
-#   3. Cubrid연동 Sample App 설명
+
+#  <div id='11'> 3. Cubrid연동 Sample App 설명
 본 Sample Web App은 PaaS-TA에 배포되며 Cubrid의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
-<div id='12'></div>
-### 3.1. Sample App 구조
+
+### <div id='12'> 3.1. Sample App 구조
 Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Cubrid 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Cubrid 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
@@ -747,18 +747,18 @@ Sample Web App 구조는 다음과 같다.
 
 - PaaS-TA-Sample-Apps을 다운로드 받고 Service 폴더안에 있는 Cubrid Sample Web App인 hello-spring-cubrid를 복사한다.
 
-><div>$ ls -all</div>
+><div>$ ls -all
 >![3-1-0-0]
 
-<div id='13'></div>
-### 3.2. PaaS-TA에서 서비스 신청
+
+### <div id='13'> 3.2. PaaS-TA에서 서비스 신청
 Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시 PaaS-TA에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 
 - 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
-><div>$ cf marketplace</div>
+><div>$ cf marketplace
 >![3-2-0-0]
 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
@@ -773,11 +773,11 @@ Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신
 
 - 생성된 Cubrid 서비스 인스턴스를 확인한다.
 
-><div>$ cf services</div>
+><div>$ cf services
 >![3-2-2-0]
 
-<div id='14'></div>
-### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+
+### <div id='14'> 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Cubrid 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
@@ -798,32 +798,32 @@ applications:
 - --no-start 옵션으로 App을 배포한다.  
 --no-start: App 배포시 구동은 하지 않는다.
 
-><div>$ cf push --no-start<br></div>
+><div>$ cf push --no-start<br>
 >![3-3-0-0]
 
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
-><div>$ cf apps<br></div>
+><div>$ cf apps<br>
 >![3-3-1-0]
 ><div>$ cf logs {배포된 App명}<br>
->$ cf logs hello-spring-cubrid</div>
+>$ cf logs hello-spring-cubrid
 >![3-3-2-0]
 
 - Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 
-><div>$ cf bind-service hello-spring-cubrid cubrid-service-instance</div>
+><div>$ cf bind-service hello-spring-cubrid cubrid-service-instance
 >![3-3-3-0]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
-><div>$ cf restart hello-spring-cubrid</div>
+><div>$ cf restart hello-spring-cubrid
 >![3-3-4-0]  
 >![3-3-4-1]  
 
 - (참고) 바인드 후 App구동시 Cubrid 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.
 
-><div>-  rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br></div>
-><div>$ vi rule.json</div>
+><div>-  rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br>
+><div>$ vi rule.json
 ```json
 [
   {
@@ -833,32 +833,32 @@ applications:
   }
 ]
 ```
-><div>- 보안 그룹을 생성한다.<br></div>
-><div>$ cf create-security-group CubridDB rule.json</div>
+><div>- 보안 그룹을 생성한다.<br>
+><div>$ cf create-security-group CubridDB rule.json
 >![3-3-5-0]
-><div>- 모든 App에 Cubrid 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.<br></div>
-><div>$ cf bind-running-security-group CubridDB</div>
+><div>- 모든 App에 Cubrid 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.<br>
+><div>$ cf bind-running-security-group CubridDB
 >![3-3-6-0]
-><div>- App을 리부팅 한다.<br></div>
-><div>$ cf restart hello-spring-cubrid</div>
+><div>- App을 리부팅 한다.<br>
+><div>$ cf restart hello-spring-cubrid
 >![3-3-7-0]
 
 - App이 정상적으로 Cubrid 서비스를 사용하는지 확인한다.
 
 ><div>- curl 로 확인 <br>
 $ curl hello-spring-cubrid.115.68.46.30.xip.io
-></div>
+>
 >![3-3-8-0]
 ><div>- 브라우져에서 확인<br>
-></div>
+>
 >![3-3-8-1]
 
-<div id='15'></div>
-# 4. Cubrid Client 툴 접속
+
+# <div id='15'> 4. Cubrid Client 툴 접속
 Application에 바인딩된 Cubrid 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Cubrid Client 툴에서 직접 연결할수 없다. 따라서 Cubrid Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 무료 SSH 및 텔넷 접속 툴인 Putty를 이용하여 SSH 터널을 통해 연결 하는 방법을 제공하며 Cubrid Client 툴로써는 Cubrid에서 제공하는 Cubrid Manager로 가이드한다. Cubrid Manager 에서 접속하기 위해서 먼저 SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 vSphere관리자 및 OpenPaaS 운영자에게 문의하여 구성한다.
 
-<div id='16'></div>
-### 4.1.  Putty 다운로드 및 터널링
+
+### <div id='16'> 4.1.  Putty 다운로드 및 터널링
 Putty 프로그램은 SSH 및 텔넷 접속을 할 수 있는 무료 소프트웨어이다.
 
 - Putty를 다운로드 하기 위해 아래 URL로 이동하여 파일을 다운로드 한다. 별도의 설치과정없이 사용할 수 있다.
@@ -886,8 +886,8 @@ Putty 프로그램은 SSH 및 텔넷 접속을 할 수 있는 무료 소프트�
 Key파일의 확장자가 .pem이라면 putty설치시 같이 설치된 puttygen을 사용하여 ppk파일로 변환한뒤 사용한다.  
 ![4-1-6-0]
 
-<div id='17'></div>
-### 4.2.  Cubrid Manager 설치 & 연결
+
+### <div id='17'> 4.2.  Cubrid Manager 설치 & 연결
 Cubrid Manager 프로그램은 Cubrid에서 제공하는 무료로 사용할 수 있는 소프트웨어이다.
 
 - Cubrid Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.  
