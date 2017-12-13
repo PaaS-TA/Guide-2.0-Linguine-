@@ -17,25 +17,25 @@
      * [4.1. Redis Desktop Manager 설치 및 연결](#16)
 
 
-<br>
-<div id='1'></div>
-# 1. 문서 개요
 
-<br>
-<div id='2'></div>
-### 1.1. 목적
+
+# <div id='1'> 1. 문서 개요
+
+
+
+### <div id='2'> 1.1. 목적
 
 본 문서(Redis 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 Redis 서비스팩을 Bosh를 이용하여 설치하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application에서 Redis 서비스를 사용하는 방법을 기술하였다.
 
-<br>
-<div id='3'></div>
-### 1.2. 범위
+
+
+### <div id='3'> 1.2. 범위
 
 설치 범위는 Redis서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다.
 
-<br>
-<div id='4'></div>
-### 1.3. 시스템 구성도
+
+
+### <div id='4'> 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
 ![시스템 구성도][redis_image_01]
 
@@ -54,19 +54,19 @@
   </tr>
 </table>
 
-<br>
-<div id='5'></div>
-### 1.4. 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs) <br>
+
+
+### <div id='5'> 1.4. 참고자료
+[**http://bosh.io/docs**](http://bosh.io/docs) 
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-<br>
-<div id='6'></div>
-#   2. Redis 서비스팩 설치
 
-<br>
-<div id='7'></div>
-### 2.1. 설치전 준비사항
+
+# <div id='6'>  2. Redis 서비스팩 설치
+
+
+
+### <div id='7'> 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.
 BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
@@ -74,13 +74,13 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 -    PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
 - 다운로드 위치
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
+>PaaSTA-Services : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Services.zip>**  
+>PaaSTA-Deployment : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Deployment.zip>**  
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
-<br>
-<div id='8'></div>
-###   2.2. Redis 서비스 릴리즈 업로드
+
+
+###  <div id='8'> 2.2. Redis 서비스 릴리즈 업로드
 
 -    PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 paasta-redis-2.0.tgz 파일을 확인한다.
 ```
@@ -91,7 +91,7 @@ $ ls --all
 .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
 ```
 
-<br>
+
 -    업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 $ bosh releases
@@ -120,7 +120,7 @@ Releases total: 9
 ```
 Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-<br>
+
 -    Redis 서비스 릴리즈 파일을 업로드한다.
 
 ```
@@ -329,7 +329,7 @@ paasta-redis-:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 Release uploaded
 ```
 
-<br>
+
 -    업로드 된 Redis 릴리즈를 확인한다.
 ```
 $ bosh releases
@@ -358,9 +358,9 @@ Acting as user 'admin' on 'bosh'
 Releases total: 10
 ```
 
-<br>
-<div id='9'></div>
-###   2.3. Redis 서비스 Deployment 파일 수정 및 배포
+
+
+### <div id='9'>  2.3. Redis 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
@@ -392,7 +392,7 @@ Deployment
  Manifest   /home/inception/crossent-deploy/paasta-logsearch.yml
 ```
 
-<br>
+
 -    Deploy시 사용할 Stemcell을 확인한다.
 ```
 $ bosh stemcells
@@ -414,7 +414,7 @@ Stemcells total: 2
 ```
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
-<br>
+
 -    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```yaml
@@ -635,7 +635,7 @@ resource_pools:
 
 ```
 
-<br>
+
 -    Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 ```
 $ bosh deployment paasta_redis_vsphere_2.0.yml
@@ -644,7 +644,7 @@ $ bosh deployment paasta_redis_vsphere_2.0.yml
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Deployment set to '/home/inception/bosh-space/kimdojun/redis/paasta_redis_vsphere_2.0.yml'
 ```
-<br>
+
 - Redis 서비스팩을 배포한다.
 ```
 $ bosh deploy
@@ -717,7 +717,7 @@ Duration  :08:51
 Deployed 'paasta-redis-service' to 'bosh'
 ```
 
-<br>
+
 -    배포된 Redis 서비스팩을 확인한다.
 ```
 $ bosh vms
@@ -742,13 +742,13 @@ Task 2415 done
 VMs total: 4
 ```
 
-<br>
-<div id='10'></div>
-### 2.4. Redis 서비스 브로커 등록
+
+
+### <div id='10'> 2.4. Redis 서비스 브로커 등록
 Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인하여야 한다
 
-<br>
+
 - 서비스 브로커 목록을 확인한다.
 
 ```
@@ -761,7 +761,7 @@ name                     url
 paasta-pinpoint-broker  http://10.30.70.82:8080
 ```
 
-<br>
+
 - Redis 서비스 브로커를 등록한다.
 
 ```
@@ -779,7 +779,7 @@ Creating service broker paasta-redis-brokeras admin...
 OK
 ```
 
-<br>
+
 - 등록된 Redis 서비스 브로커를 확인한다.
 
 ```
@@ -793,7 +793,7 @@ paasta-pinpoint-broker  http://10.30.70.82:8080
 paasta-redis-broker     http://10.30.60.71:12350
 ```
 
-<br>
+
 - 접근 가능한 서비스 목록을 확인한다.
 
 ```
@@ -812,7 +812,7 @@ broker: paasta-pinpoint-broker
 ```
 서비스 브로커 등록시 최초에는 접근을 허용하지 않는다. 따라서 access는 none으로 설정된다.
 
-<br>
+
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ```
@@ -833,14 +833,14 @@ broker: paasta-pinpoint-broker
   Pinpoint   Pinpoint_standard   none
 ```
 
-<br>
-<div id='11'></div>
-#   3. Redis연동 Sample App 설명
+
+
+# <div id='11'>  3. Redis연동 Sample App 설명
 본 Sample App은 PaaS-TA에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
-<br>
-<div id='12'></div>
-### 3.1. Sample App 구조
+
+
+###<div id='12'> 3.1. Sample App 구조
 Sample App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
 
 Sample App 구조는 다음과 같다.
@@ -867,7 +867,7 @@ Sample App 구조는 다음과 같다.
   </tr>
 </table>
 
-<br>
+
 - PaaSTA-Sample-Apps.zip 파일의 압축을 풀고 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 복사한다.
 
 ```
@@ -875,13 +875,13 @@ $ ls -all
 ```
 ![redis_image_02]
 
-<br>
-<div id='13'></div>
-### 3.2. PaaS-TA에서 서비스 신청
+
+
+### <div id='13'> 3.2. PaaS-TA에서 서비스 신청
 Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-<br>
+
 - 먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 ```
@@ -889,7 +889,7 @@ $ cf marketplace
 ```
 ![redis_image_03]
 
-<br>
+
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
 ```
@@ -904,7 +904,7 @@ $ cf create-service redis shared-vm redis-service-instance
 ```
 ![redis_image_04]
 
-<br>
+
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
 ```
@@ -912,13 +912,13 @@ $ cf services
 ```
 ![redis_image_05]
 
-<br>
-<div id='14'></div>
-### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+
+
+### <div id='14'> 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
 *참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-<br>
+
 - Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
 
 ```
@@ -936,7 +936,7 @@ applications:
 path: .                      # 배포시 구동되는 Path
 ```
 
-<br>
+
 - --no-start 옵션으로 App을 배포한다.
   --no-start: App 배포시 구동은 하지 않는다.
 
@@ -945,7 +945,7 @@ $ cf push --no-start
 ```
 ![redis_image_06]
 
-<br>
+
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
 ```
@@ -958,7 +958,7 @@ $ cf logs redis-example-app
 ```
 ![redis_image_08]
 
-<br>
+
 - Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
 ```
@@ -973,10 +973,10 @@ $ cf restart redis-example-app
 ```
 ![redis_image_10]
 
-<br>
+
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
-<br>
+
 - curl 로 확인
 
 ##### Redis Application 을 이용하여 Key 값으로 데이터 저장
@@ -1000,56 +1000,56 @@ $ curl -X DELETE $APP/foo
 ```
 ![redis_image_13]
 
-<br>
-<div id='15'></div>
-# 4. Redis Client 툴 접속
+
+
+# <div id='15'> 4. Redis Client 툴 접속
 Application에 바인딩 된 Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할 수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 PaaS-TA에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 PaaS-TA 운영자에게 문의하여 구성한다. vsphere 에서 구성한 인스턴스는 공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
 
-<div id='16'></div>
-### 4.1. Redis Desktop Manager 설치 및 연결
+
+### <div id='16'> 4.1. Redis Desktop Manager 설치 및 연결
 Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
-[**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
+[**http://redisdesktop.com/download**](http://redisdesktop.com/download)
 ![redis_image_14]
 
-- 다운로드한 설치파일을 실행한다.<br>
+- 다운로드한 설치파일을 실행한다.
 ![redis_image_15]
 
-- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
+- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.
 ![redis_image_16]
 
-- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
+- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.
 ![redis_image_17]
 
 - Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
-별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
+별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.
 ![redis_image_18]
 
-- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
+- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.
 ![redis_image_19]
 
-- Finish 버튼 클릭으로 설치를 완료한다.<br>
+- Finish 버튼 클릭으로 설치를 완료한다.
 ![redis_image_20]
 
-- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
+- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.
 ![redis_image_21]
 
-- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
+- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.
 ![redis_image_22]
 
 - 서버 정보는 Application에 바인드 되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
-예) $ cfenvredis-example-app<br>
+예) $ cfenvredis-example-app
 ![redis_image_23]
 
 - SSH Tunnel탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
-(참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
+(참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.
 ![redis_image_24]
 
-- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
+- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.
 ![redis_image_25]
 
-- 신규 키 등록후 확인<br>
+- 신규 키 등록후 확인
 ![redis_image_26]
 
 [redis_image_01]:/images/paasta-service/redis/redis_image_01.png
