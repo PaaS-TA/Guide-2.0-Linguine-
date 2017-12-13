@@ -50,8 +50,8 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
 - 다운로드 위치
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
+>PaaSTA-Services : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Services.zip>**  
+>PaaSTA-Deployment : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Deployment.zip>**  
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
 <br>
@@ -76,7 +76,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >| paasta-cubrid                        | 2.0*      | 85e3f01e+   |<br>
 >| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
 >| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
->| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-portal-release                | 0+dev.1*  | 00000000    |<br>
 >| paasta-redis                         | 2.0       | 2d766084+   |<br>
 >| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
 >+--------------------------------------+-----------+-------------+<br>
@@ -118,7 +118,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 >| paasta-eclipse-che                   | 2.0*      | 00000000    |<br>
 >| paasta-glusterfs                     | 2.0*      | 85e3f01e+   |<br>
 >| paasta-mysql                         | 2.0*      | 85e3f01e+   |<br>
->| paasta-portal-object-storage-release | 0+dev.1*  | 00000000    |<br>
+>| paasta-portal-release                | 0+dev.1*  | 00000000    |<br>
 >| paasta-redis                         | 2.0       | 2d766084+   |<br>
 >| swift-test-2                         | 0+dev.1*  | 00000000    |<br>
 >+--------------------------------------+-----------+-------------+<br>
