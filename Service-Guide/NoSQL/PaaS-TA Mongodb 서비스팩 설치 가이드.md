@@ -16,25 +16,25 @@
 4. [Mongodb Client 툴 접속](#15)
      * [4.1. MongoChef 설치 & 연결](#16)
 
-<br>
-<div id ='1'></div>
-#  1.  문서 개요
 
-<br>
-<div id='2'></div>
-### 1.1. 목적
+
+# <div id ='1'> 1.  문서 개요
+
+
+
+### <div id='2'> 1.1. 목적
 
 본 문서(Mongodb 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 Mongodb 서비스팩을 Bosh를 이용하여 설치 하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application 에서 Mongodb 서비스를 사용하는 방법을 기술하였다.
 
-<br>
-<div id='3'></div>
-### 1.2. 범위 
 
-설치 범위는 Mongodb 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
-<br>
-<div id='4'></div>
-### 1.3. 시스템 구성도
+### <div id='3'> 1.2. 범위
+
+설치 범위는 Mongodb 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다.
+
+
+
+### <div id='4'> 1.3. 시스템 구성도
 
 본 문서의 설치된 시스템 구성도입니다. Mongodb Server, Mongodb 서비스 브로커로 최소사항을 구성하였다.
 
@@ -63,35 +63,35 @@
   </tr>
 </table>
 
-<br>
-<div id='5'></div>
-### 1.4. 참고자료
+
+
+### <div id='5'> 1.4. 참고자료
 
 [**http://bosh.io/docs**](http://bosh.io/docs)
 
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-<br>
-<div id='6'></div>
-#  2.  Mongodb 서비스팩 설치
 
-<br>
-<div id='7'></div>
+
+# <div id='6'> 2.  Mongodb 서비스팩 설치
+
+
+<div id='7'>
 ### 2.1.  설치전 준비사항
 본 서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaS-TA-Services.zip, PaaS-TA-Deployment.zip, PaaS-TA-Sample-Apps.zip)
 
-<br>
+
 - 다운로드 위치
 
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
+>PaaSTA-Services : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Services.zip>**
+>PaaSTA-Deployment : **<http://115.68.46.186:8080/data/packages/3.0/PaaSTA-Deployment.zip>**
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
-<br>
-<div id='8'></div>
-### 2.2. Mongodb 서비스 릴리즈 업로드
+
+
+### <div id='8'> 2.2. Mongodb 서비스 릴리즈 업로드
 
 - PaaS-TA-Services.zip 파일 압축을 풀고 폴더안에 있는 Mongodb 서비스 릴리즈 pasta-mongodb-shard-2.0.tgz 파일을 확인한다.
 
@@ -102,7 +102,7 @@ $ ls –all
 -rw-rw-r-- 1 ubuntu ubuntu 121273779 Jan 16 04:05 paasta-mongodb-shard-2.0.tgz
 ```
 
-<br>
+
 -  업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 $ bosh releases
@@ -125,7 +125,7 @@ $ bosh releases
 ```
 Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-<br>
+
 - Mongodb 서비스 릴리즈를 업로드한다.
 ```
 $ bosh upload release paasta-mongodb-shard-2.0.tgz
@@ -169,7 +169,7 @@ paasta-mongod:  96% |ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 Release uploaded
 ```
 
-<br>
+
 -   업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ```
@@ -198,9 +198,9 @@ Releases total: 9
 ```
 Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
-<br>
-<div id='9'></div>
-###  2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
+
+
+### <div id='9'> 2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
@@ -213,7 +213,7 @@ $ ls –all
 ```
 ![mongodb_image_03]
 
-<br>
+
 - Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director에 target 되어 있는 UUID를 확인할 수 있다.
 
@@ -223,7 +223,7 @@ $ bosh status
 
 ![mongodb_image_04]
 
-<br>
+
 - Deploy시 사용할 Stemcell을 확인한다.
 
 ```
@@ -232,11 +232,11 @@ $ bosh stemcells
 ![mongodb_image_05]
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
-<br>
+
 -	paasta-mongodb-shard-vsphere-2.0.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
 ```
-$ vi paasta-mongodb-shard-vsphere-2.0.yml 
+$ vi paasta-mongodb-shard-vsphere-2.0.yml
 ```
 ```yaml
 # paasta-mongodb-shard-vsphere 설정 파일 내용
@@ -326,7 +326,7 @@ jobs:
     networks:
     - name: default
       static_ips:
-      - 10.244.3.150 
+      - 10.244.3.150
 
   - name: mongodb_shard
     template: mongodb_shard
@@ -365,7 +365,7 @@ jobs:
     - name: default
     properties:
       broker:                              # 서비스 브로커 설정 정보
-        host: 10.244.3.154                 # 서비스 브로커 IP 
+        host: 10.244.3.154                 # 서비스 브로커 IP
         name: Mongo-DB                     # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
         password: cloudfoundry             # 브로커 접근 아이디 비밀번호(필수)
         username: admin                    # 브로커 접근 아이디(필수)
@@ -442,7 +442,7 @@ properties:
     hosts: 10.244.3.153       # mongodb Host
 ```
 
-<br>
+
 -   Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 ```
@@ -452,7 +452,7 @@ $ bosh deployment {Deployment manifest 파일 PATH}
 Deployment set to '/home/ubuntu/workspace/bd_test/paasta-mongodb-shard-2.0.yml'
 ```
 
-<br>
+
 -	Mongodb 서비스팩을 배포한다.
 
 ```
@@ -510,7 +510,7 @@ Duration	00:08:20
 Deployed 'paasta-mongodb-shard-service' to 'my-bosh'
 ```
 
-<br>
+
 -	배포된 Mongodb 서비스팩을 확인한다.
 
 ```
@@ -537,9 +537,9 @@ Task 764 done
 VMs total: 5
 ```
 
-<br>
-<div id='10'></div>
-### 2.4. Mongodb 서비스 브로커 등록
+
+
+### <div id='10'> 2.4. Mongodb 서비스 브로커 등록
 
 Mongodb 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Mongodb 서비스 브로커를 등록해 주어야 한다.
 
@@ -571,7 +571,7 @@ $ cf create-service-broker mongodb-shard-service-broker admin cloudfoundry http:
 ```
 ![mongodb_image_07]
 
-<br>
+
 -   등록된 mongodb 서비스 브로커를 확인한다.
 
 ```
@@ -579,7 +579,7 @@ $ cf service-brokers
 ```
 ![mongodb_image_08]
 
-<br>
+
 -   접근 가능한 서비스 목록을 확인한다.
 
 ```
@@ -588,7 +588,7 @@ $ cf service-access
 ![mongodb_image_09]
 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
-<br>
+
 -	특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ```
@@ -597,15 +597,15 @@ $ cf service-access
 ```
 ![mongodb_image_10]
 
-<br>
-<div id='11'></div>
-#   3. Mongodb 연동 Sample Web App 설명
+
+
+# <div id='11'>  3. Mongodb 연동 Sample Web App 설명
 
 본 Sample Web App은 PaaS-TA에 배포되며 Mongodb의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
-<br>
-<div id ='12'></div>
-### 3.1. Sample App 구조
+
+
+### <div id ='12'> 3.1. Sample App 구조
 
 Sample Web App은 PaaS-TA에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Mongodb 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우저나 curl로 해당 App에 접속 하여 Mongodb 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
@@ -634,7 +634,7 @@ Sample Web App 구조는 다음과 같다.
   </tr>
 </table>
 
-<br>
+
 -	PaaS-TA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 Mongodb Sample Web App인 hello-spring-mongodb를 복사한다.
 ```
 $ ls -all
@@ -642,14 +642,14 @@ $ ls -all
 ![mongodb_image_11]
 
 
-<br>
-<div id='13'></div>
-### 3.2. PaaS-TA에서 서비스 신청
+
+
+### <div id='13'> 3.2. PaaS-TA에서 서비스 신청
 
 Sample Web App에서 Mongodb 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-<br>
+
 -	먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
 
 ```
@@ -658,7 +658,7 @@ $ cf marketplace
 ![mongodb_image_12]
 
 
-<br>
+
 -	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 ```
 $ cf create-service {서비스명} {서비스플랜} {내서비스명}
@@ -674,21 +674,21 @@ $ cf create-service Mongo-DB default-plan mongodb-service-instance
 ```
 ![mongodb_image_13]
 
-<br>
+
 -	생성된 Mongodb 서비스 인스턴스를 확인한다.
 ```
 $ cf services
 ```
 ![mongodb_image_14]
 
-<br>
-<div id='14'></div>
-### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+
+
+### <div id='14'> 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 -------------------------------------------------
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Mongodb 서비스를 이용한다.
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-<br>
+
 -	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
 ```
@@ -705,35 +705,35 @@ applications:
 ```
 참고: ./build/libs/hello-spring-mongodb.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
 
-<br>
--	--no-start 옵션으로 App을 배포한다. 
+
+-	--no-start 옵션으로 App을 배포한다.
     --no-start: App 배포시 구동은 하지 않는다.
 
 ```
 $ cf push --no-start
 ```
 ![mongodb_image_15]
-<br>
+
 -	배포된 Sample App을 확인하고 로그를 수행한다.
 ```
 $ cf apps
 ```
 ![mongodb_image_16]
-  
+
 ```
 $ cf logs {배포된 App명}
 $ cf logs hello-spring-mongodb
 ```
 ![mongodb_image_17]
 
-<br>
--	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
+
+-	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 ```
 $ cf bind-service hello-spring-Mongodb Mongodb-service-instance
 ```
 ![mongodb_image_42]
 
-<br>
+
 -	바인드가 적용되기 위해서 App을 재기동한다.
 ```
 $ cf restart hello-spring-mongodb
@@ -743,7 +743,7 @@ $ cf restart hello-spring-mongodb
 
 (참고) 바인드 후 App구동시 Mongodb 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.
 
-<br>
+
 - rule.json 파일을 만들고 아래와 같이 내용을 넣는다.
 ```
 $ vi rule.json
@@ -758,87 +758,87 @@ $ vi rule.json
 ]
 ```
 
-<br>
+
 -	보안 그룹을 생성한다.
 ```
 $ cf create-security-group Mongo-DB rule.json
 ```
 ![mongodb_image_19]
 
-<br>
+
 -	모든 App에 Mongodb 서비스를 사용할 수 있도록 생성한 보안 그룹을 적용한다.
 ```
 $ cf bind-running-security-group Mongo-DB
 ```
 ![mongodb_image_20]
 
-<br>
+
 -	App을 리부팅 한다.
 ```
 $ cf restart hello-spring-Mongodb
 ```
 ![mongodb_image_21]
 
-<br>
+
 -	App이 정상적으로 Mongodb 서비스를 사용하는지 확인한다.
-##### curl 로 확인 
+##### curl 로 확인
 ```
 $ curl hello-spring-Mongodb.115.68.46.30.xip.io
 ```
 ![mongodb_image_22]
 
-<br>
+
 -	브라우에서 확인
 ![mongodb_image_23]
-<br>
-<div id='15'></div>
-# 4.  Mongodb Client 툴 접속
+
+
+# <div id='15'> 4.  Mongodb Client 툴 접속
 
 Application에 바인딩된 Mongodb 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Mongodb Client 툴에서 직접 연결할수 없다. 따라서 SSH 터널, Proxy 터널 등을 제공하는 Mongodb Client 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Mongodb Client 툴로써는 MongoChef 로 가이드한다. MongoChef 에서 접속하기 위해서 먼저 SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 PaaS-TA에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack관리자 및 PaaS-TA 운영자에게 문의하여 구성한다.
 
-<br>
-<div id='16'></div>
-# 4.1.  MongoChef 설치 & 연결
+
+
+# <div id='16'> 4.1.  MongoChef 설치 & 연결
 MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 
-<br>
+
 -	 MongoChef을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 [**http://3t.io/mongochef/download/platform/**](http://3t.io/mongochef/download/platform/)
 ![mongodb_image_24]
 
-<br>
+
 -	다운로드한 설치파일을 실행한다.
 ![mongodb_image_25]
 
-<br>
+
 -	MongoChef 설치를 위한 안내사항이다. Next 버튼을 클릭한다.
 ![mongodb_image_26]
 
-<br>
+
 -	프로그램 라이선스에 관련된 내용이다. 동의(I accept the terms in the License Agreement)에 체크 후 Next 버튼을 클릭한다.
 ![mongodb_image_27]
 
-<br>
+
 -	MongoChef 을 설치할 경로를 설정 후 Next 버튼을 클릭한다. 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.
 ![mongodb_image_28]
 
-<br>
+
 -	Install 버튼을 클릭하여 설치를 진행한다.
 ![mongodb_image_29]
 
-<br>
+
 -	Finish 버튼 클릭으로 설치를 완료한다.
 ![mongodb_image_30]
 
-<br>
+
 -	MongoChef를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect버튼을 클릭한다.
 ![mongodb_image_31]
 
-<br>
+
 -	새로운 접속 정보를 작성하기 위해New Connection 버튼을 클릭한다.
 ![mongodb_image_32]
 
-<br>
+
 -	Server에 접속하기 위한 Connection 정보를 입력한다.
 ![mongodb_image_33]
 
@@ -848,30 +848,30 @@ $ cf env hello-spring-mongodb
 ```
 ![mongodb_image_34]
 
-<br>
+
 -	Authentication탭으로 이동하여 mongodb 의 인증정보를 입력한다.
 ![mongodb_image_35]
 
-SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다. 
+SSH 터널 탭을 클릭하고 PaaS-TA 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다.
 ![mongodb_image_36]
 
 모든 정보를 입력했으면 Test Connection 버튼을 눌러 접속 테스트를 한다.
 ![mongodb_image_37]
 모두 OK 결과가 나오면 정상적으로 접속이 된다는 것이다. OK 버튼을 누른다.
 
-<br>
+
 -	Save 버튼을 눌러 작성한 접속정보를 저장한다.
 ![mongodb_image_38]
 
-<br>
+
 -	방금 저장한 접속정보를 선택하고 Connect 버튼을 클릭하여 접속한다.
 ![mongodb_image_39]
 
-<br>
+
 -	접속이 완료되면 좌측에 스키마 정보가 나타난다. 컬럼을 더블클릭 해보면 우측에 적재되어있는 데이터가 출력된다.
 ![mongodb_image_40]
 
-<br>
+
 -	우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다. Query문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
 ![mongodb_image_41]
 
