@@ -772,7 +772,7 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 - 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 ```
 ```
-$ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80
+$ cf create-service-broker redis-service-broker admin admin http://10.30.40.171:12350
 ```
 ```
 Creating service broker paasta-redis-brokeras admin...
@@ -816,7 +816,7 @@ broker: paasta-pinpoint-broker
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ```
-$ cf enable-service-access redis-sb
+$ cf enable-service-access redis
 ```
 ```
 $ cf service-access
