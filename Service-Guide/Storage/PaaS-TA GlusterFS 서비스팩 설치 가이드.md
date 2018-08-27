@@ -592,7 +592,7 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 - 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 ```
 ```
-$ cf create-service-broker glusterfs-service admin admin http://10.30.40.197:8080
+$ cf create-service-broker glusterfs-service admin cloudfoundry http://10.30.40.197:8080
 ```
 ![glusterfs_image_03]
 
